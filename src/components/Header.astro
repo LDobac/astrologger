@@ -1,0 +1,12 @@
+---
+import { Image } from "astro:assets";
+
+import imgProfileImage from "../assets/images/profile_image.webp";
+---
+
+<header class="flex flex-col w-full justify-center items-center p-10">
+    <Image class="rounded-full w-28" src={imgProfileImage} alt="Profile image with cat" />
+
+    <p class="mt-1 text-3xl font-bold">Jaehee</p>
+    <p class="mt-1">Hi!</p>
+</header>
