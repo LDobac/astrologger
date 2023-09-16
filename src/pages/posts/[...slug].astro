@@ -1,0 +1,34 @@
+---
+import { slug as slugger } from "github-slugger";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths () {
+    const posts = await getCollection("posts");
+
+    return posts.map((post) => {
+        return {
+            params: {
+                slug: slugger(post.data.title)
+            },
+            props: {
+                post
+            }
+        };
+    });
+}
+
+const { slug } = Astro.params;
+
+// const posts = await getCollection("posts");
+// const post = posts[0];
+const { post } = Astro.props;
+const { title } = post.data;
+const { Content } = await post.render();
+---
+
+<Layout title="this is post page">
+    <p>This is post page : {slug}</p>
+    <p>{title}</p>
+    <Content />
+</Layout>
