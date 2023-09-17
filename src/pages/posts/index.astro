@@ -1,18 +1,18 @@
 ---
-import { slug as slugger } from "github-slugger"; 
+import { getCollection } from "astro:content";
 import Layout from '../../layouts/Layout.astro';
-import {getCollection} from "astro:content";
+import PostCard from "../../components/PostCard.astro";
 
 const posts = await getCollection("posts");
-posts.forEach((post) => console.log(slugger(post.data)));
+posts.sort((a, b) => {
+    return b.data.date.getTime() - a.data.date.getTime();
+});
 ---
 
 <Layout title="Jaehee.dev">
-    <p>This is posts.astro</p>
+    <h2>Recent Posts</h2>
 
     {posts.map(post => (
-        <p>
-        <a href={"/posts/" + slugger(post.data.title)}>{slugger(post.data.title)}</a>
-        </p>
+        <PostCard post={post} />
     ))} 
 </Layout>

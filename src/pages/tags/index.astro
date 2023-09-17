@@ -1,0 +1,13 @@
+---
+import { slug as slugger } from 'github-slugger';
+import Layout from '../../layouts/Layout.astro';
+import GetTagList from "../../utils/GetTagList";
+
+const tags = await GetTagList();
+---
+
+<Layout title="Jaehee.dev">
+    {tags.map((tag) => (
+        <a class="block" href={"/tags/" + slugger(tag)}>{tag}</a> 
+    ))}    
+</Layout>

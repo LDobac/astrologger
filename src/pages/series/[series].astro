@@ -1,0 +1,36 @@
+---
+import { slug as slugger } from "github-slugger";
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import PostCard from "../../components/PostCard.astro";
+import GetSeriesList from "../../utils/GetSeriesList";
+
+export async function getStaticPaths () {
+    const seriesList = await GetSeriesList();
+    const posts = await getCollection("posts");
+    
+    return seriesList.map((series) => {
+        return {
+            params: { series: slugger(series) },
+            props: {
+                series: series,
+                posts: posts.filter(post => post.data.series ? post.data.series === series : false) 
+            }
+        }
+    });
+}
+
+interface Props {
+    posts: Array<CollectionEntry<"posts">>
+    series: string
+}
+
+const { posts, series } = Astro.props;
+---
+
+<Layout title="Series List">
+    <p>{series}</p>
+    {posts.map((post) => (
+        <PostCard post={post} />
+    ))}
+</Layout>

@@ -1,0 +1,36 @@
+---
+import { slug as slugger } from "github-slugger";
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import PostCard from "../../components/PostCard.astro";
+import GetTagList from "../../utils/GetTagList";
+
+export async function getStaticPaths () {
+    const tagList = await GetTagList();
+    const posts = await getCollection("posts");
+    
+    return tagList.map((tag) => {
+        return {
+            params: { tag: slugger(tag) },
+            props: {
+                tag: tag,
+                posts: posts.filter(post => post.data.tags ? post.data.tags.includes(tag) : false) 
+            }
+        }
+    });
+}
+
+interface Props {
+    posts: Array<CollectionEntry<"posts">>
+    tag: string
+}
+
+const { posts, tag } = Astro.props;
+---
+
+<Layout title="Tag List">
+    <p>{tag}</p>
+    {posts.map((post) => (
+        <PostCard post={post} />
+    ))}
+</Layout>

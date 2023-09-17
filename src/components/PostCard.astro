@@ -1,0 +1,24 @@
+---
+import { slug as slugger } from "github-slugger";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    post: CollectionEntry<"posts">
+}
+
+const { post } = Astro.props;
+
+const { title, description, date, series, tags} = post.data;
+---
+
+<div class="border-4 mb-6 pa-4">
+    <a href={"/posts/" + slugger(title)}>
+        <p>Title : {title}</p>
+        <p>Desc : {description}</p>
+        <p>Date : {date}</p>
+        <p>Series : {series}</p>
+        {tags ? 
+        tags.map(tag => (<span>{tag}, </span>))
+        : <div></div>}
+    </a>
+</div>
