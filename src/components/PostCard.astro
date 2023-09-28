@@ -1,6 +1,9 @@
 ---
 import { slug as slugger } from "github-slugger";
 import type { CollectionEntry } from "astro:content";
+import SeriesLink from "./SeriesLink.astro";
+import {FormattedDate} from "../utils/FormattedDate";
+import TagLink from "./TagLink.astro";
 
 interface Props {
     post: CollectionEntry<"posts">
@@ -11,14 +14,20 @@ const { post } = Astro.props;
 const { title, description, date, series, tags} = post.data;
 ---
 
-<div class="border-4 mb-6 pa-4">
-    <a href={"/posts/" + slugger(title)}>
-        <p>Title : {title}</p>
-        <p>Desc : {description}</p>
-        <p>Date : {date}</p>
-        <p>Series : {series}</p>
-        {tags ? 
-        tags.map(tag => (<span>{tag}, </span>))
-        : <div></div>}
-    </a>
+<div>
+    <div class="flex flex-col space-y-2 p-4 ring-2 ring-sky-300 rounded-xl" href={"/posts/" + slugger(title)}>
+        <div class="flex">
+            <span class="inline text-lg font-bold">{title}</span>
+            {!!series &&
+            <SeriesLink series={series} />
+            }
+        </div>
+        {!!description&& <p class="text-zinc-400">{description}</p>}
+        <p>{FormattedDate(date)}</p>
+        {!!tags && 
+        <div class="flex gap-3">
+            {tags.map(tag => (<TagLink tag={tag} />))}
+        </div>
+        }
+    </div>
 </div>

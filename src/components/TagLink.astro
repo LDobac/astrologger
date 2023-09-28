@@ -1,0 +1,13 @@
+---
+import { slug as slugger } from 'github-slugger';
+
+interface Props {
+    tag: string
+}
+
+const { tag } = Astro.props;
+---
+
+<a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href={"/tags/" + slugger(tag)}>
+    <span>{tag}</span>
+</a>

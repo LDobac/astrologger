@@ -2,8 +2,8 @@
 import { slug as slugger } from "github-slugger";
 import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import PostCard from "../../components/PostCard.astro";
 import GetSeriesList from "../../utils/GetSeriesList";
+import PostList from "../../components/PostList.astro";
 
 export async function getStaticPaths () {
     const seriesList = await GetSeriesList();
@@ -30,7 +30,6 @@ const { posts, series } = Astro.props;
 
 <Layout title="Series List">
     <p>{series}</p>
-    {posts.map((post) => (
-        <PostCard post={post} />
-    ))}
+
+    <PostList posts={posts} />
 </Layout>

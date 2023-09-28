@@ -1,0 +1,11 @@
+---
+import { slug as slugger } from "github-slugger";
+
+interface Props {
+    series: string
+}
+
+const { series } = Astro.props;
+---
+
+<a href={"/series/" + slugger(series)} class="inline ml-2 text-sky-300 hover:text-current transition">{series}</a>
