@@ -1,9 +1,9 @@
 ---
 import { slug as slugger } from "github-slugger";
 import { getCollection, type CollectionEntry } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import GetTagList from "../../utils/GetTagList";
-import PostList from "../../components/PostList.astro";
+import Layout from "../../../layouts/Layout.astro";
+import GetTagList from "../../../utils/GetTagList";
+import PostList from "../../../components/PostList.astro";
 
 export async function getStaticPaths () {
     const tagList = await GetTagList();
@@ -29,6 +29,10 @@ const { posts, tag } = Astro.props;
 ---
 
 <Layout title="Tag List">
-    <p>Tag: {tag}</p>
+    <p class="flex flex-col text-center mb-6 border-b-2 pb-4">
+        <span>Tag</span>
+        <span class="font-bold text-2xl text-sky-300">{tag}</span>
+    </p>
+
     <PostList posts={posts} />
 </Layout>
