@@ -1,7 +1,7 @@
 ---
-import { slug as slugger } from 'github-slugger';
-import Layout from '../../layouts/Layout.astro';
-import GetTagList from "../../utils/GetTagList";
+import { slug as slugger } from "github-slugger";
+import Layout from "@layouts/Layout.astro";
+import GetTagList from "@utils/GetTagList";
 
 const tags = await GetTagList();
 ---

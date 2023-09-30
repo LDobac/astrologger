@@ -1,7 +1,7 @@
 ---
-import { slug as slugger} from 'github-slugger';
-import Layout from '../../layouts/Layout.astro';
-import GetSeriesList from "../../utils/GetSeriesList";
+import { slug as slugger} from "github-slugger";
+import Layout from "@layouts/Layout.astro";
+import GetSeriesList from "@utils/GetSeriesList";
 
 const series = await GetSeriesList();
 ---

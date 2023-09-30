@@ -1,9 +1,9 @@
 ---
 import { slug as slugger } from "github-slugger";
 import { getCollection, type CollectionEntry } from "astro:content";
-import Layout from "../../../layouts/Layout.astro";
-import GetSeriesList from "../../../utils/GetSeriesList";
-import PostList from "../../../components/PostList.astro";
+import Layout from "@layouts/Layout.astro";
+import GetSeriesList from "@utils/GetSeriesList";
+import PostList from "@components/PostList.astro";
 
 export async function getStaticPaths () {
     const seriesList = await GetSeriesList();
