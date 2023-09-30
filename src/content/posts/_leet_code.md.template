@@ -1,9 +1,12 @@
-[[[
+---
 title : LeetCode - 2. Add Two Numbers
 date : 2021-10-26 22:21:00
 series : "LeetCode"
 tags : ["Leet Code", "medium", "c++"]
-]]]
+og: 
+    img: "./assets/images/test.webp"
+    alt: "this is alt"
+---
 
 ## LeetCode - 2. Add Two Numbers
 문제 - [LeetCode - 2. Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)

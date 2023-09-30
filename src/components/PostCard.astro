@@ -12,20 +12,23 @@ interface Props {
 
 const { post } = Astro.props;
 
-const { title, description, date, series, tags} = post.data;
-
-const ogImageLink = `/posts/${slugger(title)}.png`;
-const ogImageWidth = 1200;
-const ogImageHeight = 630;
+const { title, description, date, series, tags, og} = post.data;
 ---
 
 <div class="flex flex-col pb-6 border-b-2">
     <a href={"/posts/" + slugger(title)}>
-        <Image 
-            class="rounded-xl w-full h-1/2 object-cover bg-black" 
-            src={ogImageLink} 
-            width={ogImageWidth} height={ogImageHeight} 
-            alt={"Thumbnail of " + title} />
+        {og ? 
+            <Image 
+                class="rounded-xl w-full h-1/2 object-cover bg-black" 
+                src={og.img} 
+                alt={og.alt} />
+        :
+            <Image 
+                class="rounded-xl w-full h-1/2 object-cover bg-black" 
+                src={`/posts/${slugger(title)}.png`} 
+                width={1200} height={630} 
+                alt={"Thumbnail of " + title} />
+        }
     </a>
 
     <div class="space-x-2 mt-2">
