@@ -1,0 +1,35 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import PostList from "@components/PostList.astro";
+import Paginator from "@src/components/Paginator.astro";
+import type {Page} from "astro";
+
+// @ts-expect-error
+export async function getStaticPaths({ paginate }) {
+    const posts = await getCollection("posts");
+    posts.sort((a, b) => {
+        return b.data.date.getTime() - a.data.date.getTime();
+    });
+
+  return paginate(posts, {
+    pageSize: 10
+  });
+}
+
+interface Props {
+    page: Page<CollectionEntry<"posts">>
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title="Jaehee.dev">
+    <h2 class="text-center font-bold text-2xl mb-6 border-b-2 pb-4">Recent Posts</h2>
+
+    <PostList posts={page.data} />
+
+    <div class="mt-6">
+        <Paginator page={page} baseUrl="/posts" />
+    </div>
+</Layout>

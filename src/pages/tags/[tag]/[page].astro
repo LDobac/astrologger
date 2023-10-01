@@ -4,28 +4,31 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import GetTagList from "@utils/GetTagList";
 import PostList from "@components/PostList.astro";
+import type {Page} from "astro";
+import Paginator from "@src/components/Paginator.astro";
 
-export async function getStaticPaths () {
+// @ts-expect-error
+export async function getStaticPaths ({ paginate }) {
     const tagList = await GetTagList();
     const posts = await getCollection("posts");
     
-    return tagList.map((tag) => {
-        return {
+    return tagList.flatMap((tag) => {
+        const filteredPosts = posts.filter(post => post.data.tags ? post.data.tags.includes(tag) : false);
+
+        return paginate(filteredPosts, {
             params: { tag: slugger(tag) },
-            props: {
-                tag: tag,
-                posts: posts.filter(post => post.data.tags ? post.data.tags.includes(tag) : false) 
-            }
-        }
+            props: { tag },
+            pageSize: 10,
+        })
     });
 }
 
 interface Props {
-    posts: Array<CollectionEntry<"posts">>
+    page: Page<CollectionEntry<"posts">>
     tag: string
 }
 
-const { posts, tag } = Astro.props;
+const { page, tag } = Astro.props;
 ---
 
 <Layout title="Tag List">
@@ -34,5 +37,7 @@ const { posts, tag } = Astro.props;
         <span class="font-bold text-2xl text-sky-300">{tag}</span>
     </p>
 
-    <PostList posts={posts} />
+    <PostList posts={page.data} />
+
+    <Paginator page={page} baseUrl={"/tags/" + slugger(tag)} />
 </Layout>

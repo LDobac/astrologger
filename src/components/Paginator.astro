@@ -1,0 +1,45 @@
+---
+import type {Page} from "astro";
+
+interface Props {
+    page: Page;
+    baseUrl: string;
+};
+
+const { page, baseUrl } = Astro.props;
+const pageNums = [...Array(5).keys()].map(n => n + page.currentPage - 2);
+---
+
+<ul class="flex space-x-6 text-xl justify-center items-center">
+    <li class="pb-1">
+        <a href={baseUrl}>&#x23EE</a>
+    </li>
+    <li class="text-md">
+        <a href={page.url.prev ?? ""}>&#x25C0</a>
+    </li>
+
+    {pageNums.map(n => (
+    (n < 1 || n > page.lastPage) ?
+    <li>.</li>
+    :
+    <li class:list={[
+        n === page.currentPage ? "font-bold": "",
+    ]}>
+        {n === page.currentPage ?
+        <span>{n}</span>
+        :
+        <a href={baseUrl + "/" + n.toString()}>
+            {n}
+        </a>
+        }
+    </li>
+    ))}
+
+    <li class="text-md">
+        <a href={page.url.next ?? ""}>&#x25B6</a>
+    </li>
+    <li class="pb-1">
+        <a href={baseUrl + "/" + page.lastPage}>&#x23ED</a>
+    </li>
+</ul>
+

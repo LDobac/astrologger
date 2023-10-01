@@ -4,35 +4,42 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import GetSeriesList from "@utils/GetSeriesList";
 import PostList from "@components/PostList.astro";
+import Paginator from "@src/components/Paginator.astro";
+import type {Page} from "astro";
 
-export async function getStaticPaths () {
+// @ts-expect-error
+export async function getStaticPaths ({ paginate }) {
     const seriesList = await GetSeriesList();
     const posts = await getCollection("posts");
     
-    return seriesList.map((series) => {
-        return {
+    return seriesList.flatMap((series) => {
+        const filteredPosts = posts.filter(post => post.data.series ? post.data.series === series : false);
+
+        return paginate(filteredPosts, {
             params: { series: slugger(series) },
-            props: {
-                series: series,
-                posts: posts.filter(post => post.data.series ? post.data.series === series : false) 
-            }
-        }
+            props: { series },
+            pageSize: 10,
+        });
     });
 }
 
 interface Props {
-    posts: Array<CollectionEntry<"posts">>
+    page: Page<CollectionEntry<"posts">>
     series: string
 }
 
-const { posts, series } = Astro.props;
+const { page, series } = Astro.props;
 ---
-
 <Layout title="Series List">
     <p class="flex flex-col text-center mb-6 border-b-2 pb-4">
         <span>Series</span>
         <span class="font-bold text-2xl text-sky-300">{series}</span>
     </p>
 
-    <PostList posts={posts} />
+    <PostList posts={page.data} />
+
+    <div class="mt-6">
+        <Paginator page={page} baseUrl={"/series/" + slugger(series)} />
+    </div>
 </Layout>
+
