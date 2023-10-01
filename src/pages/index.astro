@@ -2,10 +2,10 @@
 import Layout from "@layouts/Layout.astro";
 import PostList from "@components/PostList.astro";
 import TagList from "@components/TagList.astro";
-import GetSortedPosts from "@utils/GetSortedPosts";
+import { GetPosts } from "@utils/GetPosts";
 import SeriesList from "@components/SeriesList.astro";
 
-const posts = (await GetSortedPosts()).slice(0, 6);
+const posts = (await GetPosts(true)).slice(0, 6);
 ---
 
 <Layout title="Jaehee.dev">

@@ -1,7 +1,8 @@
 ---
 import { slug as slugger } from "github-slugger";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
+import PostLayout from "@layouts/PostLayout.astro";
 
 export async function getStaticPaths () {
     const posts = await getCollection("posts");
@@ -18,16 +19,14 @@ export async function getStaticPaths () {
     });
 }
 
-const { slug } = Astro.params;
+interface Props {
+    post: CollectionEntry<"posts">
+}
 
 const { post } = Astro.props;
 
-const { title, date, series, tags } = post.data;
-const { Content } = await post.render();
 ---
 
 <Layout title="this is post page">
-    <p>This is post page : {slug}</p>
-    <p>{title}</p>
-    <Content />
+    <PostLayout post={post} />
 </Layout>

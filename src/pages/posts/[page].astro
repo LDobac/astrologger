@@ -4,11 +4,11 @@ import Layout from "@layouts/Layout.astro";
 import PostList from "@components/PostList.astro";
 import Paginator from "@components/Paginator.astro";
 import type {Page} from "astro";
-import GetSortedPosts from "@utils/GetSortedPosts";
+import { GetPosts } from "@utils/GetPosts";
 
 // @ts-expect-error
 export async function getStaticPaths({ paginate }) {
-    const posts = await GetSortedPosts();
+    const posts = await GetPosts(true);
 
     return paginate(posts, {
         pageSize: 10

@@ -1,0 +1,106 @@
+---
+import SeriesLink from "@components/SeriesLink.astro";
+import TagList from "@components/TagList.astro";
+import {FormattedDate} from "@utils/FormattedDate";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { slug as slugger} from "github-slugger";
+import "github-markdown-css/github-markdown-light.css";
+import {GetPostsBySeries} from "@utils/GetPosts";
+
+interface Props {
+    post: CollectionEntry<"posts">
+}
+
+const { post } = Astro.props;
+
+const { title, date, editDate, series, tags, og} = post.data;
+const { Content } = await post.render();
+
+let prevSeriesPost: (CollectionEntry<"posts"> | undefined) = undefined;
+let nextSeriesPost: (CollectionEntry<"posts"> | undefined) = undefined;
+
+if (series)
+{
+    const posts = await GetPostsBySeries(series, true);
+
+    const postIdx = posts.findIndex((v) => v.data.title === title);
+
+    const prevIdx = postIdx + 1;
+    const nextIdx = postIdx - 1;
+
+    if (nextIdx >= 0) nextSeriesPost = posts.at(nextIdx);
+    if (prevIdx < posts.length) prevSeriesPost = posts.at(prevIdx);
+}
+---
+
+<div class="">
+    <header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6">
+         {og ? 
+            <Image 
+                class="w-full bg-black" 
+                src={og.img} 
+                alt={og.alt} />
+        :
+            <Image 
+                class="w-full bg-black" 
+                src={`/posts/${slugger(title)}.png`} 
+                width={1200} height={630} 
+                alt={"Thumbnail of " + title} />
+        }
+
+        <h1 class="leading-none">
+            <span class="block text-2xl font-bold">{title}</span>
+            {!!series &&
+                <SeriesLink series={series} />
+            }
+        </h1>
+
+        {!!tags &&
+            <TagList tags={tags} />
+        }
+
+        <p>
+            <span>{ FormattedDate(date) }</span>
+            {!!editDate &&
+                <span>&nbsp;/&nbsp;{ FormattedDate(editDate) }</span> 
+            }
+        </p>
+    </header>
+
+    <article class="mt-6 border-b-2 border-sky-300 pb-6">
+        <div class="markdown-body">
+            <Content />
+        </div>
+    </article>
+
+    {(!!prevSeriesPost || !!nextSeriesPost) && series && 
+    <p class="mt-6 font-bold">
+        <SeriesLink series={series} />
+        <span>&nbsp;시리즈의 다른 게시물 보기</span>
+    </p>
+    <div class="flex flex-col space-y-4 mt-6">
+        {!!prevSeriesPost &&
+        <a 
+            class="bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 flex justify-between items-center rounded-xl ring-1 ring-offset-2 border ring-sky-300 font-bold p-4"
+            style="background-size: 200%;"
+            href={"/posts/" + slugger(prevSeriesPost.data.title)}
+        >
+            <span class="text-2xl mr-10">&#x2190;</span>
+            <span class="text-right truncate">{prevSeriesPost.data.title}</span>
+        </a>
+        }
+
+        {!!nextSeriesPost &&
+        <a 
+            class="bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 flex justify-between items-center rounded-xl ring-1 ring-offset-2 border ring-sky-300 font-bold p-4"
+            style="background-size: 200%;"
+            href={"/posts/" + slugger(nextSeriesPost.data.title)}
+        >
+            <span class="text-left truncate">{nextSeriesPost.data.title}</span>
+            <span class="text-right text-2xl ml-10">&#x2192;</span>
+        </a>
+        }  
+    </div>
+    }
+</div>
