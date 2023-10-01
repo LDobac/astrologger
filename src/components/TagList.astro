@@ -1,0 +1,12 @@
+---
+import GetTagList from "@utils/GetTagList"
+import TagLink from "./TagLink.astro";
+
+const tags = await GetTagList();
+
+---
+<div class="flex flex-row flex-wrap w-full gap-3">
+    {tags.map((tag) => (
+        <TagLink tag={tag} />
+    ))}
+</div>

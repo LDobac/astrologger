@@ -1,0 +1,12 @@
+---
+import GetSeriesList from "@utils/GetSeriesList";
+import SeriesLink from "./SeriesLink.astro";
+
+const series = await GetSeriesList();
+
+---
+<div class="flex flex-row flex-wrap w-full gap-3">
+    {series.map((series) => (
+        <SeriesLink series={series} />
+    ))}
+</div>

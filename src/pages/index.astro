@@ -1,6 +1,40 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import PostList from "@components/PostList.astro";
+import TagList from "@components/TagList.astro";
+import GetSortedPosts from "@utils/GetSortedPosts";
+import SeriesList from "@components/SeriesList.astro";
+
+const posts = (await GetSortedPosts()).slice(0, 6);
 ---
 
 <Layout title="Jaehee.dev">
+    <div class="space-y-12">
+        <div> 
+            <div class="inline-flex items-center mb-4 border-b-2 border-sky-300">
+                <i class="bg-black mr-2" style="width: 12px;height: 12px;"></i>
+                <span class="font-bold text-xl">Recent Posts</span>
+            </div>
+
+            <PostList posts={posts} />
+        </div>
+
+        <div>
+            <div class="inline-flex items-center mb-4 border-b-2 border-sky-300">
+                <i class="bg-black mr-2" style="width: 12px;height: 12px;"></i>
+                <span class="font-bold text-xl">Tags</span>
+            </div>
+
+            <TagList />
+        </div>
+
+        <div>
+            <div class="inline-flex items-center mb-4 border-b-2 border-sky-300">
+                <i class="bg-black mr-2" style="width: 12px;height: 12px;"></i>
+                <span class="font-bold text-xl">Series</span>
+            </div>
+
+            <SeriesList />
+        </div>
+    </div>
 </Layout>

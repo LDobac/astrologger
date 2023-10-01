@@ -1,20 +1,18 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import PostList from "@components/PostList.astro";
-import Paginator from "@src/components/Paginator.astro";
+import Paginator from "@components/Paginator.astro";
 import type {Page} from "astro";
+import GetSortedPosts from "@utils/GetSortedPosts";
 
 // @ts-expect-error
 export async function getStaticPaths({ paginate }) {
-    const posts = await getCollection("posts");
-    posts.sort((a, b) => {
-        return b.data.date.getTime() - a.data.date.getTime();
-    });
+    const posts = await GetSortedPosts();
 
-  return paginate(posts, {
-    pageSize: 10
-  });
+    return paginate(posts, {
+        pageSize: 10
+    });
 }
 
 interface Props {

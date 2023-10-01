@@ -5,7 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import GetTagList from "@utils/GetTagList";
 import PostList from "@components/PostList.astro";
 import type {Page} from "astro";
-import Paginator from "@src/components/Paginator.astro";
+import Paginator from "@components/Paginator.astro";
 
 // @ts-expect-error
 export async function getStaticPaths ({ paginate }) {

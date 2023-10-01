@@ -8,6 +8,6 @@ interface Props {
 const { tag } = Astro.props;
 ---
 
-<a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href={"/tags/" + slugger(tag)}>
+<a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href={"/tags/" + slugger(tag) + "/1"}>
     <span>{tag}</span>
 </a>
