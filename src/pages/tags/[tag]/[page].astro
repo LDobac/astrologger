@@ -39,5 +39,7 @@ const { page, tag } = Astro.props;
 
     <PostList posts={page.data} />
 
-    <Paginator page={page} baseUrl={"/tags/" + slugger(tag)} />
+    <div class="mt-6">
+        <Paginator page={page} baseUrl={"/tags/" + slugger(tag)} />
+    </div>
 </Layout>
