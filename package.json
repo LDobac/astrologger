@@ -18,8 +18,12 @@
     "dayjs": "^1.11.10",
     "github-markdown-css": "^5.2.0",
     "github-slugger": "^2.0.0",
+    "html-to-text": "^9.0.5",
+    "marked": "^9.0.3",
     "tailwindcss": "^3.0.24",
     "typescript": "^5.2.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/html-to-text": "^9.0.2"
+  }
 }

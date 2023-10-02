@@ -1,18 +1,34 @@
 ---
 import { slug as slugger } from "github-slugger";
-import type { CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import SeriesLink from "./SeriesLink.astro";
 import {FormattedDate} from "@utils/FormattedDate";
 import {Image} from "astro:assets";
 import TagList from "./TagList.astro";
+import { convert } from "html-to-text";
+import {marked} from "marked";
+import {DESC_LEN} from "@utils/Constants";
 
 interface Props {
     post: CollectionEntry<"posts">
 }
 
+const GenerateDescription = (post: CollectionEntry<"posts">): string => {
+    const renderedContent = convert(marked(post.body));
+    
+    return renderedContent.slice(0, DESC_LEN);
+}
+
 const { post } = Astro.props;
 
-const { title, description, date, series, tags, og} = post.data;
+const { 
+    title, 
+    description = GenerateDescription(post), 
+    date, 
+    series, 
+    tags, 
+    og
+} = post.data;
 ---
 
 <div class="flex flex-col pb-6 border-b-2 w-full">
@@ -40,7 +56,7 @@ const { title, description, date, series, tags, og} = post.data;
         }
     </div>
     
-    <p class="mt-2 h-16 text-sm line-clamp-3 text-justify">
+    <p class="mt-2 h-16 text-sm line-clamp-3">
         {!!description && description}
     </p>
 
