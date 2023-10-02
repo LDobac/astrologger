@@ -5,13 +5,14 @@ import PostList from "@components/PostList.astro";
 import Paginator from "@components/Paginator.astro";
 import type {Page} from "astro";
 import { GetPosts } from "@utils/GetPosts";
+import { PAGE_SIZE } from "@utils/Constants";
 
 // @ts-expect-error
 export async function getStaticPaths({ paginate }) {
     const posts = await GetPosts(true);
 
     return paginate(posts, {
-        pageSize: 10
+        pageSize: PAGE_SIZE
     });
 }
 

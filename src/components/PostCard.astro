@@ -31,14 +31,16 @@ const { title, description, date, series, tags, og} = post.data;
         }
     </a>
 
-    <div class="space-x-2 mt-2">
-        <a href={"/posts/" + slugger(title)} class="text-lg font-bold">{title}</a>
-        {!!series &&
+    <div class="mt-2 leading-none">
+        <a href={"/posts/" + slugger(title)} class="block text-lg font-bold truncate leading-none mr-4">{title}</a>
+        {!!series ?
         <SeriesLink series={series} />
+        :
+        <br>
         }
     </div>
 
-    <p class="text-sm text-gray-400">{FormattedDate(date)}</p>
+    <p class="text-sm text-gray-400 mt-2">{FormattedDate(date)}</p>
 
     {!!description&& <p class="mt-2 text-zinc-400">{description}</p>}
 

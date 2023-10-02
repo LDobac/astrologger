@@ -6,6 +6,7 @@ import GetSeriesList from "@utils/GetSeriesList";
 import PostList from "@components/PostList.astro";
 import Paginator from "@components/Paginator.astro";
 import type {Page} from "astro";
+import { PAGE_SIZE } from "@utils/Constants";
 
 // @ts-expect-error
 export async function getStaticPaths ({ paginate }) {
@@ -18,7 +19,7 @@ export async function getStaticPaths ({ paginate }) {
         return paginate(filteredPosts, {
             params: { series: slugger(series) },
             props: { series },
-            pageSize: 10,
+            pageSize: PAGE_SIZE,
         });
     });
 }
