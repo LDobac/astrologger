@@ -79,10 +79,21 @@ if (series)
         <SeriesLink series={series} />
         <span>&nbsp;시리즈의 다른 게시물 보기</span>
     </p>
-    <div class="flex flex-col space-y-4 mt-6">
+    <div class="
+            w-full flex flex-col space-y-4 mt-6 
+            md:flex-row md:justify-between md:space-y-0
+        "
+    >
         {!!prevSeriesPost &&
         <a 
-            class="bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 flex justify-between items-center rounded-xl ring-1 ring-offset-2 border ring-sky-300 font-bold p-4"
+            class="
+                bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:mr-6
+                lg:w-2/3 xl:w-1/3
+            "
             style="background-size: 200%;"
             href={"/posts/" + slugger(prevSeriesPost.data.title)}
         >
@@ -93,7 +104,14 @@ if (series)
 
         {!!nextSeriesPost &&
         <a 
-            class="bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 flex justify-between items-center rounded-xl ring-1 ring-offset-2 border ring-sky-300 font-bold p-4"
+            class="
+                bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:ml-6
+                lg:w-2/3 xl:w-1/3
+            "
             style="background-size: 200%;"
             href={"/posts/" + slugger(nextSeriesPost.data.title)}
         >
