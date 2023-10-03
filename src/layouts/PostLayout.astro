@@ -1,4 +1,5 @@
 ---
+// icons from iconify/fluent
 import SeriesLink from "@components/SeriesLink.astro";
 import TagList from "@components/TagList.astro";
 import {FormattedDate} from "@utils/FormattedDate";
@@ -97,7 +98,9 @@ if (series)
             style="background-size: 200%;"
             href={"/posts/" + slugger(prevSeriesPost.data.title)}
         >
-            <span class="text-2xl mr-10">&#x2190;</span>
+        <span class="mr-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g transform="rotate(180 14 14)"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"/></g></svg>
+        </span>
             <span class="text-right truncate">{prevSeriesPost.data.title}</span>
         </a>
         }
@@ -116,7 +119,9 @@ if (series)
             href={"/posts/" + slugger(nextSeriesPost.data.title)}
         >
             <span class="text-left truncate">{nextSeriesPost.data.title}</span>
-            <span class="text-right text-2xl ml-10">&#x2192;</span>
+            <span class="text-right ml-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"/></svg>
+            </span>
         </a>
         }  
     </div>
