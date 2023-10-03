@@ -1,13 +1,21 @@
 ---
-import { slug as slugger } from "github-slugger";
 import Layout from "@layouts/Layout.astro";
-import GetTagList from "@utils/GetTagList";
+import TagList from "@components/TagList.astro";
 
-const tags = await GetTagList();
+const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
 ---
 
-<Layout title="Jaehee.dev">
-    {tags.map((tag) => (
-        <a class="block" href={"/tags/" + slugger(tag)}>{tag}</a> 
-    ))}    
+<Layout 
+    title="Jaehee.dev - Tags" 
+    description="태그 목록 페이지입니다."
+    url={baseUrl + Astro.url.pathname}
+    >
+    <div>
+        <div class="inline-flex items-center mb-4 border-b-2 border-sky-300">
+            <i class="bg-black mr-2" style="width: 12px;height: 12px;"></i>
+            <span class="font-bold text-xl">Tags</span>
+        </div>
+
+        <TagList />
+    </div>
 </Layout>

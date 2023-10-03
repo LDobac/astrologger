@@ -1,8 +1,10 @@
 ---
 import { slug as slugger } from "github-slugger";
 import { getCollection, type CollectionEntry } from "astro:content";
-import Layout from "@layouts/Layout.astro";
+import Layout, {type OgProp} from "@layouts/Layout.astro";
 import PostLayout from "@layouts/PostLayout.astro";
+import GeneratePostDesc from "@utils/GeneratePostDesc";
+import {DEFAULT_OG_IMG_SIZE} from "@utils/Constants";
 
 export async function getStaticPaths () {
     const posts = await getCollection("posts");
@@ -25,8 +27,35 @@ interface Props {
 
 const { post } = Astro.props;
 
+const { 
+    title, 
+    description = GeneratePostDesc(post), 
+    og 
+} = post.data;
+
+const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
+const ogProp: OgProp = {
+        img: og ? {
+            url: og.img.src,
+            alt: og.alt,
+            width: og.img.width,
+            height: og.img.height,
+            type: "image/" + og.img.format
+        } : {
+            url: baseUrl + `/posts/${slugger(post.data.title)}.png`,
+            width: DEFAULT_OG_IMG_SIZE.width,
+            height: DEFAULT_OG_IMG_SIZE.height,
+            type: "image/png",
+            alt: "Thumbnail of " + post.data.title
+        }
+}
 ---
 
-<Layout title="this is post page">
+<Layout 
+    title={title}
+    description={description}
+    url={baseUrl + Astro.url.pathname}
+    og={ogProp}
+>
     <PostLayout post={post} />
 </Layout>

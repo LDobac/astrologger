@@ -30,8 +30,14 @@ interface Props {
 }
 
 const { page, series } = Astro.props;
+const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
 ---
-<Layout title="Series List">
+
+<Layout
+    title={"Series - " + series + " - " + page.currentPage.toString()}
+    description="시리즈 목록 페이지입니다."
+    url={baseUrl + Astro.url.pathname}
+>
     <p class="flex flex-col text-center mb-6 border-b-2 pb-4">
         <span>Series</span>
         <span class="font-bold text-2xl text-sky-300">{series}</span>

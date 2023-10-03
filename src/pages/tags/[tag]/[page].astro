@@ -30,9 +30,15 @@ interface Props {
 }
 
 const { page, tag } = Astro.props;
+
+const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
 ---
 
-<Layout title="Tag List">
+<Layout
+    title={"Tag - " + tag + " - " + page.currentPage.toString()}
+    description="태그 목록 페이지입니다."
+    url={baseUrl + Astro.url.pathname}
+>
     <p class="flex flex-col text-center mb-6 border-b-2 pb-4">
         <span>Tag</span>
         <span class="font-bold text-2xl text-sky-300">{tag}</span>

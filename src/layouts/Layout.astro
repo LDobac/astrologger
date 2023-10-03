@@ -1,11 +1,48 @@
 ---
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
-interface Props {
-	title: string;
+import {DEFAULT_OG_IMG_SIZE} from "@utils/Constants";
+
+export interface OgPropImg {
+    url: string;
+    type?: string;
+    width?: number;
+    height?: number;
+    alt?: string;
 }
 
-const { title } = Astro.props;
+export interface OgProp {
+    img?: OgPropImg 
+}
+
+interface Props {
+	title?: string;
+    author?: string;
+    description?: string;
+    url?: string;
+    og?: OgProp
+}
+
+const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
+const defaultOgOpts: OgProp = {
+    img: {
+        url: baseUrl + "/blog_og_image.png",
+        width: DEFAULT_OG_IMG_SIZE.width,
+        height: DEFAULT_OG_IMG_SIZE.height,
+        type: "image/png",
+        alt: "Main image of jaeehee.dev"
+    },
+}
+ 
+
+const { 
+    title = "Jaehee.dev",
+    author = "jaehee",
+    description = "지식보단 삽질의 요람입니다.",
+    url = baseUrl,
+    og =  defaultOgOpts
+} = Astro.props;
+
 ---
 
 <!doctype html>
@@ -17,6 +54,25 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+
+        <meta name="description" content={description}>
+        <meta name="author" content={author}>
+
+        <meta property="og:url" content={url}>
+
+        {!!og && 
+            <meta property="og:title" content={title}>
+            <meta property="og:description" content={description}>
+        }
+
+        {og?.img && 
+            <meta property="og:image" content={og.img.url}>
+        }
+        {og?.img?.alt && <meta property="og:image:alt" content={og.img.alt}>}
+        {og?.img?.type && <meta property="og:image:type" content={og.img.type}>}
+        {og?.img?.width && <meta property="og:image:width" content={og.img.width.toString()}>}
+        {og?.img?.height && <meta property="og:image:height" content={og.img.height.toString()}>}
+
 		<title>{title}</title>
 	</head>
     <body class="w-full">

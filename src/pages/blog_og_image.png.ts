@@ -1,6 +1,4 @@
 import type { APIRoute } from "astro";
-import { getCollection, type CollectionEntry } from "astro:content";
-import { slug as slugger } from "github-slugger";
 import { ImageResponse } from "@vercel/og";
 import {DEFAULT_OG_IMG_SIZE} from "@utils/Constants";
 
@@ -18,9 +16,7 @@ const GetFonts = async () => {
   return { fontRegular, fontBold };
 };
 
-export const GET: APIRoute = async ({ props }) => {
-  const { post } = props as { post: CollectionEntry<"posts"> };
-  
+export const GET: APIRoute = async () => {
   const { fontRegular, fontBold } = await GetFonts();
 
   return new ImageResponse(
@@ -40,14 +36,15 @@ export const GET: APIRoute = async ({ props }) => {
               {
                 type: "div",
                 props: {
-                  tw: "flex mb-24 text-4xl justify-center items-center",
+                  tw: "flex mb-24 text-6xl justify-center items-center",
                   children: [
                     {
                       type: "div",
                       props: {
+                        tw: "mt-6",
                         style: {
-                          width: "16",
-                          height: "16",
+                          width: "24",
+                          height: "24",
                           background: "black"
                         }
                       }
@@ -55,21 +52,11 @@ export const GET: APIRoute = async ({ props }) => {
                     {
                       type: "span",
                       props: {
-                        tw: "ml-4",
+                        tw: "ml-4 font-bold",
                         children: "jaehee.dev"
                       }
                     }
                   ],
-                }
-              },
-              {
-                type: "div",
-                props: {
-                  tw: "text-5xl font-bold",
-                  style: { 
-                    color: "black",
-                  },
-                  children: post.data.title,
                 }
               }
             ]
@@ -97,20 +84,4 @@ export const GET: APIRoute = async ({ props }) => {
     },
   );
 };
-  
-export async function getStaticPaths () {
-  const posts = await getCollection("posts");
-  
-  const links = posts.map((post) => {
-    return {
-      params: {
-        slug: slugger(post.data.title)
-      },
-      props: {
-        post
-      }
-    };
-  });
-  
-  return links;
-}
+ 

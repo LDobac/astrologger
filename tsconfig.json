@@ -1,5 +1,6 @@
 {
     "extends": "astro/tsconfigs/strict",
+    "exclude": ["node_modeuls", "dist"],
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {

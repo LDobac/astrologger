@@ -1,11 +1,21 @@
 ---
-import { slug as slugger} from "github-slugger";
 import Layout from "@layouts/Layout.astro";
-import GetSeriesList from "@utils/GetSeriesList";
+import SeriesList from "@components/SeriesList.astro";
 
-const series = await GetSeriesList();
+const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
 ---
 
-<Layout title="Jaehee.dev">
-    {series.map((series) => (<a href={"/series/" + slugger(series)}>{series}</a>))}  
+<Layout 
+    title="Jaehee.dev"
+    description="시리즈 목록 페이지입니다."
+    url={baseUrl + Astro.url.pathname}
+>
+    <div>
+        <div class="inline-flex items-center mb-4 border-b-2 border-sky-300">
+            <i class="bg-black mr-2" style="width: 12px;height: 12px;"></i>
+            <span class="font-bold text-xl">Series</span>
+        </div>
+
+        <SeriesList />
+    </div>
 </Layout>

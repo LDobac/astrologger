@@ -5,25 +5,18 @@ import SeriesLink from "./SeriesLink.astro";
 import {FormattedDate} from "@utils/FormattedDate";
 import {Image} from "astro:assets";
 import TagList from "./TagList.astro";
-import { convert } from "html-to-text";
-import {marked} from "marked";
-import {DESC_LEN} from "@utils/Constants";
+import GeneratePostDesc from "@utils/GeneratePostDesc";
+import { DEFAULT_OG_IMG_SIZE } from "@utils/Constants";
 
 interface Props {
     post: CollectionEntry<"posts">
-}
-
-const GenerateDescription = (post: CollectionEntry<"posts">): string => {
-    const renderedContent = convert(marked(post.body));
-    
-    return renderedContent.slice(0, DESC_LEN);
 }
 
 const { post } = Astro.props;
 
 const { 
     title, 
-    description = GenerateDescription(post), 
+    description = GeneratePostDesc(post),
     date, 
     series, 
     tags, 
@@ -42,7 +35,7 @@ const {
             <Image 
                 class="rounded-xl object-cover bg-black" 
                 src={`/posts/${slugger(title)}.png`} 
-                width={1200} height={630} 
+                width={DEFAULT_OG_IMG_SIZE.width} height={DEFAULT_OG_IMG_SIZE.height} 
                 alt={"Thumbnail of " + title} />
         }
     </a>
