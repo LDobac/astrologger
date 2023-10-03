@@ -1,0 +1,130 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.12"><meta name="description" content="LEETCODE - 16. 3SUM CLOSEST
+
+문제 - LeetCode - 16. 3Sum Closest [https://leetcode.com/problems/3sum-closest/]
+
+
+문제 설명
+
+숫자 배열과 target 숫자가 주어지면 숫자 배열에서 세 숫자를 더했을 때 target 숫자와 가장 가까운 세 숫자의 덧셈을 반환하면 되는
+문제입니다.
+
+난이도는 MEDIUM 난이도 입니다.
+
+
+풀이
+
+My Solutions(Github)
+[https://github.com/LDobac/leetcode/tree/master/"><meta name="author" content="jaehee"><meta property="og:url" content="https://jaehee.dev/posts/leetcode---16-3sum-closest/"><meta property="og:type" content="website"><meta property="og:title" content="LeetCode - 16. 3Sum Closest"><meta property="og:description" content="LEETCODE - 16. 3SUM CLOSEST
+
+문제 - LeetCode - 16. 3Sum Closest [https://leetcode.com/problems/3sum-closest/]
+
+
+문제 설명
+
+숫자 배열과 target 숫자가 주어지면 숫자 배열에서 세 숫자를 더했을 때 target 숫자와 가장 가까운 세 숫자의 덧셈을 반환하면 되는
+문제입니다.
+
+난이도는 MEDIUM 난이도 입니다.
+
+
+풀이
+
+My Solutions(Github)
+[https://github.com/LDobac/leetcode/tree/master/"><meta property="og:image" content="https://jaehee.dev/posts/leetcode---16-3sum-closest.png"><meta property="og:image:alt" content="Thumbnail of LeetCode - 16. 3Sum Closest"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><title>LeetCode - 16. 3Sum Closest</title><link rel="stylesheet" href="/_astro/index.0f2bed8a.css" />
+<link rel="stylesheet" href="/_astro/index.d53a60e6.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/_astro/profile_image.bd953236_Z1UOfia.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---16-3sum-closest.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 16. 3Sum Closest" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 16. 3Sum Closest</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/medium/1"><span>medium</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>2021년 11월 24일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---16-3sum-closest">LeetCode - 16. 3Sum Closest</h2>
+<p>문제 - <a href="https://leetcode.com/problems/3sum-closest/">LeetCode - 16. 3Sum Closest</a></p>
+<h2 id="문제-설명">문제 설명</h2>
+<p>숫자 배열과 target 숫자가 주어지면 숫자 배열에서 세 숫자를 더했을 때 target 숫자와 가장 가까운 세 숫자의 덧셈을 반환하면 되는 문제입니다.</p>
+<p>난이도는 <code>MEDIUM</code> 난이도 입니다.</p>
+<h2 id="풀이">풀이</h2>
+<p><a href="https://github.com/LDobac/leetcode/tree/master/16.%203Sum%20Closest">My Solutions(Github)</a></p>
+<h3 id="solution">Solution</h3>
+<p>문제 <a href="https://jaehee.dev/#/post/15">LeetCode - 15. 3Sum</a>과 상당히 유사한 문제입니다. 유일하게 다른점은 모든 가짓수를 반환하는 것이 아닌 덧셈의 결과를 반환한다는 점과, target에 해당하는 숫자가 없더라도 가장 가까운 덧셈을 반환해야 합니다.</p>
+<p>15번 문제와 상당히 유사하므로 적절한 세 숫자를 찾이 위해 순회를 하는 과정은 제외하고, target 숫자와 가장 가까운 숫자를 구하는 방법 위주로 설명하겠습니다.</p>
+<p>간단히 생각해보도록 하겠습니다. target 숫자와 가장 가까운 세 숫자의 덧셈을 찾아내면 되는 문제입니다. 이를 그래프상에 놓는다고 생각한다면 target 숫자와 가장 <em>거리</em>가 가까운 덧셈의 결과를 찾으면 됩니다.</p>
+<p><em>거리</em>를 구하는 방법은 수학적으로 다양하게 있지만, 여기서는 가장 기본적인 <em>절대값</em>을 이용해 target 숫자와의 거리를 계산하겠습니다.</p>
+<p><em>절대값</em>은 일반적으로 수직선상의 특정 점에서부터 얼마나 떨어졌는가를 계산할 수 있습니다. 이를 이용해 target 숫자와의 거리를 계산할 수 있습니다. 그리고 모든 수에 대해서 순회를 하면서 거리가 0이 되거나 가장 거리가 가까운 덧셈을 반환하면 됩니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> shortestPath </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> INT_MAX;</span></span></code></pre>
+<p>지금까지 계산한 거리 중 가장 target 숫자와 가까운 거리를 저장하는 변수인 <code>shortestPath</code>를 선언하겠습니다. 입력된 숫자들은 <code>int</code> 배열이므로, int형 변수로 선언하며, 초기 값은 int형 변수의 최대값으로 초기화하겠습니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> sum </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> nums[i] </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> nums[left] </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> nums[right];</span></span>
+<span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> path </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">abs</span><span style="color: #E1E4E8">(target </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> sum);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (sum </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> target) right</span><span style="color: #F97583">--</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (sum </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> target) left</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (path </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> sum;</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span>
+<span class="line"><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (path </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> shortestPath)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    shortestPath </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> path;</span></span>
+<span class="line"><span style="color: #E1E4E8">    result </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> sum;</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>반복문 내부입니다. 순회 과정에 대한 정확한 설명은 <a href="https://jaehee.dev/#/post/15">문제 15</a>를 참고하시면 좋습니다.</p>
+<p>현재 선택된 세 숫자를 더해 target 숫자와의 차에 대해서 절대값을 계산합니다.</p>
+<p>만약 절대값(path 변수)이 0이라면 target 숫자와 동일한 덧셈이 존재한다는 의미으로 바로 함수를 반환합니다.</p>
+<p>아니라면 현재 계산된 거리가 가장 target과 가까운 거리인지 확인하고 해당하는 변수들을 업데이트합니다. 그리고 모든 순회가 종료되고 가장 거리가 가까웠던 합계를 반환하면 됩니다.</p>
+<h4 id="제출-결과">제출 결과</h4>
+<p><img alt="Solution 1 result"  src="/_astro/result_1.863efaaf_2iedX4.webp" width="1452" height="793" loading="lazy" decoding="async"></p>
+<p>실행 시간은 8ms가 나왔으며, 다른 C++ 제출자에 비해 80% 가량의 성능을 보임을 확인할 수 있습니다.</p>
+<details>
+<summary>코드 전문</summary>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #F97583">public:</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">threeSumClosest</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">></span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">nums</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">target</span><span style="color: #E1E4E8">) </span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> result;</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> shortestPath </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> INT_MAX;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #B392F0">sort</span><span style="color: #E1E4E8">(nums.</span><span style="color: #B392F0">begin</span><span style="color: #E1E4E8">(), nums.</span><span style="color: #B392F0">end</span><span style="color: #E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">; i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> nums.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">(); i</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (i </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> nums[i] </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> nums[i </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">]) </span><span style="color: #F97583">continue</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> nums.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">while</span><span style="color: #E1E4E8"> (left </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> right)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> sum </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> nums[i] </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> nums[left] </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> nums[right];</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> path </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">abs</span><span style="color: #E1E4E8">(target </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> sum);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (sum </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> target) right</span><span style="color: #F97583">--</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (sum </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> target) left</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (path </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">                {</span></span>
+<span class="line"><span style="color: #E1E4E8">                    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> sum;</span></span>
+<span class="line"><span style="color: #E1E4E8">                }</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (path </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> shortestPath)</span></span>
+<span class="line"><span style="color: #E1E4E8">                {</span></span>
+<span class="line"><span style="color: #E1E4E8">                    shortestPath </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> path;</span></span>
+<span class="line"><span style="color: #E1E4E8">                    result </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> sum;</span></span>
+<span class="line"><span style="color: #E1E4E8">                }</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> result;</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
+</details></div></article><p class="mt-6 font-bold"><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a><span>&nbsp;시리즈의 다른 게시물 보기</span></p><div class="
+            w-full flex flex-col space-y-4 mt-6 
+            md:flex-row md:justify-between md:space-y-0
+        "><a class="
+                bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:mr-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---15-3sum"><span class="mr-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g transform="rotate(180 14 14)"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></g></svg></span><span class="text-right truncate">LeetCode - 15. 3Sum</span></a><a class="
+                bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:ml-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---17-letter-combinations-of-a-phone-number"><span class="text-left truncate">LeetCode - 17. Letter Combinations of a Phone Number</span><span class="text-right ml-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></svg></span></a></div></div></main><footer class="w-full border-t-2 p-4"><p class="">Copyright 2023 by Jaehee All rights reserved.</p></footer></body></html>

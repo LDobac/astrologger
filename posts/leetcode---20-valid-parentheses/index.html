@@ -1,0 +1,144 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.12"><meta name="description" content="LEETCODE - 20. VALID PARENTHESES
+
+문제 - LeetCode - 20. Valid Parentheses
+[https://leetcode.com/problems/valid-parentheses/]
+
+
+문제 설명
+
+문자열이 주어질 때 소괄호(), 중괄호{}, 대괄호[]가 올바른 순서로 잘 열리고 닫혔는지 확인하는 문제입니다.
+
+난이도는 EASY 난이도 입니다.
+
+
+풀이
+
+My Solutions(Github)
+[https://github.com/LDobac/leetcode/tree/master/20.%20Vali"><meta name="author" content="jaehee"><meta property="og:url" content="https://jaehee.dev/posts/leetcode---20-valid-parentheses/"><meta property="og:type" content="website"><meta property="og:title" content="LeetCode - 20. Valid Parentheses"><meta property="og:description" content="LEETCODE - 20. VALID PARENTHESES
+
+문제 - LeetCode - 20. Valid Parentheses
+[https://leetcode.com/problems/valid-parentheses/]
+
+
+문제 설명
+
+문자열이 주어질 때 소괄호(), 중괄호{}, 대괄호[]가 올바른 순서로 잘 열리고 닫혔는지 확인하는 문제입니다.
+
+난이도는 EASY 난이도 입니다.
+
+
+풀이
+
+My Solutions(Github)
+[https://github.com/LDobac/leetcode/tree/master/20.%20Vali"><meta property="og:image" content="https://jaehee.dev/posts/leetcode---20-valid-parentheses.png"><meta property="og:image:alt" content="Thumbnail of LeetCode - 20. Valid Parentheses"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><title>LeetCode - 20. Valid Parentheses</title><link rel="stylesheet" href="/_astro/index.0f2bed8a.css" />
+<link rel="stylesheet" href="/_astro/index.d53a60e6.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/_astro/profile_image.bd953236_Z1UOfia.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---20-valid-parentheses.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 20. Valid Parentheses" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 20. Valid Parentheses</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/easy/1"><span>easy</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>2021년 12월 04일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---20-valid-parentheses">LeetCode - 20. Valid Parentheses</h2>
+<p>문제 - <a href="https://leetcode.com/problems/valid-parentheses/">LeetCode - 20. Valid Parentheses</a></p>
+<h2 id="문제-설명">문제 설명</h2>
+<p>문자열이 주어질 때 소괄호<code>()</code>, 중괄호<code>{}</code>, 대괄호<code>[]</code>가 올바른 순서로 잘 열리고 닫혔는지 확인하는 문제입니다.</p>
+<p>난이도는 <code>EASY</code> 난이도 입니다.</p>
+<h2 id="풀이">풀이</h2>
+<p><a href="https://github.com/LDobac/leetcode/tree/master/20.%20Valid%20Parentheses">My Solutions(Github)</a></p>
+<h3 id="solution---stack">Solution - Stack</h3>
+<p>괄호는 늘 짝을 지어 닫혀야합니다. 또한 소괄호내에 또 소괄호가 열리거나, 다른 괄호내에 다른 괄호가 열리는 등 괄호가 중첩되기때문에 새로운 괄호가 열리면 해당 괄호에 짝인 닫힘 괄호가 등장하여야 합니다.</p>
+<p>때문에 문자열을 순회하면서 가장 최근에 열린 괄호의 짝을 찾아야 하며, 해당 괄호의 짝을 찾고 나면 이전에 순회되었던 열린 괄호의 짝을 찾아야 합니다.</p>
+<p>즉 FILO(First In Last Out)로 맨 처음에 순회되었던 괄호가 가장 나중에 닫혀야 합니다. 그러므로 이번 문제 풀이를 위해 스택 자료구조를 사용합니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #E1E4E8">stack</span><span style="color: #F97583">&#x3C;char></span><span style="color: #E1E4E8"> openBrackets;</span></span></code></pre>
+<p>C++ STL의 stack 자료구조를 선언합니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">char</span><span style="color: #E1E4E8"> ch : s)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    ...</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>그리고 입력된 문자열을 순회합니다. 반복문 내에서 괄호가 올바르게 열렸고, 닫혔는지 확인합니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (</span><span style="color: #9ECBFF">'('</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'{'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'['</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    openBrackets.</span><span style="color: #B392F0">push</span><span style="color: #E1E4E8">(ch);</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>처음으로는 열린 괄호를 확인합니다. 열린 괄호라면 스택에 삽입해 가장 최근에 삽입된(스택의 top) 열린 괄호의 짝인 닫힌 괄호를 찾습니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (</span><span style="color: #9ECBFF">')'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'}'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">']'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (openBrackets.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">false</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">char</span><span style="color: #E1E4E8"> openBracket </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> openBrackets.</span><span style="color: #B392F0">top</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">!</span><span style="color: #E1E4E8">(</span></span>
+<span class="line"><span style="color: #E1E4E8">            (</span><span style="color: #9ECBFF">'('</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> openBracket </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">')'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch) </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">            (</span><span style="color: #9ECBFF">'{'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> openBracket </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'}'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch) </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">            (</span><span style="color: #9ECBFF">'['</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> openBracket </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">']'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch)</span></span>
+<span class="line"><span style="color: #E1E4E8">        )</span></span>
+<span class="line"><span style="color: #E1E4E8">    )</span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">false</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    openBrackets.</span><span style="color: #B392F0">pop</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>만약 닫힌 괄호라면 스택의 top을 가져와 가장 최근에 탐색된 열린 괄호와 짝인지 확인합니다. 만약 아니라면 함수는 false를 반환하며, 짝이라면 스택에서 해당 열린 괄호를 pop하고 계속 순회를 합니다.</p>
+<p>닫힌 괄호가 등장했는데, 열린 괄호를 저장하는 스택의 크기가 0이라면 잘 못 닫힌 괄호이므로 즉시 함수는 false를 반환합니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">return</span><span style="color: #E1E4E8"> openBrackets.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span></code></pre>
+<p>모든 순회가 끝나고 나면 함수를 반환합니다. 단, 만약 스택의 크기가 0이 아니라면 정상적으로 닫히지 않은 괄호가 있는 뜻이니, false를 반환하도록 합니다.</p>
+<p>추가적으로 자잘한 최적화를 위해서 함수의 시작 부분에 다음 구문을 추가하였습니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">%</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">false</span><span style="color: #E1E4E8">;</span></span></code></pre>
+<p>정상적으로 열리고 닫힌 괄호는 2개의 문자로 이루어졌으므로, 만약 입력된 문자열의 길이가 홀수라면 하나의 문자는 정상적으로 닫히거나 열리지 않았다는 의미가 됩니다.</p>
+<p>그러므로 입력된 문자열의 길이가 홀수라면 즉시 false를 반환합니다.</p>
+<h4 id="제출-결과">제출 결과</h4>
+<p><img alt="Solution 1 result"  src="/_astro/result_1.7a665ce6_1cM1bn.webp" width="1457" height="780" loading="lazy" decoding="async"></p>
+<details>
+<summary>코드 전문</summary>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #F97583">public:</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">bool</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">isValid</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">%</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">false</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        stack</span><span style="color: #F97583">&#x3C;char></span><span style="color: #E1E4E8"> openBrackets;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">char</span><span style="color: #E1E4E8"> ch : s)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (</span><span style="color: #9ECBFF">'('</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'{'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'['</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                openBrackets.</span><span style="color: #B392F0">push</span><span style="color: #E1E4E8">(ch);</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (</span><span style="color: #9ECBFF">')'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'}'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">']'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (openBrackets.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">false</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">char</span><span style="color: #E1E4E8"> openBracket </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> openBrackets.</span><span style="color: #B392F0">top</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (</span></span>
+<span class="line"><span style="color: #E1E4E8">                    </span><span style="color: #F97583">!</span><span style="color: #E1E4E8">(</span></span>
+<span class="line"><span style="color: #E1E4E8">                        (</span><span style="color: #9ECBFF">'('</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> openBracket </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">')'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch) </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">                        (</span><span style="color: #9ECBFF">'{'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> openBracket </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'}'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch) </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">                        (</span><span style="color: #9ECBFF">'['</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> openBracket </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">']'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> ch)</span></span>
+<span class="line"><span style="color: #E1E4E8">                    )</span></span>
+<span class="line"><span style="color: #E1E4E8">                )</span></span>
+<span class="line"><span style="color: #E1E4E8">                {</span></span>
+<span class="line"><span style="color: #E1E4E8">                    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">false</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">                }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">                openBrackets.</span><span style="color: #B392F0">pop</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> openBrackets.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
+</details></div></article><p class="mt-6 font-bold"><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a><span>&nbsp;시리즈의 다른 게시물 보기</span></p><div class="
+            w-full flex flex-col space-y-4 mt-6 
+            md:flex-row md:justify-between md:space-y-0
+        "><a class="
+                bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:mr-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---19-remove-nth-node-from-end-of-list"><span class="mr-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g transform="rotate(180 14 14)"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></g></svg></span><span class="text-right truncate">LeetCode - 19. Remove Nth Node From End of List</span></a><a class="
+                bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:ml-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---21-merge-two-sorted-lists"><span class="text-left truncate">LeetCode - 21. Merge Two Sorted Lists</span><span class="text-right ml-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></svg></span></a></div></div></main><footer class="w-full border-t-2 p-4"><p class="">Copyright 2023 by Jaehee All rights reserved.</p></footer></body></html>

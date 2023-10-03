@@ -1,0 +1,173 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.12"><meta name="description" content="LEETCODE - 4. MEDIAN OF TWO SORTED ARRAYS
+
+문제 - LeetCode 4. Add Two Numbers
+[https://leetcode.com/problems/add-two-numbers/]
+
+
+문제 설명
+
+정수 값이 담겨있으며 정렬된 두 배열이 넘어올 때 두 배열의 중앙값(Median)을 계산하는 문제입니다.
+
+Median
+[https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Finding_the_median.png/640px-Finding_the"><meta name="author" content="jaehee"><meta property="og:url" content="https://jaehee.dev/posts/leetcode---4-median-of-two-sorted-arrays/"><meta property="og:type" content="website"><meta property="og:title" content="LeetCode - 4. Median of Two Sorted Arrays"><meta property="og:description" content="LEETCODE - 4. MEDIAN OF TWO SORTED ARRAYS
+
+문제 - LeetCode 4. Add Two Numbers
+[https://leetcode.com/problems/add-two-numbers/]
+
+
+문제 설명
+
+정수 값이 담겨있으며 정렬된 두 배열이 넘어올 때 두 배열의 중앙값(Median)을 계산하는 문제입니다.
+
+Median
+[https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Finding_the_median.png/640px-Finding_the"><meta property="og:image" content="https://jaehee.dev/posts/leetcode---4-median-of-two-sorted-arrays.png"><meta property="og:image:alt" content="Thumbnail of LeetCode - 4. Median of Two Sorted Arrays"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><title>LeetCode - 4. Median of Two Sorted Arrays</title><link rel="stylesheet" href="/_astro/index.0f2bed8a.css" />
+<link rel="stylesheet" href="/_astro/index.d53a60e6.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/_astro/profile_image.bd953236_Z1UOfia.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---4-median-of-two-sorted-arrays.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 4. Median of Two Sorted Arrays" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 4. Median of Two Sorted Arrays</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/hard/1"><span>hard</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>2021년 10월 30일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---4-median-of-two-sorted-arrays">LeetCode - 4. Median of Two Sorted Arrays</h2>
+<p>문제 - <a href="https://leetcode.com/problems/add-two-numbers/">LeetCode 4. Add Two Numbers</a></p>
+<h2 id="문제-설명">문제 설명</h2>
+<p>정수 값이 담겨있으며 정렬된 두 배열이 넘어올 때 두 배열의 중앙값(Median)을 계산하는 문제입니다.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Finding_the_median.png/640px-Finding_the_median.png" alt="Median"></p>
+<p><a href="https://ko.wikipedia.org/wiki/%EC%A4%91%EC%95%99%EA%B0%92">중앙값</a>은 정렬될 수의 배열 중 중앙에 위치하는 값을 말합니다. 수의 개수가 홀수라면 하나가 선택될 것이고, 짝수라면 두 수를 골라 평균을 계산하여 중앙값을 구할 수 있습니다.</p>
+<p><img alt="input example"  src="/_astro/example.57a46d42_ZjJ6mu.webp" width="713" height="361" loading="lazy" decoding="async"></p>
+<p>만약 위 이미지와 같이 2개의 정렬된 정수 배열이 전달된다면 두 배열의 수를 나란히 나열하면 1, 1, 2, 3, 10, 10, 20, 45, 55, 70으로 나열할 수 있으며 10, 10이 중간값으로 선택되니 (10+10)/2 = 10, 즉 최종적으로 10이 중간값이 될 것입니다.</p>
+<p>난이도는 <code>HARD</code> 난이도 입니다.</p>
+<p><a href="https://youtu.be/q6IEA26hvXc">Reference Video</a></p>
+<p>본 문제를 해결하기 위해 위 영상의 설명의 도움을 받았습니다.</p>
+<h2 id="풀이">풀이</h2>
+<h3 id="solution">Solution</h3>
+<p>중간값을 구하기 먼저 문제에 제한사항이 있었습니다.</p>
+<p><img alt="Limit"  src="/_astro/limit.7370c923_ZWc4ST.webp" width="458" height="38" loading="lazy" decoding="async"></p>
+<p>소스 코드의 시간 복잡도는 O(log(m+n))(m, n은 배열)이 넘지 않아야 합니다. 이로 인해 두 배열을 하나로 합쳐 중간값을 구할 수 없습니다.</p>
+<p>두 배열을 하나로 합치기 위해서는 m, n을 순회해야 하므로 O(m+n)의 시간 복잡도가 발생하는데 이는 O(m+n) > O(log(m+n))이므로 배열을 합치지 않고 찾아야 합니다.</p>
+<p>이를 해결하기 위해 생각한 방법은 이진 탐색과 비슷한 논리를 이용하는 방법을 떠올렸습니다.</p>
+<p>이진 탐색을 수행하기 위해서는 배열이 정렬되어있어야 하고, 맨 처음 중간 값을 골랐을 때 정렬된 배열이라면 중간 값의 왼쪽 값은 당연히 중간 값 보다 작거나 같아야하고, 우측 값은 무조건 중간 값보다 크거나 같아야 합니다.</p>
+<p><img alt="median example"  src="/_astro/middle_1.60459452_2gMM3Y.webp" width="713" height="150" loading="lazy" decoding="async"></p>
+<p>두 번째 특성은 중간값을 선택하면 중간 값보다 작은 값의 개수와 큰 값의 개수가 동일하다는 것입니다.</p>
+<p>이러한 특성을 이용해 두 배열을 합치지 않고 중앙값을 구할 수 있습니다.</p>
+<p><strong>배열의 적절한 Left, Middle, Right 범위 구하기</strong></p>
+<p>맨 처음으로 배열의 중앙값을 구하기 위해서 중앙값을 골랐을 때 작은 값과 큰 값의 개수가 같음을 이용해 적절한 Left(작은 값의 범위), Middle(중앙값), Right(큰 값의 범위)를 구합니다.</p>
+<p><img alt="median example 2"  src="/_astro/middle_2.b3b58465_ZBoBi.webp" width="818" height="361" loading="lazy" decoding="async"></p>
+<p>두 배열의 길이는 10이기에 두 배열이 하나라고 생각할 때 5, 5로 두 개로 분리할 수 있을 것입니다. 이때 중앙값을 기준으로 Left에 위치한 5개 값, Right에 위치한 5개 값입니다.</p>
+<p>먼저 A 배열의 중앙값(A_left)을 선택합니다. 위 그림에서는 3번째가 선택되었으며 Left에 위치한 값 5개를 채우기 위해 B 배열에서 2번째를 선택해 B의 중앙값(B_left)를 선택합니다. 총 5개의 Left가 선택되었으며 나머지 5개를 자동으로 Left보다 큰 값, Right로 선택합니다.</p>
+<p>이제 Left, Right나눈 결과가 적절한지 확인합니다, Left의 값들은 무조건 Right의 값보다 작아야 합니다.</p>
+<p>1, 1, 1, 2, 3 &#x3C;-Left  Right-> 2, 10, 45, 55, 70</p>
+<p>Left에 3이라는 값이 있지만 Right에 3보다 작은 2가 분류되어있어 지금 선택된 Left와 Right는 적절하지 않음을 알 수 있습니다.</p>
+<p><img alt="median example 4"  src="/_astro/middle_4.bd2e9525_1nDqLb.webp" width="818" height="361" loading="lazy" decoding="async"></p>
+<p>단순하게 사람의 눈으로 보면 바로 구분이 되지만, 이를 확실하게 구분하는 방법은 A_left(A의 중앙값)은 B_left+1(B의 중앙값의 다음 값)보다 작아야합니다. 반대의 경우도 B_left &#x3C;= A_left+1이여야 합니다.</p>
+<p>이를 해결하기 위해 A의 중앙값 index를 1 감소시키고, B의 중앙값을 1 증가시킵니다.</p>
+<p><img alt="median example 3"  src="/_astro/middle_3.c3ca85f5_1GjYuK.webp" width="818" height="361" loading="lazy" decoding="async"></p>
+<p>다시 적절한 분류인지 확인합니다.</p>
+<p>1, 1, 1, 2, 2 &#x3C;-Left  Right-> 3, 10, 45, 55, 70</p>
+<p>다시 확인해보니 적절하게 분류되었습니다. 이제 중앙값을 선택해야하는데, 위 처럼 정리하는것은 편의상 일렬로 나란히 정렬한것이지만, 실제로는 두 배열의 index를 각각 가지고 있기 때문에 적절하게 선택할 방법이 필요합니다.</p>
+<p>이는 간단하게 수행할 수 있습니다. Left로 분류된 값 중 가장 큰 값이 중앙값일것이며 Right로 분류된 값 중 가장 작은 값이 중앙값일것입니다.</p>
+<p>즉 <code>(max(A_left, B_left) + max(A_right, B_right))/2</code>가 중앙값이 될 것입니다.</p>
+<h4 id="제출-결과">제출 결과</h4>
+<p><img alt="Solution 1 result"  src="/_astro/result_1.d7653f78_Z1vBoA1.webp" width="1441" height="733" loading="lazy" decoding="async"></p>
+<p>실행시간은 20ms로 다른 C++ 제출자에 비해 96%가량 좋은 성능을 보이는 코드를 작성할 수 있었습니다.</p>
+<details>
+<summary>코드 전문</summary>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;vector></span></span>
+<span class="line"><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;algorithm></span></span>
+<span class="line"><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;iostream></span></span>
+<span class="line"><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;limits></span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #F97583">public:</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">double</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">findMedianSortedArrays</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">></span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">nums1</span><span style="color: #E1E4E8">, </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">></span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">nums2</span><span style="color: #E1E4E8">) </span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (nums1.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> nums2.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0.0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> totalLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> nums1.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> nums2.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> half </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> totalLength </span><span style="color: #F97583">/</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::vector</span><span style="color: #F97583">&#x3C;int>&#x26;</span><span style="color: #E1E4E8"> A </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> nums1;</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::vector</span><span style="color: #F97583">&#x3C;int>&#x26;</span><span style="color: #E1E4E8"> B </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> nums2;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (nums1.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> nums2.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> tmp </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> A;</span></span>
+<span class="line"><span style="color: #E1E4E8">            A </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> nums2;</span></span>
+<span class="line"><span style="color: #E1E4E8">            B </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> tmp;</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (A.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> mid </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> B.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">/</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> ((B.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">%</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> (B[mid </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">] </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> B[mid]) </span><span style="color: #F97583">/</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2.0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">double</span><span style="color: #E1E4E8">)B[mid];</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (B.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> mid </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> A.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">/</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> ((A.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">%</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> (A[mid </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">] </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> A[mid]) </span><span style="color: #F97583">/</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2.0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">double</span><span style="color: #E1E4E8">)A[mid];</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> l </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> r </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> A.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">do</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> aLeftMidIndex </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (l </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> r) </span><span style="color: #F97583">/</span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> bLeftMidIndex </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> half </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> aLeftMidIndex </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> aLeft </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> aLeftMidIndex </span><span style="color: #F97583">>=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> A[aLeftMidIndex] </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">numeric_limits</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">>::</span><span style="color: #B392F0">min</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> aRight </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (aLeftMidIndex </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> A.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> A[(aLeftMidIndex </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">)] </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">numeric_limits</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">>::</span><span style="color: #B392F0">max</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> bLeft </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> bLeftMidIndex </span><span style="color: #F97583">>=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> B[bLeftMidIndex] </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">numeric_limits</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">>::</span><span style="color: #B392F0">min</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> bRight </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (bLeftMidIndex </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> B.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> B[(bLeftMidIndex </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">)] </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">numeric_limits</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">>::</span><span style="color: #B392F0">max</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (aLeft </span><span style="color: #F97583">&#x3C;=</span><span style="color: #E1E4E8"> bRight </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> bLeft </span><span style="color: #F97583">&#x3C;=</span><span style="color: #E1E4E8"> aRight)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> ((totalLength </span><span style="color: #F97583">%</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">                {</span></span>
+<span class="line"><span style="color: #E1E4E8">                    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> (</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">max</span><span style="color: #E1E4E8">(aLeft, bLeft) </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">min</span><span style="color: #E1E4E8">(aRight, bRight)) </span><span style="color: #F97583">/</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2.0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">                }</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">else</span></span>
+<span class="line"><span style="color: #E1E4E8">                {</span></span>
+<span class="line"><span style="color: #E1E4E8">                    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">double</span><span style="color: #E1E4E8">)</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">min</span><span style="color: #E1E4E8">(aRight, bRight);</span></span>
+<span class="line"><span style="color: #E1E4E8">                }</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (aLeft </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> bRight)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                r</span><span style="color: #F97583">--</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (bLeft </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> aRight)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                r</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">        } </span><span style="color: #F97583">while</span><span style="color: #E1E4E8">(</span><span style="color: #79B8FF">true</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
+</details></div></article><p class="mt-6 font-bold"><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a><span>&nbsp;시리즈의 다른 게시물 보기</span></p><div class="
+            w-full flex flex-col space-y-4 mt-6 
+            md:flex-row md:justify-between md:space-y-0
+        "><a class="
+                bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:mr-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---3-longest-substring-without-repeating-characters"><span class="mr-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g transform="rotate(180 14 14)"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></g></svg></span><span class="text-right truncate">LeetCode - 3. Longest Substring Without Repeating Characters</span></a><a class="
+                bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:ml-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---5-longest-palindromic-substring"><span class="text-left truncate">LeetCode - 5. Longest Palindromic Substring</span><span class="text-right ml-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></svg></span></a></div></div></main><footer class="w-full border-t-2 p-4"><p class="">Copyright 2023 by Jaehee All rights reserved.</p></footer></body></html>

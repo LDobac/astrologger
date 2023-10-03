@@ -1,0 +1,170 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.12"><meta name="description" content="LEETCODE - 2. ADD TWO NUMBERS
+
+문제 - LeetCode 2. Add Two Numbers
+[https://leetcode.com/problems/add-two-numbers/]
+
+
+문제 설명
+
+두 개의 LinkedList가 주어지며, LinkedList는 음수가 아닌 한 자리의 숫자를 저장하는 Node들을 가지며, 해당 숫자들의
+역순으로 음수가 아닌 하나의 정수를 표현합니다. LinkedList Example
+[https://assets.leetcode.com/uploads/2020/10/02/addtwon"><meta name="author" content="jaehee"><meta property="og:url" content="https://jaehee.dev/posts/leetcode---2-add-two-numbers/"><meta property="og:type" content="website"><meta property="og:title" content="LeetCode - 2. Add Two Numbers"><meta property="og:description" content="LEETCODE - 2. ADD TWO NUMBERS
+
+문제 - LeetCode 2. Add Two Numbers
+[https://leetcode.com/problems/add-two-numbers/]
+
+
+문제 설명
+
+두 개의 LinkedList가 주어지며, LinkedList는 음수가 아닌 한 자리의 숫자를 저장하는 Node들을 가지며, 해당 숫자들의
+역순으로 음수가 아닌 하나의 정수를 표현합니다. LinkedList Example
+[https://assets.leetcode.com/uploads/2020/10/02/addtwon"><meta property="og:image" content="https://jaehee.dev/posts/leetcode---2-add-two-numbers.png"><meta property="og:image:alt" content="Thumbnail of LeetCode - 2. Add Two Numbers"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><title>LeetCode - 2. Add Two Numbers</title><link rel="stylesheet" href="/_astro/index.0f2bed8a.css" />
+<link rel="stylesheet" href="/_astro/index.d53a60e6.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/_astro/profile_image.bd953236_Z1UOfia.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---2-add-two-numbers.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 2. Add Two Numbers" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 2. Add Two Numbers</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/medium/1"><span>medium</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>2021년 10월 27일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---2-add-two-numbers">LeetCode - 2. Add Two Numbers</h2>
+<p>문제 - <a href="https://leetcode.com/problems/add-two-numbers/">LeetCode 2. Add Two Numbers</a></p>
+<h2 id="문제-설명">문제 설명</h2>
+<p>두 개의 LinkedList가 주어지며, LinkedList는 음수가 아닌 한 자리의 숫자를 저장하는 Node들을 가지며, 해당 숫자들의 역순으로 음수가 아닌 하나의 정수를 표현합니다.
+<img src="https://assets.leetcode.com/uploads/2020/10/02/addtwonumber1.jpg" alt="LinkedList Example"></p>
+<p>위 예시의 경우 <code>2->4->3</code>으로 저장되는 LinkedList는 <code>342</code>라는 숫자를 표현합니다.</p>
+<p>동일하게 밑에 있는 <code>5->6->4</code>는 <code>465</code>라는 숫자를 표현하게 됩니다. 이때 두 수를 더하여 807이라는 값을 계산한 후 이를 <code>7->0->8</code>로 표현되는 LinkedList로 반환하면 됩니다.</p>
+<p>난이도는 <code>MEDIUM</code> 난이도 입니다.</p>
+<h2 id="풀이">풀이</h2>
+<h3 id="solution">Solution</h3>
+<p>첫 번째 생각했던 방법은 두 LinkedList에 저장된 숫자들을 각각 완성된 정수값으로 변환하여 덧셈 후 다시 LinkedList 형태로 변환하는 방법입니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> multiplier </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> numOfl1 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> numOfl2 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> node </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> l1; node </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8"> ; node </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node->next)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    numOfl1 </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> node->val </span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">powl</span><span style="color: #E1E4E8">(</span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8">, multiplier);</span></span>
+<span class="line"><span style="color: #E1E4E8">    multiplier</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">multiplier </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> node </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> l2; node </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8"> ; node </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node->next)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    numOfl2 </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> node->val </span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">powl</span><span style="color: #E1E4E8">(</span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8">, multiplier);</span></span>
+<span class="line"><span style="color: #E1E4E8">    multiplier</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> add </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> numOfl1 </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> numOfl2;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> head </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">new</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ListNode</span><span style="color: #E1E4E8">(add </span><span style="color: #F97583">%</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> result </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> head;</span></span>
+<span class="line"><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> num </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> add</span><span style="color: #F97583">/</span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8">; num </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8"> ; num </span><span style="color: #F97583">/=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8"> )</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> digit </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> num </span><span style="color: #F97583">%</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> node </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">new</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ListNode</span><span style="color: #E1E4E8">(digit);</span></span>
+<span class="line"><span style="color: #E1E4E8">    result->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    result </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node;</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">return</span><span style="color: #E1E4E8"> head;</span></span></code></pre>
+<p>각각 완성된 정수로 변환 후 덧셈하여 다시 LinkedList로 변환하는 방법이지만, 큰 문제가 하나 발생하하였습니다.</p>
+<p><img alt="overflow"  src="/_astro/overflow.689d36f6_Z2glWfo.webp" width="1395" height="158" loading="lazy" decoding="async"></p>
+<p>코드의 실행 결과 int형의 범위를 넘는 값이 입력된 경우 overflow가 발생해 음수가 되며 Runtime Error가 발생하였습니다.</p>
+<p>이를 해결하기 위해 두 번째 방법을 사용하였습니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> carry </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> node1 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> l1;</span></span>
+<span class="line"><span style="color: #E1E4E8">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> node2 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> l2;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> head </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> lastNode </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">while</span><span style="color: #E1E4E8"> (node1 </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> node2 </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> numOf1 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node1 </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> node1->val </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> numOf2 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node2 </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> node2->val </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> sum </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> numOf1 </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> numOf2 </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> carry;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    carry </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> sum </span><span style="color: #F97583">/</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> newNode </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">new</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ListNode</span><span style="color: #E1E4E8">(sum </span><span style="color: #F97583">%</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">!</span><span style="color: #E1E4E8">head) head </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> newNode;</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> lastNode->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> newNode;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    lastNode </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> newNode;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8">(node1) node1 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node1->next;</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8">(node2) node2 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node2->next;</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (carry </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> node </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">new</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ListNode</span><span style="color: #E1E4E8">(carry);</span></span>
+<span class="line"><span style="color: #E1E4E8">    lastNode->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node;</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>int 타입 대신 long, long long과 같은 64bit 타입을 쓴다면 당장의 문제는 해결될지 모르지만, 만약 더 큰 수가 들어온다면 동일한 에러가 발생할 것이 분명합니다.</p>
+<p>생각을 바꾸어 완성된 정수 값으로 변환하고 더하는 것이 아닌, 한 자리씩 더하여 Node를 생성하고 LinkedList를 형성하면 됩니다.</p>
+<p>여기서 추가로 신경써주어야 할 부분은 한 자리씩 더한 후에 발생하는 올림(carry)의 경우만 따로 저장해서 다음 자리 수를 더할 때 추가로 더해주면 됩니다.</p>
+<details>
+<summary>코드 전문</summary>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #F97583">public:</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">addTwoNumbers</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">l1</span><span style="color: #E1E4E8">, </span><span style="color: #B392F0">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">l2</span><span style="color: #E1E4E8">) </span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> carry </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> node1 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> l1;</span></span>
+<span class="line"><span style="color: #E1E4E8">        ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> node2 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> l2;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> head </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">        ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> lastNode </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">while</span><span style="color: #E1E4E8"> (node1 </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> node2 </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> numOf1 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node1 </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> node1->val </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> numOf2 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node2 </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> node2->val </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> sum </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> numOf1 </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> numOf2 </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> carry;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            carry </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> sum </span><span style="color: #F97583">/</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> newNode </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">new</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ListNode</span><span style="color: #E1E4E8">(sum </span><span style="color: #F97583">%</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">10</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">!</span><span style="color: #E1E4E8">head) head </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> newNode;</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> lastNode->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> newNode;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            lastNode </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> newNode;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8">(node1) node1 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node1->next;</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8">(node2) node2 </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node2->next;</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (carry </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> node </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">new</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ListNode</span><span style="color: #E1E4E8">(carry);</span></span>
+<span class="line"><span style="color: #E1E4E8">            lastNode->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> node;</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> head;</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
+</details>
+<h4 id="제출-결과">제출 결과</h4>
+<p><img alt="Result"  src="/_astro/result.3cc4e9dd_1SUPpu.webp" width="1434" height="708" loading="lazy" decoding="async"></p>
+<p>실행 시간은 28ms, 메모리 사용량은 71.4MB로 측정되었습니다.</p>
+<p>다른 C++ 제출자보다 80% 좋은 속도를 보여주었다고 되어있는데, 더 빠른 속도의 코드를 확인해보니 거의 다 비슷비슷 한 것 같습니다. 정말 특별하게 최적화를 한 것이 아닌 이상 이정도가 평균일 것 같습니다.</p></div></article><p class="mt-6 font-bold"><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a><span>&nbsp;시리즈의 다른 게시물 보기</span></p><div class="
+            w-full flex flex-col space-y-4 mt-6 
+            md:flex-row md:justify-between md:space-y-0
+        "><a class="
+                bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:mr-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---1-two-sum"><span class="mr-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g transform="rotate(180 14 14)"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></g></svg></span><span class="text-right truncate">LeetCode - 1. Two Sum</span></a><a class="
+                bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:ml-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---3-longest-substring-without-repeating-characters"><span class="text-left truncate">LeetCode - 3. Longest Substring Without Repeating Characters</span><span class="text-right ml-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></svg></span></a></div></div></main><footer class="w-full border-t-2 p-4"><p class="">Copyright 2023 by Jaehee All rights reserved.</p></footer></body></html>

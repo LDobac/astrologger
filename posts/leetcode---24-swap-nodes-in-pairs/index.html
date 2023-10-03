@@ -1,0 +1,104 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.12"><meta name="description" content="LEETCODE - 24. SWAP NODES IN PAIRS
+
+문제 - LeetCode - 24. Swap Nodes in Pairs
+[https://leetcode.com/problems/swap-nodes-in-pairs/]
+
+
+문제 설명
+
+연결 리스트가 주어지면 근접한 한 노드와 짝을 지어 두 노드를 swap 합니다. 이때 노드의 값을 변경하는 것은 허락되지 않고 오직 노드의
+next 포인터만 수정가능합니다.
+
+Solution 1 result [./assets/images/leet_code/24/example_1.webp]
+"><meta name="author" content="jaehee"><meta property="og:url" content="https://jaehee.dev/posts/leetcode---24-swap-nodes-in-pairs/"><meta property="og:type" content="website"><meta property="og:title" content="LeetCode - 24. Swap Nodes in Pairs"><meta property="og:description" content="LEETCODE - 24. SWAP NODES IN PAIRS
+
+문제 - LeetCode - 24. Swap Nodes in Pairs
+[https://leetcode.com/problems/swap-nodes-in-pairs/]
+
+
+문제 설명
+
+연결 리스트가 주어지면 근접한 한 노드와 짝을 지어 두 노드를 swap 합니다. 이때 노드의 값을 변경하는 것은 허락되지 않고 오직 노드의
+next 포인터만 수정가능합니다.
+
+Solution 1 result [./assets/images/leet_code/24/example_1.webp]
+"><meta property="og:image" content="https://jaehee.dev/posts/leetcode---24-swap-nodes-in-pairs.png"><meta property="og:image:alt" content="Thumbnail of LeetCode - 24. Swap Nodes in Pairs"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><title>LeetCode - 24. Swap Nodes in Pairs</title><link rel="stylesheet" href="/_astro/index.0f2bed8a.css" />
+<link rel="stylesheet" href="/_astro/index.d53a60e6.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/_astro/profile_image.bd953236_Z1UOfia.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---24-swap-nodes-in-pairs.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 24. Swap Nodes in Pairs" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 24. Swap Nodes in Pairs</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/medium/1"><span>medium</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>2021년 12월 10일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---24-swap-nodes-in-pairs">LeetCode - 24. Swap Nodes in Pairs</h2>
+<p>문제 - <a href="https://leetcode.com/problems/swap-nodes-in-pairs/">LeetCode - 24. Swap Nodes in Pairs</a></p>
+<h2 id="문제-설명">문제 설명</h2>
+<p>연결 리스트가 주어지면 근접한 한 노드와 짝을 지어 두 노드를 swap 합니다. 이때 노드의 값을 변경하는 것은 허락되지 않고 오직 노드의 next 포인터만 수정가능합니다.</p>
+<p><img alt="Solution 1 result"  src="/_astro/example_1.3323a8df_Z1oYoc0.webp" width="1813" height="701" loading="lazy" decoding="async"></p>
+<p>위 이미지와 같이 한 쌍의 노드를 swap합니다.</p>
+<p>난이도는 <code>MEDIUM</code> 난이도 입니다.</p>
+<h2 id="풀이">풀이</h2>
+<p><a href="https://github.com/LDobac/leetcode/tree/master/14.%20Longest%20Common%20Prefix">My Solutions(Github)</a></p>
+<h3 id="solution">Solution</h3>
+<p>사실 난이도가 medium으로 측정되어 있지만, 단순히 두 연결 리스트의 next 포인터를 swap만 하면 되는 문제입니다.</p>
+<p>일반적으로 맨 처음 컴퓨터 언어에 대한 tutorial에서 두 변수를 swap하는 예제와 상당히 유사합니다.</p>
+<p>다만 차이점이라면 순방향 연결 리스트이기 때문에 약간의 처리가 필요합니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">while</span><span style="color: #E1E4E8"> (left </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> right)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #6A737D">    // 일반적인 변수 swap 코드</span></span>
+<span class="line"><span style="color: #E1E4E8">    ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> tmp </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right->next;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    right->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> left;</span></span>
+<span class="line"><span style="color: #E1E4E8">    left->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> tmp;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A737D">    // 현재 swap하는 노드의 previous 노드의 next를 연결한다.</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (prev) prev->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right;</span></span>
+<span class="line"><span style="color: #E1E4E8">    prev </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> left;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A737D">    // 첫 순회면 head 포인터를 업데이트한다.</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (head </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> left) head </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A737D">    // left, right 포인터를 다음 swap할 포인터로 옮긴다.</span></span>
+<span class="line"><span style="color: #E1E4E8">    left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> tmp;</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (tmp) right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> tmp->next;</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>실질적인 실행 코드는 단 10줄 가량으로 정리됩니다. 추가적인 설명은 하지 않도록 하겠습니다.</p>
+<h4 id="제출-결과">제출 결과</h4>
+<p><img alt="Solution 1 result"  src="/_astro/result_1.12b4970c_Z1JfWqE.webp" width="1445" height="785" loading="lazy" decoding="async"></p>
+<p>난이도가 medium으로 측정된것과 다르게 사실상 easy 난이도나 다름 없었습니다.</p>
+<p>종종 느끼지만 leetcode에서 측정하는 난이도는 상당히 이상하다고 느껴지는 점이 종종 있는 것 같습니다.</p>
+<details>
+<summary>코드 전문</summary>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #F97583">public:</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">swapPairs</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">head</span><span style="color: #E1E4E8">) </span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">!</span><span style="color: #E1E4E8">head) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> prev </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">nullptr</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">        ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> head;</span></span>
+<span class="line"><span style="color: #E1E4E8">        ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> head->next;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">while</span><span style="color: #E1E4E8"> (left </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> right)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            ListNode</span><span style="color: #F97583">*</span><span style="color: #E1E4E8"> tmp </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right->next;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            right->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> left;</span></span>
+<span class="line"><span style="color: #E1E4E8">            left->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> tmp;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (prev) prev->next </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right;</span></span>
+<span class="line"><span style="color: #E1E4E8">            prev </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> left;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (head </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> left) head </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right;</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span></span>
+<span class="line"><span style="color: #E1E4E8">            left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> tmp;</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (tmp) right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> tmp->next;</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> head;</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
+</details></div></article><p class="mt-6 font-bold"><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a><span>&nbsp;시리즈의 다른 게시물 보기</span></p><div class="
+            w-full flex flex-col space-y-4 mt-6 
+            md:flex-row md:justify-between md:space-y-0
+        "><a class="
+                bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:mr-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---23-merge-k-sorted-lists"><span class="mr-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g transform="rotate(180 14 14)"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></g></svg></span><span class="text-right truncate">LeetCode - 23. Merge k Sorted Lists</span></a></div></div></main><footer class="w-full border-t-2 p-4"><p class="">Copyright 2023 by Jaehee All rights reserved.</p></footer></body></html>

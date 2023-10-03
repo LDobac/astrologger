@@ -1,0 +1,193 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.0.12"><meta name="description" content="LEETCODE - 18. 4SUM
+
+문제 - LeetCode - 18. 4Sum [https://leetcode.com/problems/4sum/]
+
+
+문제 설명
+
+이전까지 Two Sum [https://jaehee.dev/#/post/1], 3 Sum [https://jaehee.dev/#/post/15]
+과 같은 문제를 풀었습니다.
+
+이번에는 4 Sum입니다. 숫자 배열이 주어지면 숫자 네 개를 더했을 때 target 숫자가 나타나는 모든 가지수를 찾는 문제입니다.
+
+Two Sum은 Hash table 방식을 이용하여 풀었고,"><meta name="author" content="jaehee"><meta property="og:url" content="https://jaehee.dev/posts/leetcode---18-4sum/"><meta property="og:type" content="website"><meta property="og:title" content="LeetCode - 18. 4Sum"><meta property="og:description" content="LEETCODE - 18. 4SUM
+
+문제 - LeetCode - 18. 4Sum [https://leetcode.com/problems/4sum/]
+
+
+문제 설명
+
+이전까지 Two Sum [https://jaehee.dev/#/post/1], 3 Sum [https://jaehee.dev/#/post/15]
+과 같은 문제를 풀었습니다.
+
+이번에는 4 Sum입니다. 숫자 배열이 주어지면 숫자 네 개를 더했을 때 target 숫자가 나타나는 모든 가지수를 찾는 문제입니다.
+
+Two Sum은 Hash table 방식을 이용하여 풀었고,"><meta property="og:image" content="https://jaehee.dev/posts/leetcode---18-4sum.png"><meta property="og:image:alt" content="Thumbnail of LeetCode - 18. 4Sum"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><title>LeetCode - 18. 4Sum</title><link rel="stylesheet" href="/_astro/index.0f2bed8a.css" />
+<link rel="stylesheet" href="/_astro/index.d53a60e6.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/_astro/profile_image.bd953236_Z1UOfia.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---18-4sum.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 18. 4Sum" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 18. 4Sum</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/medium/1"><span>medium</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>2021년 11월 30일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---18-4sum">LeetCode - 18. 4Sum</h2>
+<p>문제 - <a href="https://leetcode.com/problems/4sum/">LeetCode - 18. 4Sum</a></p>
+<h2 id="문제-설명">문제 설명</h2>
+<p>이전까지 <a href="https://jaehee.dev/#/post/1">Two Sum</a>, <a href="https://jaehee.dev/#/post/15">3 Sum</a> 과 같은 문제를 풀었습니다.</p>
+<p>이번에는 4 Sum입니다. 숫자 배열이 주어지면 숫자 네 개를 더했을 때 target 숫자가 나타나는 모든 가지수를 찾는 문제입니다.</p>
+<p>Two Sum은 Hash table 방식을 이용하여 풀었고, 3 Sum은 Two pointer 방식을 이용하여 풀었습니다. Two pointer 방식은 left를 가리키는 인덱스와 right 인덱스를 이용하여 target 숫자에 가까워지도록 left, right의 포인터를 조정하는 방식이였습니다.</p>
+<p>3 Sum에서 Two pointer를 활용할 때 숫자 하나를 고정해놓고 left, right 포인터를 조정하는 방식으로 풀었습니다. 즉, 숫자 하나를 고정해놓고 Two Sum을 수행한 것과 동일합니다.</p>
+<p>즉 4 Sum 또한 숫자 하나를 고정해놓고 3 Sum을 수행한다면 4 Sum의 결과를 얻을 수 있을 것입니다.</p>
+<p>Leetcode의 Solution과 동일하게 이번에는 4 Sum을 딱 정해서 푸는 것이 아닌, k-Sum에 대해서 문제를 풀어보았습니다.</p>
+<p>난이도는 <code>MEDIUM</code> 난이도 입니다.</p>
+<h2 id="풀이">풀이</h2>
+<p><a href="https://github.com/LDobac/leetcode/tree/master/18.%204Sum">My Solutions(Github)</a></p>
+<h3 id="solution---ksum">Solution - kSum</h3>
+<p>이번에 풀어볼 방법은 3 Sum과 동일하게 Two pointer, 즉 left, right 포인터를 target에 가까운 숫자가 되도록 좁혀가는 방식을 사용할 것입니다.</p>
+<p>Two pointer 방법이 가능한 이유는 주어진 숫자 배열이 정렬되어있기 때문에 left 포인터가 무조건 right 포인터가 가리키는 숫자보다 작거나 같게됩니다. 때문에 해당 방법을 사용할때는 무조건 주어진 숫자 배열을 정렬해야합니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">>> </span><span style="color: #B392F0">fourSum</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">></span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">nums</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">target</span><span style="color: #E1E4E8">) </span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">sort</span><span style="color: #E1E4E8">(nums.</span><span style="color: #B392F0">begin</span><span style="color: #E1E4E8">(), nums.</span><span style="color: #B392F0">end</span><span style="color: #E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">kSum</span><span style="color: #E1E4E8">(nums, target, </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">, </span><span style="color: #79B8FF">4</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">>> </span><span style="color: #B392F0">kSum</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">></span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">nums</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">target</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">start</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">k</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    ...</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>그리고 kSum으로 일반화한 함수를 호출하여 k = 4인 경우에 대해서 호출합니다.</p>
+<p>앞서 설명했듯이 3 Sum은 숫자 하나를 고정하고 나머지 숫자들로 2 Sum을 수행하는 방식으로 설명할 수 있습니다.</p>
+<p>동일하게 4 Sum 또한 숫자 하나를 고정하고 3 Sum을 호출하는 방법으로 결과를 구할 수 있습니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> start; i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> nums.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">(); i</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (i </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> start </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> nums[i </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">] </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> nums[i]) </span><span style="color: #F97583">continue</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> subsets </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">kSum</span><span style="color: #E1E4E8">(nums, target </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> nums[i], i </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">, k </span><span style="color: #F97583">-</span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> subset : subsets)</span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        subset.</span><span style="color: #B392F0">push_back</span><span style="color: #E1E4E8">(nums[i]);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        result.</span><span style="color: #B392F0">push_back</span><span style="color: #E1E4E8">(subset);</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>k - 1 Sum을 구하는 방법은 매우 간단하게 이루어집니다.</p>
+<p>수 하나(여기선 nums[i])를 고정하고, 고정한 수를 제외하고 k - 1 Sum을 호출합니다. 즉, 재귀적으로 k Sum이 이루어지게 됩니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (i </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> start </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> nums[i </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">] </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> nums[i]) </span><span style="color: #F97583">continue</span><span style="color: #E1E4E8">;</span></span></code></pre>
+<p>위 if문은 이전에 고정한 숫자와 현재 고정할 숫자가 같으면 스킵합니다. 이전과 똑같은 숫자를 고정하여 탐색하면 nums[i - 1]에 대한 subset을 탐색하기 때문입니다. 자세한 설명은 3 Sum을 참조하시면 좋습니다.</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> subset : subsets)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    subset.</span><span style="color: #B392F0">push_back</span><span style="color: #E1E4E8">(nums[i]);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    result.</span><span style="color: #B392F0">push_back</span><span style="color: #E1E4E8">(subset);</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>k - 1 Sum으로 반환된 결과에 현재 고정한 숫자를 합쳐서 결과에 반영합니다.</p>
+<p>만약 k=2가 된다면 twoSum을 호출하는게 맞겠죠</p>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (k </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">twoSum</span><span style="color: #E1E4E8">(nums, target, start);</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<p>twoSum 함수에 대해서는 여기서는 설명을 하지 않겠습니다. 3 Sum 게시글을 참고하시거나, 게시글 하단의 코드 전문을 보시면 확인할 수 있습니다.</p>
+<p>이게 끝입니다. 지금까지 수행한 과정은 다음과 같습니다.</p>
+<ol>
+<li>입력 배열을 정렬한다.</li>
+<li>kSum을 호출한다. (여기선 k=4)</li>
+<li>k-1 Sum을 재귀적으로 호출한다.</li>
+<li>k = 2일 경우 Two Sum을 호출한다.</li>
+<li>Two Sum으로 반환된 결과에 고정된 숫자를 합쳐 반환한다.</li>
+</ol>
+<h4 id="제출-결과">제출 결과</h4>
+<p><img alt="Solution 1 result"  src="/_astro/result_1.cb7198e2_Z2mbUha.webp" width="1429" height="787" loading="lazy" decoding="async"></p>
+<details>
+<summary>코드 전문</summary>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">{</span></span>
+<span class="line"><span style="color: #F97583">public:</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">>> </span><span style="color: #B392F0">fourSum</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">></span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">nums</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">target</span><span style="color: #E1E4E8">) </span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #B392F0">sort</span><span style="color: #E1E4E8">(nums.</span><span style="color: #B392F0">begin</span><span style="color: #E1E4E8">(), nums.</span><span style="color: #B392F0">end</span><span style="color: #E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">kSum</span><span style="color: #E1E4E8">(nums, target, </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">, </span><span style="color: #79B8FF">4</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">>> </span><span style="color: #B392F0">kSum</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">></span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">nums</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">target</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">start</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">k</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        vector</span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8">vector</span><span style="color: #F97583">&#x3C;int>></span><span style="color: #E1E4E8"> result;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (start </span><span style="color: #F97583">>=</span><span style="color: #E1E4E8"> nums.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> result;</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> average </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> target </span><span style="color: #F97583">/</span><span style="color: #E1E4E8"> k;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8">  (nums[start] </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> average </span><span style="color: #F97583">||</span><span style="color: #E1E4E8"> average </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> nums.</span><span style="color: #B392F0">back</span><span style="color: #E1E4E8">()) </span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> result;</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (k </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">twoSum</span><span style="color: #E1E4E8">(nums, target, start);</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> start; i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> nums.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">(); i</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (i </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> start </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> nums[i </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">] </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> nums[i]) </span><span style="color: #F97583">continue</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> subsets </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">kSum</span><span style="color: #E1E4E8">(nums, target </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> nums[i], i </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">, k </span><span style="color: #F97583">-</span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> subset : subsets)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                subset.</span><span style="color: #B392F0">push_back</span><span style="color: #E1E4E8">(nums[i]);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">                result.</span><span style="color: #B392F0">push_back</span><span style="color: #E1E4E8">(subset);</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> result;</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">>> </span><span style="color: #B392F0">twoSum</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">vector</span><span style="color: #E1E4E8">&#x3C;</span><span style="color: #F97583">int</span><span style="color: #E1E4E8">></span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">nums</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">target</span><span style="color: #E1E4E8">, </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">start</span><span style="color: #E1E4E8">)</span></span>
+<span class="line"><span style="color: #E1E4E8">    {</span></span>
+<span class="line"><span style="color: #E1E4E8">        vector</span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8">vector</span><span style="color: #F97583">&#x3C;int>></span><span style="color: #E1E4E8"> result;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> start;</span></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> nums.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">while</span><span style="color: #E1E4E8"> (left </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> right)</span></span>
+<span class="line"><span style="color: #E1E4E8">        {</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> sum </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> nums[left] </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> nums[right];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (sum </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> target)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                left</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (sum </span><span style="color: #F97583">></span><span style="color: #E1E4E8"> target)</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                right</span><span style="color: #F97583">--</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span></span>
+<span class="line"><span style="color: #E1E4E8">            {</span></span>
+<span class="line"><span style="color: #E1E4E8">                 result.</span><span style="color: #B392F0">push_back</span><span style="color: #E1E4E8">({nums[left], nums[right]});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">                left</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">while</span><span style="color: #E1E4E8"> (nums[left] </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> nums[left </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">] </span><span style="color: #F97583">&#x26;&#x26;</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> right) left</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">            }</span></span>
+<span class="line"><span style="color: #E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> result;</span></span>
+<span class="line"><span style="color: #E1E4E8">    }</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
+</details></div></article><p class="mt-6 font-bold"><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a><span>&nbsp;시리즈의 다른 게시물 보기</span></p><div class="
+            w-full flex flex-col space-y-4 mt-6 
+            md:flex-row md:justify-between md:space-y-0
+        "><a class="
+                bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:mr-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---17-letter-combinations-of-a-phone-number"><span class="mr-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g transform="rotate(180 14 14)"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></g></svg></span><span class="text-right truncate">LeetCode - 17. Letter Combinations of a Phone Number</span></a><a class="
+                bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 
+                flex justify-between items-center 
+                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+                font-bold p-4
+                md:w-1/2 md:ml-6
+                lg:w-2/3 xl:w-1/3
+            " style="background-size: 200%;" href="/posts/leetcode---19-remove-nth-node-from-end-of-list"><span class="text-left truncate">LeetCode - 19. Remove Nth Node From End of List</span><span class="text-right ml-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></svg></span></a></div></div></main><footer class="w-full border-t-2 p-4"><p class="">Copyright 2023 by Jaehee All rights reserved.</p></footer></body></html>
