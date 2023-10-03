@@ -85,7 +85,7 @@ if (series)
             md:flex-row md:justify-between md:space-y-0
         "
     >
-        {!!prevSeriesPost &&
+        {!!prevSeriesPost ?
         <a 
             class="
                 bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
@@ -103,6 +103,8 @@ if (series)
         </span>
             <span class="text-right truncate">{prevSeriesPost.data.title}</span>
         </a>
+        :
+        <div></div>
         }
 
         {!!nextSeriesPost &&
