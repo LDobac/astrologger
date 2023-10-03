@@ -7,5 +7,5 @@ export default function GeneratePostDesc (post: CollectionEntry<"posts">): strin
 {
     const renderedContent = convert(marked(post.body));
     
-    return renderedContent.slice(0, DESC_LEN);
+    return renderedContent.replaceAll("\n", " ").slice(0, DESC_LEN);
 }
