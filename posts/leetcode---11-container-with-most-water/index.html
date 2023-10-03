@@ -22,11 +22,11 @@ challenge example [./assets/images/leet_code/11/question_11.webp]
 
 배열에 순서대로 각 막대의 길이가 주어 질 때, 해당 막대 사이에 액체를 담을 때 가장 많이 담긴 양을 구하는 문제입니다.
 
-난이도는 MEDI"><meta property="og:image" content="https://jaehee.dev/posts/leetcode---11-container-with-most-water.png"><meta property="og:image:alt" content="Thumbnail of LeetCode - 11. Container With Most Water"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><title>LeetCode - 11. Container With Most Water</title><link rel="stylesheet" href="/_astro/index.0f2bed8a.css" />
-<link rel="stylesheet" href="/_astro/index.d53a60e6.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/_astro/profile_image.bd953236_Z1UOfia.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---11-container-with-most-water.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 11. Container With Most Water" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 11. Container With Most Water</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/medium/1"><span>medium</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>2021년 11월 14일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---11-container-with-most-water">LeetCode - 11. Container With Most Water</h2>
+난이도는 MEDI"><meta property="og:image" content="https://jaehee.dev/posts/leetcode---11-container-with-most-water.png"><meta property="og:image:alt" content="Thumbnail of LeetCode - 11. Container With Most Water"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><title>LeetCode - 11. Container With Most Water</title><link rel="stylesheet" href="/asset_dir/index.0f2bed8a.css" />
+<link rel="stylesheet" href="/asset_dir/index.d53a60e6.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/asset_dir/profile_image.bd953236_Z1mQw6L.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---11-container-with-most-water.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 11. Container With Most Water" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 11. Container With Most Water</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/medium/1"><span>medium</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>2021년 11월 14일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---11-container-with-most-water">LeetCode - 11. Container With Most Water</h2>
 <p>문제 - <a href="https://leetcode.com/problems/container-with-most-water/">LeetCode 11. Container With Most Water</a></p>
 <h2 id="문제-설명">문제 설명</h2>
-<p><img alt="challenge example"  src="/_astro/question_11.295f8631_2x4SP2.webp" width="801" height="383" loading="lazy" decoding="async"></p>
+<p><img alt="challenge example"  src="/asset_dir/question_11.295f8631_Z20Ad2p.webp" width="801" height="383" loading="lazy" decoding="async"></p>
 <p>배열에 순서대로 각 막대의 길이가 주어 질 때, 해당 막대 사이에 액체를 담을 때 가장 많이 담긴 양을 구하는 문제입니다.</p>
 <p>난이도는 <code>MEDIUM</code> 난이도 입니다.</p>
 <h2 id="풀이">풀이</h2>
@@ -54,7 +54,7 @@ challenge example [./assets/images/leet_code/11/question_11.webp]
 <p>두 막대의 높이가 같다면 둘 중 하나의 높이를 사용할 수 있지만, 만약 높이가 다를때 액체를 담는다고 상상하면 낮은쪽의 높이로 액체가 넘치게 되겠죠. 그러므로 둘 중 높이가 낮은쪽을 선택합니다.</p>
 <p>너비도 간단히 구할 수 있습니다. 두 막대 사이의 거리를 계산합니다.ㄹ</p>
 <h4 id="제출-결과">제출 결과</h4>
-<p><img alt="Solution 1 result"  src="/_astro/result_1.0d13690e_2qsAWL.webp" width="998" height="105" loading="lazy" decoding="async"></p>
+<p><img alt="Solution 1 result"  src="/asset_dir/result_1.0d13690e_2aerDx.webp" width="998" height="105" loading="lazy" decoding="async"></p>
 <p>중첩된 반복문을 사용하고 있기에 시간 복잡도는 O(n^2)의 성능을 보이게 됩니다. 아주 많은 입력이 주어졌을 때 시간 초과가 발생함을 확인할 수 있었습니다.</p>
 <details>
 <summary>코드 전문</summary>
@@ -99,15 +99,15 @@ challenge example [./assets/images/leet_code/11/question_11.webp]
 <p>두 번째 방법은 첫 번째 방법에서 약간 개선하여 굳이 의미 없는 계산을 빼보도록 하겠습니다.</p>
 <p>높이가 가장 큰 두 개의 막대를 선택한다 하더라도 너비가 너무 좁으면 다른 것보다 넓이가 작을 수도 있습니다.</p>
 <p>때문에 맨 처음에는 가장 너비가 큰 상태인 첫 번째 막대와 마지막 막대를 선택합니다.</p>
-<p><img alt="Selection example"  src="/_astro/selection_example_1.88bf4cea_ZzrHHn.webp" width="723" height="416" loading="lazy" decoding="async"></p>
+<p><img alt="Selection example"  src="/asset_dir/selection_example_1.88bf4cea_1FE4gD.webp" width="723" height="416" loading="lazy" decoding="async"></p>
 <p>여기서 넓이가 더 커질 수 있는 방법은 왼쪽의 막대가 더 높아진다면 넓이가 더 커질 것입니다. 즉, 오른쪽의 막대는 충분히 길지만, 왼쪽의 막대가 작기때문에 왼쪽 막대로는 기대치 이상의 넓이를 구할 수 없을 것 같습니다.</p>
 <p>왼쪽 막대를 한 칸 오른쪽의 막대를 선택합니다.</p>
-<p><img alt="Selection example 2"  src="/_astro/selection_example_2.3a9deecd_1X1duv.webp" width="723" height="416" loading="lazy" decoding="async"></p>
+<p><img alt="Selection example 2"  src="/asset_dir/selection_example_2.3a9deecd_ZQ48kp.webp" width="723" height="416" loading="lazy" decoding="async"></p>
 <p>너비가 1 줄어들었지만, 높이가 너비 이상으로 증가했기 때문에 이전의 결과보다 더 증가하였습니다.</p>
 <p>현재 상황으로는 오른쪽의 막대가 왼쪽 막대보다 높이가 낮기 때문에, 오른쪽의 막대가 더 길어진다면 넓이가 더 증가할 수 도 있을 것 같습니다. 오른쪽의 막대를 한 칸 왼쪽의 막대를 선택합니다.</p>
-<p><img alt="Selection example 3"  src="/_astro/selection_example_3.944fce3e_ZM9HPY.webp" width="723" height="416" loading="lazy" decoding="async"></p>
+<p><img alt="Selection example 3"  src="/asset_dir/selection_example_3.944fce3e_1sW482.webp" width="723" height="416" loading="lazy" decoding="async"></p>
 <p>아쉽지만 오히려 넓이가 낮아졌습니다. 이유는 오른쪽의 막대가 왼쪽의 막대보다 높이가 낮기 때문입니다. 다시 한 번 왼쪽으로 이동합니다.</p>
-<p><img alt="Selection example 4"  src="/_astro/selection_example_4.50a71fe2_LBeEg.webp" width="723" height="416" loading="lazy" decoding="async"></p>
+<p><img alt="Selection example 4"  src="/asset_dir/selection_example_4.50a71fe2_Z22t7aE.webp" width="723" height="416" loading="lazy" decoding="async"></p>
 <p>이런방식으로 계속 순회하며 가장 넓이가 컸었던 값을 선택하면 됩니다.</p>
 <pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> maxArea </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
 <span class="line"></span>
@@ -133,7 +133,7 @@ challenge example [./assets/images/leet_code/11/question_11.webp]
 <p>위 코드를 계속해서 실행하게되면 계속해서 두 막대가 경쟁하면서 가장 긴 막대를 선택하려고 시도하게 됩니다. 물론 높이가 가장 높은 두 막대를 선택하더라도 너비가 좁아 더 넓은 공간이 계산되지 않을 수 있습니다.</p>
 <p>하지만, 결국 높은 막대를 선택하면 큰 넓이가 나올 수 있는 기대치가 있기 때문에 기대치가 있는 경우에 대해서만 검사하므로 이런 결과가 나오게 되게 됩니다.</p>
 <h4 id="제출-결과-1">제출 결과</h4>
-<p><img alt="Solution 2 result"  src="/_astro/result_2.1c286caa_1tzIFW.webp" width="864" height="209" loading="lazy" decoding="async"></p>
+<p><img alt="Solution 2 result"  src="/asset_dir/result_2.1c286caa_1dlzmI.webp" width="864" height="209" loading="lazy" decoding="async"></p>
 <p>시간 복잡도는 O(n)이며 실제 실행 시간은 76ms가 나오며 다른 C++ 제출자보다 91% 가량 좋은 성능을 보임을 알 수 있습니다.</p>
 <details>
 <summary>코드 전문</summary>
