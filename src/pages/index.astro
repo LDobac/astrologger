@@ -4,6 +4,7 @@ import PostList from "@components/PostList.astro";
 import TagList from "@components/TagList.astro";
 import { GetPosts } from "@utils/GetPosts";
 import SeriesList from "@components/SeriesList.astro";
+import RSSFeed from "@components/RSSFeed.astro";
 
 const posts = (await GetPosts(true)).slice(0, 6);
 ---
@@ -11,9 +12,13 @@ const posts = (await GetPosts(true)).slice(0, 6);
 <Layout>
     <div class="space-y-12">
         <div> 
-            <div class="inline-flex items-center mb-4 border-b-2 border-sky-300">
-                <i class="bg-black mr-2" style="width: 12px;height: 12px;"></i>
-                <span class="font-bold text-xl">Recent Posts</span>
+            <div class="flex items-center justify-between">
+                <div class="inline-flex items-center mb-4 border-b-2 border-sky-300">
+                    <i class="bg-black mr-2" style="width: 12px;height: 12px;"></i>
+                    <span class="font-bold text-xl">Recent Posts</span>
+                </div>
+
+                <RSSFeed />
             </div>
 
             <PostList posts={posts} />

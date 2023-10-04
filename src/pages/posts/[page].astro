@@ -6,6 +6,7 @@ import Paginator from "@components/Paginator.astro";
 import type {Page} from "astro";
 import { GetPosts } from "@utils/GetPosts";
 import { PAGE_SIZE } from "@utils/Constants";
+import RSSFeed from "@components/RSSFeed.astro";
 
 // @ts-expect-error
 export async function getStaticPaths({ paginate }) {
@@ -36,4 +37,6 @@ const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
     <div class="mt-6">
         <Paginator page={page} baseUrl="/posts" />
     </div>
+
+    <RSSFeed />
 </Layout>
