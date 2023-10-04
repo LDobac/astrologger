@@ -20,7 +20,6 @@ export const GET: APIRoute = async (ctx) => {
             pubDate: post.data.date,
             description: post.data.description ?? GeneratePostDesc(post),
             link: `/posts/${slugger(post.data.title)}`,
-            content: sanitizeHtml(marked(post.body))
         }))
     });
 }
