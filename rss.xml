@@ -1,0 +1,3369 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Jaehee.dev</title><description>Test RSS</description><link>https://jaehee.dev/</link><item><title>LeetCode - 24. Swap Nodes in Pairs</title><link>https://jaehee.dev/posts/leetcode---24-swap-nodes-in-pairs/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---24-swap-nodes-in-pairs/</guid><description>LEETCODE - 24. SWAP NODES IN PAIRS  문제 - LeetCode - 24. Swap Nodes in Pairs [https://leetcode.com/problems/swap-nodes-in-pairs/]   문제 설명  연결 리스트가 주어지면</description><pubDate>Thu, 09 Dec 2021 22:26:34 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 24. Swap Nodes in Pairs&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/swap-nodes-in-pairs/&quot;&gt;LeetCode - 24. Swap Nodes in Pairs&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;연결 리스트가 주어지면 근접한 한 노드와 짝을 지어 두 노드를 swap 합니다. 이때 노드의 값을 변경하는 것은 허락되지 않고 오직 노드의 next 포인터만 수정가능합니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;위 이미지와 같이 한 쌍의 노드를 swap합니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/14.%20Longest%20Common%20Prefix&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;p&gt;사실 난이도가 medium으로 측정되어 있지만, 단순히 두 연결 리스트의 next 포인터를 swap만 하면 되는 문제입니다.&lt;/p&gt;
+&lt;p&gt;일반적으로 맨 처음 컴퓨터 언어에 대한 tutorial에서 두 변수를 swap하는 예제와 상당히 유사합니다.&lt;/p&gt;
+&lt;p&gt;다만 차이점이라면 순방향 연결 리스트이기 때문에 약간의 처리가 필요합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;while (left &amp;amp;&amp;amp; right)
+{
+    // 일반적인 변수 swap 코드
+    ListNode* tmp = right-&amp;gt;next;
+
+    right-&amp;gt;next = left;
+    left-&amp;gt;next = tmp;
+
+    // 현재 swap하는 노드의 previous 노드의 next를 연결한다.
+    if (prev) prev-&amp;gt;next = right;
+    prev = left;
+
+    // 첫 순회면 head 포인터를 업데이트한다.
+    if (head == left) head = right;
+
+    // left, right 포인터를 다음 swap할 포인터로 옮긴다.
+    left = tmp;
+    if (tmp) right = tmp-&amp;gt;next;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;실질적인 실행 코드는 단 10줄 가량으로 정리됩니다. 추가적인 설명은 하지 않도록 하겠습니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;난이도가 medium으로 측정된것과 다르게 사실상 easy 난이도나 다름 없었습니다.&lt;/p&gt;
+&lt;p&gt;종종 느끼지만 leetcode에서 측정하는 난이도는 상당히 이상하다고 느껴지는 점이 종종 있는 것 같습니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) 
+    {
+        if (!head) return nullptr;
+
+        ListNode* prev = nullptr;
+        ListNode* left = head;
+        ListNode* right = head-&amp;gt;next;
+
+        while (left &amp;amp;&amp;amp; right)
+        {
+            ListNode* tmp = right-&amp;gt;next;
+
+            right-&amp;gt;next = left;
+            left-&amp;gt;next = tmp;
+
+            if (prev) prev-&amp;gt;next = right;
+            prev = left;
+
+            if (head == left) head = right;
+            
+            left = tmp;
+            if (tmp) right = tmp-&amp;gt;next;
+        }
+        
+        return head;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 23. Merge k Sorted Lists</title><link>https://jaehee.dev/posts/leetcode---23-merge-k-sorted-lists/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---23-merge-k-sorted-lists/</guid><description>LEETCODE - 23. MERGE K SORTED LISTS  문제 - LeetCode - 23. Merge k Sorted Lists [https://leetcode.com/problems/merge-k-sorted-lists/]   문제 설명  지난 LeetCo</description><pubDate>Wed, 08 Dec 2021 11:09:23 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 23. Merge k Sorted Lists&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/merge-k-sorted-lists/&quot;&gt;LeetCode - 23. Merge k Sorted Lists&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;지난 &lt;a href=&quot;https://jaehee.dev/#/post/22&quot;&gt;LeetCode - 21. Merge Two Sorted Lists&lt;/a&gt; 문제의 확장 버전입니다.&lt;/p&gt;
+&lt;p&gt;정렬된 k개의 연결 리스트가 입력되면 모든 연결 리스트를 정렬된 하나의 연결리스트 반환합니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;HARD&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/23.%20Merge%20k%20Sorted%20Lists&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution 1 - Merge one by one&lt;/h3&gt;
+&lt;p&gt;첫 번째 해결 방법은 &lt;a href=&quot;https://jaehee.dev/#/post/22&quot;&gt;LeetCode - 21. Merge Two Sorted Lists&lt;/a&gt;의 풀이 방법을 그대로 사용하여 풀어보겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ListNode* mergeKLists(vector&amp;lt;ListNode*&amp;gt;&amp;amp; lists) {
+    if (lists.size() == 0) return nullptr;
+
+    ListNode* result = lists[0];
+
+    for (size_t i = 1; i &amp;lt; lists.size(); i++)
+    {
+        result = mergeTwoLists(result, lists[i]);
+    }
+
+    return result;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;단순히 두 연결 리스트를 병합하는 함수를 이용하여 하나하나씩 병합하여 k - 1번 순회하여 모든 연결 리스트를 연결합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 속도는 296ms, 다른 C++ 제출자에 비해서 13% 정도의 성능밖에 나오지 않았습니다. 이에 대한 이유를 알기 위해 Big-O를 계산해보겠습니다.&lt;/p&gt;
+&lt;p&gt;각 연결리스트를 하나하나씩 더하기 때문에 &lt;code&gt;lists = {list_1, list_2, list_3 ... ,list_k}&lt;/code&gt;가 있을 때, 각 리스트의 노드수의 평균을 n개라고 해보겠습니다.&lt;/p&gt;
+&lt;p&gt;그럼 처음 &lt;code&gt;merge(list_1, list_2)&lt;/code&gt;를 수행할 때 O(n)의 시간 복잡도가 발생합니다(길이가 n인 리스트를 순회하므로). 그리고 반환된 리스트의 길이는 2n이 되겠죠. 이 리스트를 &lt;code&gt;list_1m2&lt;/code&gt;라고 해보겠습니다.&lt;/p&gt;
+&lt;p&gt;그리고 &lt;code&gt;list_1m2&lt;/code&gt;와 &lt;code&gt;list_3&lt;/code&gt;에 대해서 &lt;code&gt;merge(list_1m2, list_3)&lt;/code&gt;를 수행하면 O(2n)의 시간 복잡도가 발생합니다(길이가 2n, n인 리스트를 순회하므로 최악의 경우인 2n). 그럼 반환된 리스트 &lt;code&gt;list_1m3&lt;/code&gt;은 길이가 3n이 됩니다.&lt;/p&gt;
+&lt;p&gt;이런식으로 k번째까지 쭉 더하면 발생하는 반복 횟수는 &lt;code&gt;n + 2n + 3n + ... + kn = n(1 + 2 + 3 + ... + k)&lt;/code&gt;가 됩니다.&lt;/p&gt;
+&lt;p&gt;일반적으로 &lt;code&gt;1 + 2 + 3 + ... + k = k(k + 1)/2&lt;/code&gt;로 계산할 수 있으니, &lt;code&gt;nk(k+1)/2&lt;/code&gt;입니다. 따라서 O(kn^2)이 되게됩니다.&lt;/p&gt;
+&lt;p&gt;공간 복잡도는 입력 리스트에 관계 없이 하나의 포인터만 선언하므로 O(1)입니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution {
+public:
+    ListNode* mergeKLists(vector&amp;lt;ListNode*&amp;gt;&amp;amp; lists) {
+        if (lists.size() == 0) return nullptr;
+
+        ListNode* result = lists[0];
+
+        for (size_t i = 1; i &amp;lt; lists.size(); i++)
+        {
+            result = mergeTwoLists(result, lists[i]);
+        }
+
+        return result;
+    }
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if (!list1 &amp;amp;&amp;amp; !list2) return nullptr;
+        
+        ListNode* mergedHead = nullptr;
+        ListNode* lastNode = nullptr;
+
+        ListNode* node1 = list1;
+        ListNode* node2 = list2;
+
+        while (node1 &amp;amp;&amp;amp; node2)
+        {
+            ListNode* selectedNode = nullptr;
+
+            if (node1-&amp;gt;val &amp;lt; node2-&amp;gt;val)
+            {
+                selectedNode = node1;
+                node1 = node1-&amp;gt;next;
+            }
+            else
+            {
+                selectedNode = node2;
+                node2 = node2-&amp;gt;next;
+            }
+
+            if (mergedHead == nullptr)
+            {
+                mergedHead = selectedNode;
+            }
+            else
+            {
+                lastNode-&amp;gt;next = selectedNode;
+            }
+
+            lastNode = selectedNode;
+        }
+
+        if (node1)
+        {
+            if (!mergedHead)
+            {
+                mergedHead = node1;
+            }
+            else
+            {
+                for (auto node = node1; node != nullptr; node = node-&amp;gt;next)
+                {
+                    lastNode-&amp;gt;next = node;
+                    lastNode = node;
+                }
+            }
+        }
+
+        if (node2)
+        {
+            if (!mergedHead)
+            {
+                mergedHead = node2;
+            }
+            else
+            {
+                for (auto node = node2; node != nullptr; node = node-&amp;gt;next)
+                {
+                    lastNode-&amp;gt;next = node;
+                    lastNode = node;
+                }
+            }
+        }
+
+        return mergedHead;   
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution 2 - Prority Queue&lt;/h3&gt;
+&lt;p&gt;두 번째 풀이 방법은 우선 순위 큐, 혹은 Heap 자료 구조를 이용해 풀어보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;우선 순위 큐(Heap)은 일반적으로 최대 혹은 최소 값을 빠르게 찾기 위해 사용되는 자료구조입니다.&lt;/p&gt;
+&lt;p&gt;현재 문제는 오름차순으로 정렬된 모든 리스트를 하나의 정렬된 리스트로 반환하는 문제이기 때문에 입력으로 주어진 모든 노드를 우선 순위 큐에 삽입하고 빼면서 하나의 리스트로 만든다면 문제를 해결할 수 있을것입니다.&lt;/p&gt;
+&lt;p&gt;풀이에 사용되는 언어가 C++이므로 C++ STL의 &lt;a href=&quot;https://en.cppreference.com/w/cpp/container/priority_queue&quot;&gt;priority_queue&lt;/a&gt; 자료구조를 사용하도록 합니다. 해당 자료구조에 대한 자세한 스펙은 연결된 링크를 참조해주세요.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;auto cmp = [](ListNode* left, ListNode* right) {
+    return left-&amp;gt;val &amp;gt; right-&amp;gt;val;
+};
+
+priority_queue&amp;lt;ListNode*, vector&amp;lt;ListNode*&amp;gt;, decltype(cmp)&amp;gt; queue(cmp);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;우선 순위 큐를 선언하고 별도의 비교 함수를 전달하여 해당 우선 순위 큐가 오름차순(min-heap)으로 형성되도록 합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (auto &amp;amp;&amp;amp;head : lists)
+{
+    for (auto node = head; node != nullptr; node = node-&amp;gt;next)
+    {
+        queue.push(node);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 입력된 모든 노드를 큐에 삽입합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;while (!queue.empty()) 
+{
+    auto r = queue.top(); 
+    queue.pop();
+
+    if (!head) 
+    {
+        head = r;
+        tail = head;
+        continue;
+    }
+
+    tail-&amp;gt;next = r;
+    r-&amp;gt;next = nullptr;
+    tail = r;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 단순히 큐에서 하나씩 pop을 수행하면서 하나의 연결 리스트로 형성합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 속도는 16ms, 97% 가량의 성능이 도출되었습니다. &lt;/p&gt;
+&lt;p&gt;우선 순위 큐에 경우 구현 방법에 따라 시간 복잡도가 약간씩 다르지만 보통 삽입은 O(1), 삭제는 O(logn)으로 도출됩니다. 따라서 k개의 리스트에 대해 삽입과 삭제를 하므로 O(klogn)로 계산할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;다만, 공간 복잡도는 k개의 우선 순위 큐 공간이 필요하므로 O(k)가 되게됩니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution {
+public:
+    ListNode* mergeKLists(vector&amp;lt;ListNode*&amp;gt;&amp;amp; lists) {
+        if (lists.size() == 0) return nullptr;
+
+        ListNode* head = nullptr;
+        ListNode* tail = nullptr;
+
+        auto cmp = [](ListNode* left, ListNode* right) {
+            return left-&amp;gt;val &amp;gt; right-&amp;gt;val;
+        };
+
+        priority_queue&amp;lt;ListNode*, vector&amp;lt;ListNode*&amp;gt;, decltype(cmp)&amp;gt; queue(cmp);
+
+        for (auto &amp;amp;&amp;amp;head : lists)
+        {
+            for (auto node = head; node != nullptr; node = node-&amp;gt;next)
+            {
+                queue.push(node);
+            }
+        }
+
+        while (!queue.empty()) 
+        {
+            auto r = queue.top(); 
+            queue.pop();
+
+            if (!head) 
+            {
+                head = r;
+                tail = head;
+                continue;
+            }
+
+            tail-&amp;gt;next = r;
+            r-&amp;gt;next = nullptr;
+            tail = r;
+        }
+
+        return head;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution 3 - Divide and Conquer&lt;/h3&gt;
+&lt;p&gt;세 번째 방법은 분할 정복을 이용하여 성능은 최대한 유지하면서 공간 복잡도는 O(1)로 구현해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;구현 자체는 간단합니다. Solution 1과 동일하게 두 연결 리스트를 병합하는 함수를 이용합니다. 하지만, 병합하는 과정에서 분할 정복 기법을 이용하게 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;auto amount = lists.size();
+auto interval = 1;
+while (interval &amp;lt; amount)
+{
+    for (auto i = 0; i &amp;lt; amount - interval; i += interval * 2)
+    {
+        lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
+    }
+    interval *= 2;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;
+실행 속도는 25ms로 Solution 2와 큰 차이가 없음을 확인할 수 있습니다. &lt;/p&gt;
+&lt;p&gt;공간 복잡도도 O(1)이기 때문에 시간 복잡도와 공간 복잡도를 아주 적절하게 Trade-off 한것입니다.&lt;/p&gt;
+&lt;p&gt;평균 노드 개수가 n인 k개의 연결 리스트를 분할 정복 기법으로 병합하는 경우의 Big-O를 계산해보겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;출처 : &lt;a href=&quot;https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;amp;blogId=kks227&amp;amp;logNo=220776241154&quot;&gt;https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;amp;blogId=kks227&amp;amp;logNo=220776241154&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;분할 정복은 문제를 일반적으로 m개씩 분해합니다(여기서는 2개씩 분해합니다). &lt;/p&gt;
+&lt;p&gt;이때 우리의 코드는 k개의 연결 리스트를 2개씩 분할해서 병합합니다. 최대로 분할 될 수 있는 단계는 logk(밑이 2인데 생략)이므로 분할의 시간 복잡도는 O(logk)입니다.&lt;/p&gt;
+&lt;p&gt;이때 k개가 있으므로 O(klogk)로 계산할 수 있습니다. 그리고 n개의 노드를 병합해야 하므로 O(n * klogk)의 시간 복잡도가 계산됩니다.&lt;/p&gt;
+&lt;p&gt;Solution 1의 시간 복잡도는 &lt;code&gt;O(kn^2)&lt;/code&gt;이였는데 Solution 3의 시간 복잡도는 &lt;code&gt;O(n * klogk)&lt;/code&gt;이므로 당연히 더 빠르게 실행됩니다.&lt;/p&gt;
+&lt;p&gt;실제로 손으로 하나씩 계산해보더라도 Solution 1의 순회의 경우 n + 2n + 3n + ...으로 병합한 두 연결 리스트의 결과인 2n에 대해서 또 병합을 하니 위와 같은 결과가 나오게 됩니다.&lt;/p&gt;
+&lt;p&gt;하지만 Solution 3의 경우 (n + n), (n + n)... (2n + 2n), (2n + 2n)... (4n + 4n), ... 과 같이 분할된게 합쳐지면서 병합되기 때문에 최악의 경우가 nlogn밖에 되지 않습니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution {
+public:
+    ListNode* mergeKLists(vector&amp;lt;ListNode*&amp;gt;&amp;amp; lists) {
+        if (lists.size() == 0) return nullptr;
+
+        auto amount = lists.size();
+        auto interval = 1;
+        while (interval &amp;lt; amount)
+        {
+            for (auto i = 0; i &amp;lt; amount - interval; i += interval * 2)
+            {
+                lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
+            }
+            interval *= 2;
+        }
+
+        return lists[0];
+    }
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if (!list1 &amp;amp;&amp;amp; !list2) return nullptr;
+        
+        ListNode* mergedHead = nullptr;
+        ListNode* lastNode = nullptr;
+
+        ListNode* node1 = list1;
+        ListNode* node2 = list2;
+
+        while (node1 &amp;amp;&amp;amp; node2)
+        {
+            ListNode* selectedNode = nullptr;
+
+            if (node1-&amp;gt;val &amp;lt; node2-&amp;gt;val)
+            {
+                selectedNode = node1;
+                node1 = node1-&amp;gt;next;
+            }
+            else
+            {
+                selectedNode = node2;
+                node2 = node2-&amp;gt;next;
+            }
+
+            if (mergedHead == nullptr)
+            {
+                mergedHead = selectedNode;
+            }
+            else
+            {
+                lastNode-&amp;gt;next = selectedNode;
+            }
+
+            lastNode = selectedNode;
+        }
+
+        if (node1)
+        {
+            if (!mergedHead)
+            {
+                mergedHead = node1;
+            }
+            else
+            {
+                for (auto node = node1; node != nullptr; node = node-&amp;gt;next)
+                {
+                    lastNode-&amp;gt;next = node;
+                    lastNode = node;
+                }
+            }
+        }
+
+        if (node2)
+        {
+            if (!mergedHead)
+            {
+                mergedHead = node2;
+            }
+            else
+            {
+                for (auto node = node2; node != nullptr; node = node-&amp;gt;next)
+                {
+                    lastNode-&amp;gt;next = node;
+                    lastNode = node;
+                }
+            }
+        }
+
+        return mergedHead;   
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 22. Generate Parentheses</title><link>https://jaehee.dev/posts/leetcode---22-generate-parentheses/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---22-generate-parentheses/</guid><description>LEETCODE - 22. GENERATE PARENTHESES  문제 - LeetCode - 22. Generate Parentheses [https://leetcode.com/problems/generate-parentheses/]   문제 설명  정수 n이 주어지</description><pubDate>Tue, 07 Dec 2021 16:25:05 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 22. Generate Parentheses&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/generate-parentheses/&quot;&gt;LeetCode - 22. Generate Parentheses&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;정수 n이 주어지면 n개의 괄호로 이루어지는 모든 조합을 반환해야합니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 n = 1이라면 &lt;code&gt;[&quot;()&quot;]&lt;/code&gt;이며, &lt;/p&gt;
+&lt;p&gt;n = 2이라면 &lt;code&gt;[&quot;(())&quot;, &quot;()()&quot;]&lt;/code&gt;, &lt;/p&gt;
+&lt;p&gt;그리고 n = 3이라면 &lt;code&gt;[&quot;((()))&quot;,&quot;(()())&quot;,&quot;(())()&quot;,&quot;()(())&quot;,&quot;()()()&quot;]&lt;/code&gt;를 반환해야 합니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/22.%20Generate%20Parentheses&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution 1 - Brute force&lt;/h3&gt;
+&lt;p&gt;첫 번째 풀이 방법은 Brute force(무차별 대입)입니다. Brute force 방법은 풀이가 간단하기 때문에 한 번 시간 복잡도 Big-O만 계산하고 넘어가겠습니다.&lt;/p&gt;
+&lt;p&gt;먼저 n = 3인 경우에 대해서 모든 조합에 대한 트리를 구성해보겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;조합이 열린 괄호, 닫힌 괄호 두 가지이기 때문에 완전 이진 트리가 형성되었습니다. 단순히 Brute force를 한다면 트리를 탐색하면서 생기는 모든 조합이 탐색될 것입니다.&lt;/p&gt;
+&lt;p&gt;그렇다면 완전 이진 트리의 노드 수만큼의 순회가 발생하게 됩니다. 완전 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%A7%84_%ED%8A%B8%EB%A6%AC&quot;&gt;이진 트리는 2^h-1개의 노드&lt;/a&gt;를 가질 수 있습니다.(여기서 h는 트리의 높이)&lt;/p&gt;
+&lt;p&gt;그러므로 n=3일때 트리의 높이는 h=4이므로 최소 O(2^n)으로 볼 수 있을 것 같습니다. 추가로 적절하지 않은 괄호의 형태도 모두 순회하니 이를 검사하는 시간 복잡도도 추가되어야 합니다.&lt;/p&gt;
+&lt;h3&gt;Solution 2 - Backtracking&lt;/h3&gt;
+&lt;p&gt;이제 Backtracking 기법을 사용하여 Brute force 방법에서 적절한 괄호 쌍이 형성되지 않는 경로로는 탐색하지 않도록 하여 최적화를 시도해보겠습니다.&lt;/p&gt;
+&lt;p&gt;별도의 &lt;code&gt;open&lt;/code&gt;, &lt;code&gt;close&lt;/code&gt;변수를 선언합니다. &lt;code&gt;open&lt;/code&gt; 변수는 현재 열린 괄호의 수, &lt;code&gt;close&lt;/code&gt;변수는 닫힌 괄호의 수를 나타냅니다.&lt;/p&gt;
+&lt;p&gt;정상적으로 열리고 닫힌 괄호쌍이 형성될때는 항상 열린 괄호가 먼저 등장하고, 닫힌 괄호가 나중에 등장해야 합니다. &lt;/p&gt;
+&lt;p&gt;그리고 본 문제에서는 괄호의 수인 n이라는 값이 주어지므로, 열린 괄호의 수가 n개를 넘어서는 안됩니다. n개를 넘어서는 순간, n개 이상의 괄호가 형성되기 때문입니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;이런식으로 현재 열린 괄호의 수보다 닫힌 괄호의 수가 커지는 경우에 대해서는 탐색하지 않고 다시 돌아갑니다.&lt;/p&gt;
+&lt;p&gt;또한 열린 괄호의 수가 n보다 커지는 경우도 모두 제외합니다.&lt;/p&gt;
+&lt;p&gt;코드로 이를 구현해보겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void generate(int n, int open, int close, string s, vector&amp;lt;string&amp;gt;&amp;amp; out) {...}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Backtracking으로 구현하기 위해 별도의 재귀함수를 선언합니다. 당연하지만, 일반적인 순회문으로도 충분히 구현 가능합니다.&lt;/p&gt;
+&lt;p&gt;open, close 변수는 위에서 설명되었으며, n는 괄호의 수, s는 현재까지 탐색된 괄호의 조합 문자열, out은 조합된 괄호의 출력입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (open &amp;lt; n)
+{
+    generate(n, open + 1, close, s + &apos;(&apos;, out);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;만약 열린 괄호의 수가 최대 괄호 개수보다 적다면 새로운 괄호를 열고 탐색을 계속합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (close &amp;lt; open)
+{
+    generate(n, open, close + 1, s + &apos;)&apos;, out);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;현재 닫힌 괄호의 수가 열린 괄호의 수보다 적다면 괄호를 하나 닫고 계속 탐색합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (s.length() == n * 2)
+{
+    out.push_back(s);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;지금까지 조합된 괄호 문자열의 길이가 n*2라면 출력 배열에 삽입합니다. n * 2인 이유는 간단합니다. 입력 n은 괄호 쌍의 개수를 나타냅니다. 하나의 괄호쌍은 2개이기 때문에 만약 문자열의 길이가 n * 2이라면 n개의 괄호쌍이 모두 조합된거니 출력 배열에 삽입하면 됩니다.&lt;/p&gt;
+&lt;p&gt;이렇게 구현이 끝났습니다. 실질적인 구현 코드는 10줄 가량이 채 되지 않습니다. &lt;/p&gt;
+&lt;p&gt;항상 생각하지만, 생각은 몇십분 이상을 해도 구현 코드는 몇 줄이 되지 않을때마다 조금 현타가 오는 기분이기도 하고 뿌듯하기도 합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;제출 표본이 적기때문에 100%는 큰 의미가 없지만, 실행 속도가 0ms가 나오게 되었기 때문에 충분히 좋은 알고리즘이 구현된 것 같습니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution {
+public:
+    vector&amp;lt;string&amp;gt; generateParenthesis(int n) {
+        vector&amp;lt;string&amp;gt; result;
+
+        generate(n, 0, 0, &quot;&quot;, result);
+
+        return result;
+    }
+
+    void generate(int n, int open, int close, string s, vector&amp;lt;string&amp;gt;&amp;amp; out)
+    {
+        if (s.length() == n * 2)
+        {
+            out.push_back(s);
+        }
+
+        if (open &amp;lt; n)
+        {
+            generate(n, open + 1, close, s + &apos;(&apos;, out);
+        }
+
+        if (close &amp;lt; open)
+        {
+            generate(n, open, close + 1, s + &apos;)&apos;, out);
+        }
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 21. Merge Two Sorted Lists</title><link>https://jaehee.dev/posts/leetcode---21-merge-two-sorted-lists/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---21-merge-two-sorted-lists/</guid><description>LEETCODE - 21. MERGE TWO SORTED LISTS  문제 - LeetCode - 21. Merge Two Sorted Lists [https://github.com/LDobac/leetcode/tree/master/21.%20Merge%20Two%20</description><pubDate>Mon, 06 Dec 2021 21:08:37 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 21. Merge Two Sorted Lists&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/21.%20Merge%20Two%20Sorted%20Lists&quot;&gt;LeetCode - 21. Merge Two Sorted Lists&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;오름차순으로 정렬된 두 연결 리스트가 입력으로 들어옵니다.&lt;/p&gt;
+&lt;p&gt;단순히 두 연결 리스트를 오름차순으로 하나의 연결 리스트로 합쳐 반환하면 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;EASY&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/14.%20Longest%20Common%20Prefix&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;p&gt;EASY 난이도인 만큼 크게 어려운 문제는 아닙니다.&lt;/p&gt;
+&lt;p&gt;두 연결 리스트를 순회하면서 크기가 작은 노드를 골라(오름차순으로 연결해야 하니) 새로운 연결 리스트에 연결해주면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ListNode* mergedHead = nullptr;
+ListNode* lastNode = nullptr;
+
+ListNode* node1 = list1;
+ListNode* node2 = list2;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;먼저 새로운 연결 리스트의 head 포인터인 &lt;code&gt;mergedHead&lt;/code&gt;포인터를 선언하고, 일종의 tail 포인터 역할을 맡는 &lt;code&gt;lastNode&lt;/code&gt;포인터를 선언합니다.&lt;/p&gt;
+&lt;p&gt;새로운 연결 리스트를 구성할때는 항상 마지막에 노드를 삽입해야하기 때문에 별도의 tail 포인터를 사용합니다.&lt;/p&gt;
+&lt;p&gt;그리고 입력된 두 연결 리스트의 순회를 위해 &lt;code&gt;node1&lt;/code&gt;, &lt;code&gt;node2&lt;/code&gt; 포인터를 선언하여 초기화합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;while (node1 &amp;amp;&amp;amp; node2)
+{ ... }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이제 두 리스트를 동시에 순회합니다. 두 리스트의 노드의 크기를 비교해야 하기 때문에 동시에 순회하여야 합니다.&lt;/p&gt;
+&lt;p&gt;만약 한 쪽 리스트의 노드가 남는다면, 어차피 정렬되어있는 리스트이기때문에 그대로 붙이기만 하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ListNode* selectedNode = nullptr;
+if (node1-&amp;gt;val &amp;lt; node2-&amp;gt;val)
+{
+    selectedNode = node1;
+    node1 = node1-&amp;gt;next;
+}
+else
+{
+    selectedNode = node2;
+    node2 = node2-&amp;gt;next;
+}
+
+if (mergedHead == nullptr)
+{
+    mergedHead = selectedNode;
+}
+else
+{
+    lastNode-&amp;gt;next = selectedNode;
+}
+
+lastNode = selectedNode;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;while loop문의 내부 코드입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ListNode* selectedNode = nullptr;
+if (node1-&amp;gt;val &amp;lt; node2-&amp;gt;val)
+{
+    selectedNode = node1;
+    node1 = node1-&amp;gt;next;
+}
+else
+{
+    selectedNode = node2;
+    node2 = node2-&amp;gt;next;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;첫 번째로는 새로운 연결 리스트에 붙일 노드를 선택합니다. 새로운 연결 리스트도 오름차순으로 정렬되어서 반환되어야 하기때문에 두 노드 중 크기가 작은 노드를 선택합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (mergedHead == nullptr)
+{
+    mergedHead = selectedNode;
+}
+else
+{
+    lastNode-&amp;gt;next = selectedNode;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 노드를 새로운 연결 리스트에 삽입합니다. 만약 새 연결 리스트의 head가 nullptr라면 첫 순회이니 그냥 삽입하고, 아니라면 tail 노드의 next 포인터로 가리키게 합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lastNode = selectedNode;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 방금 삽입한 노드를 tail 포인터에 저장합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 속도는 4ms가 나왔으며, 다른 C++ 제출자에 비해 95% 가량의 속도가 나왔습니다. &lt;/p&gt;
+&lt;p&gt;크게 어려운 문제는 아니기 때문에 다행이 충분히 만족하는 속도가 도출되었습니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if (!list1 &amp;amp;&amp;amp; !list2) return nullptr;
+        
+        ListNode* mergedHead = nullptr;
+        ListNode* lastNode = nullptr;
+
+        ListNode* node1 = list1;
+        ListNode* node2 = list2;
+
+        while (node1 &amp;amp;&amp;amp; node2)
+        {
+            ListNode* selectedNode = nullptr;
+
+            if (node1-&amp;gt;val &amp;lt; node2-&amp;gt;val)
+            {
+                selectedNode = node1;
+                node1 = node1-&amp;gt;next;
+            }
+            else
+            {
+                selectedNode = node2;
+                node2 = node2-&amp;gt;next;
+            }
+
+            if (mergedHead == nullptr)
+            {
+                mergedHead = selectedNode;
+            }
+            else
+            {
+                lastNode-&amp;gt;next = selectedNode;
+            }
+
+            lastNode = selectedNode;
+        }
+
+        if (node1)
+        {
+            if (!mergedHead)
+            {
+                mergedHead = node1;
+            }
+            else
+            {
+                for (auto node = node1; node != nullptr; node = node-&amp;gt;next)
+                {
+                    lastNode-&amp;gt;next = node;
+                    lastNode = node;
+                }
+            }
+        }
+
+        if (node2)
+        {
+            if (!mergedHead)
+            {
+                mergedHead = node2;
+            }
+            else
+            {
+                for (auto node = node2; node != nullptr; node = node-&amp;gt;next)
+                {
+                    lastNode-&amp;gt;next = node;
+                    lastNode = node;
+                }
+            }
+        }
+
+        return mergedHead;   
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 20. Valid Parentheses</title><link>https://jaehee.dev/posts/leetcode---20-valid-parentheses/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---20-valid-parentheses/</guid><description>LEETCODE - 20. VALID PARENTHESES  문제 - LeetCode - 20. Valid Parentheses [https://leetcode.com/problems/valid-parentheses/]   문제 설명  문자열이 주어질 때 소괄호(), </description><pubDate>Fri, 03 Dec 2021 17:29:13 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 20. Valid Parentheses&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/valid-parentheses/&quot;&gt;LeetCode - 20. Valid Parentheses&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;문자열이 주어질 때 소괄호&lt;code&gt;()&lt;/code&gt;, 중괄호&lt;code&gt;{}&lt;/code&gt;, 대괄호&lt;code&gt;[]&lt;/code&gt;가 올바른 순서로 잘 열리고 닫혔는지 확인하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;EASY&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/20.%20Valid%20Parentheses&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution - Stack&lt;/h3&gt;
+&lt;p&gt;괄호는 늘 짝을 지어 닫혀야합니다. 또한 소괄호내에 또 소괄호가 열리거나, 다른 괄호내에 다른 괄호가 열리는 등 괄호가 중첩되기때문에 새로운 괄호가 열리면 해당 괄호에 짝인 닫힘 괄호가 등장하여야 합니다.&lt;/p&gt;
+&lt;p&gt;때문에 문자열을 순회하면서 가장 최근에 열린 괄호의 짝을 찾아야 하며, 해당 괄호의 짝을 찾고 나면 이전에 순회되었던 열린 괄호의 짝을 찾아야 합니다.&lt;/p&gt;
+&lt;p&gt;즉 FILO(First In Last Out)로 맨 처음에 순회되었던 괄호가 가장 나중에 닫혀야 합니다. 그러므로 이번 문제 풀이를 위해 스택 자료구조를 사용합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;stack&amp;lt;char&amp;gt; openBrackets;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;C++ STL의 stack 자료구조를 선언합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (char ch : s)
+{
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 입력된 문자열을 순회합니다. 반복문 내에서 괄호가 올바르게 열렸고, 닫혔는지 확인합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (&apos;(&apos; == ch || &apos;{&apos; == ch || &apos;[&apos; == ch)
+{
+    openBrackets.push(ch);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;처음으로는 열린 괄호를 확인합니다. 열린 괄호라면 스택에 삽입해 가장 최근에 삽입된(스택의 top) 열린 괄호의 짝인 닫힌 괄호를 찾습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;else if (&apos;)&apos; == ch || &apos;}&apos; == ch || &apos;]&apos; == ch)
+{
+    if (openBrackets.size() == 0) return false;
+
+    char openBracket = openBrackets.top();
+
+    if (
+        !(
+            (&apos;(&apos; == openBracket &amp;amp;&amp;amp; &apos;)&apos; == ch) || 
+            (&apos;{&apos; == openBracket &amp;amp;&amp;amp; &apos;}&apos; == ch) || 
+            (&apos;[&apos; == openBracket &amp;amp;&amp;amp; &apos;]&apos; == ch)
+        )
+    )
+    {
+        return false;
+    }
+
+    openBrackets.pop();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;만약 닫힌 괄호라면 스택의 top을 가져와 가장 최근에 탐색된 열린 괄호와 짝인지 확인합니다. 만약 아니라면 함수는 false를 반환하며, 짝이라면 스택에서 해당 열린 괄호를 pop하고 계속 순회를 합니다.&lt;/p&gt;
+&lt;p&gt;닫힌 괄호가 등장했는데, 열린 괄호를 저장하는 스택의 크기가 0이라면 잘 못 닫힌 괄호이므로 즉시 함수는 false를 반환합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;return openBrackets.size() == 0;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;모든 순회가 끝나고 나면 함수를 반환합니다. 단, 만약 스택의 크기가 0이 아니라면 정상적으로 닫히지 않은 괄호가 있는 뜻이니, false를 반환하도록 합니다.&lt;/p&gt;
+&lt;p&gt;추가적으로 자잘한 최적화를 위해서 함수의 시작 부분에 다음 구문을 추가하였습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (s.size() % 2 != 0) return false;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;정상적으로 열리고 닫힌 괄호는 2개의 문자로 이루어졌으므로, 만약 입력된 문자열의 길이가 홀수라면 하나의 문자는 정상적으로 닫히거나 열리지 않았다는 의미가 됩니다.&lt;/p&gt;
+&lt;p&gt;그러므로 입력된 문자열의 길이가 홀수라면 즉시 false를 반환합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    bool isValid(string s) 
+    {
+        if (s.size() % 2 != 0) return false;
+
+        stack&amp;lt;char&amp;gt; openBrackets;
+
+        for (char ch : s)
+        {
+            if (&apos;(&apos; == ch || &apos;{&apos; == ch || &apos;[&apos; == ch)
+            {
+                openBrackets.push(ch);
+            }
+            else if (&apos;)&apos; == ch || &apos;}&apos; == ch || &apos;]&apos; == ch)
+            {
+                if (openBrackets.size() == 0) return false;
+
+                char openBracket = openBrackets.top();
+
+                if (
+                    !(
+                        (&apos;(&apos; == openBracket &amp;amp;&amp;amp; &apos;)&apos; == ch) || 
+                        (&apos;{&apos; == openBracket &amp;amp;&amp;amp; &apos;}&apos; == ch) || 
+                        (&apos;[&apos; == openBracket &amp;amp;&amp;amp; &apos;]&apos; == ch)
+                    )
+                )
+                {
+                    return false;
+                }
+
+                openBrackets.pop();
+            }
+        }
+
+        return openBrackets.size() == 0;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 19. Remove Nth Node From End of List</title><link>https://jaehee.dev/posts/leetcode---19-remove-nth-node-from-end-of-list/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---19-remove-nth-node-from-end-of-list/</guid><description>LEETCODE - 19. REMOVE NTH NODE FROM END OF LIST  문제 - LeetCode - 19. Remove Nth Node From End of List [https://leetcode.com/problems/remove-nth-node-f</description><pubDate>Wed, 01 Dec 2021 20:57:17 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 19. Remove Nth Node From End of List&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/remove-nth-node-from-end-of-list/&quot;&gt;LeetCode - 19. Remove Nth Node From End of List&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;단방향 연결 리스트와 삭제할 인덱스가 입력으로 주어집니다.&lt;/p&gt;
+&lt;p&gt;삭제할 인덱스는 연결 리스트의 끝에서 n번째의 노드를 삭제합니다.&lt;/p&gt;
+&lt;p&gt;위 사진의 예시는 [1, 2, 3, 4, 5]의 연결 리스트가 주어지고, n = 2가 주어졌기 때문에 리스트의 끝에서 2번째인 &lt;code&gt;[4]&lt;/code&gt; 노드가 삭제됩니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/19.%20Remove%20Nth%20Node%20From%20End%20of%20List&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;p&gt;양방향 연결 리스트가 아니고, 단방향이기 때문에 next 포인터 밖에 없습니다.&lt;/p&gt;
+&lt;p&gt;때문에 리스트의 끝에서 n번쨰 노드를 삭제하기 위해서는 2번의 리스트 순회가 필요합니다. &lt;/p&gt;
+&lt;p&gt;첫번째 순회는 연결 리스트의 길이를 알아내는 것입니다. 연결 리스트의 길이를 알아야 연결 리스트의 끝에서 n 번째 노드를 알아낼 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ListNode* cur = head;
+int length = 0;
+while (cur)
+{
+    length++;
+
+    cur = cur-&amp;gt;next;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 두 번째 순회는 삭제할 노드를 찾기 위해 순회해야 합니다. 연결 리스트의 길이는 알아냈으니 뒤에서 n번째 노드를 찾기 위해서는 length - n번 순회 하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ListNode* prevOfTarget = nullptr;
+ListNode* target = head;
+for (int i = length - n; i &amp;gt; 0; i--)
+{
+    prevOfTarget = target;
+    target = target-&amp;gt;next;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;단방향 연결 리스트이니 삭제할 노드와 해당 이전 노드를 따로 변수로 저장합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (prevOfTarget == nullptr)
+{
+    head = target-&amp;gt;next;
+}
+else
+{
+    prevOfTarget-&amp;gt;next = target-&amp;gt;next;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;만약 이전 노드가 &lt;code&gt;nullptr&lt;/code&gt;이라면 head노드를 삭제하는게 되니, head노드를 삭제할 노드의 다음 노드를 가리키게 합니다.&lt;/p&gt;
+&lt;p&gt;아니라면 일반 연결 리스트 삭제 과정을 수행합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 속도는 4ms가 나왔습니다. 아마도 실행시마다 조금씩 달라지는 leetcode의 실행속도 때문에 4ms가 나온 듯 합니다. 아마 재시도를 몇 번 더 하면 0ms의 실행 속도가 나올수도 있을 듯 합니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) 
+    {
+        if (!head-&amp;gt;next &amp;amp;&amp;amp; n &amp;gt; 0)
+        {
+            return nullptr;
+        }
+
+        ListNode* cur = head;
+        int length = 0;
+        while (cur)
+        {
+            length++;
+
+            cur = cur-&amp;gt;next;
+        }
+        
+        ListNode* prevOfTarget = nullptr;
+        ListNode* target = head;
+        for (int i = length - n; i &amp;gt; 0; i--)
+        {
+            prevOfTarget = target;
+            target = target-&amp;gt;next;
+        }
+
+        if (prevOfTarget == nullptr)
+        {
+            head = target-&amp;gt;next;
+        }
+        else
+        {
+            prevOfTarget-&amp;gt;next = target-&amp;gt;next;
+        }
+        
+        return head;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 18. 4Sum</title><link>https://jaehee.dev/posts/leetcode---18-4sum/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---18-4sum/</guid><description>LEETCODE - 18. 4SUM  문제 - LeetCode - 18. 4Sum [https://leetcode.com/problems/4sum/]   문제 설명  이전까지 Two Sum [https://jaehee.dev/#/post/1], 3 Sum [https:</description><pubDate>Mon, 29 Nov 2021 21:06:36 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 18. 4Sum&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/4sum/&quot;&gt;LeetCode - 18. 4Sum&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;이전까지 &lt;a href=&quot;https://jaehee.dev/#/post/1&quot;&gt;Two Sum&lt;/a&gt;, &lt;a href=&quot;https://jaehee.dev/#/post/15&quot;&gt;3 Sum&lt;/a&gt; 과 같은 문제를 풀었습니다.&lt;/p&gt;
+&lt;p&gt;이번에는 4 Sum입니다. 숫자 배열이 주어지면 숫자 네 개를 더했을 때 target 숫자가 나타나는 모든 가지수를 찾는 문제입니다. &lt;/p&gt;
+&lt;p&gt;Two Sum은 Hash table 방식을 이용하여 풀었고, 3 Sum은 Two pointer 방식을 이용하여 풀었습니다. Two pointer 방식은 left를 가리키는 인덱스와 right 인덱스를 이용하여 target 숫자에 가까워지도록 left, right의 포인터를 조정하는 방식이였습니다.&lt;/p&gt;
+&lt;p&gt;3 Sum에서 Two pointer를 활용할 때 숫자 하나를 고정해놓고 left, right 포인터를 조정하는 방식으로 풀었습니다. 즉, 숫자 하나를 고정해놓고 Two Sum을 수행한 것과 동일합니다.&lt;/p&gt;
+&lt;p&gt;즉 4 Sum 또한 숫자 하나를 고정해놓고 3 Sum을 수행한다면 4 Sum의 결과를 얻을 수 있을 것입니다.&lt;/p&gt;
+&lt;p&gt;Leetcode의 Solution과 동일하게 이번에는 4 Sum을 딱 정해서 푸는 것이 아닌, k-Sum에 대해서 문제를 풀어보았습니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/18.%204Sum&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution - kSum&lt;/h3&gt;
+&lt;p&gt;이번에 풀어볼 방법은 3 Sum과 동일하게 Two pointer, 즉 left, right 포인터를 target에 가까운 숫자가 되도록 좁혀가는 방식을 사용할 것입니다. &lt;/p&gt;
+&lt;p&gt;Two pointer 방법이 가능한 이유는 주어진 숫자 배열이 정렬되어있기 때문에 left 포인터가 무조건 right 포인터가 가리키는 숫자보다 작거나 같게됩니다. 때문에 해당 방법을 사용할때는 무조건 주어진 숫자 배열을 정렬해야합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; fourSum(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target) 
+{
+    sort(nums.begin(), nums.end());
+
+    return kSum(nums, target, 0, 4);
+}
+
+vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; kSum(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target, int start, int k)
+{
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 kSum으로 일반화한 함수를 호출하여 k = 4인 경우에 대해서 호출합니다.&lt;/p&gt;
+&lt;p&gt;앞서 설명했듯이 3 Sum은 숫자 하나를 고정하고 나머지 숫자들로 2 Sum을 수행하는 방식으로 설명할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;동일하게 4 Sum 또한 숫자 하나를 고정하고 3 Sum을 호출하는 방법으로 결과를 구할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int i = start; i &amp;lt; nums.size(); i++)
+{
+    if (i != start &amp;amp;&amp;amp; nums[i - 1] == nums[i]) continue;
+
+    auto subsets = kSum(nums, target - nums[i], i + 1, k -1);
+
+    for (auto subset : subsets)
+    {
+        subset.push_back(nums[i]);
+
+        result.push_back(subset);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;k - 1 Sum을 구하는 방법은 매우 간단하게 이루어집니다.&lt;/p&gt;
+&lt;p&gt;수 하나(여기선 nums[i])를 고정하고, 고정한 수를 제외하고 k - 1 Sum을 호출합니다. 즉, 재귀적으로 k Sum이 이루어지게 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (i != start &amp;amp;&amp;amp; nums[i - 1] == nums[i]) continue;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 if문은 이전에 고정한 숫자와 현재 고정할 숫자가 같으면 스킵합니다. 이전과 똑같은 숫자를 고정하여 탐색하면 nums[i - 1]에 대한 subset을 탐색하기 때문입니다. 자세한 설명은 3 Sum을 참조하시면 좋습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (auto subset : subsets)
+{
+    subset.push_back(nums[i]);
+
+    result.push_back(subset);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;k - 1 Sum으로 반환된 결과에 현재 고정한 숫자를 합쳐서 결과에 반영합니다.&lt;/p&gt;
+&lt;p&gt;만약 k=2가 된다면 twoSum을 호출하는게 맞겠죠&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (k == 2)
+{
+    return twoSum(nums, target, start);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;twoSum 함수에 대해서는 여기서는 설명을 하지 않겠습니다. 3 Sum 게시글을 참고하시거나, 게시글 하단의 코드 전문을 보시면 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이게 끝입니다. 지금까지 수행한 과정은 다음과 같습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;입력 배열을 정렬한다.&lt;/li&gt;
+&lt;li&gt;kSum을 호출한다. (여기선 k=4)&lt;/li&gt;
+&lt;li&gt;k-1 Sum을 재귀적으로 호출한다.&lt;/li&gt;
+&lt;li&gt;k = 2일 경우 Two Sum을 호출한다.&lt;/li&gt;
+&lt;li&gt;Two Sum으로 반환된 결과에 고정된 숫자를 합쳐 반환한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; fourSum(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target) 
+    {
+        sort(nums.begin(), nums.end());
+
+        return kSum(nums, target, 0, 4);
+    }
+
+    vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; kSum(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target, int start, int k)
+    {
+        vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; result;
+
+        if (start &amp;gt;= nums.size())
+        {
+            return result;
+        }
+
+        int average = target / k;
+
+        if  (nums[start] &amp;gt; average || average &amp;gt; nums.back()) 
+        {
+            return result;
+        }
+
+        if (k == 2)
+        {
+            return twoSum(nums, target, start);
+        }
+
+        for (int i = start; i &amp;lt; nums.size(); i++)
+        {
+            if (i != start &amp;amp;&amp;amp; nums[i - 1] == nums[i]) continue;
+
+            auto subsets = kSum(nums, target - nums[i], i + 1, k -1);
+
+            for (auto subset : subsets)
+            {
+                subset.push_back(nums[i]);
+
+                result.push_back(subset);
+            }
+        }
+        
+        return result;
+    }
+
+    vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; twoSum(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target, int start)
+    {
+        vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; result;
+
+        int left = start;
+        int right = nums.size() - 1;
+
+        while (left &amp;lt; right)
+        {
+            int sum = nums[left] + nums[right];
+
+            if (sum &amp;lt; target)
+            {
+                left++;
+            }
+            else if (sum &amp;gt; target)
+            {
+                right--;
+            }
+            else
+            {
+                 result.push_back({nums[left], nums[right]});
+
+                left++;
+                while (nums[left] == nums[left - 1] &amp;amp;&amp;amp; left &amp;lt; right) left++;
+            }
+        }
+
+        return result;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 17. Letter Combinations of a Phone Number</title><link>https://jaehee.dev/posts/leetcode---17-letter-combinations-of-a-phone-number/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---17-letter-combinations-of-a-phone-number/</guid><description>LEETCODE - 17. LETTER COMBINATIONS OF A PHONE NUMBER  문제 - LeetCode - 17. Letter Combinations of a Phone Number [https://leetcode.com/problems/letter-</description><pubDate>Fri, 26 Nov 2021 21:15:30 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 17. Letter Combinations of a Phone Number&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/letter-combinations-of-a-phone-number/&quot;&gt;LeetCode - 17. Letter Combinations of a Phone Number&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;2-9 사이로 구성된 숫자 문자열이 입력으로 들어오면 위 핸드폰 자판에 매핑되는 문자들에 대해서 모든 문자열 조합을 만드는 문제입니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 숫자 &lt;em&gt;23&lt;/em&gt;이 입력으로 들어왔다면 &lt;code&gt;2 : abc&lt;/code&gt;, &lt;code&gt;3 : def&lt;/code&gt;의 조합인 &lt;code&gt;[&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;]&lt;/code&gt;를 구하면 되는 문제입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/17.%20Letter%20Combinations%20of%20a%20Phone%20Number&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution - DFS, Backtracking&lt;/h3&gt;
+&lt;p&gt;본 문제를 처음보자마자 생각난 풀이 방법은 &lt;a href=&quot;https://en.wikipedia.org/wiki/Cartesian_product&quot;&gt;Cartesian product&lt;/a&gt;이였습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;카테시안 곱은 두 집합의 각 원소에 대한 모든 순서쌍을 정의하는 연산입니다. 본 문제 또한 연산의 결과가 카테시안 곱과 동일하게 나타나니 적용가능할 듯 합니다.&lt;/p&gt;
+&lt;p&gt;카테시안 곱을 구현하기 위해서 문제를 트리 형태로 표현해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;235&lt;/code&gt;라는 숫자가 주어졌다면, 2의 문자에 해당하는 &quot;abc&quot;와 5의 문자에 해당하는 &quot;def&quot;, 그리고 7에 해당하는 &quot;jkl&quot;에 대해서 카테시안 곱 연산을 통해 모든 가짓수를 찾아야 합니다.&lt;/p&gt;
+&lt;p&gt;이를 계산하기 위해서 위 이미지와 각 &apos;a&apos;, &apos;b&apos;, &apos;c&apos;에 대해서 &apos;d&apos;, &apos;e&apos;, &apos;f&apos; 문자가 붙는 경우, 또 깊숙히 내려갈수록 5에 대한 문자열이 붙는 경우에 대해서 트리로 표현할 수 있습니다. 즉, 위 트리가 상태 공간이 되는 것이죠.&lt;/p&gt;
+&lt;p&gt;여기서 필요한 내용은 위 상태 공간 트리의 가장 말단 노드(Leaf node)까지 탐색할 때 과정에서 각 문자의 조합들이 필요합니다. 즉 DFS(깊이 우선 탐색)를 수행하면서 중간에 문자열을 합치다가 말단 노드에 도달하면 해당 문자열을 반환하면 될 것 같습니다.&lt;/p&gt;
+&lt;p&gt;(문제를 푼 후 다른 풀이를 찾아보니, 말단 노드를 탐색 한 후 다시 뒤로 돌아가 다른 경우의 수를 찾기때문에 Backtracking 탐색이라고도 할 수 있을 것 같습니다.)&lt;/p&gt;
+&lt;p&gt;DFS는 스택 또는 재귀 함수로 구현할 수 있습니다. 이번에는 간단하게 재귀 함수로 구현해보겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vector&amp;lt;string&amp;gt; numToLetters = {
+    &quot;&quot;,
+    &quot;&quot;,
+    &quot;abc&quot;,
+    &quot;def&quot;,
+    &quot;ghi&quot;,
+    &quot;jkl&quot;,
+    &quot;mno&quot;,
+    &quot;pqrs&quot;,
+    &quot;tuv&quot;,
+    &quot;wxyz&quot;,
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;먼저 각 숫자에 대해서 문자를 매핑할 수 있도록 별도의 배열을 선언합니다. &lt;code&gt;map&lt;/code&gt; STL 자료형을 이용해 딕셔너리나, 해시 테이블의 형태로도 충분히 구현가능합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vector&amp;lt;string&amp;gt; letterCombinations(string digits) 
+{
+    if (digits.size() == 0) return vector&amp;lt;string&amp;gt;();
+
+    vector&amp;lt;string&amp;gt; result;
+
+    com(digits, 0, &quot;&quot;, result);
+
+    return result;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;함수 자체는 재귀 함수만 호출해주는 형태입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void com(const string&amp;amp; digits, int digitIndex, string str, vector&amp;lt;string&amp;gt;&amp;amp; out)
+{
+    if (digitIndex == digits.size()) 
+    {
+        out.push_back(str);
+        return;
+    }
+
+    string&amp;amp; letters = numToLetters[digits[digitIndex] - &apos;0&apos;];
+
+    for (int i = 0; i &amp;lt; letters.size(); i++)
+    {
+        com(digits, digitIndex + 1, str + letters[i], out);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;재귀 함수로 매우 간단합니다. 하나씩 살펴보도록 하겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (digitIndex == digits.size()) 
+{
+    out.push_back(str);
+    return;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;현재 순회하는 노드가 말단 노드인경우 지금까지 조합한 문자열을 결과 배열에 삽입합니다. Backtracking이므로 이전 노드로 돌아가 다른 경우를 탐색한다고 볼 수 있겠네요.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;string&amp;amp; letters = numToLetters[digits[digitIndex] - &apos;0&apos;];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;현재 입력된 수의 문자들을 가져옵니다. &apos;0&apos;을 빼는 이유는 문자열로 숫자가 입력되기 때문입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int i = 0; i &amp;lt; letters.size(); i++)
+{
+    com(digits, digitIndex + 1, str + letters[i], out);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 현재 문자들을 순회하면서 새로이 재귀 함수를 호출합니다. 재귀를 호출할때는 현재 탐색하는 숫자 문자의 다음을 선택하고, 지금까지 탐색했던 문자들을 모두 조합하면서 새로운 재귀 함수를 호출합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행속도는 0ms입니다. 시간 복잡도는 O(4^n)으로 생각할 수 있을 것 같습니다.&lt;/p&gt;
+&lt;p&gt;트리의 깊이는 입력된 숫자 문자열의 길이와 같습니다. 예를 들어 숫자 2만 주어졌다면 &quot;abc&quot;가 depth=1이 되겠습니다. &quot;23&quot;이 주어진다면 &quot;abc&quot;가 depth=1, 그리고 각 &quot;a&quot;, &quot;b&quot;, &quot;c&quot; 노드마다 &quot;def&quot;의 노드가 붙게됩니다.&lt;/p&gt;
+&lt;p&gt;그리고 숫자 7, 8, 9의 경우 각 문자가 4개씩 되게때문에 최악의 경우 7, 8, 9로만 이루어진 숫자가 입력될 수 있습니다.&lt;/p&gt;
+&lt;p&gt;때문에 O(n^4)로 계산할 수 있겠습니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    vector&amp;lt;string&amp;gt; numToLetters = {
+        &quot;&quot;,
+        &quot;&quot;,
+        &quot;abc&quot;,
+        &quot;def&quot;,
+        &quot;ghi&quot;,
+        &quot;jkl&quot;,
+        &quot;mno&quot;,
+        &quot;pqrs&quot;,
+        &quot;tuv&quot;,
+        &quot;wxyz&quot;,
+    };
+
+    vector&amp;lt;string&amp;gt; letterCombinations(string digits) 
+    {
+        if (digits.size() == 0) return vector&amp;lt;string&amp;gt;();
+
+        vector&amp;lt;string&amp;gt; result;
+
+        com(digits, 0, &quot;&quot;, result);
+
+        return result;
+    }
+
+    void com(const string&amp;amp; digits, int digitIndex, string str, vector&amp;lt;string&amp;gt;&amp;amp; out)
+    {
+        if (digitIndex == digits.size()) 
+        {
+            out.push_back(str);
+            return;
+        }
+
+        string&amp;amp; letters = numToLetters[digits[digitIndex] - &apos;0&apos;];
+
+        for (int i = 0; i &amp;lt; letters.size(); i++)
+        {
+            com(digits, digitIndex + 1, str + letters[i], out);
+        }
+        
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 16. 3Sum Closest</title><link>https://jaehee.dev/posts/leetcode---16-3sum-closest/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---16-3sum-closest/</guid><description>LEETCODE - 16. 3SUM CLOSEST  문제 - LeetCode - 16. 3Sum Closest [https://leetcode.com/problems/3sum-closest/]   문제 설명  숫자 배열과 target 숫자가 주어지면 숫자 배열에서 세 </description><pubDate>Wed, 24 Nov 2021 13:27:00 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 16. 3Sum Closest&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/3sum-closest/&quot;&gt;LeetCode - 16. 3Sum Closest&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;숫자 배열과 target 숫자가 주어지면 숫자 배열에서 세 숫자를 더했을 때 target 숫자와 가장 가까운 세 숫자의 덧셈을 반환하면 되는 문제입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/16.%203Sum%20Closest&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;p&gt;문제 &lt;a href=&quot;https://jaehee.dev/#/post/15&quot;&gt;LeetCode - 15. 3Sum&lt;/a&gt;과 상당히 유사한 문제입니다. 유일하게 다른점은 모든 가짓수를 반환하는 것이 아닌 덧셈의 결과를 반환한다는 점과, target에 해당하는 숫자가 없더라도 가장 가까운 덧셈을 반환해야 합니다.&lt;/p&gt;
+&lt;p&gt;15번 문제와 상당히 유사하므로 적절한 세 숫자를 찾이 위해 순회를 하는 과정은 제외하고, target 숫자와 가장 가까운 숫자를 구하는 방법 위주로 설명하겠습니다.&lt;/p&gt;
+&lt;p&gt;간단히 생각해보도록 하겠습니다. target 숫자와 가장 가까운 세 숫자의 덧셈을 찾아내면 되는 문제입니다. 이를 그래프상에 놓는다고 생각한다면 target 숫자와 가장 &lt;em&gt;거리&lt;/em&gt;가 가까운 덧셈의 결과를 찾으면 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;거리&lt;/em&gt;를 구하는 방법은 수학적으로 다양하게 있지만, 여기서는 가장 기본적인 &lt;em&gt;절대값&lt;/em&gt;을 이용해 target 숫자와의 거리를 계산하겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;절대값&lt;/em&gt;은 일반적으로 수직선상의 특정 점에서부터 얼마나 떨어졌는가를 계산할 수 있습니다. 이를 이용해 target 숫자와의 거리를 계산할 수 있습니다. 그리고 모든 수에 대해서 순회를 하면서 거리가 0이 되거나 가장 거리가 가까운 덧셈을 반환하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int shortestPath = INT_MAX;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;지금까지 계산한 거리 중 가장 target 숫자와 가까운 거리를 저장하는 변수인 &lt;code&gt;shortestPath&lt;/code&gt;를 선언하겠습니다. 입력된 숫자들은 &lt;code&gt;int&lt;/code&gt; 배열이므로, int형 변수로 선언하며, 초기 값은 int형 변수의 최대값으로 초기화하겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int sum = nums[i] + nums[left] + nums[right];
+int path = abs(target - sum);
+
+if (sum &amp;gt; target) right--;
+else if (sum &amp;lt; target) left++;
+
+if (path == 0)
+{
+    return sum;
+}
+else if (path &amp;lt; shortestPath)
+{
+    shortestPath = path;
+    result = sum;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;반복문 내부입니다. 순회 과정에 대한 정확한 설명은 &lt;a href=&quot;https://jaehee.dev/#/post/15&quot;&gt;문제 15&lt;/a&gt;를 참고하시면 좋습니다.&lt;/p&gt;
+&lt;p&gt;현재 선택된 세 숫자를 더해 target 숫자와의 차에 대해서 절대값을 계산합니다.&lt;/p&gt;
+&lt;p&gt;만약 절대값(path 변수)이 0이라면 target 숫자와 동일한 덧셈이 존재한다는 의미으로 바로 함수를 반환합니다.&lt;/p&gt;
+&lt;p&gt;아니라면 현재 계산된 거리가 가장 target과 가까운 거리인지 확인하고 해당하는 변수들을 업데이트합니다. 그리고 모든 순회가 종료되고 가장 거리가 가까웠던 합계를 반환하면 됩니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 시간은 8ms가 나왔으며, 다른 C++ 제출자에 비해 80% 가량의 성능을 보임을 확인할 수 있습니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    int threeSumClosest(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target) 
+    {
+        int result;
+        int shortestPath = INT_MAX;
+
+        sort(nums.begin(), nums.end());
+
+        for (int i = 0; i &amp;lt; nums.size(); i++)
+        {
+            if (i &amp;gt; 0 &amp;amp;&amp;amp; nums[i] == nums[i - 1]) continue;
+
+            int left = i + 1;
+            int right = nums.size() - 1;
+
+            while (left &amp;lt; right)
+            {
+                int sum = nums[i] + nums[left] + nums[right];
+                int path = abs(target - sum);
+
+                if (sum &amp;gt; target) right--;
+                else if (sum &amp;lt; target) left++;
+
+                if (path == 0)
+                {
+                    return sum;
+                }
+                else if (path &amp;lt; shortestPath)
+                {
+                    shortestPath = path;
+                    result = sum;
+                }
+            }
+        }
+
+        return result;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>vuejs - 동적 import와 code split</title><link>https://jaehee.dev/posts/vuejs---%EB%8F%99%EC%A0%81-import%EC%99%80-code-split/</link><guid isPermaLink="true">https://jaehee.dev/posts/vuejs---%EB%8F%99%EC%A0%81-import%EC%99%80-code-split/</guid><description>WEBPACK의 간단한 소개  Webpack은 흔히 bundler라고 부릅니다. 일반적으로 웹 개발을 할 때 다양한 자바스크립트 파일과 css 파일을 생성하게 됩니다.  이러한 파일들을 하나로 묶어 하나의 파일로 생성하는 것을 bundle 작업이라하고 이러한 작업을 하</description><pubDate>Tue, 23 Nov 2021 18:15:44 GMT</pubDate><content:encoded>&lt;h2&gt;Webpack의 간단한 소개&lt;/h2&gt;
+&lt;p&gt;Webpack은 흔히 &lt;em&gt;bundler&lt;/em&gt;라고 부릅니다. 일반적으로 웹 개발을 할 때 다양한 자바스크립트 파일과 css 파일을 생성하게 됩니다.&lt;/p&gt;
+&lt;p&gt;이러한 파일들을 하나로 묶어 하나의 파일로 생성하는 것을 &lt;em&gt;bundle&lt;/em&gt; 작업이라하고 이러한 작업을 하는 툴, 라이브러리를 &lt;em&gt;bundler&lt;/em&gt;라고 부를 수 있을 것 같습니다.&lt;/p&gt;
+&lt;p&gt;물론 Webpack은 단순히 &lt;em&gt;bundle&lt;/em&gt; 작업뿐만 아니라 &lt;em&gt;pipeline&lt;/em&gt;을 통해 일련의 원하는 작업을 수행할 수 있도록 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;Webpack을 통해 여러 파일들이 하나의 파일로 출력된다면 장점은 파일이 간결화되고 중간에 여러 파이프라인을 거쳐 코드들에 대해서 전처리/후처리가 가능하다는 점입니다.&lt;/p&gt;
+&lt;p&gt;하지만, 단점은 파일을 하나로 합치기 때문에 코드의 용량이 크다면 첫 로딩이 많이 느려지고, 사용자가 당장에 접속하지 않는 페이지의 자원도 처음에 로딩하기때문에 비효율적인 면이 있을수도 있죠.&lt;/p&gt;
+&lt;h2&gt;현재 문제점&lt;/h2&gt;
+&lt;p&gt;제가 이 블로그를 개발하면서 게시글은 Markdown으로 작성하고 이를 빌드하여 게시글, 태그 정보(메타데이터)와 같은 내용과 게시글 내용을 별도의 json 파일과 js 파일로 빌드합니다.&lt;/p&gt;
+&lt;p&gt;이러한 메타데이터와 게시글 파일은 코드 내에서 동적으로 불러오고 있습니다.&lt;/p&gt;
+&lt;p&gt;
+&lt;/p&gt;
+&lt;p&gt;json, js 모듈을 동적으로 불러오기 위해 &lt;code&gt;require&lt;/code&gt;을 이용해 다른 파일의 모듈을 불러오고 있습니다.&lt;/p&gt;
+&lt;p&gt;위 방식을 이용해 블로그를 빌드하게 된다면&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;단 5개의 파일만 출력되고 있습니다. chunk_vendors와 post_view js 파일은 제가 임의로 이미 코드를 split 해놓았기 때문에 문제가 없지만, 메타데이터와 게시글의 내용은 모두 app.js 파일 내에 들어가있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;빌드된 app.js 파일의 내용입니다. 알아보기는 힘들지만, 게시글의 모든 내용이 한 파일내에 담겨있습니다. 이 뜻은 유저가 제 블로그에 접속하면 원하지 않더라도 다른 모든 게시글의 내용을 강제로 로드하게 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;현재 문제가 있는 상태에서 크롬의 개발자 도구 중 네트워크 profiler를 이용해 파일이 로드되는 과정을 확인해보았습니다.&lt;/p&gt;
+&lt;p&gt;총 4개의 js 파일이 로드되고 있는데, chunk-vendors와 post_view 파일은 제가 임의로 코드를 분리를 해놓았기에 따로 로드되고 있고, 세 번째 파일은 GA이므로, 결국 하나의 app.js가 로드되고 있는데 이 안에 모든 게시글의 내용이 삽입되어 있습니다.&lt;/p&gt;
+&lt;p&gt;위 페이지는 하나의 게시글을 참조하고 있으나, 다른 모든 게시글의 내용또한 같이 로드되고 있는 상황입니다. 당장에는 용량이 800kb정도 밖에 되지 않지만, 계속해서 게시글이 증가하면 상당히 부담스러워 질 것 같습니다.&lt;/p&gt;
+&lt;p&gt;webpack의 code split 기능을 이용해 각 게시글과 메타데이터를 별도의 파일로 분리하고, lazy loading을 이용해 게시글을 참조할때만 해당 파일을 새로 로드하도록 개선해보도록 하겠습니다.&lt;/p&gt;
+&lt;h3&gt;정적 import에 대한 code split&lt;/h3&gt;
+&lt;p&gt;저희가 이번에 다루는 주제는 동적 import에 대한 code split과 lazy loading을 다루고자 합니다.&lt;/p&gt;
+&lt;p&gt;정적 import와 동적 import의 이론적인 과정과 내용은 다르나 정적 import 모듈에 대한 code split은 webpack의 config 파일에서 수행하기 때문에 설정하는 방법이 다릅니다.&lt;/p&gt;
+&lt;p&gt;자세한 사항은 webpack의 code split 페이지를 참고하시면 좋습니다.
+&lt;a href=&quot;https://webpack.js.org/guides/code-splitting/&quot;&gt;Webpack Code split&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;동적 import, code split 그리고 lazy loading&lt;/h2&gt;
+&lt;p&gt;사실 코드를 각 파일별로 분리하고 lazy loading하는 방법은 이미 webpack에서 &lt;strong&gt;아주 간단히&lt;/strong&gt; 제공하고 있는 기능입니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import&quot;&gt;Webpack Dynamic Import&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;단순히 import 함수를 호출해주기만 하면 &lt;em&gt;code split&lt;/em&gt;과 &lt;em&gt;lazy loading&lt;/em&gt;을 &lt;strong&gt;둘 다&lt;/strong&gt; 기본적으로 수행합니다.&lt;/p&gt;
+&lt;p&gt;기존 코드는 &lt;em&gt;require&lt;/em&gt;문을 이용해 모듈을 동적으로 불러오고 있으나, 단순히 &lt;em&gt;import&lt;/em&gt;문으로 교체해준다면 해결될 것으로 보입니다.&lt;/p&gt;
+&lt;p&gt;즉, 기존의 아래 코드를 &lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;import 함수로 교체한다면 아래처럼 될 것 같습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;아 그리고 require 함수를 동기적으로 동작하지만, import 함수는 비동기적으로 동작하기 때문에 Promise에 대한 처리를 해주어야 합니다. &lt;/p&gt;
+&lt;p&gt;동일하게 메타데이터를 불러오는 코드 또한 require함수에서 import 함수로 변경해주었습니다.&lt;/p&gt;
+&lt;p&gt;자 다시 빌드해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;단순히 5개였던 파일이 chunk-...js 라는 파일들로 여러개가 생겻습니다. 동시에 app.js 파일의 용량도 이전에 비해 줄어들었네요. 즉, 각 게시글 내용과 메타데이터가 별도의 파일로 분리 된 것입니다.&lt;/p&gt;
+&lt;p&gt;또한 webpack의 해당 문서에 따르면 import 함수로 동적 로드한 모듈의 경우 lazy loading이 기본적으로 적용된다고 하니 원하는 목적을 모두 달성하였습니다.&lt;/p&gt;
+&lt;h3&gt;동적 import에 옵션 전달하기&lt;/h3&gt;
+&lt;p&gt;원하는 목적을 모두 이루었으나, 한 가지 불만인점은 파일명이 chunk-[hash] 값이라서 어떤 게시글 파일인지 식별이 힘든점이 있습니다.&lt;/p&gt;
+&lt;p&gt;정적 import시 code split과 동일하게 적절한 파일명을 지정할 수도 있고, 옵션을 전달할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;특이하게 주석을 통해서 해당 동적 import에 대한 옵션을 전달할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;자세한 설명은 &lt;a href=&quot;https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import&quot;&gt;webpack dynamic import&lt;/a&gt;문서에서 각 옵션에 대한 설명을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;위와 같이 주석을 추가하여 파일명을 적절하게 수정합니다. *[request]*는 파일명으로 치환되고 *[index]*는 단순하게 정수 index 값으로 치환됩니다.&lt;/p&gt;
+&lt;p&gt;코드를 위와 같이 변경하고 다시 빌드를 수행합니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;각 분리된 파일들이 식별하기 좋은 이름으로 변경됨을 확인할 수 있습니다.&lt;/p&gt;
+&lt;h3&gt;require vs import&lt;/h3&gt;
+&lt;p&gt;본 문제를 해결하기 위해서 단순히 &lt;em&gt;require&lt;/em&gt;문을 &lt;em&gt;import&lt;/em&gt;문으로 변경하였습니다. Webpack에서는 require문을 통한 동적 모듈 로드시 import처럼 기본적으로 code split과 lazy loading을 지원하지 않는데, 이는 두 모듈 로드 방식에 차이가 있기 때문입니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/46677752/the-difference-between-requirex-and-import-x&quot;&gt;Reference&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;일반적으로 require 모듈 로드 방식은 CommonJS, import 로드 방식은 ES6의 로드 방식입니다.&lt;/p&gt;
+&lt;p&gt;자바스크립트의 표준에 따라서 모듈 로드 방식이 달리지게 됩니다. (babel을 이용한 import문은 require로 변환되지만, 내부적으로 es6의 import와 똑같은 행동을 수행할 수 있도록 변경된다고 합니다.)&lt;/p&gt;
+&lt;p&gt;require 구문은 미리 출력할 모듈을 계산하지만, import 구문은 호출될 때 구문을 분석하여 출력할 모듈을 결정할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이러한 방식 덕분에 require 구문은 동적 모듈 로딩시 자유롭게 할 수 있지만, 실제로 실행하지 않아도 모든 모듈을 불러오게 됩니다.&lt;/p&gt;
+&lt;p&gt;반대로 import 구문은 require 구문처럼 어떤 경로든 자유롭게 넣을수가 없습니다. 최소한 특정 폴더나, 파일을 지정해주어야 합니다.(webpack 문서에 기술되어 있습니다.) 하지만 구문이 분석되고 나면 필요한 모듈만 따로 로드해서 사용할 수 있는 장점이 있습니다.&lt;/p&gt;
+&lt;p&gt;Webpack에서는 require 구문또한 lazy loading을 할 수 있는 기능을 제공합니다. &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://webpack.js.org/api/module-methods/#webpack&quot;&gt;Webpack-specific require&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;다만 webpack을 사용하지 않는 경우라면 위 기능은 사용할 수 없으니 주의해야 합니다.&lt;/p&gt;
+&lt;h3&gt;network profiler로 확인&lt;/h3&gt;
+&lt;p&gt;동적 import에 대해서 code split과 lazy loading을 하였으니, 블로그를 탐험할 때 본적도 없고 아직 보지도 않은 모든 게시글의 글 내용을 모두 불러오는 불상사는 없어졌을 것으로 생각됩니다.&lt;/p&gt;
+&lt;p&gt;다시 한 번 크롬의 개발자 도구내 network profiler로 확인을 해보겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;블로그 메인에 접속시 기존과 다르게 게시글 메타데이터에 대한 정보 파일이 분리되어 별도로 로딩됨을 확인할 수 있습니다. 또한 app.js의 파일 크기도 기존에는 800kb 크기에서 600kb쯔음의 크기로 줄어들었습니다.&lt;/p&gt;
+&lt;p&gt;이제 게시글 하나에 접속해보겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;새로운 파일이 하나 로드되었고, 해당 파일이 post-...로 시작하니 게시글 내용을 담은 파일임을 확인할 수 있습니다. 즉, 블로그에 접속하면 모든 게시글 내용을 다 불러오는게 아니라, 게시글을 조회할때만 해당 게시글의 내용을 lazy loading함을 확인할 수 있습니다.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;모든 게시글이 하나의 파일로 합쳐져서 게시글을 조회하지 않더라도 모든 게시글의 내용이 함께 로드되는 문제를 수정했습니다.&lt;/p&gt;
+&lt;p&gt;모든 자바스크립트 코드를 하나의 파일로 합치면 첫 로딩은 느리지만, 이후의 반응성이 좋아진다는 장점이 있습니다.&lt;/p&gt;
+&lt;p&gt;하지만, 아직 유저가 읽지도 않고, 읽을지도 모르는 모든 게시글을 로드하는 것은 자원 낭비가 되겠죠.&lt;/p&gt;
+&lt;p&gt;이렇듯 lazy loading을 사용하여 code bundle에 대한 장점은 살리고, 필요할때만 자원을 로드해 반응성을 살릴 수 있었습니다.&lt;/p&gt;
+</content:encoded></item><item><title>LeetCode - 15. 3Sum</title><link>https://jaehee.dev/posts/leetcode---15-3sum/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---15-3sum/</guid><description>LEETCODE - 15. 3SUM  문제 - LeetCode 15. 3Sum [https://leetcode.com/problems/3sum/]   문제 설명  LeetCode - 2. Add Two Numbers과 유사한 문제입니다.  숫자 배열이 주어지면 세 숫자</description><pubDate>Tue, 23 Nov 2021 00:10:29 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 15. 3Sum&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/3sum/&quot;&gt;LeetCode 15. 3Sum&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;&lt;a&gt;LeetCode - 2. Add Two Numbers&lt;/a&gt;과 유사한 문제입니다.&lt;/p&gt;
+&lt;p&gt;숫자 배열이 주어지면 세 숫자의 합이 0이 되는 모든 가짓수를 찾아내는 문제입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Input : [-1, 0, 1, 2, -1, 4]
+Output : [[-1, -1, 2], [-1, 0, 1]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;또한 중복은 허용되지 않습니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 중간 난이도이지만 실제 체감 난이도는 &lt;code&gt;HARD&lt;/code&gt;나 다름 없었던것 같네요.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/15.%203Sum&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution 1 - Brute force&lt;/h3&gt;
+&lt;p&gt;늘 그렇듯 첫 번째 시도는 Brute force를 통해 단순히 코드를 짜는 것부터 시작해보겠습니다.&lt;/p&gt;
+&lt;p&gt;총 세 개의 숫자를 찾아야하니 3중 중첩 loop을 이용해 풀어낼 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int i = 0; i &amp;lt; nums.size(); i++)
+{
+    num1 = nums[i];
+
+    for (int j = 0; j &amp;lt; nums.size(); j++)
+    {
+        if (j == i) continue;
+        else if (num1 &amp;gt; 0 &amp;amp;&amp;amp; nums[j] &amp;gt; 0) continue;
+        else if (num1 &amp;lt; 0 &amp;amp;&amp;amp; nums[j] &amp;lt; 0) continue; 
+
+        num2 = num1 + nums[j];
+
+        for (int k = 0; k &amp;lt; nums.size(); k++)
+        {
+            if (j == k || i == k) continue;
+            else if (num2 &amp;gt; 0 &amp;amp;&amp;amp; nums[k] &amp;gt; 0) continue;
+            else if (num2 &amp;lt; 0 &amp;amp;&amp;amp; nums[k] &amp;lt; 0) continue; 
+
+            num3 = num2 + nums[k];
+
+            if (num3 == 0)
+            {
+                ...
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;루프를 돌면서 첫 번째로 중복 검사를 위해 i, j, k가 동일한 인덱스인지 확인합니다. 만약 동일한 인덱스라면 중복된 것이므로 continue를 수행합니다.&lt;/p&gt;
+&lt;p&gt;두 번째로 약간의 최적화를 노리기 위해 현재의 숫자가 0에 가까워지는 숫자를 선택할 수 있도록 합니다.&lt;/p&gt;
+&lt;p&gt;그리고 선택된 세 숫자의 합이 0이라면 해당 숫자를 결과 배열에 삽입할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;하지만, 중복을 허용하지 않기 때문에 &lt;code&gt;[-1, -1, 2]&lt;/code&gt;와 &lt;code&gt;[-1, 2, -1]&lt;/code&gt;에서 &lt;code&gt;-1&lt;/code&gt;의 인덱스가 모두 다르더라도 &lt;code&gt;-1&lt;/code&gt;이 중복이기 때문에 현재 결과에서 중복을 확인할 필요가 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;auto v = vector&amp;lt;int&amp;gt;{nums[i], nums[j], nums[k]};
+sort(v.begin(), v.end()); 
+
+bool push = true;
+
+for (size_t w = 0; w &amp;lt; result.size(); w++)
+{
+    if (result[w] == v)
+    {
+        push = false;
+        break;
+    }
+}
+
+if (push)
+{
+    result.push_back(v);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;결과를 정렬하여 이미 결과에 있는지 확인합니다. 만약 중복이라면 결과 배열에 삽입하지 않습니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;예상대로 시간 초과가 발생했습니다. 세 숫자를 찾는 3중 반복문에서 O(n^3)의 시간 복잡도가 발생하고, 마지막에 결과에서 중복된 부분을 제거할때도 반복문이 사용되기 때문에 사실상 O(n^4)의 시간 복잡도가 계산됩니다.&lt;/p&gt;
+&lt;p&gt;정렬도 하기 때문에 사실상 O(n^5)의 시간 복잡도라고 봐도 될 듯 합니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; threeSum(vector&amp;lt;int&amp;gt;&amp;amp; nums) 
+    {
+        vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; result;
+
+        int num1, num2, num3;
+
+        for (int i = 0; i &amp;lt; nums.size(); i++)
+        {
+            num1 = nums[i];
+
+            for (int j = 0; j &amp;lt; nums.size(); j++)
+            {
+                if (j == i) continue;
+                else if (num1 &amp;gt; 0 &amp;amp;&amp;amp; nums[j] &amp;gt; 0) continue;
+                else if (num1 &amp;lt; 0 &amp;amp;&amp;amp; nums[j] &amp;lt; 0) continue; 
+
+                num2 = num1 + nums[j];
+
+                for (int k = 0; k &amp;lt; nums.size(); k++)
+                {
+                    if (j == k || i == k) continue;
+                    else if (num2 &amp;gt; 0 &amp;amp;&amp;amp; nums[k] &amp;gt; 0) continue;
+                    else if (num2 &amp;lt; 0 &amp;amp;&amp;amp; nums[k] &amp;lt; 0) continue; 
+
+                    num3 = num2 + nums[k];
+
+                    if (num3 == 0)
+                    {
+                        auto v = vector&amp;lt;int&amp;gt;{nums[i], nums[j], nums[k]};
+                        sort(v.begin(), v.end()); 
+
+                        bool push = true;
+
+                        for (size_t w = 0; w &amp;lt; result.size(); w++)
+                        {
+                            if (result[w] == v)
+                            {
+                                push = false;
+                                break;
+                            }
+                        }
+
+                        if (push)
+                        {
+                            result.push_back(v);
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution 2&lt;/h3&gt;
+&lt;p&gt;생각을 바꿔서 입력되는 숫자를 정렬합니다.&lt;/p&gt;
+&lt;p&gt;만약 &lt;code&gt;[-1, 0, 1, 2, -1, 4]&lt;/code&gt;라는 숫자가 주어진다면 &lt;code&gt;[-1, -1, 0, 1, 2, 4]&lt;/code&gt;로 정렬할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;여기서 첫 번째 숫자인 &lt;code&gt;-1&lt;/code&gt;과 마지막 숫자인 &lt;code&gt;4&lt;/code&gt;를 더하면 &lt;code&gt;3&lt;/code&gt;을 계산할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;3&lt;/code&gt;은 0보다 크기 마지막 숫자인 &lt;code&gt;4&lt;/code&gt; 대신 한 칸 앞에 위치한 &lt;code&gt;2&lt;/code&gt;를 선택합니다. 그럼 &lt;code&gt;-1 + 2 = 1&lt;/code&gt;로 첫 번째 계산보다 0에 가까워졌음을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이를 통해 왼쪽 인덱스(left)와 오른쪽 인덱스(right)를 두어 적절히 인덱스를 변경하면서 0에 점점 가깝게 계산할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이번 문제는 숫자를 3개를 선택하는 문제이니 간단히 하나의 숫자를 고정하고 left와 right를 움직여서 0을 도출할 수 있습니다. 그리고 고정된 숫자를 숫자 배열의 처음부터 끝까지 순회하면 세 숫자를 더했을 때 0이 도출되는 모든 가짓수를 구할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sort(nums.begin(), nums.end());
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;먼저 입력으로 들어온 숫자 배열을 정렬합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int i = 0; i &amp;lt; nums.size(); i++)
+{
+    if (i &amp;gt; 0 &amp;amp;&amp;amp; nums[i] == nums[i - 1]) continue;
+
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 숫자 배열을 순회합니다. nums[i]는 해당 순회에서 고정될 숫자입니다&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;if (i &amp;gt; 0 &amp;amp;&amp;amp; nums[i] == nums[i - 1]) continue;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;위 구문은 중복된 결과를 제외하기 위한 조건문입니다. 현재 고정할 숫자(nums[i])가 nums[i - 1]와 같다면 현재 반복문은 건너뜁니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;nums[i] == nums[i - 1]라면 nums[i - 1]번째 순회시 찾은 모든 결과를 위 이미지와 같이 집합으로 표현한다면 nums[i]는 nums[i - 1]에서 찾은 결과의 부분 집합이 되기때문에 중복된 결과가 발생할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;때문에 nums[i] == nums[i - 1]인 경우는 건너뜁니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int left = i + 1;
+int right = nums.size() - 1;
+
+while (left &amp;lt; right)
+{
+    int sum = nums[i] + nums[left] + nums[right];
+
+    if (sum &amp;gt; 0) right--;
+    else if (sum &amp;lt; 0) left++;
+    else
+    {
+        result.push_back(vector&amp;lt;int&amp;gt;{nums[i], nums[left], nums[right]});
+
+        left++;
+        while (nums[left] == nums[left - 1] &amp;amp;&amp;amp; left &amp;lt; right) left++;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;합계가 0인 숫자를 찾는 반복문은 매우 간단합니다. left ~ right까지 순회하면서 합이 0보다 크다면 right를 줄이고, 0보다 작다면 left를 증가시킵니다. 그리고 0인 숫자를 찾았다면 결과 배열에 삽입합니다.&lt;/p&gt;
+&lt;p&gt;위 행동은 입력된 숫자 배열을 정렬했기 때문에 가능한 행동입니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;while (nums[left] == nums[left - 1] &amp;amp;&amp;amp; left &amp;lt; right) left++;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;위 반복문을 삽입한 이유도 위에서 설명한 nums[i] == nums[i - 1]일때 발생하는 중복과 동일하게 중복을 제거하기 위해 nums[left]가 nums[left - 1]와 다른 값이 나올때 까지 left를 증가시킵니다.&lt;/p&gt;
+&lt;p&gt;이해가 잘 되지 않는다면 &lt;code&gt;[0, 0, 0, 0]&lt;/code&gt;의 입력값에 대해서 테스트해보시면 이해가 충분히 될 수 있을것 같습니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;모든 숫자를 순회하므로 첫 반복문은 O(n)입니다.&lt;/p&gt;
+&lt;p&gt;그리고 내부의 while(left &amp;lt; right) 반복문은 O(logn)이 됩니다. 때문에 O(nlogn)의 시간 복잡도가 계산될 것 같습니다.&lt;/p&gt;
+
+코드 전문
+
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; threeSum(vector&amp;lt;int&amp;gt;&amp;amp; nums) 
+    {
+        vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; result;
+
+        sort(nums.begin(), nums.end());
+
+        for (int i = 0; i &amp;lt; nums.size(); i++)
+        {
+            if (i &amp;gt; 0 &amp;amp;&amp;amp; nums[i] == nums[i - 1]) continue;
+
+            int left = i + 1;
+            int right = nums.size() - 1;
+
+            while (left &amp;lt; right)
+            {
+                int sum = nums[i] + nums[left] + nums[right];
+
+                if (sum &amp;gt; 0) right--;
+                else if (sum &amp;lt; 0) left++;
+                else
+                {
+                    result.push_back(vector&amp;lt;int&amp;gt;{nums[i], nums[left], nums[right]});
+
+                    left++;
+                    while (nums[left] == nums[left - 1] &amp;amp;&amp;amp; left &amp;lt; right) left++;
+                }
+            }
+        }
+
+        return result;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 14. Longest Common Prefix</title><link>https://jaehee.dev/posts/leetcode---14-longest-common-prefix/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---14-longest-common-prefix/</guid><description>LEETCODE - 14. LONGEST COMMON PREFIX  문제 - LeetCode 14. Longest Common Prefix [https://leetcode.com/problems/longest-common-prefix/]   문제 설명  문자열 리스트가</description><pubDate>Fri, 19 Nov 2021 20:33:21 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 14. Longest Common Prefix&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/longest-common-prefix/&quot;&gt;LeetCode 14. Longest Common Prefix&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;문자열 리스트가 주어질 때 가장 긴 접두사를 찾으면 됩니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 &lt;code&gt;[&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]&lt;/code&gt;가 주어졌다면 모든 문자열에 &lt;code&gt;fl&lt;/code&gt;이라는 접두사가 붙었으니 해당 문자열을 반환하면 됩니다.&lt;/p&gt;
+&lt;p&gt;반대로 &lt;code&gt;[&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]&lt;/code&gt;라는 입력이 주어졌다면 모든 문자열에 공통이 되는 접두사가 없으므로 빈 문자열을 반환하면 됩니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;EASY&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/LDobac/leetcode/tree/master/14.%20Longest%20Common%20Prefix&quot;&gt;My Solutions(Github)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;p&gt;첫 번째로 고려해야 하는 조건은 접두사는 모든 문자열의 길이보다 작거나 같아야합니다. 다른 문자열의 길이보다 접두사가 더 길면 접두사가 될 수 없기때문입니다.&lt;/p&gt;
+&lt;p&gt;두 번째로 한 문자열의 전체가 다른 문자열의 접두사가 될 수로 있습니다. 예를 들어 &lt;code&gt;flow&lt;/code&gt;라는 문자열은 &lt;code&gt;flower&lt;/code&gt;의 접두사가 될 수 있겠죠.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;string&amp;amp; prefix = strs[0];
+
+for (int i = 1; i &amp;lt; length ; i++)
+{
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;첫 번째 문자열을 선택하여 순회를 시작합니다. 다른 문자열을 선택해도 충분히 문제가 없을 듯 합니다. 하지만, 코드의 가독성을 위해 첫 번째나 마지막 문자열을 선택하는 것이 가장 좋은 선택지가 될 것 같네요.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (prefix.size() &amp;gt; strs[i].size())
+{
+    prefix = prefix.substr(0, strs[i].size());
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;문자열을 순회하던 중 현재 선택된 접두사가 문자열보다 더 길다면 문자열의 길이로 축소합니다. 그리고 한 문자열이 다른 문자열의 접두사가 될 수 있으므로 더 줄일 필요는 없을 것 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int j = 0; j &amp;lt; prefix.size(); j++)
+{
+    if (prefix[j] != strs[i][j])
+    {
+        prefix = prefix.substr(0, j);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이제 접두사와 문자열을 비교합니다. 가장 긴 공통된 접두사를 찾는 문제이므로 접두사와 다른 문자를 발견한다면 접두사의 길이를 공통된 부분까지만 축소합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (prefix.size() == 0) break;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;문자열을 계속 순회하던 중 접두사의 길이가 0이되면 순회를 탈출하는 것이 소소한 최적화에 도움이 될 것 같습니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;문제 자체가 시워서 첫 시도만에 100%의 성능을 보이는 코드를 작성할 수 있었습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    string longestCommonPrefix(vector&amp;lt;string&amp;gt;&amp;amp; strs) 
+    {
+        int length = strs.size();
+
+        if (length == 0) return &quot;&quot;;
+        else if (length == 1) return strs[0];
+
+        string&amp;amp; prefix = strs[0];
+
+        for (int i = 1; i &amp;lt; length ; i++)
+        {
+            if (prefix.size() &amp;gt; strs[i].size())
+            {
+                prefix = prefix.substr(0, strs[i].size());
+            }
+
+            for (int j = 0; j &amp;lt; prefix.size(); j++)
+            {
+                if (prefix[j] != strs[i][j])
+                {
+                    prefix = prefix.substr(0, j);
+                }
+            }
+
+            if (prefix.size() == 0) break;
+        }
+
+        return prefix;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 13. Roman to Integer</title><link>https://jaehee.dev/posts/leetcode---13-roman-to-integer/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---13-roman-to-integer/</guid><description>LEETCODE - 13. ROMAN TO INTEGER  문제 - LeetCode 13. Roman to Integer [https://leetcode.com/problems/roman-to-integer/]   문제 설명  지난 12번 문제와 유사한 문제로 이번에는</description><pubDate>Wed, 17 Nov 2021 20:30:00 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 13. Roman to Integer&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/roman-to-integer/&quot;&gt;LeetCode 13. Roman to Integer&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;지난 12번 문제와 유사한 문제로 이번에는 로마자 숫자에서 정수형 숫자로 변환하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;EASY&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution - 1&lt;/h3&gt;
+&lt;p&gt;로마자 숫자를 정수로 바꾸는 방법은 매우 쉽게 유도가능합니다.&lt;/p&gt;
+&lt;p&gt;첫 번째로 각 로마자 심볼들은 정해진 값이 있습니다. 해당 값을 1:1로 매칭하기 위해서 std::map STL 자료형을 사용합니다.&lt;/p&gt;
+&lt;p&gt;두 번째로 4, 9와 같은 문자는 IV, IX와 같이 5, 10을 나타내는 심볼 앞에 1을 나타내는 심볼이 붙어서 나오게됩니다. 그리고 로마자 숫자를 살펴보면 4, 9와 같은 경우를 제외하고 작은 크기의 심볼이 큰 숫자보다 앞에 오는 경우가 없습니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 &lt;code&gt;LVIII&lt;/code&gt;라는 값은 58로 L은 50, V는 5, I는 1입니다. &lt;code&gt;MCMXCIV&lt;/code&gt;은 1994로 M은 1000, CM은 900, XC는 90, IV는 4입니다.&lt;/p&gt;
+&lt;p&gt;이렇듯 4, 9를 제외한 모든 심볼은 항상 내림차순으로 표현됩니다. 이 점을 유의해서 코드를 작성합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 속도는 12ms로 다른 C++ 제출자에 비해 60% 가량의 성능밖에 되지 않습니다.&lt;/p&gt;
+&lt;p&gt;추측하컨데 아마도 std::map STL 자료형을 사용하면서 메모리 생성 과정과 접근 과정에서 많은 시간을 소요하고 있다는 생각이 듭니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+#include &amp;lt;map&amp;gt;
+
+class Solution 
+{
+public:
+    int romanToInt(std::string s) 
+    {
+        int result = 0;
+
+        for (int i = 0; i &amp;lt; s.size(); i++)
+        {
+            result += symbols[s[i]];
+
+            if (i - 1 &amp;gt;= 0 &amp;amp;&amp;amp; symbols[s[i]] &amp;gt; symbols[s[i - 1]])
+            {
+                result -= (symbols[s[i - 1]] * 2);
+            }
+        }
+        
+        return result;
+    }
+
+private:
+    std::map&amp;lt;char, int&amp;gt; symbols {
+        std::make_pair(&apos;I&apos;, 1), std::make_pair(&apos;V&apos;, 5), 
+        std::make_pair(&apos;X&apos;, 10), std::make_pair(&apos;L&apos;, 50), 
+        std::make_pair(&apos;C&apos;, 100), std::make_pair(&apos;D&apos;, 500),
+        std::make_pair(&apos;M&apos;, 1000)
+    };
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution - 2&lt;/h3&gt;
+&lt;p&gt;방법 1은 std::map을 이용해 로마자 숫자를 정수형으로 변환했지만, 해당 부분을 삭제하고 switch문 하드 코딩으로 바꿔서 실행해보겠습니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 속도는 4ms로 기존의 12ms보다 향상됨을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;기존의 std::map을 이용한 메모리 접근 대신 switch문을 이용해 하드 코딩으로 실행하여 기존에 비해 높은 실행 속도를 얻을 수 있었습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+#include &amp;lt;map&amp;gt;
+
+class Solution 
+{
+public:
+    int romanToInt(std::string s) 
+    {
+        int result = 0;
+
+        for (int i = 0; i &amp;lt; s.size(); i++)
+        {
+            switch(s[i])
+            {
+                case &apos;M&apos;: 
+                    result += 1000;
+                    break;
+                case &apos;D&apos;:
+                    result += 500;
+                    break;
+                case &apos;C&apos;:
+                    if ((s[i+1] == &apos;D&apos;) || (s[i+1] == &apos;M&apos;)) result -= 100;
+                    else result += 100;
+                    break;
+                case &apos;L&apos;:
+                    result += 50;
+                    break;
+                case &apos;X&apos;:
+                    if ((s[i+1] == &apos;L&apos;) || (s[i+1] == &apos;C&apos;)) result -= 10;
+                    else result += 10;
+                    break;
+                case &apos;V&apos;:
+                    result += 5;
+                    break;
+                case &apos;I&apos;:
+                    if ((s[i+1] == &apos;V&apos;) || (s[i+1] == &apos;X&apos;)) result -= 1;
+                    else result += 1;
+                    break;
+            }
+        }
+        
+        return result;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 12. Integer to Roman</title><link>https://jaehee.dev/posts/leetcode---12-integer-to-roman/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---12-integer-to-roman/</guid><description>LEETCODE - 12. INTEGER TO ROMAN  문제 - LeetCode 12. Integer to Roman [https://leetcode.com/problems/integer-to-roman/]   문제 설명  정수형 숫자가 입력되면 해당 숫자를 로마자</description><pubDate>Mon, 15 Nov 2021 23:01:00 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 12. Integer to Roman&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/integer-to-roman/&quot;&gt;LeetCode 12. Integer to Roman&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;정수형 숫자가 입력되면 해당 숫자를 로마자 숫자로 변환하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;또한, 수의 범위는 &lt;code&gt;1 &amp;lt;= x &amp;lt;= 3999&lt;/code&gt; 사이로만 입력됩니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;p&gt;난이도에 비해 문제가 쉽기 때문에 큰 설명은 필요하지 않을 듯 합니다.&lt;/p&gt;
+&lt;p&gt;이번에 푸는 방식은 수의 범위가 넓지 않기에 if 문을 활용해 10의 배수에 따라 적절한 문자로 치환하는 방식을 사용하였지만, 필요에 따라 테이블 형태의 자료형에 저장하여 참조하는 방식으로 구현해도 될 듯 합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+
+class Solution 
+{
+public:
+    std::string intToRoman(int num) 
+    {
+        std::string result = &quot;&quot;;
+
+        int multiple = 0;
+        while (num &amp;gt; 0)
+        {
+            int digit = num % 10;
+
+            std::string one = &quot;I&quot;;
+            std::string four = &quot;IV&quot;;
+            std::string five = &quot;V&quot;;
+            std::string nine = &quot;IX&quot;;
+
+            if (multiple == 1)
+            {
+                one = &quot;X&quot;;
+                four = &quot;XL&quot;;
+                five = &quot;L&quot;;
+                nine = &quot;XC&quot;;
+            }
+            else if (multiple == 2)
+            {
+                one = &quot;C&quot;;
+                four = &quot;CD&quot;;
+                five = &quot;D&quot;;
+                nine = &quot;CM&quot;;
+            }
+            else if (multiple == 3)
+            {   
+                one = &quot;M&quot;;
+            }
+
+            if (digit == 4) result.insert(0, four);
+            else if (digit == 9) result.insert(0, nine);
+            else
+            {
+                std::string tmp = &quot;&quot;;
+
+                if (digit &amp;gt;= 5)
+                {
+                    tmp += five;
+                    digit -= 5;
+                }
+
+                for (int i = 0; i &amp;lt; digit; i++)
+                {
+                    tmp += one;
+                }
+                
+                result.insert(0, tmp);
+            }
+
+            multiple++;
+            num /= 10;
+        }
+
+        return result;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 11. Container With Most Water</title><link>https://jaehee.dev/posts/leetcode---11-container-with-most-water/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---11-container-with-most-water/</guid><description>LEETCODE - 11. CONTAINER WITH MOST WATER  문제 - LeetCode 11. Container With Most Water [https://leetcode.com/problems/container-with-most-water/]   문제 </description><pubDate>Sat, 13 Nov 2021 23:26:00 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 11. Container With Most Water&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/container-with-most-water/&quot;&gt;LeetCode 11. Container With Most Water&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;배열에 순서대로 각 막대의 길이가 주어 질 때, 해당 막대 사이에 액체를 담을 때 가장 많이 담긴 양을 구하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution 1 - Brute force&lt;/h3&gt;
+&lt;p&gt;첫 번째 방법은 먼저 간단히 Brute force, 무차별 대입을 통한 문제 풀이를 시도해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;중첩된 반복문을 사용해 두 막대를 선택해 가장 큰 크기를 선택합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int maxArea = 0;
+
+for (int i = 0; i &amp;lt; count - 1; i++)
+{
+    for (int j = i; j &amp;lt; count; j++)
+    {
+        int barHeight = std::min(height[i], height[j]);
+        int barWidth = j - i;
+
+        int area = barWidth * barHeight;
+
+        if (area &amp;gt; maxArea)
+        {
+            maxArea = area;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;넓이를 구하기 위해서는 너비(width)와 높이(height)가 필요합니다. &lt;/p&gt;
+&lt;p&gt;두 막대의 높이가 같다면 둘 중 하나의 높이를 사용할 수 있지만, 만약 높이가 다를때 액체를 담는다고 상상하면 낮은쪽의 높이로 액체가 넘치게 되겠죠. 그러므로 둘 중 높이가 낮은쪽을 선택합니다.&lt;/p&gt;
+&lt;p&gt;너비도 간단히 구할 수 있습니다. 두 막대 사이의 거리를 계산합니다.ㄹ&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;중첩된 반복문을 사용하고 있기에 시간 복잡도는 O(n^2)의 성능을 보이게 됩니다. 아주 많은 입력이 주어졌을 때 시간 초과가 발생함을 확인할 수 있었습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;vector&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+
+class Solution 
+{
+public:
+    int maxArea(std::vector&amp;lt;int&amp;gt;&amp;amp; height) 
+    {
+        if (height.size() == 2)
+        {
+            return  std::min(height[0], height[1]);
+        }
+
+        int count = height.size();
+
+        int maxArea = 0;
+
+        for (int i = 0; i &amp;lt; count - 1; i++)
+        {
+            for (int j = i; j &amp;lt; count; j++)
+            {
+                int barHeight = std::min(height[i], height[j]);
+                int barWidth = j - i;
+
+                int area = barWidth * barHeight;
+
+                if (area &amp;gt; maxArea)
+                {
+                    maxArea = area;
+                }
+            }
+        }
+        
+        return maxArea;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution 2&lt;/h3&gt;
+&lt;p&gt;두 번째 방법은 첫 번째 방법에서 약간 개선하여 굳이 의미 없는 계산을 빼보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;높이가 가장 큰 두 개의 막대를 선택한다 하더라도 너비가 너무 좁으면 다른 것보다 넓이가 작을 수도 있습니다.&lt;/p&gt;
+&lt;p&gt;때문에 맨 처음에는 가장 너비가 큰 상태인 첫 번째 막대와 마지막 막대를 선택합니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;여기서 넓이가 더 커질 수 있는 방법은 왼쪽의 막대가 더 높아진다면 넓이가 더 커질 것입니다. 즉, 오른쪽의 막대는 충분히 길지만, 왼쪽의 막대가 작기때문에 왼쪽 막대로는 기대치 이상의 넓이를 구할 수 없을 것 같습니다.&lt;/p&gt;
+&lt;p&gt;왼쪽 막대를 한 칸 오른쪽의 막대를 선택합니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;너비가 1 줄어들었지만, 높이가 너비 이상으로 증가했기 때문에 이전의 결과보다 더 증가하였습니다. &lt;/p&gt;
+&lt;p&gt;현재 상황으로는 오른쪽의 막대가 왼쪽 막대보다 높이가 낮기 때문에, 오른쪽의 막대가 더 길어진다면 넓이가 더 증가할 수 도 있을 것 같습니다. 오른쪽의 막대를 한 칸 왼쪽의 막대를 선택합니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;아쉽지만 오히려 넓이가 낮아졌습니다. 이유는 오른쪽의 막대가 왼쪽의 막대보다 높이가 낮기 때문입니다. 다시 한 번 왼쪽으로 이동합니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;이런방식으로 계속 순회하며 가장 넓이가 컸었던 값을 선택하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int maxArea = 0;
+
+int left = 0;
+int right = height.size() -1;
+
+while (left &amp;lt; right)
+{
+    int area = std::min(height[left], height[right]) * (right - left);
+
+    maxArea = std::max(area, maxArea);
+
+    if (height[left] &amp;lt; height[right]) left++;
+    else right--; 
+}
+
+return maxArea;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이런 방식으로 순회를 하면 모든 경우를 검사하는 것이 아니기 때문에 최선의 값을 못 찾아 낼 수 있지 않을까? 라는 생각이 들었습니다.&lt;/p&gt;
+&lt;p&gt;하지만 조금만 생각하니 모든 경우를 검사하지 않더라도 최선의 경우가 나오는지 알 수 있었습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (height[left] &amp;lt; height[right]) left++;
+else right--; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;한 쪽의 막대가 다른쪽의 막대보다 작으면 인덱스를 1 올리거나, 1을 내려 다음 막대를 선택합니다.&lt;/p&gt;
+&lt;p&gt;위 코드를 계속해서 실행하게되면 계속해서 두 막대가 경쟁하면서 가장 긴 막대를 선택하려고 시도하게 됩니다. 물론 높이가 가장 높은 두 막대를 선택하더라도 너비가 좁아 더 넓은 공간이 계산되지 않을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;하지만, 결국 높은 막대를 선택하면 큰 넓이가 나올 수 있는 기대치가 있기 때문에 기대치가 있는 경우에 대해서만 검사하므로 이런 결과가 나오게 되게 됩니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;시간 복잡도는 O(n)이며 실제 실행 시간은 76ms가 나오며 다른 C++ 제출자보다 91% 가량 좋은 성능을 보임을 알 수 있습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;vector&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+
+class Solution 
+{
+public:
+    int maxArea(std::vector&amp;lt;int&amp;gt;&amp;amp; height) 
+    {
+        if (height.size() == 2)
+        {
+            return  std::min(height[0], height[1]);
+        }
+
+        int maxArea = 0;
+
+        int left = 0;
+        int right = height.size() -1;
+
+        while (left &amp;lt; right)
+        {
+            int area = std::min(height[left], height[right]) * (right - left);
+
+            maxArea = std::max(area, maxArea);
+
+            if (height[left] &amp;lt; height[right]) left++;
+            else right--; 
+        }
+        
+        return maxArea;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 10. Regular Expression Matching</title><link>https://jaehee.dev/posts/leetcode---10-regular-expression-matching/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---10-regular-expression-matching/</guid><description>LEETCODE - 10. REGULAR EXPRESSION MATCHING  문제 - LeetCode 10. Regular Expression Matching [https://leetcode.com/problems/regular-expression-matching/]</description><pubDate>Wed, 10 Nov 2021 22:23:11 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 10. Regular Expression Matching&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/regular-expression-matching/&quot;&gt;LeetCode 10. Regular Expression Matching&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;정규 표현식은 주어진 문자열에 대해서 패턴 문자열(정규 표현식)이 주어지면 해당 패턴을 갖는 문자열을 표현하는 방법입니다.&lt;/p&gt;
+&lt;p&gt;이번 문제에서는 Any character를 나타내는 &lt;code&gt;&quot;.&quot;&lt;/code&gt; 과 0 또는 하나 이상의 문자 집합을 나타내는 &lt;code&gt;&quot;*&quot;&lt;/code&gt; 패턴 문자를 구현하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;HARD&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution - Dynamic programming&lt;/h3&gt;
+&lt;p&gt;본 문제를 풀기 위해서 동적 프로그래밍 방법을 사용하였습니다.&lt;/p&gt;
+&lt;p&gt;패턴을 찾기 위해서 문자열과 패턴 문자열을 모두 순회하면서 패턴을 찾아야 합니다.&lt;/p&gt;
+&lt;p&gt;여기서 한가지 특성은 만약 패턴 &quot;a*&quot;가 주어졌을 때 부분 패턴 문자열 &quot;a&quot;가 문자열에 매칭될 경우에 참이되며 추가적인 &quot;a&quot;를 찾을 수도 있고, 찾기 못하더라도 참이 되게때문에 여러 분기가 발생하게 됩니다.&lt;/p&gt;
+&lt;p&gt;동적 프로그래밍 방법을 이용해 부분 패턴 문자열을 순회하면서 참인 경우를 따로 저장하여 나중에 똑같은 부분 패턴을 조회할 때 똑같은 검사를 수행하지 않고 저장한 값을 반환하여 성능 향상을 노릴 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;std::vector&amp;lt;std::vector&amp;lt;char&amp;gt;&amp;gt; dp;
+
+bool isMatch(int i, int j, const std::string&amp;amp; s ,const std::string&amp;amp; p)
+{
+    if (dp[i][j] != -1) return dp[i][j];
+
+    ...
+
+    return match;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;먼저 2차원 배열을 선언합니다. 이 배열이 이전에 계산한 결과를 저장할 것입니다. boolean이 아닌 char 타입으로 한 이유는 아직 i, j 번째를 순회하지 않았을 경우를 따로 나타내기 위해서 모든 값을 -1으로 초기화 하였습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;isMatch&lt;/code&gt; 함수는 i, j, 문자열, 패턴 문자열이 주어지는 함수입니다. i는 s의 부분 문자열의 시작 인덱스, j는 부분 패턴 문자열의 시작 인덱스를 나타냅니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;bool firstMatch = (i &amp;lt; s.length()) &amp;amp;&amp;amp; (p[j] == s[i] || p[j] == &apos;.&apos;);
+
+// if Kleene star, character matches zero or more
+if (j + 1 &amp;lt; p.length() &amp;amp;&amp;amp; p[j + 1] == &apos;*&apos;)
+{
+            // If zero match, skip Kleene star
+    match = isMatch(i, j + 2, s, p) || 
+            // If non-zero matches, keep finding more matches character
+            (firstMatch &amp;amp;&amp;amp; isMatch(i + 1, j, s, p));
+}
+else
+{
+    // Finding next matches character
+    match = firstMatch &amp;amp;&amp;amp; isMatch(i + 1, j + 1, s, p);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;매칭을 수행하는 부분만 따로 빼서 자세히 확인해보겠습니다. 먼저 현재 패턴 문자와 입력 문자가 같은지 확인합니다. 만약 패턴 문자가 &lt;code&gt;&apos;.&apos;&lt;/code&gt; 이라면 모든 문자와 매칭되니 &lt;code&gt;true&lt;/code&gt;가 될 것입니다.&lt;/p&gt;
+&lt;p&gt;만약 0또는 1개 이상의 문자 집합을 매칭하는 &lt;code&gt;&apos;*&apos;&lt;/code&gt; 문자는 &quot;a*&quot;와 같이 다른 문자와 함께 붙어서 나오기 때문에 해당 부분에 대해서 확인하고 예외 처리를 진행합니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&apos;*&apos;&lt;/code&gt; 문자는 0개 또는 1개 이상의 문자열과 매칭되기 때문에 첫 번째로 0개가 매칭 되었을 경우 &lt;code&gt;isMatch(i, j + 2, s, p)&lt;/code&gt;에 대해서 확인합니다. &lt;code&gt;j+2&lt;/code&gt;의 의미는 패턴 문자열의 시작 인덱스를 2만큼 증가시키니 &lt;code&gt;&apos;*&apos;&lt;/code&gt; 문자 이후의 패턴들을 검사합니다.&lt;/p&gt;
+&lt;p&gt;두 번째로 하나의 문자가 매치되었을 경우(firstMatch) 현재 문자 이후의 문자가 계속 연속적으로 매칭되는지 확인합니다 &lt;code&gt;(firstMatch &amp;amp;&amp;amp; isMatch(i+1, j, s, p))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;만약 &lt;code&gt;&apos;*&apos;&lt;/code&gt; 문자가 아니고 문자 매칭이라면 i + 1, j + 1에 대해서 계속 매치를 시도합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+#include &amp;lt;vector&amp;gt;
+
+class Solution 
+{
+public:
+    bool isMatch(std::string s, std::string p) 
+    {
+        std::vector&amp;lt;std::vector&amp;lt;char&amp;gt;&amp;gt; tmp(s.size() + 1, std::vector&amp;lt;char&amp;gt;(p.size() + 1, -1));
+        dp.swap(tmp);
+
+        return isMatch(0, 0, s, p);
+    }
+
+private:
+    std::vector&amp;lt;std::vector&amp;lt;char&amp;gt;&amp;gt; dp;
+
+    bool isMatch(int i, int j, const std::string&amp;amp; s ,const std::string&amp;amp; p)
+    {
+        if (dp[i][j] != -1) return dp[i][j];
+
+        char match = -1;
+
+        // If no more patterns
+        if (j == p.length())
+        {
+            // True when no more string, If string does not empty, False
+            match = (i == s.length());
+        }
+        else 
+        {
+            bool firstMatch = (i &amp;lt; s.length()) &amp;amp;&amp;amp; (p[j] == s[i] || p[j] == &apos;.&apos;);
+
+            // if Kleene star, character matches zero or more
+            if (j + 1 &amp;lt; p.length() &amp;amp;&amp;amp; p[j + 1] == &apos;*&apos;)
+            {
+                        // If zero match, skip Kleene star
+                match = isMatch(i, j + 2, s, p) || 
+                        // If non-zero matches, keep finding more matches character
+                        (firstMatch &amp;amp;&amp;amp; isMatch(i + 1, j, s, p));
+            }
+            // 
+            else
+            {
+                // Finding next matches character
+                match = firstMatch &amp;amp;&amp;amp; isMatch(i + 1, j + 1, s, p);
+            }
+        }
+
+        dp[i][j] = match;
+
+        return match;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 9. Palindrome Number</title><link>https://jaehee.dev/posts/leetcode---9-palindrome-number/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---9-palindrome-number/</guid><description>LEETCODE - 9. PALINDROME NUMBER  문제 - LeetCode 9. Palindrome Number [https://leetcode.com/problems/palindrome-number/]   문제 설명  정수형 입력값이 회문인지 검사합니다. 만</description><pubDate>Mon, 08 Nov 2021 15:21:00 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 9. Palindrome Number&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/palindrome-number/&quot;&gt;LeetCode 9. Palindrome Number&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;정수형 입력값이 회문인지 검사합니다. 만약 121이 입력된다면 121을 뒤집은 값도 121이니 회문입니다.&lt;/p&gt;
+&lt;p&gt;만약 -121이 들어온다면 뒤집었을 때 121-가 되므로 회문이 아닙니다. 123 또한 뒤집었을 때 321이 되므로 회문이 아닙니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;EASY&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;bool isPalindrome(int x) 
+{
+    if (x &amp;lt; 0) return false;
+    else if (x &amp;lt; 10) return true;
+    else if ((x % 10) == 0) return false;
+
+    long reverse = 0;
+    long tmpX = x;
+
+    while (tmpX)
+    {
+        reverse = (reverse * 10) + (tmpX % 10);
+        tmpX /= 10;
+    }
+
+    return reverse == x;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;먼저 음수인 경우 절대 회문이 될 수 없기 때문에 &lt;code&gt;false&lt;/code&gt;를 반환합니다.&lt;/p&gt;
+&lt;p&gt;숫자가 한 자리인 경우는 무조건 회문이기 때문에 &lt;code&gt;true&lt;/code&gt;를 반환합니다.&lt;/p&gt;
+&lt;p&gt;10의 배수는 10, 20, ... 120, 130 등 회문이 절대 될 수 없기 때문에 &lt;code&gt;false&lt;/code&gt;를 반환합니다.&lt;/p&gt;
+&lt;p&gt;입력값 x를 뒤집은 값 reverse를 구합니다. reverse의 타입이 &lt;code&gt;long&lt;/code&gt;인 이유는 x값이 &lt;code&gt;int&lt;/code&gt;자료형의 최대값이 들어오는 경우 뒤집을 때 연산 중 에러가 발생하기 때문에 &lt;code&gt;int&lt;/code&gt;보다 큰 자료형인 &lt;code&gt;long&lt;/code&gt; 자료형을 사용합니다.(별도의 자료형 제한을 두지 않았기 때문에 사용하였습니다.)&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;0ms의 실행 결과가 표현되었으며, 다른 C++ 제출자보다 100%의 성능을 보였음을 확인할 수 있습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    bool isPalindrome(int x) 
+    {
+        if (x &amp;lt; 0) return false;
+        else if (x &amp;lt; 10) return true;
+        else if ((x % 10) == 0) return false;
+
+        long reverse = 0;
+        long tmpX = x;
+
+        while (tmpX)
+        {
+            reverse = (reverse * 10) + (tmpX % 10);
+            tmpX /= 10;
+        }
+
+        return reverse == x;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 8. String to Integer (atoi)</title><link>https://jaehee.dev/posts/leetcode---8-string-to-integer-atoi/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---8-string-to-integer-atoi/</guid><description>LEETCODE - 8. STRING TO INTEGER (ATOI)  문제 - LeetCode 8. String to Integer (atoi) [https://leetcode.com/problems/string-to-integer-atoi/]   문제 설명  문자열</description><pubDate>Mon, 08 Nov 2021 15:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 8. String to Integer (atoi)&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/string-to-integer-atoi/&quot;&gt;LeetCode 8. String to Integer (atoi)&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;문자열에서 정수형으로 parse하는 atoi 함수를 구현하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;문자열에서 정수형으로 변환할 때 지켜야할 여러 규칙이 존재합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;공백 문자는 모두 무시한다.&lt;/li&gt;
+&lt;li&gt;&apos;-&apos;, &apos;+&apos; 문자가 처음으로 등장하고 이미 등장한적이 없다면 각 부호가 정수의 부호를 결정합니다. 만약 어떠한 부호도 등장하지 않았다면 양수로 가정합니다.&lt;/li&gt;
+&lt;li&gt;숫자 문자가 아닌 문자가 등장하면 남은 모든 문자는 무시합니다.&lt;/li&gt;
+&lt;li&gt;숫자 문자는 정수형으로 변환합니다. 만약 숫자가 아니라면 정수 값은 0으로 결정됩니다.&lt;/li&gt;
+&lt;li&gt;만약 정수형 범위를 벗어난다면 정수형 범위의 최대,최소 값을 반환합니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;for (int index = 0; index &amp;lt; s.size() ; index++)
+{
+    char chr = s[index];
+    
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;먼저 문자열을 순회합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if ((chr &amp;lt; &apos;0&apos; || chr &amp;gt; &apos;9&apos;) &amp;amp;&amp;amp; !((result == 0) &amp;amp;&amp;amp; (chr == &apos;+&apos; || chr == &apos;-&apos;)))
+{
+    if (result == 0 &amp;amp;&amp;amp; !(chr == &apos;+&apos; || chr == &apos;-&apos; || chr == &apos; &apos;)) break;
+    if (chr == &apos;.&apos;) break;
+
+    if (findSign) break;
+    else continue;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;순회시 숫자 문자가 아니거나, 이미 부호가 결정되었을 때 -, + 문자가 탐색되는 경우를 처리합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (chr == &apos;+&apos;) 
+{
+    if (findSign) break;
+    neg = false;
+    findSign = true;
+}
+else if (chr == &apos;-&apos;) 
+{
+    if (findSign) break;
+    neg = true;
+    findSign = true;
+}
+else 
+{
+    int num = (neg ? -(chr - &apos;0&apos;) : (chr - &apos;0&apos;));
+    if (result &amp;gt; INT_MAX/10 || (result == INT_MAX / 10 &amp;amp;&amp;amp; num &amp;gt; 7)) return INT_MAX;
+    if (result &amp;lt; INT_MIN/10 || (result == INT_MIN / 10 &amp;amp;&amp;amp; num &amp;lt; -8)) return INT_MIN;
+
+    findSign = true;
+    result *= 10;
+    result = result + num;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;부호 문자라면 부호를 결정하고, 숫자라면 수를 계산하여 result 변수에 저장합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;0ms의 실행 결과가 나왔습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+#include &amp;lt;climits&amp;gt;
+
+class Solution 
+{
+public:
+    int myAtoi(std::string s) 
+    {
+        if (!s.size()) return 0;
+
+        int result = 0;
+        bool neg = false;
+        bool findSign = false;
+
+        for (int i = s.size() - 1; i &amp;gt;= 0 ; i--)
+        {
+            int index = s.size() - i - 1;
+            char chr = s[index];
+
+            if ((chr &amp;lt; &apos;0&apos; || chr &amp;gt; &apos;9&apos;) &amp;amp;&amp;amp; !((result == 0) &amp;amp;&amp;amp; (chr == &apos;+&apos; || chr == &apos;-&apos;)))
+            {
+                if (result == 0 &amp;amp;&amp;amp; !(chr == &apos;+&apos; || chr == &apos;-&apos; || chr == &apos; &apos;)) break;
+                if (chr == &apos;.&apos;) break;
+
+                if (findSign) break;
+                else continue;
+            }
+
+            if (chr == &apos;+&apos;) 
+            {
+                if (findSign) break;
+                neg = false;
+                findSign = true;
+            }
+            else if (chr == &apos;-&apos;) 
+            {
+                if (findSign) break;
+                neg = true;
+                findSign = true;
+            }
+            else 
+            {
+                int num = (neg ? -(chr - &apos;0&apos;) : (chr - &apos;0&apos;));
+                if (result &amp;gt; INT_MAX/10 || (result == INT_MAX / 10 &amp;amp;&amp;amp; num &amp;gt; 7)) return INT_MAX;
+                if (result &amp;lt; INT_MIN/10 || (result == INT_MIN / 10 &amp;amp;&amp;amp; num &amp;lt; -8)) return INT_MIN;
+
+                findSign = true;
+                result *= 10;
+                result = result + num;
+            }
+        }
+
+        return result;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 7. Reverse Integer</title><link>https://jaehee.dev/posts/leetcode---7-reverse-integer/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---7-reverse-integer/</guid><description>LEETCODE - 7. REVERSE INTEGER  문제 - LeetCode 7. Reverse Integer [https://leetcode.com/problems/reverse-integer/]   문제 설명  정수 123이 주어진다면 321로, -123이 주어</description><pubDate>Mon, 08 Nov 2021 14:07:30 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 7. Reverse Integer&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/reverse-integer/&quot;&gt;LeetCode 7. Reverse Integer&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;정수 123이 주어진다면 321로, -123이 주어진다면 -321, 1200이 주어진다면 21로 변환하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;while (x != 0)
+{   
+    if (result &amp;gt; (INT_MAX / 10)) return 0;
+    else if (result &amp;lt; (INT_MIN / 10)) return 0;
+
+    result *= 10;
+    result += (x % 10);
+
+    x /= 10;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;단순히 입력 값 x의 나머지를 result에 더하고 다음 순회시 result에 10을 곱하여 변환하는 방식을 사용했습니다.&lt;/p&gt;
+&lt;p&gt;입력값은 &lt;code&gt;int&lt;/code&gt; 타입이므로 32bit 크기의 자료형이기 때문에 만약 입력값이 뒤집었을 때 &lt;code&gt;int&lt;/code&gt; 자료형의 크기가 넘을 경우 0을 반환하는 예외 처리를 수행합니다.&lt;/p&gt;
+&lt;p&gt;이번 문제에서는 &lt;code&gt;INT_MAX&lt;/code&gt;의 값을 이용해 &lt;code&gt;int&lt;/code&gt; 타입의 범위를 검사하였지만, &lt;code&gt;long&lt;/code&gt;과 같이 &lt;code&gt;int&lt;/code&gt;타입보다 더 큰 자료형을 이용한다면 별도의 예외 처리가 필요하지 않습니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;0ms의 실행결과가 나왔으며, 다른 C++ 제출자에 비해 100% 좋은 성능이 보임을 확인할 수 있습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;cmath&amp;gt;
+#include &amp;lt;climits&amp;gt;
+
+class Solution 
+{
+public:
+    int reverse(int x) 
+    {
+        if (x == 0) return x;
+
+        int result = 0;
+
+        while (x != 0)
+        {   
+            if (result &amp;gt; (INT_MAX / 10)) return 0;
+            else if (result &amp;lt; (INT_MIN / 10)) return 0;
+
+            result *= 10;
+            result += (x % 10);
+
+            x /= 10;
+        }
+
+        return result;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 6. Zigzag Conversion</title><link>https://jaehee.dev/posts/leetcode---6-zigzag-conversion/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---6-zigzag-conversion/</guid><description>LEETCODE - 6. ZIGZAG CONVERSION  문제 - LeetCode 6. Zigzag Conversion [https://leetcode.com/problems/zigzag-conversion/]   문제 설명  지그재그 변환은 문자열을 지그재그로 변환</description><pubDate>Sun, 07 Nov 2021 19:29:40 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 6. Zigzag Conversion&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/zigzag-conversion/&quot;&gt;LeetCode 6. Zigzag Conversion&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;지그재그 변환은 문자열을 지그재그로 변환하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 문자열 &lt;code&gt;HELLOWORLD&lt;/code&gt;가 있다면&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;H     W
+E   W O
+L O   R D
+L     L
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;와 같이 변환하여 최종적으로 &lt;code&gt;HWEWOLORDLL&lt;/code&gt;로 변환하는게 목표입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;p&gt;제가 풀이한 방법은 지그재그의 규칙을 찾아 수식으로 계산하는 방법을 이용하였습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;문자열을 Row가 3, 4, 5일때 열 인덱스를 초록색으로 표시하였고, 빨간색 숫자로 일반 문자열의 인덱스를 표현하였다.&lt;/p&gt;
+&lt;p&gt;첫 번째 열과 마지막 열의 문자열의 인덱스는 row + (numOfRow - 1)*2로 표현할 수 있다&lt;/p&gt;
+&lt;p&gt;그리고 중간 열에는 무조건 중간에 문자가 하나씩 존재한다. 중간에 위치한 문자의 인덱스는 (row + (numOfRow - 1)*2) - ((row-1)*2)로 표현할 수 있다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;12ms의 실행 속도가 나왔으며, 다른 C++ 제출자에 비해 약 60%가량 좋은 성능을 보이게 되었다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+
+class Solution 
+{
+public:
+    std::string convert(std::string s, int numRows) 
+    {
+        if (numRows &amp;lt;= 1) return s;
+        
+        bool middle = false;
+        int curRow = 0;
+        int i = 0;
+        std::string result = &quot;&quot;;
+
+        while (result.size() != s.size())
+        {
+            int index = curRow + (i * ((numRows - 1) * 2));
+
+            if (curRow % (numRows - 1) != 0)
+            {
+                if (middle)
+                {
+                    index -= (curRow * 2);
+                    i--;
+                    middle = false;
+                }
+                else
+                {
+                    middle = true;
+                }
+            }
+
+            if (index &amp;gt;= s.size())
+            {
+                curRow++;
+                middle = false;
+                i = 0;
+
+                continue;
+            }
+
+            result += s[index];
+
+            i++;
+        }
+
+        return result;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 5. Longest Palindromic Substring</title><link>https://jaehee.dev/posts/leetcode---5-longest-palindromic-substring/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---5-longest-palindromic-substring/</guid><description>LEETCODE - 5. LONGEST PALINDROMIC SUBSTRING  문제 - LeetCode 5. Longest Palindromic Substring [https://leetcode.com/problems/longest-palindromic-substri</description><pubDate>Sat, 06 Nov 2021 23:49:00 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 5. Longest Palindromic Substring&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/longest-palindromic-substring/&quot;&gt;LeetCode 5. Longest Palindromic Substring&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;이번 문제는 주어진 문자열에서 가장 긴 회문(Palindrome)을 구하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;회문은 위의 예시 이미지와 같이 문자열을 뒤집어도 동일한 문자열인 경우를 말합니다.&lt;/p&gt;
+&lt;p&gt;다만, 이번 문제에서는 주어진 문자열이 회문이 아닌, 문자열 내에서 회문인 가장 긴 부분 문자열을 반환하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution 1 - Brute force&lt;/h3&gt;
+&lt;p&gt;첫 번째로 시도한 방법은 Brute force, 단순히 2중 반복문을 통하여 문자열을 n...j까지 n과 j를 1씩 늘려가며 회문인지 검사하고 반환하는 방법입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int i = 0 ; i &amp;lt; s.size() ; i++)
+{
+    for (int j = i ; j &amp;lt; s.size() ; j++)
+    {
+        auto substr = std::string_view(&amp;amp;s[i], (j - i) + 1);
+        if (isPalindrome(substr))
+        {
+            if (longestLength &amp;lt; (j - i) + 1)
+            {
+                longestLength = (j - i) + 1;
+                start = i;
+            }
+        }
+    }
+}
+
+return s.substr(start, longestLength);
+...
+
+bool isPalindrome(const std::string_view&amp;amp; s)
+{
+    auto length = s.size();
+
+    for (std::size_t i = 0; i &amp;lt; length; i++)
+    {
+        if (s[i] != s[length - i - 1]) return false;
+    }
+    
+    return true;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;회문을 찾을 수 있는 아주 간단한 방법입니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;하지만 위 코드를 제출하니 Time Limite Exeeded, 시간 초과가 발생하였습니다.&lt;/p&gt;
+&lt;p&gt;위 코드는 i..j까지 반복문을 순회할 때의 시간 복잡도는 O(n^2)이며, 회문을 검사하는 코드의 시간 복잡도는 O(n)입니다. 즉 최종적으로 시간 복잡도가 O(n^3)의 코드이기에 매우 긴 문자열을 검사할 때 시간 초과가 발생하게 되었습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+#include &amp;lt;string_view&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+
+class Solution 
+{
+public:
+    std::string longestPalindrome(std::string s) 
+    {
+        if (s.size() == 1 || s.size() == 0) return s;
+
+        int longestLength = 0;
+        int start = 0;
+
+        for (int i = 0 ; i &amp;lt; s.size() ; i++)
+        {
+            for (int j = i ; j &amp;lt; s.size() ; j++)
+            {
+                auto substr = std::string_view(&amp;amp;s[i], (j - i) + 1);
+                if (isPalindrome(substr))
+                {
+                    if (longestLength &amp;lt; (j - i) + 1)
+                    {
+                        longestLength = (j - i) + 1;
+                        start = i;
+                    }
+                }
+            }
+        }
+        
+        return s.substr(start, longestLength);
+    }
+
+private:
+    bool isPalindrome(const std::string_view&amp;amp; s)
+    {
+        auto length = s.size();
+
+        for (std::size_t i = 0; i &amp;lt; length; i++)
+        {
+            if (s[i] != s[length - i - 1]) return false;
+        }
+        
+        return true;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution 2 - Dynamic programming&lt;/h3&gt;
+&lt;p&gt;두 번째 방법은 동적 프로그래밍(Dynamic programming)을 이용한 풀이입니다.&lt;/p&gt;
+&lt;p&gt;회문의 특성을 생각해볼때 만약 &lt;em&gt;abcba&lt;/em&gt;라는 회문 문자열이 존재한다면 해당 문자열의 부분 문자열 &lt;em&gt;bcb&lt;/em&gt;또한 회문이며, &lt;em&gt;bcb&lt;/em&gt;의 부분 문자열 &lt;em&gt;c&lt;/em&gt;또한 회문임을 알 수 있습니다.&lt;/p&gt;
+&lt;p&gt;두 번째로 문자가 하나인 경우 &lt;em&gt;c&lt;/em&gt;와 같은 경우는 무조건 회문입니다. 그리고 만약 &lt;em&gt;c&lt;/em&gt;의 앞뒤로 문자가 하나씩 추가 될 때 두 문자가 같다면, &lt;em&gt;bcb&lt;/em&gt;가 된다면 이 또한 회문이 됩니다.&lt;/p&gt;
+&lt;p&gt;이러한 특성과 동적 프로그래밍을 이미 회문을 검사한 문자열을 또 검사하지 않고 새로운 회문 문자열을 찾을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;먼저 규칙을 정의합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;S(i, j) : 문자열 S에 대해서 i번째부터 j번째까지의 부분 문자열&lt;/li&gt;
+&lt;li&gt;S(i, i) = 회문&lt;/li&gt;
+&lt;li&gt;S(i, i+1) = S_i == S_i+1일 경우 회문&lt;/li&gt;
+&lt;li&gt;S(i, j) = S(i+1, j-1) &amp;amp;&amp;amp; S_i == S_j 일 경우 회문&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2번 규칙의 경우 S(i, i)는 S문자열의 i번째부터 i번째까지 부분 문자열, 즉 하나의 문자에 대해서 회문임을 확인하기에 무조건 회문입니다.&lt;/p&gt;
+&lt;p&gt;3번 규칙은 S(i, i+1)는 선택한 문자와 인접한 문자가 같다면 회문임을 나타냅니다. &lt;strong&gt;&quot;bb&quot;&lt;/strong&gt; 와 같은 경우를 나타냅니다.&lt;/p&gt;
+&lt;p&gt;4번 규칙은 위에서 말했듯이 부분 문자열이 회문이고, 앞 뒤로 추가되는 문자열이 같다면 새로 추가되는 문자열도 회문임을 나타냅니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;std::vector&amp;lt;std::vector&amp;lt;bool&amp;gt;&amp;gt; dp(s.size(), std::vector&amp;lt;bool&amp;gt;(s.size(), false));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;std::vector&lt;/code&gt; STL 컨테이너를 이용해 2차원 동적 배열을 선언합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int j = 0 ; j &amp;lt; s.size() ; j++)
+{
+    for (int i = 0 ; i &amp;lt;= j ; i++)
+    {
+        bool same = s[i] == s[j];
+
+        // 문자열 길이가 2이상일때는 dp[i + 1][j - 1]즉, substr이 회문이여야 함
+        // 문자열 길이가 2일경우(i, i+1) 두 문자가 같아야 회문
+        // 문자열 길이가 1일경우 무조건 회문
+        dp[i][j] = j - i &amp;gt; 2 ? (dp[i + 1][j - 1] &amp;amp;&amp;amp; same) : same;
+        
+        if ((longestLen &amp;lt; (j - i + 1)) &amp;amp;&amp;amp; dp[i][j])
+        {
+            longestLen = j - i + 1;
+            start = i;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;i와 j는 각각 S(i, j)로 부분문자열 시작 index인 i부터 j까지를 나타냅니다. &lt;/p&gt;
+&lt;p&gt;j - i가 2보다 작으면 규칙 2와 규칙 3을 적용할 수 있기에 단순히 S_i와 S_j를 비교한 결과가 저장됩니다.&lt;/p&gt;
+&lt;p&gt;j - i가 2보다 큰 경우는 문자열의 길이가 최소 3이상이므로 부분 문자열이 회문인지 검사하고 새로 추가된 문자 둘이 같은지 확인해야 합니다. S(i, j)의 부분 문자열 S(i+1, j-1)은 이미 계산이 되어 배열에 삽입되어 있을태니 추가로 계산할 필요 없이 값을 조회만 하면 됩니다.&lt;/p&gt;
+&lt;p&gt;마지막으로 지금 확인한 문자열이 회문이고 가장 길다면 해당 문자열의 인덱스를 저장합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;1번 해결 방법의 경우 O(n^3)이기 때문에 시간 초과가 발생했지만, 이번 방법의 경우 O(n^2)의 시간 복잡도이기 때문에 시간 초과가 발생하지 않았습니다.&lt;/p&gt;
+&lt;p&gt;784ms 시간이 소요되었으며 다른 C++코드 제출자에 비해서 10% 정도의 성능밖에 보이지 않았습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+#include &amp;lt;string_view&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;vector&amp;gt;
+
+class Solution 
+{
+public:
+    std::string longestPalindrome(std::string s) 
+    {
+        if (s.size() == 1 || s.size() == 0) return s;
+
+        int longestLen = 0;
+        int start = 0;
+
+        std::vector&amp;lt;std::vector&amp;lt;bool&amp;gt;&amp;gt; dp(s.size(), std::vector&amp;lt;bool&amp;gt;(s.size(), false));
+
+        // 열 기반으로 탐색
+        for (int j = 0 ; j &amp;lt; s.size() ; j++)
+        {
+            for (int i = 0 ; i &amp;lt;= j ; i++)
+            {
+                bool same = s[i] == s[j];
+
+                // 문자열 길이가 2이상일때는 dp[i + 1][j - 1]즉, substr이 회문이여야 함
+                // 문자열 길이가 2일경우(i, i+1) 두 문자가 같아야 회문
+                // 문자열 길이가 1일경우 무조건 회문
+                dp[i][j] = j - i &amp;gt; 2 ? (dp[i + 1][j - 1] &amp;amp;&amp;amp; same) : same;
+                
+                if ((longestLen &amp;lt; (j - i + 1)) &amp;amp;&amp;amp; dp[i][j])
+                {
+                    longestLen = j - i + 1;
+                    start = i;
+                }
+            }
+        }
+
+        return s.substr(start, longestLen);
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution 3 - Expand around center&lt;/h3&gt;
+&lt;p&gt;회문을 검사하기 위해서는 문자열을 시작과 끝을 정해서 회문을 검사하는 방법도 있지만, 문자열의 가운데부터 좌우로 확장하면서 회문임을 검사하는 방법도 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int i = 0 ; i &amp;lt; s.size() ; i++)
+{
+    int len1 = expandAroundCenter(s, i, i);
+    int len2 = expandAroundCenter(s, i, i + 1);
+    int len = std::max(len1, len2);
+
+    if (len &amp;gt; end - start)
+    {
+        start = i - (len - 1) / 2;
+        end = i + len / 2;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;expandAroundCenter&lt;/code&gt; 함수는 i를 기준으로 좌우로 확장하며 회문인지 검사하는 함수입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int expandAroundCenter(const std::string&amp;amp; s, int left, int right)
+{
+    while ( left &amp;gt;= 0 &amp;amp;&amp;amp; right &amp;lt; s.size() &amp;amp;&amp;amp; s[left] == s[right])
+    {
+        left--;
+        right++;
+    }
+
+    return right - left - 1;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;expandAroundCenter&lt;/code&gt; 함수를 i와 i+1에 대해서 호출하는 이유는 문자열이 짝수인경우 회문의 중앙 문자가 2개가 존재하기 때문에 두 경우 중 긴 문자열을 선택합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;이번 방법의 시간 복잡도는 O(n^2)이며 동적 프로그래밍과 동일합니다. 다만 공간 복잡도가 동적 프로그래밍은 O(n^2)이지만, 이번 방법의 공간 복잡도는 O(1)이기때문에 동적 프로그래밍 방법과 비교하면 메모리 사용량에서 많은 차이가 발생함을 확인할 수 있습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+
+class Solution 
+{
+public:
+    std::string longestPalindrome(std::string s) 
+    {
+        if (s.size() == 1 || s.size() == 0) return s;
+
+        int start = 0;
+        int end = 0;
+
+        for (int i = 0 ; i &amp;lt; s.size() ; i++)
+        {
+            int len1 = expandAroundCenter(s, i, i);
+            int len2 = expandAroundCenter(s, i, i + 1);
+            int len = std::max(len1, len2);
+
+            if (len &amp;gt; end - start)
+            {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        
+        return s.substr(start, (end - start) + 1);
+    }
+private:
+    int expandAroundCenter(const std::string&amp;amp; s, int left, int right)
+    {
+        while ( left &amp;gt;= 0 &amp;amp;&amp;amp; right &amp;lt; s.size() &amp;amp;&amp;amp; s[left] == s[right])
+        {
+            left--;
+            right++;
+        }
+
+        return right - left - 1;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>LeetCode - 4. Median of Two Sorted Arrays</title><link>https://jaehee.dev/posts/leetcode---4-median-of-two-sorted-arrays/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---4-median-of-two-sorted-arrays/</guid><description>LEETCODE - 4. MEDIAN OF TWO SORTED ARRAYS  문제 - LeetCode 4. Add Two Numbers [https://leetcode.com/problems/add-two-numbers/]   문제 설명  정수 값이 담겨있으며 정렬된 </description><pubDate>Fri, 29 Oct 2021 17:36:45 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 4. Median of Two Sorted Arrays&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/add-two-numbers/&quot;&gt;LeetCode 4. Add Two Numbers&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;정수 값이 담겨있으며 정렬된 두 배열이 넘어올 때 두 배열의 중앙값(Median)을 계산하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/%EC%A4%91%EC%95%99%EA%B0%92&quot;&gt;중앙값&lt;/a&gt;은 정렬될 수의 배열 중 중앙에 위치하는 값을 말합니다. 수의 개수가 홀수라면 하나가 선택될 것이고, 짝수라면 두 수를 골라 평균을 계산하여 중앙값을 구할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;만약 위 이미지와 같이 2개의 정렬된 정수 배열이 전달된다면 두 배열의 수를 나란히 나열하면 1, 1, 2, 3, 10, 10, 20, 45, 55, 70으로 나열할 수 있으며 10, 10이 중간값으로 선택되니 (10+10)/2 = 10, 즉 최종적으로 10이 중간값이 될 것입니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;HARD&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://youtu.be/q6IEA26hvXc&quot;&gt;Reference Video&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;본 문제를 해결하기 위해 위 영상의 설명의 도움을 받았습니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;p&gt;중간값을 구하기 먼저 문제에 제한사항이 있었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;소스 코드의 시간 복잡도는 O(log(m+n))(m, n은 배열)이 넘지 않아야 합니다. 이로 인해 두 배열을 하나로 합쳐 중간값을 구할 수 없습니다.&lt;/p&gt;
+&lt;p&gt;두 배열을 하나로 합치기 위해서는 m, n을 순회해야 하므로 O(m+n)의 시간 복잡도가 발생하는데 이는 O(m+n) &amp;gt; O(log(m+n))이므로 배열을 합치지 않고 찾아야 합니다.&lt;/p&gt;
+&lt;p&gt;이를 해결하기 위해 생각한 방법은 이진 탐색과 비슷한 논리를 이용하는 방법을 떠올렸습니다.&lt;/p&gt;
+&lt;p&gt;이진 탐색을 수행하기 위해서는 배열이 정렬되어있어야 하고, 맨 처음 중간 값을 골랐을 때 정렬된 배열이라면 중간 값의 왼쪽 값은 당연히 중간 값 보다 작거나 같아야하고, 우측 값은 무조건 중간 값보다 크거나 같아야 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;두 번째 특성은 중간값을 선택하면 중간 값보다 작은 값의 개수와 큰 값의 개수가 동일하다는 것입니다.&lt;/p&gt;
+&lt;p&gt;이러한 특성을 이용해 두 배열을 합치지 않고 중앙값을 구할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;배열의 적절한 Left, Middle, Right 범위 구하기&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;맨 처음으로 배열의 중앙값을 구하기 위해서 중앙값을 골랐을 때 작은 값과 큰 값의 개수가 같음을 이용해 적절한 Left(작은 값의 범위), Middle(중앙값), Right(큰 값의 범위)를 구합니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;두 배열의 길이는 10이기에 두 배열이 하나라고 생각할 때 5, 5로 두 개로 분리할 수 있을 것입니다. 이때 중앙값을 기준으로 Left에 위치한 5개 값, Right에 위치한 5개 값입니다.&lt;/p&gt;
+&lt;p&gt;먼저 A 배열의 중앙값(A_left)을 선택합니다. 위 그림에서는 3번째가 선택되었으며 Left에 위치한 값 5개를 채우기 위해 B 배열에서 2번째를 선택해 B의 중앙값(B_left)를 선택합니다. 총 5개의 Left가 선택되었으며 나머지 5개를 자동으로 Left보다 큰 값, Right로 선택합니다.&lt;/p&gt;
+&lt;p&gt;이제 Left, Right나눈 결과가 적절한지 확인합니다, Left의 값들은 무조건 Right의 값보다 작아야 합니다.&lt;/p&gt;
+&lt;p&gt;1, 1, 1, 2, 3 &amp;lt;-Left  Right-&amp;gt; 2, 10, 45, 55, 70&lt;/p&gt;
+&lt;p&gt;Left에 3이라는 값이 있지만 Right에 3보다 작은 2가 분류되어있어 지금 선택된 Left와 Right는 적절하지 않음을 알 수 있습니다. &lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;단순하게 사람의 눈으로 보면 바로 구분이 되지만, 이를 확실하게 구분하는 방법은 A_left(A의 중앙값)은 B_left+1(B의 중앙값의 다음 값)보다 작아야합니다. 반대의 경우도 B_left &amp;lt;= A_left+1이여야 합니다.&lt;/p&gt;
+&lt;p&gt;이를 해결하기 위해 A의 중앙값 index를 1 감소시키고, B의 중앙값을 1 증가시킵니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;다시 적절한 분류인지 확인합니다.&lt;/p&gt;
+&lt;p&gt;1, 1, 1, 2, 2 &amp;lt;-Left  Right-&amp;gt; 3, 10, 45, 55, 70&lt;/p&gt;
+&lt;p&gt;다시 확인해보니 적절하게 분류되었습니다. 이제 중앙값을 선택해야하는데, 위 처럼 정리하는것은 편의상 일렬로 나란히 정렬한것이지만, 실제로는 두 배열의 index를 각각 가지고 있기 때문에 적절하게 선택할 방법이 필요합니다.&lt;/p&gt;
+&lt;p&gt;이는 간단하게 수행할 수 있습니다. Left로 분류된 값 중 가장 큰 값이 중앙값일것이며 Right로 분류된 값 중 가장 작은 값이 중앙값일것입니다.&lt;/p&gt;
+&lt;p&gt;즉 &lt;code&gt;(max(A_left, B_left) + max(A_right, B_right))/2&lt;/code&gt;가 중앙값이 될 것입니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행시간은 20ms로 다른 C++ 제출자에 비해 96%가량 좋은 성능을 보이는 코드를 작성할 수 있었습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;vector&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;limits&amp;gt;
+
+class Solution 
+{
+public:
+    double findMedianSortedArrays(std::vector&amp;lt;int&amp;gt;&amp;amp; nums1, std::vector&amp;lt;int&amp;gt;&amp;amp; nums2) 
+    {
+        if (nums1.size() == 0 &amp;amp;&amp;amp; nums2.size() == 0)
+        {
+            return 0.0;
+        }
+
+        int totalLength = nums1.size() + nums2.size();
+        int half = totalLength / 2;
+        
+        std::vector&amp;lt;int&amp;gt;&amp;amp; A = nums1;
+        std::vector&amp;lt;int&amp;gt;&amp;amp; B = nums2;
+
+        if (nums1.size() &amp;lt; nums2.size())
+        {
+            auto tmp = A;
+            A = nums2;
+            B = tmp;
+        }
+
+        if (A.size() == 0)
+        {
+            int mid = B.size() / 2;
+            if ((B.size() % 2) == 0)
+            {
+                return (B[mid - 1] + B[mid]) / 2.0;
+            }
+            else
+            {
+                return (double)B[mid];
+            }
+        }
+        else if (B.size() == 0)
+        {
+            int mid = A.size() / 2;
+            if ((A.size() % 2) == 0)
+            {
+                return (A[mid - 1] + A[mid]) / 2.0;
+            }
+            else
+            {
+                return (double)A[mid];
+            }
+        }
+
+        int l = 0;
+        int r = A.size() - 1;
+
+        do 
+        {
+            int aLeftMidIndex = (l + r) /2;
+            int bLeftMidIndex = half - aLeftMidIndex - 2;
+
+            int aLeft = aLeftMidIndex &amp;gt;= 0 ? A[aLeftMidIndex] : std::numeric_limits&amp;lt;int&amp;gt;::min();
+            int aRight = (aLeftMidIndex + 1) &amp;lt; A.size() ? A[(aLeftMidIndex + 1)] : std::numeric_limits&amp;lt;int&amp;gt;::max();
+            int bLeft = bLeftMidIndex &amp;gt;= 0 ? B[bLeftMidIndex] : std::numeric_limits&amp;lt;int&amp;gt;::min();
+            int bRight = (bLeftMidIndex + 1) &amp;lt; B.size() ? B[(bLeftMidIndex + 1)] : std::numeric_limits&amp;lt;int&amp;gt;::max();
+
+            if (aLeft &amp;lt;= bRight &amp;amp;&amp;amp; bLeft &amp;lt;= aRight)
+            {
+                if ((totalLength % 2) == 0)
+                {
+                    return (std::max(aLeft, bLeft) + std::min(aRight, bRight)) / 2.0;
+                }
+                else
+                {
+                    return (double)std::min(aRight, bRight);
+                }
+            }
+            else if (aLeft &amp;gt; bRight)
+            {
+                r--;
+            }
+            else if (bLeft &amp;gt; aRight)
+            {
+                r++;
+            }
+        } while(true);
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+</content:encoded></item><item><title>LeetCode - 3. Longest Substring Without Repeating Characters</title><link>https://jaehee.dev/posts/leetcode---3-longest-substring-without-repeating-characters/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---3-longest-substring-without-repeating-characters/</guid><description>LEETCODE - 3. LONGEST SUBSTRING WITHOUT REPEATING CHARACTERS  문제 - LeetCode 3. Longest Substring Without Repeating Characters [https://leetcode.com/pr</description><pubDate>Wed, 27 Oct 2021 21:47:50 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 3. Longest Substring Without Repeating Characters&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/longest-substring-without-repeating-characters/&quot;&gt;LeetCode 3. Longest Substring Without Repeating Characters&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;특정 문자열 &lt;code&gt;s&lt;/code&gt;가 주어질 때 똑같은 문자를 반복하지 않는, 가장 긴 부분 문자열을 구하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;만약 입력 문자열이 &lt;code&gt;s = &quot;abcabcbb&quot;&lt;/code&gt;라면 반복하는 bb를 제외하고, 반복하지 않는 문자열인 &quot;abc&quot;의 길이인 3이 구해집니다.&lt;/p&gt;
+&lt;p&gt;즉, 부분 문자열에서 동일한 문자가 없는, 가장 긴 길이의 부분 문자열을 구합니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution 1 - Brute force&lt;/h3&gt;
+&lt;p&gt;첫 번째 시도는 무차별 대입을 통한 검사를 진행합니다.&lt;/p&gt;
+&lt;p&gt;만약 s 문자열의 길이가 n이라면 i가 0-&amp;gt;n 일때 i ~ n사이의 부분 문자열을 계속 찾습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int lengthOfLongestSubstring(std::string s) 
+{
+    int longestLength = 0;
+
+    for (int i = 0 ; i &amp;lt; s.size() ; i++)
+    {
+        int length = 0;
+        int sliceStart = i;
+
+        for (int j = i ; j &amp;lt; s.size() ; j++)
+        {
+            std::string substr = s.substr(sliceStart, length);
+            int pos = substr.find_first_of(s.at(j));
+
+            if (pos == std::string::npos)
+            {
+                // Not found
+                length++;
+
+                longestLength = (longestLength &amp;lt; length) ? length : longestLength;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (s.size() - i &amp;lt; longestLength) break;
+    }
+
+    return longestLength;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;중첩된 반복문을 이용해 모든 경우의 수를 탐색합니다.&lt;/p&gt;
+&lt;p&gt;문자열을 찾는 주요 부분은 내부 반복문이니 내부 반복문만 따로 빼서 확인해보겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int j = i ; j &amp;lt; s.size() ; j++)
+{
+    std::string substr = s.substr(sliceStart, length);
+    int pos = substr.find_first_of(s.at(j));
+
+    if (pos == std::string::npos)
+    {
+        // Not found
+        length++;
+
+        longestLength = (longestLength &amp;lt; length) ? length : longestLength;
+    }
+    else
+    {
+        break;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;j는 i -&amp;gt; n까지 증가합니다. 문자열 s를 i부터 length 길이만큼 잘라 부분 문자열을 생성합니다. 문자열 s의 j번째 문자를 가져와 현재 부분 문자열에 동일한 문자가 있는지 검사합니다.&lt;/p&gt;
+&lt;p&gt;만약 현재 추출한 부분 문자열에 동일한 문자(중복되는 문자)가 없다면 부분 문자열의 길이를 1 증가합니다.&lt;/p&gt;
+&lt;p&gt;중복된 문자열이 존재하다면 반복문을 탈출합니다.&lt;/p&gt;
+&lt;p&gt;위 반복문을 s문자열의 길이 n번만큼 반복합니다. 즉, O(n^2)의 알고리즘이 됩니다. 추가로 이 코드에서는 문자열을 탐색할 때 라이브러리의 함수를 사용하였지만, 선형 탐색을 통하여 문자열을 탐색한다면 O(n^3)의 알고리즘이 될 수도 있습니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 시간은 628ms, 메모리 사용량은 273.1MB가 나오게 되었습니다. 동일한 C++ 제출자에 비해서 8.92% 정도밖에 빠르지 않은 매우 느린 코드임을 알 수 있습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+
+class Solution 
+{
+public:
+    int lengthOfLongestSubstring(std::string s) 
+    {
+        int longestLength = 0;
+
+        for (int i = 0 ; i &amp;lt; s.size() ; i++)
+        {
+            int length = 0;
+            int sliceStart = i;
+
+            for (int j = i ; j &amp;lt; s.size() ; j++)
+            {
+                std::string substr = s.substr(sliceStart, length);
+                int pos = substr.find_first_of(s.at(j));
+
+                if (pos == std::string::npos)
+                {
+                    // Not found
+                    length++;
+
+                    longestLength = (longestLength &amp;lt; length) ? length : longestLength;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            if (s.size() - i &amp;lt; longestLength) break;
+        }
+
+        return longestLength;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution 2 - Sliding window&lt;/h3&gt;
+&lt;p&gt;첫 번째 방법의 문제점은 중첩된 반복문을 순회하면서 이미 검사한 문자열을 또 다시 검사하기 때문에 좋은 속도가 나지 않았습니다.&lt;/p&gt;
+&lt;p&gt;아이디어를 살짝 바꾸어서 생각해보겠습니다. 문자열 &lt;code&gt;s = &quot;abcabcbb&quot;&lt;/code&gt;가 주어질 때 여기서 중복되지 않는 문자들의 집합인 부분 문자열의 길이가 가장 긴 것을 구하는 것입니다.&lt;/p&gt;
+&lt;p&gt;때문에 부분 문자열이 &quot;abc&quot;이든 &quot;bca&quot;이든 조건을 만족하면서 가장 긴 부분 문자열이 되게 됩니다.&lt;/p&gt;
+&lt;p&gt;문자열을 검사하면서 &quot;abc&quot;에서 &quot;abca&quot;가 되었다면 이때 문자 &quot;a&quot;가 겹치게 되므로 이 문자열은 정답이 될 수 없습니다. 하지만 &quot;abca&quot;를 다시 조건에 맞는 문자열로 바꾸는 방법은 맨 뒤의 &quot;a&quot;를 제거할 수도 있지만, 반대로 맨 처음의 &quot;a&quot;를 제거할 수도 있습니다.&lt;/p&gt;
+&lt;p&gt;즉, &quot;abca&quot; -&amp;gt; &quot;bca&quot;로 변환한다면 조건에 만족하는 문자열이 되게 됩니다. 이때 왼쪽의 index를 &lt;code&gt;left&lt;/code&gt;, 오른쪽의 index를 &lt;code&gt;right&lt;/code&gt;라 한다면 &lt;code&gt;left&lt;/code&gt;를 1 증가시키기만 하면 반복문을 처음부터 순회할 필요 없이 정답에 맞는 조건이 되게 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int lengthOfLongestSubstring(std::string s) 
+{
+    if (s.size() == 0) return 0;
+    else if (s.size() == 1) return 1;
+
+    int longestLength = 0;
+
+    int left = 0;
+    int right = 0;
+    int length = 0;
+
+    while(right &amp;lt; s.size())
+    {
+        std::string substr = s.substr(left, length);
+        auto pos = substr.find_first_of(s.at(right));
+
+        if (pos != std::string::npos)
+        {
+            left += (pos + 1);
+        }
+        
+        right++;
+        length = right - left;
+
+        longestLength = (longestLength &amp;lt; length) ? length : longestLength;
+    }
+
+    return longestLength;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;sliding window를 구성하는 left, right 변수를 추가하여 매 순회시 마다 right 즉, window를 늘려갑니다.&lt;/p&gt;
+&lt;p&gt;만약 중복되는 문자열이 부분 문자열 내에 있다면 해당 index(pos)만큼 더하여 window를 줄입니다(sliding).&lt;/p&gt;
+&lt;p&gt;오히려 코드가 훨씬 간단해지고 루프문도 하나로 줄었으니 O(n)정도의 성능을 기대할 수 있을 것 같습니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;코드의 실행 속도는 16ms로 향상되었으며 사용 메모리도 11.6MB로 크게 향상되었습니다. 다른 C++ 제출자에 비해서 66.67%의 빠른 성능을 보여줌을 확인할 수 있었습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;class Solution 
+{
+public:
+    int lengthOfLongestSubstring(std::string s) 
+    {
+        if (s.size() == 0) return 0;
+        else if (s.size() == 1) return 1;
+
+        int longestLength = 0;
+
+        int left = 0;
+        int right = 0;
+        int length = 0;
+
+        while(right &amp;lt; s.size())
+        {
+            std::string substr = s.substr(left, length);
+            auto pos = substr.find_first_of(s.at(right));
+
+            if (pos != std::string::npos)
+            {
+                left += (pos + 1);
+            }
+            
+            right++;
+            length = right - left;
+
+            longestLength = (longestLength &amp;lt; length) ? length : longestLength;
+        }
+
+        return longestLength;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution 3 - sliding window optimized std::string&lt;/h3&gt;
+&lt;p&gt;2 번째 방법의 경우 &lt;strong&gt;std::string&lt;/strong&gt;의 부분 문자열을 구하는 함수인 &lt;strong&gt;substr&lt;/strong&gt; 함수를 이용했습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;std::string substr = s.substr(left, length);
+auto pos = substr.find_first_of(s.at(right));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 함수가 현재 상황에서 발생하는 문제점은 &lt;strong&gt;substr&lt;/strong&gt;함수는 문자열을 자른 후 새로운 std::string 객체를 생성하여 반환하게 됩니다. 즉 문자열을 자른 후 메모리를 할당하는 과정이 생기기에 overhead가 발생합니다.&lt;/p&gt;
+&lt;p&gt;이러한 문제를 해결하기 위해서 C++ 17부터는 &lt;a href=&quot;https://en.cppreference.com/w/cpp/string/basic_string_view&quot;&gt;std::string_view&lt;/a&gt;라는 객체가 도입되었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;std::string_view&lt;/strong&gt; 객체는 기본적으로 char*의 포인터와 문자열의 길이(size)만 가지는 문자열 객체이며 사실상 char* 타입에 간단한 부분 문자열, 문자열 찾기와 같은 함수만 추가한 객체입니다.&lt;/p&gt;
+&lt;p&gt;객체의 생성, 탐색과 같은 부분이 최소 O(1)에서 O(n)내의 연산으로 이루어져있기 때문에 문자열을 이용해 복잡한 연산이나 변형을 하지 않고 탐색만 한다면 매우 적절한 클래스입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int lengthOfLongestSubstring(std::string s) 
+{
+    if (s.size() == 0) return 0;
+    else if (s.size() == 1) return 1;
+
+    int longestLength = 0;
+
+    int left = 0;
+    int right = 0;
+    int length = 0;
+
+    while(right &amp;lt; s.size())
+    {
+        // std::string -&amp;gt; std::string_view
+        std::string_view substr(&amp;amp;s[left], length);
+        auto pos = substr.find_first_of(s.at(right));
+
+        if (pos != std::string::npos)
+        {
+            left += (pos + 1);
+        }
+        
+        right++;
+        length = right - left;
+
+        longestLength = (longestLength &amp;lt; length) ? length : longestLength;
+    }
+
+    return longestLength;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;유일하게 변경된 점은 &lt;strong&gt;std::string&lt;/strong&gt; -&amp;gt; &lt;strong&gt;std::string_view&lt;/strong&gt;로만 변경되었습니다. 다행히 &lt;strong&gt;std::string_view&lt;/strong&gt;클래스도 substr을 지원하기 때문에 간단히 사용 가능합니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 시간은 4ms, 메모리는 6.7MB로 다른 방법에 비해서 속도와 메모리가 월등히 향상되었습니다.&lt;/p&gt;
+&lt;p&gt;다른 C++ 제출자에 비해서 96%나 빠른 성능을 보여줌을 확인할 수 있습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string&amp;gt;
+#include &amp;lt;string_view&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+
+class Solution 
+{
+public:
+    int lengthOfLongestSubstring(std::string s) 
+    {
+        if (s.size() == 0) return 0;
+        else if (s.size() == 1) return 1;
+
+        int longestLength = 0;
+
+        int left = 0;
+        int right = 0;
+        int length = 0;
+
+        while(right &amp;lt; s.size())
+        {
+            std::string_view substr(&amp;amp;s[left], length);
+            auto pos = substr.find_first_of(s.at(right));
+
+            if (pos != std::string::npos)
+            {
+                left += (pos + 1);
+            }
+            
+            right++;
+            length = right - left;
+
+            longestLength = (longestLength &amp;lt; length) ? length : longestLength;
+        }
+
+        return longestLength;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>LeetCode - 2. Add Two Numbers</title><link>https://jaehee.dev/posts/leetcode---2-add-two-numbers/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---2-add-two-numbers/</guid><description>LEETCODE - 2. ADD TWO NUMBERS  문제 - LeetCode 2. Add Two Numbers [https://leetcode.com/problems/add-two-numbers/]   문제 설명  두 개의 LinkedList가 주어지며, Linke</description><pubDate>Tue, 26 Oct 2021 22:21:00 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 2. Add Two Numbers&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/add-two-numbers/&quot;&gt;LeetCode 2. Add Two Numbers&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;두 개의 LinkedList가 주어지며, LinkedList는 음수가 아닌 한 자리의 숫자를 저장하는 Node들을 가지며, 해당 숫자들의 역순으로 음수가 아닌 하나의 정수를 표현합니다.
+&lt;/p&gt;
+&lt;p&gt;위 예시의 경우 &lt;code&gt;2-&amp;gt;4-&amp;gt;3&lt;/code&gt;으로 저장되는 LinkedList는 &lt;code&gt;342&lt;/code&gt;라는 숫자를 표현합니다.&lt;/p&gt;
+&lt;p&gt;동일하게 밑에 있는 &lt;code&gt;5-&amp;gt;6-&amp;gt;4&lt;/code&gt;는 &lt;code&gt;465&lt;/code&gt;라는 숫자를 표현하게 됩니다. 이때 두 수를 더하여 807이라는 값을 계산한 후 이를 &lt;code&gt;7-&amp;gt;0-&amp;gt;8&lt;/code&gt;로 표현되는 LinkedList로 반환하면 됩니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;MEDIUM&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;p&gt;첫 번째 생각했던 방법은 두 LinkedList에 저장된 숫자들을 각각 완성된 정수값으로 변환하여 덧셈 후 다시 LinkedList 형태로 변환하는 방법입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int multiplier = 0;
+int numOfl1 = 0;
+int numOfl2 = 0;
+
+for (ListNode* node = l1; node != nullptr ; node = node-&amp;gt;next)
+{
+    numOfl1 += node-&amp;gt;val * powl(10, multiplier);
+    multiplier++;
+}
+
+multiplier = 0;
+
+for (ListNode* node = l2; node != nullptr ; node = node-&amp;gt;next)
+{
+    numOfl2 += node-&amp;gt;val * powl(10, multiplier);
+    multiplier++;
+}
+
+int add = numOfl1 + numOfl2;
+
+ListNode* head = new ListNode(add % 10);
+ListNode* result = head;
+for (int num = add/10; num &amp;gt; 0 ; num /= 10 )
+{
+    int digit = num % 10;
+
+    ListNode* node = new ListNode(digit);
+    result-&amp;gt;next = node;
+
+    result = node;
+}
+
+return head;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;각각 완성된 정수로 변환 후 덧셈하여 다시 LinkedList로 변환하는 방법이지만, 큰 문제가 하나 발생하하였습니다.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;코드의 실행 결과 int형의 범위를 넘는 값이 입력된 경우 overflow가 발생해 음수가 되며 Runtime Error가 발생하였습니다.&lt;/p&gt;
+&lt;p&gt;이를 해결하기 위해 두 번째 방법을 사용하였습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int carry = 0;
+
+ListNode* node1 = l1;
+ListNode* node2 = l2;
+
+ListNode* head = nullptr;
+ListNode* lastNode = nullptr;
+
+while (node1 != nullptr || node2 != nullptr)
+{
+    int numOf1 = node1 ? node1-&amp;gt;val : 0;
+    int numOf2 = node2 ? node2-&amp;gt;val : 0;
+
+    int sum = numOf1 + numOf2 + carry;
+
+    carry = sum / 10;
+
+    ListNode* newNode = new ListNode(sum % 10);
+
+    if (!head) head = newNode;
+    else lastNode-&amp;gt;next = newNode;
+
+    lastNode = newNode;
+
+    if(node1) node1 = node1-&amp;gt;next;
+    if(node2) node2 = node2-&amp;gt;next;
+}
+
+if (carry &amp;gt; 0)
+{
+    ListNode* node = new ListNode(carry);
+    lastNode-&amp;gt;next = node;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;int 타입 대신 long, long long과 같은 64bit 타입을 쓴다면 당장의 문제는 해결될지 모르지만, 만약 더 큰 수가 들어온다면 동일한 에러가 발생할 것이 분명합니다.&lt;/p&gt;
+&lt;p&gt;생각을 바꾸어 완성된 정수 값으로 변환하고 더하는 것이 아닌, 한 자리씩 더하여 Node를 생성하고 LinkedList를 형성하면 됩니다.&lt;/p&gt;
+&lt;p&gt;여기서 추가로 신경써주어야 할 부분은 한 자리씩 더한 후에 발생하는 올림(carry)의 경우만 따로 저장해서 다음 자리 수를 더할 때 추가로 더해주면 됩니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
+    {
+        int carry = 0;
+
+        ListNode* node1 = l1;
+        ListNode* node2 = l2;
+
+        ListNode* head = nullptr;
+        ListNode* lastNode = nullptr;
+
+        while (node1 != nullptr || node2 != nullptr)
+        {
+            int numOf1 = node1 ? node1-&amp;gt;val : 0;
+            int numOf2 = node2 ? node2-&amp;gt;val : 0;
+
+            int sum = numOf1 + numOf2 + carry;
+
+            carry = sum / 10;
+
+            ListNode* newNode = new ListNode(sum % 10);
+
+            if (!head) head = newNode;
+            else lastNode-&amp;gt;next = newNode;
+
+            lastNode = newNode;
+
+            if(node1) node1 = node1-&amp;gt;next;
+            if(node2) node2 = node2-&amp;gt;next;
+        }
+
+        if (carry &amp;gt; 0)
+        {
+            ListNode* node = new ListNode(carry);
+            lastNode-&amp;gt;next = node;
+        }
+    
+        return head;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 시간은 28ms, 메모리 사용량은 71.4MB로 측정되었습니다. &lt;/p&gt;
+&lt;p&gt;다른 C++ 제출자보다 80% 좋은 속도를 보여주었다고 되어있는데, 더 빠른 속도의 코드를 확인해보니 거의 다 비슷비슷 한 것 같습니다. 정말 특별하게 최적화를 한 것이 아닌 이상 이정도가 평균일 것 같습니다.&lt;/p&gt;
+</content:encoded></item><item><title>LeetCode - 1. Two Sum</title><link>https://jaehee.dev/posts/leetcode---1-two-sum/</link><guid isPermaLink="true">https://jaehee.dev/posts/leetcode---1-two-sum/</guid><description>LEETCODE - 1. TWO SUM  문제 - LeetCode 1. Two Sun [https://leetcode.com/problems/two-sum/]   문제 설명  LeetCode의 1번 문제인 Two Sum은 정수형 배열과 target 숫자를 입력받습니다.</description><pubDate>Sun, 24 Oct 2021 22:10:27 GMT</pubDate><content:encoded>&lt;h2&gt;LeetCode - 1. Two Sum&lt;/h2&gt;
+&lt;p&gt;문제 - &lt;a href=&quot;https://leetcode.com/problems/two-sum/&quot;&gt;LeetCode 1. Two Sun&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;문제 설명&lt;/h2&gt;
+&lt;p&gt;LeetCode의 1번 문제인 Two Sum은 정수형 배열과 target 숫자를 입력받습니다. 그리고 정수형 배열 내 숫자들을 이용해 target 숫자를 만들 수 있는 숫자 2개를 찾아 index를 반환하는 문제입니다.&lt;/p&gt;
+&lt;p&gt;답은 &lt;strong&gt;정확히 하나만&lt;/strong&gt; 존재하며 같은 원소는 사용하지 않습니다.&lt;/p&gt;
+&lt;p&gt;난이도는 &lt;code&gt;EASY&lt;/code&gt; 난이도 입니다.&lt;/p&gt;
+&lt;h2&gt;풀이&lt;/h2&gt;
+&lt;h3&gt;Solution 1 - Brute force&lt;/h3&gt;
+&lt;p&gt;첫 번째로 떠올린 방법은 Brute force, 무차별 대입 방법입니다. 단순히 배열을 모두 순회하면서 두 숫자를 더했을 때 target 숫자와 동일한 index 두 개를 찾는 방법입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int x = 0 ; x &amp;lt; nums.size() ; x++)
+{
+    for (int y = x + 1 ; y &amp;lt; nums.size() ; y++)
+    {
+        int sumResult = nums[x] + nums[y];
+
+        if (target == sumResult)
+        {
+            return std::vector&amp;lt;int&amp;gt;{x, y};
+        }
+    }
+
+    return std::vector&amp;lt;int&amp;gt;();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;정말 심플합니다. 단순히 이중 반복문을 이용하여 배열을 순회하면서 하나하나 덧셈하여 target과 동일한 결과의 index를 반환합니다.&lt;/p&gt;
+&lt;p&gt;다만 특별한점이라면 내부의 중첩된 반복문은 &lt;code&gt;x + 1&lt;/code&gt;번째부터 시작하는데, 이는 문제에 적혀있던 같은 원소를 사용하지 않기 때문이며 그리고 숫자를 더할 때 &lt;code&gt;x + y&lt;/code&gt;나 &lt;code&gt;y + x&lt;/code&gt;의 결과는 동일하기 때문에 중복된 case를 수행하지 않게 하기 위함입니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;실행 시간은 &lt;code&gt;463ms&lt;/code&gt; 메모리는 &lt;code&gt;9.9MB&lt;/code&gt;사용하였다. 테스트 케이스가 55개밖에 안되는데 사실상 0.5초가량 걸렸습니다.&lt;/p&gt;
+&lt;p&gt;O(n^2)의 코드이기 때문에 그닥 빠른 알고리즘은 아니란걸 알 수 있습니다.&lt;/p&gt;
+
+코드 전문
+    
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;vector&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;tuple&amp;gt;
+
+class Solution
+{
+public:
+    std::vector&amp;lt;int&amp;gt; Answer(std::vector&amp;lt;int&amp;gt;&amp;amp; nums, int target)
+    {
+        for (int x = 0 ; x &amp;lt; nums.size() ; x++)
+        {
+            for (int y = x + 1 ; y &amp;lt; nums.size() ; y++)
+            {
+                int sumResult = nums[x] + nums[y];
+
+                if (target == sumResult)
+                {
+                    return std::vector&amp;lt;int&amp;gt;{x, y};
+                }
+            }
+        }
+
+        return std::vector&amp;lt;int&amp;gt;();
+    }
+};
+
+
+int main(void)
+{
+    Solution sol;
+
+    std::vector&amp;lt;std::tuple&amp;lt;std::vector&amp;lt;int&amp;gt;, int&amp;gt;&amp;gt; problems {
+        std::make_tuple(std::vector&amp;lt;int&amp;gt;{2, 7, 11, 15}, 9),
+        std::make_tuple(std::vector&amp;lt;int&amp;gt;{3, 2 ,4}, 6),
+        std::make_tuple(std::vector&amp;lt;int&amp;gt;{3, 3}, 6)
+    };
+
+    for (auto problem : problems)
+    {
+        auto answer = sol.Answer(std::get&amp;lt;0&amp;gt;(problem), std::get&amp;lt;1&amp;gt;(problem));
+
+        for (int num : answer)
+        {
+            std::cout &amp;lt;&amp;lt; num &amp;lt;&amp;lt; &quot; &quot;;
+        }
+        std::cout &amp;lt;&amp;lt; std::endl;
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h3&gt;Solution 2 - Hash table&lt;/h3&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;첫 번째 해결책은 O(n^2)의 코드이므로 이보다 더 빠른 해결책을 제시해보겠습니다.&lt;/p&gt;
+&lt;p&gt;첫 번째 방법의 문제점은 중첩된 반복문의 사용이며, 하나의 x를 정해 target에 맞는 y를 계속 찾는 방법입니다. 즉, 반복문이 돌며 x가 바뀌면 이전에 계산했던 모든 &lt;code&gt;x + y&lt;/code&gt;의 계산 결과는 없어지며 새로운 x를 정해 다시 y를 찾아가는 여행을 떠나야 되게 됩니다.&lt;/p&gt;
+&lt;p&gt;여기서 생각을 바꾸어 이전에 나왔던 x를 별도의 메모리에 저장하여 &lt;code&gt;diff = target - x&lt;/code&gt;를 수행하여 &lt;code&gt;diff&lt;/code&gt;에 해당 하는 값이 이전에 등장한 적이 있다면 &lt;code&gt;diff + x = target&lt;/code&gt;이 되므로 결국 diff와 x의 index를 반환하면 됩니다. 이렇게 되면 순회가 단 한번만 발생하니 O(n)이 됩니다.&lt;/p&gt;
+&lt;p&gt;그런데 여기서 또 발생하는 문제점은 x를 메모리에 저장한 후에 diff와 동일한 값을 찾을 때 저장한 공간을 순회해야 합니다. 만약 1차원 배열이라면 O(n)의 순회 시간이 발생할 것이며 즉, 결국 O(n^2)랑 차이가 없게되죠.&lt;/p&gt;
+&lt;p&gt;이를 해결하기 위해 일반 배열이 아닌 Hash Table을 사용합니다. Hash table은 Hash 함수를 key를 hash화 하여 저장할 index를 계산해 저장하는 방식이기 때문에 탐색과 삽입이 O(1)이 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//                num, index
+std::unordered_map&amp;lt;int, int&amp;gt; table;
+
+for (int x = 0 ; x &amp;lt; nums.size() ; x++)
+{
+    int diff = target - nums[x];
+
+    auto search = table.find(diff);
+    if (search != table.end())
+    {
+        return std::vector&amp;lt;int&amp;gt;{x, search-&amp;gt;second};
+    }
+
+    table.insert(std::make_pair(nums[x], x));
+}
+
+return std::vector&amp;lt;int&amp;gt;();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;C++의 &lt;a href=&quot;https://en.cppreference.com/w/cpp/container/unordered_map&quot;&gt;unordered_map&lt;/a&gt;은 key-value형태의 컨테이너이며 상수 시간내에 삽입, 삭제, 탐색, 비교가 이루어지는 자료구조 즉, Hash table입니다.&lt;/p&gt;
+&lt;p&gt;먼저 &lt;code&gt;diff = target - nums[x]&lt;/code&gt;를 통해 target에 x를 빼면 남는 값 diff가 이미 등장한 적이 있는지 확인합니다.
+만약 있다면 등장했었던 그 값의 index와 현재 x의 index를 반환하기만 하면 됩니다.&lt;/p&gt;
+&lt;p&gt;매우 간단하지만, 기존의 O(n^2) 코드에 비교하면 O(n)이므로 속도 향상이 매우 많이 이루어졌을 것이라고 생각됩니다.&lt;/p&gt;
+&lt;h4&gt;제출 결과&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;기존의 약 &lt;code&gt;500ms&lt;/code&gt;의 속도에서 &lt;code&gt;7ms&lt;/code&gt;의 속도로 70배 가까이 향상되었습니다. 다만 별도의 저장 공간을 사용했기에 메모리의 크기가 &lt;code&gt;9.9MB&lt;/code&gt;에서 &lt;code&gt;10.7MB&lt;/code&gt;로 증가했습니다.&lt;/p&gt;
+
+    코드 전문
+
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;vector&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;tuple&amp;gt;
+#include &amp;lt;unordered_map&amp;gt;
+
+class Solution
+{
+public:
+    std::vector&amp;lt;int&amp;gt; Answer(std::vector&amp;lt;int&amp;gt;&amp;amp; nums, int target)
+    {
+        //                num, index
+        std::unordered_map&amp;lt;int, int&amp;gt; table;
+
+        for (int x = 0 ; x &amp;lt; nums.size() ; x++)
+        {
+            int diff = target - nums[x];
+
+            auto search = table.find(diff);
+            if (search != table.end())
+            {
+                return std::vector&amp;lt;int&amp;gt;{x, search-&amp;gt;second};
+            }
+
+            table.insert(std::make_pair(nums[x], x));
+        }
+
+        return std::vector&amp;lt;int&amp;gt;();
+    }
+};
+
+
+int main(void)
+{
+    Solution sol;
+
+    std::vector&amp;lt;std::tuple&amp;lt;std::vector&amp;lt;int&amp;gt;, int&amp;gt;&amp;gt; problems {
+        std::make_tuple(std::vector&amp;lt;int&amp;gt;{2, 7, 11, 15}, 9),
+        std::make_tuple(std::vector&amp;lt;int&amp;gt;{3, 2 ,4}, 6),
+        std::make_tuple(std::vector&amp;lt;int&amp;gt;{3, 3}, 6)
+    };
+
+    for (auto problem : problems)
+    {
+        auto answer = sol.Answer(std::get&amp;lt;0&amp;gt;(problem), std::get&amp;lt;1&amp;gt;(problem));
+
+        for (int num : answer)
+        {
+            std::cout &amp;lt;&amp;lt; num &amp;lt;&amp;lt; &quot; &quot;;
+        }
+        std::cout &amp;lt;&amp;lt; std::endl;
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item></channel></rss>
