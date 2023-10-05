@@ -23,7 +23,7 @@ export const GET: APIRoute = async () => {
               {
                 type: "div",
                 props: {
-                  tw: "flex mb-24 text-6xl justify-center items-center",
+                  tw: "flex text-6xl justify-center items-center",
                   children: [
                     {
                       type: "div",
