@@ -92,10 +92,12 @@ const {
             </script>
         )}
 
-    <!-- Naver Search Advisor -->
-    {import.meta.env.PROD && (
-        <meta name="naver-site-verification" content="6d6d37b7cb8c33fa22601afa3a994e0526b4a43f" />
-    )}
+        <!-- Naver Search Advisor -->
+        {import.meta.env.PROD && (
+            <meta name="naver-site-verification" content="6d6d37b7cb8c33fa22601afa3a994e0526b4a43f" />
+        )}
+
+        <slot name="extra-head" />
 
 		<title>{title}</title>
 	</head>

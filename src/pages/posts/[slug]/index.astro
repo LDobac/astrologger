@@ -57,5 +57,8 @@ const ogProp: OgProp = {
     url={baseUrl + Astro.url.pathname}
     og={ogProp}
 >
+    <!-- Get the latest one from: https://katex.org/docs/browser -->
+    <link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet" slot="extra-head">
+
     <PostLayout post={post} />
 </Layout>
