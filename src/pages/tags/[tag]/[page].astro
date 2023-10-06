@@ -1,17 +1,18 @@
 ---
 import { slug as slugger } from "github-slugger";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import GetTagList from "@utils/GetTagList";
 import PostList from "@components/PostList.astro";
 import type {Page} from "astro";
 import Paginator from "@components/Paginator.astro";
 import { PAGE_SIZE } from "@utils/Constants";
+import {GetPosts} from "@utils/GetPosts";
 
 // @ts-expect-error
 export async function getStaticPaths ({ paginate }) {
     const tagList = await GetTagList();
-    const posts = await getCollection("posts");
+    const posts = await GetPosts(true);
     
     return tagList.flatMap((tag) => {
         const filteredPosts = posts.filter(post => post.data.tags ? post.data.tags.includes(tag) : false);
