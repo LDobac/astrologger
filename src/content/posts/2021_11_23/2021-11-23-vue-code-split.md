@@ -22,22 +22,22 @@ Webpack을 통해 여러 파일들이 하나의 파일로 출력된다면 장점
 
 이러한 메타데이터와 게시글 파일은 코드 내에서 동적으로 불러오고 있습니다.
 
-![](./assets/images/11-23_vue_code_split/post_loader_require.webp)
-![](./assets/images/11-23_vue_code_split/getcontent_require.webp)
+![](./images/post_loader_require.webp)
+![](./images/getcontent_require.webp)
 
 json, js 모듈을 동적으로 불러오기 위해 `require`을 이용해 다른 파일의 모듈을 불러오고 있습니다.
 
 위 방식을 이용해 블로그를 빌드하게 된다면
 
-![](./assets/images/11-23_vue_code_split/no_split_build.webp)
+![](./images/no_split_build.webp)
 
 단 5개의 파일만 출력되고 있습니다. chunk_vendors와 post_view js 파일은 제가 임의로 이미 코드를 split 해놓았기 때문에 문제가 없지만, 메타데이터와 게시글의 내용은 모두 app.js 파일 내에 들어가있습니다.
 
-![](./assets/images/11-23_vue_code_split/no_split_build_app_js.webp)
+![](./images/no_split_build_app_js.webp)
 
 빌드된 app.js 파일의 내용입니다. 알아보기는 힘들지만, 게시글의 모든 내용이 한 파일내에 담겨있습니다. 이 뜻은 유저가 제 블로그에 접속하면 원하지 않더라도 다른 모든 게시글의 내용을 강제로 로드하게 됩니다.
 
-![](./assets/images/11-23_vue_code_split/no_split_network_profile.webp)
+![](./images/no_split_network_profile.webp)
 
 현재 문제가 있는 상태에서 크롬의 개발자 도구 중 네트워크 profiler를 이용해 파일이 로드되는 과정을 확인해보았습니다.
 
@@ -60,7 +60,7 @@ webpack의 code split 기능을 이용해 각 게시글과 메타데이터를 �
 
 [Webpack Dynamic Import](https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import)
 
-![Webpack Dynamic Import eg](./assets/images/11-23_vue_code_split/webpack_dynamic_import.webp)
+![Webpack Dynamic Import eg](./images/webpack_dynamic_import.webp)
 
 단순히 import 함수를 호출해주기만 하면 *code split*과 *lazy loading*을 **둘 다** 기본적으로 수행합니다.
 
@@ -68,11 +68,11 @@ webpack의 code split 기능을 이용해 각 게시글과 메타데이터를 �
 
 즉, 기존의 아래 코드를 
 
-![](./assets/images/11-23_vue_code_split/getcontent_require.webp)
+![](./images/getcontent_require.webp)
 
 import 함수로 교체한다면 아래처럼 될 것 같습니다.
 
-![](./assets/images/11-23_vue_code_split/getcontent_no_name.webp)
+![](./images/getcontent_no_name.webp)
 
 아 그리고 require 함수를 동기적으로 동작하지만, import 함수는 비동기적으로 동작하기 때문에 Promise에 대한 처리를 해주어야 합니다. 
 
@@ -80,7 +80,7 @@ import 함수로 교체한다면 아래처럼 될 것 같습니다.
 
 자 다시 빌드해보도록 하겠습니다.
 
-![](./assets/images/11-23_vue_code_split/split_build_no_name.webp)
+![](./images/split_build_no_name.webp)
 
 단순히 5개였던 파일이 chunk-...js 라는 파일들로 여러개가 생겻습니다. 동시에 app.js 파일의 용량도 이전에 비해 줄어들었네요. 즉, 각 게시글 내용과 메타데이터가 별도의 파일로 분리 된 것입니다.
 
@@ -91,19 +91,19 @@ import 함수로 교체한다면 아래처럼 될 것 같습니다.
 
 정적 import시 code split과 동일하게 적절한 파일명을 지정할 수도 있고, 옵션을 전달할 수 있습니다.
 
-![](./assets/images/11-23_vue_code_split/webpack_dynamic_import_options.webp)
+![](./images/webpack_dynamic_import_options.webp)
 
 특이하게 주석을 통해서 해당 동적 import에 대한 옵션을 전달할 수 있습니다.
 
 자세한 설명은 [webpack dynamic import](https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import)문서에서 각 옵션에 대한 설명을 확인할 수 있습니다.
 
-![](./assets/images/11-23_vue_code_split/getcontent.webp)
+![](./images/getcontent.webp)
 
 위와 같이 주석을 추가하여 파일명을 적절하게 수정합니다. *[request]*는 파일명으로 치환되고 *[index]*는 단순하게 정수 index 값으로 치환됩니다.
 
 코드를 위와 같이 변경하고 다시 빌드를 수행합니다.
 
-![](./assets/images/11-23_vue_code_split/split_build.webp)
+![](./images/split_build.webp)
 
 각 분리된 파일들이 식별하기 좋은 이름으로 변경됨을 확인할 수 있습니다.
 
@@ -136,13 +136,13 @@ Webpack에서는 require 구문또한 lazy loading을 할 수 있는 기능을 �
 
 다시 한 번 크롬의 개발자 도구내 network profiler로 확인을 해보겠습니다.
 
-![](./assets/images/11-23_vue_code_split/split_network_profile_1.webp)
+![](./images/split_network_profile_1.webp)
 
 블로그 메인에 접속시 기존과 다르게 게시글 메타데이터에 대한 정보 파일이 분리되어 별도로 로딩됨을 확인할 수 있습니다. 또한 app.js의 파일 크기도 기존에는 800kb 크기에서 600kb쯔음의 크기로 줄어들었습니다.
 
 이제 게시글 하나에 접속해보겠습니다.
 
-![](./assets/images/11-23_vue_code_split/split_network_profile_2.webp)
+![](./images/split_network_profile_2.webp)
 
 새로운 파일이 하나 로드되었고, 해당 파일이 post-...로 시작하니 게시글 내용을 담은 파일임을 확인할 수 있습니다. 즉, 블로그에 접속하면 모든 게시글 내용을 다 불러오는게 아니라, 게시글을 조회할때만 해당 게시글의 내용을 lazy loading함을 확인할 수 있습니다.
 
