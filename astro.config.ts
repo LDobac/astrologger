@@ -11,7 +11,15 @@ const rehypePrettyCodeOptions = {
 export default defineConfig({
     markdown: {
         syntaxHighlight: false,
-        remarkPlugins: ["remark-math"],
+        remarkPlugins: [
+            "remark-math", 
+            [
+                "remark-toc", 
+                {
+                    heading: "(table[ -]of[ -])?contents?|toc|index|목차"
+                }
+            ]
+        ],
         rehypePlugins: [
             [rehypePrettyCode, rehypePrettyCodeOptions], 
             "rehype-katex"
