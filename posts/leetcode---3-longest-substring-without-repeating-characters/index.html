@@ -4,8 +4,8 @@
                 gtag('js', new Date());
 
                 gtag('config', 'G-BLG37NTK4J');
-            </script><!-- Naver Search Advisor --><meta name="naver-site-verification" content="6d6d37b7cb8c33fa22601afa3a994e0526b4a43f"><link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet"><title>LeetCode - 3. Longest Substring Without Repeating Characters</title><link rel="stylesheet" href="/asset_dir/index.7d0fd359.css" />
-<link rel="stylesheet" href="/asset_dir/index.accceb83.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/asset_dir/profile_image.bd953236_Z1mQw6L.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---3-longest-substring-without-repeating-characters.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 3. Longest Substring Without Repeating Characters" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 3. Longest Substring Without Repeating Characters</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/medium/1"><span>medium</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>2021년 10월 28일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---3-longest-substring-without-repeating-characters">LeetCode - 3. Longest Substring Without Repeating Characters</h2>
+            </script><!-- Naver Search Advisor --><meta name="naver-site-verification" content="6d6d37b7cb8c33fa22601afa3a994e0526b4a43f"><link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet"><title>LeetCode - 3. Longest Substring Without Repeating Characters</title><link rel="stylesheet" href="/asset_dir/index.8c8a9312.css" />
+<link rel="stylesheet" href="/asset_dir/index.bbac7bfd.css" /></head><body class="w-full"><header class="flex flex-col w-full justify-center items-center mt-6"><a href="/"><img src="/asset_dir/profile_image.bd953236_Z1mQw6L.webp" class="rounded-full w-28" alt="Profile image with cat" width="200" height="200" loading="lazy" decoding="async"><p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p></a><p class="mt-1">Hi!</p><nav class="container border-y py-4 mt-6"><ul class="w-full flex justify-between px-6 font-bold"><li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li><li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li><li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li><li class="hover:text-sky-300"><a href="https://www.instagram.com/jaehee24_/">Instagram</a></li></ul></nav></header><main class="container my-6 px-4 mx-auto xl:p-0"><div class=""><header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6"><img src="/posts/leetcode---3-longest-substring-without-repeating-characters.png" class="w-full bg-black" alt="Thumbnail of LeetCode - 3. Longest Substring Without Repeating Characters" width="1200" height="630" loading="lazy" decoding="async"><h1 class="leading-none"><span class="block text-2xl font-bold">LeetCode - 3. Longest Substring Without Repeating Characters</span><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a></h1><div class="flex flex-row flex-wrap w-full gap-3"><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/leet-code/1"><span>Leet Code</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/medium/1"><span>medium</span></a><a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href="/tags/cpp/1"><span>cpp</span></a></div><p><span>작성일 : 2021년 10월 28일</span></p></header><article class="mt-6 border-b-2 border-sky-300 pb-6"><div class="markdown-body"><h2 id="leetcode---3-longest-substring-without-repeating-characters">LeetCode - 3. Longest Substring Without Repeating Characters</h2>
 <p>문제 - <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">LeetCode 3. Longest Substring Without Repeating Characters</a></p>
 <h2 id="문제-설명">문제 설명</h2>
 <p>특정 문자열 <code>s</code>가 주어질 때 똑같은 문자를 반복하지 않는, 가장 긴 부분 문자열을 구하는 문제입니다.</p>
@@ -17,57 +17,57 @@
 <h3 id="solution-1---brute-force">Solution 1 - Brute force</h3>
 <p>첫 번째 시도는 무차별 대입을 통한 검사를 진행합니다.</p>
 <p>만약 s 문자열의 길이가 n이라면 i가 0->n 일때 i ~ n사이의 부분 문자열을 계속 찾습니다.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
-<span class="line"><span style="color: #E1E4E8">{</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8"> ; i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; i</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
-<span class="line"><span style="color: #E1E4E8">    {</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> sliceStart </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> j </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i ; j </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; j</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
-<span class="line"><span style="color: #E1E4E8">        {</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(sliceStart, length);</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(j));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
-<span class="line"><span style="color: #E1E4E8">            {</span></span>
-<span class="line"><span style="color: #6A737D">                // Not found</span></span>
-<span class="line"><span style="color: #E1E4E8">                length</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">                longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">            }</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span></span>
-<span class="line"><span style="color: #E1E4E8">            {</span></span>
-<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">            }</span></span>
-<span class="line"><span style="color: #E1E4E8">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> longestLength) </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<div data-rehype-pretty-code-fragment=""><pre style="background-color: #24292e" tabindex="0" data-language="cpp" data-theme="default"><code data-language="cpp" data-theme="default" style="display: grid;"><span data-line=""><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
+<span data-line=""><span style="color: #E1E4E8">{</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8"> ; i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; i</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
+<span data-line=""><span style="color: #E1E4E8">    {</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> sliceStart </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> j </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i ; j </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; j</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
+<span data-line=""><span style="color: #E1E4E8">        {</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(sliceStart, length);</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(j));</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
+<span data-line=""><span style="color: #E1E4E8">            {</span></span>
+<span data-line=""><span style="color: #6A737D">                // Not found</span></span>
+<span data-line=""><span style="color: #E1E4E8">                length</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">                longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">            }</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">else</span></span>
+<span data-line=""><span style="color: #E1E4E8">            {</span></span>
+<span data-line=""><span style="color: #E1E4E8">                </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">            }</span></span>
+<span data-line=""><span style="color: #E1E4E8">        }</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> longestLength) </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    }</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">}</span></span></code></pre></div>
 <p>중첩된 반복문을 이용해 모든 경우의 수를 탐색합니다.</p>
 <p>문자열을 찾는 주요 부분은 내부 반복문이니 내부 반복문만 따로 빼서 확인해보겠습니다.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> j </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i ; j </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; j</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
-<span class="line"><span style="color: #E1E4E8">{</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(sliceStart, length);</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(j));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
-<span class="line"><span style="color: #E1E4E8">    {</span></span>
-<span class="line"><span style="color: #6A737D">        // Not found</span></span>
-<span class="line"><span style="color: #E1E4E8">        length</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">    }</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">else</span></span>
-<span class="line"><span style="color: #E1E4E8">    {</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">    }</span></span>
-<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<div data-rehype-pretty-code-fragment=""><pre style="background-color: #24292e" tabindex="0" data-language="cpp" data-theme="default"><code data-language="cpp" data-theme="default" style="display: grid;"><span data-line=""><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> j </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i ; j </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; j</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
+<span data-line=""><span style="color: #E1E4E8">{</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(sliceStart, length);</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(j));</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
+<span data-line=""><span style="color: #E1E4E8">    {</span></span>
+<span data-line=""><span style="color: #6A737D">        // Not found</span></span>
+<span data-line=""><span style="color: #E1E4E8">        length</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    }</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">else</span></span>
+<span data-line=""><span style="color: #E1E4E8">    {</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    }</span></span>
+<span data-line=""><span style="color: #E1E4E8">}</span></span></code></pre></div>
 <p>j는 i -> n까지 증가합니다. 문자열 s를 i부터 length 길이만큼 잘라 부분 문자열을 생성합니다. 문자열 s의 j번째 문자를 가져와 현재 부분 문자열에 동일한 문자가 있는지 검사합니다.</p>
 <p>만약 현재 추출한 부분 문자열에 동일한 문자(중복되는 문자)가 없다면 부분 문자열의 길이를 1 증가합니다.</p>
 <p>중복된 문자열이 존재하다면 반복문을 탈출합니다.</p>
@@ -77,45 +77,45 @@
 <p>실행 시간은 628ms, 메모리 사용량은 273.1MB가 나오게 되었습니다. 동일한 C++ 제출자에 비해서 8.92% 정도밖에 빠르지 않은 매우 느린 코드임을 알 수 있습니다.</p>
 <details>
 <summary>코드 전문</summary>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;string></span></span>
-<span class="line"><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;iostream></span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
-<span class="line"><span style="color: #E1E4E8">{</span></span>
-<span class="line"><span style="color: #F97583">public:</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
-<span class="line"><span style="color: #E1E4E8">    {</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8"> ; i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; i</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
-<span class="line"><span style="color: #E1E4E8">        {</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> sliceStart </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> j </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i ; j </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; j</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
-<span class="line"><span style="color: #E1E4E8">            {</span></span>
-<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(sliceStart, length);</span></span>
-<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(j));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
-<span class="line"><span style="color: #E1E4E8">                {</span></span>
-<span class="line"><span style="color: #6A737D">                    // Not found</span></span>
-<span class="line"><span style="color: #E1E4E8">                    length</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">                    longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">                }</span></span>
-<span class="line"><span style="color: #E1E4E8">                </span><span style="color: #F97583">else</span></span>
-<span class="line"><span style="color: #E1E4E8">                {</span></span>
-<span class="line"><span style="color: #E1E4E8">                    </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">                }</span></span>
-<span class="line"><span style="color: #E1E4E8">            }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> longestLength) </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">    }</span></span>
-<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
+<div data-rehype-pretty-code-fragment=""><pre style="background-color: #24292e" tabindex="0" data-language="cpp" data-theme="default"><code data-language="cpp" data-theme="default" style="display: grid;"><span data-line=""><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;string></span></span>
+<span data-line=""><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;iostream></span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
+<span data-line=""><span style="color: #E1E4E8">{</span></span>
+<span data-line=""><span style="color: #F97583">public:</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
+<span data-line=""><span style="color: #E1E4E8">    {</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8"> ; i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; i</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
+<span data-line=""><span style="color: #E1E4E8">        {</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> sliceStart </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">for</span><span style="color: #E1E4E8"> (</span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> j </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> i ; j </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() ; j</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">)</span></span>
+<span data-line=""><span style="color: #E1E4E8">            {</span></span>
+<span data-line=""><span style="color: #E1E4E8">                </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(sliceStart, length);</span></span>
+<span data-line=""><span style="color: #E1E4E8">                </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(j));</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">                </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
+<span data-line=""><span style="color: #E1E4E8">                {</span></span>
+<span data-line=""><span style="color: #6A737D">                    // Not found</span></span>
+<span data-line=""><span style="color: #E1E4E8">                    length</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">                    longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">                }</span></span>
+<span data-line=""><span style="color: #E1E4E8">                </span><span style="color: #F97583">else</span></span>
+<span data-line=""><span style="color: #E1E4E8">                {</span></span>
+<span data-line=""><span style="color: #E1E4E8">                    </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">                }</span></span>
+<span data-line=""><span style="color: #E1E4E8">            }</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> i </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> longestLength) </span><span style="color: #F97583">break</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        }</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    }</span></span>
+<span data-line=""><span style="color: #E1E4E8">};</span></span></code></pre></div>
 </details>
 <h3 id="solution-2---sliding-window">Solution 2 - Sliding window</h3>
 <p>첫 번째 방법의 문제점은 중첩된 반복문을 순회하면서 이미 검사한 문자열을 또 다시 검사하기 때문에 좋은 속도가 나지 않았습니다.</p>
@@ -123,35 +123,35 @@
 <p>때문에 부분 문자열이 “abc”이든 “bca”이든 조건을 만족하면서 가장 긴 부분 문자열이 되게 됩니다.</p>
 <p>문자열을 검사하면서 “abc”에서 “abca”가 되었다면 이때 문자 “a”가 겹치게 되므로 이 문자열은 정답이 될 수 없습니다. 하지만 “abca”를 다시 조건에 맞는 문자열로 바꾸는 방법은 맨 뒤의 “a”를 제거할 수도 있지만, 반대로 맨 처음의 “a”를 제거할 수도 있습니다.</p>
 <p>즉, “abca” -> “bca”로 변환한다면 조건에 만족하는 문자열이 되게 됩니다. 이때 왼쪽의 index를 <code>left</code>, 오른쪽의 index를 <code>right</code>라 한다면 <code>left</code>를 1 증가시키기만 하면 반복문을 처음부터 순회할 필요 없이 정답에 맞는 조건이 되게 됩니다.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
-<span class="line"><span style="color: #E1E4E8">{</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">while</span><span style="color: #E1E4E8">(right </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
-<span class="line"><span style="color: #E1E4E8">    {</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(left, length);</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
-<span class="line"><span style="color: #E1E4E8">        {</span></span>
-<span class="line"><span style="color: #E1E4E8">            left </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
-<span class="line"><span style="color: #E1E4E8">        }</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span></span>
-<span class="line"><span style="color: #E1E4E8">        right</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> left;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<div data-rehype-pretty-code-fragment=""><pre style="background-color: #24292e" tabindex="0" data-language="cpp" data-theme="default"><code data-language="cpp" data-theme="default" style="display: grid;"><span data-line=""><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
+<span data-line=""><span style="color: #E1E4E8">{</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">while</span><span style="color: #E1E4E8">(right </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
+<span data-line=""><span style="color: #E1E4E8">    {</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(left, length);</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
+<span data-line=""><span style="color: #E1E4E8">        {</span></span>
+<span data-line=""><span style="color: #E1E4E8">            left </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
+<span data-line=""><span style="color: #E1E4E8">        }</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span></span>
+<span data-line=""><span style="color: #E1E4E8">        right</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> left;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    }</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">}</span></span></code></pre></div>
 <p>sliding window를 구성하는 left, right 변수를 추가하여 매 순회시 마다 right 즉, window를 늘려갑니다.</p>
 <p>만약 중복되는 문자열이 부분 문자열 내에 있다면 해당 index(pos)만큼 더하여 window를 줄입니다(sliding).</p>
 <p>오히려 코드가 훨씬 간단해지고 루프문도 하나로 줄었으니 O(n)정도의 성능을 기대할 수 있을 것 같습니다.</p>
@@ -160,78 +160,78 @@
 <p>코드의 실행 속도는 16ms로 향상되었으며 사용 메모리도 11.6MB로 크게 향상되었습니다. 다른 C++ 제출자에 비해서 66.67%의 빠른 성능을 보여줌을 확인할 수 있었습니다.</p>
 <details>
 <summary>코드 전문</summary>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
-<span class="line"><span style="color: #E1E4E8">{</span></span>
-<span class="line"><span style="color: #F97583">public:</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
-<span class="line"><span style="color: #E1E4E8">    {</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">while</span><span style="color: #E1E4E8">(right </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
-<span class="line"><span style="color: #E1E4E8">        {</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(left, length);</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
-<span class="line"><span style="color: #E1E4E8">            {</span></span>
-<span class="line"><span style="color: #E1E4E8">                left </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
-<span class="line"><span style="color: #E1E4E8">            }</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span></span>
-<span class="line"><span style="color: #E1E4E8">            right</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">            length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> left;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">            longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">    }</span></span>
-<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
+<div data-rehype-pretty-code-fragment=""><pre style="background-color: #24292e" tabindex="0" data-language="cpp" data-theme="default"><code data-language="cpp" data-theme="default" style="display: grid;"><span data-line=""><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
+<span data-line=""><span style="color: #E1E4E8">{</span></span>
+<span data-line=""><span style="color: #F97583">public:</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
+<span data-line=""><span style="color: #E1E4E8">    {</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">while</span><span style="color: #E1E4E8">(right </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
+<span data-line=""><span style="color: #E1E4E8">        {</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(left, length);</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
+<span data-line=""><span style="color: #E1E4E8">            {</span></span>
+<span data-line=""><span style="color: #E1E4E8">                left </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
+<span data-line=""><span style="color: #E1E4E8">            }</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span></span>
+<span data-line=""><span style="color: #E1E4E8">            right</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">            length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> left;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">            longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        }</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    }</span></span>
+<span data-line=""><span style="color: #E1E4E8">};</span></span></code></pre></div>
 </details>
 <h3 id="solution-3---sliding-window-optimized-stdstring">Solution 3 - sliding window optimized std::string</h3>
 <p>2 번째 방법의 경우 <strong>std::string</strong>의 부분 문자열을 구하는 함수인 <strong>substr</strong> 함수를 이용했습니다.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(left, length);</span></span>
-<span class="line"><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span></code></pre>
+<div data-rehype-pretty-code-fragment=""><pre style="background-color: #24292e" tabindex="0" data-language="cpp" data-theme="default"><code data-language="cpp" data-theme="default" style="display: grid;"><span data-line=""><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string substr </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(left, length);</span></span>
+<span data-line=""><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span></code></pre></div>
 <p>위 함수가 현재 상황에서 발생하는 문제점은 <strong>substr</strong>함수는 문자열을 자른 후 새로운 std::string 객체를 생성하여 반환하게 됩니다. 즉 문자열을 자른 후 메모리를 할당하는 과정이 생기기에 overhead가 발생합니다.</p>
 <p>이러한 문제를 해결하기 위해서 C++ 17부터는 <a href="https://en.cppreference.com/w/cpp/string/basic_string_view">std::string_view</a>라는 객체가 도입되었습니다.</p>
 <p><strong>std::string_view</strong> 객체는 기본적으로 char*의 포인터와 문자열의 길이(size)만 가지는 문자열 객체이며 사실상 char* 타입에 간단한 부분 문자열, 문자열 찾기와 같은 함수만 추가한 객체입니다.</p>
 <p>객체의 생성, 탐색과 같은 부분이 최소 O(1)에서 O(n)내의 연산으로 이루어져있기 때문에 문자열을 이용해 복잡한 연산이나 변형을 하지 않고 탐색만 한다면 매우 적절한 클래스입니다.</p>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
-<span class="line"><span style="color: #E1E4E8">{</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">while</span><span style="color: #E1E4E8">(right </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
-<span class="line"><span style="color: #E1E4E8">    {</span></span>
-<span class="line"><span style="color: #6A737D">        // std::string -> std::string_view</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string_view </span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(</span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8">s[left], length);</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
-<span class="line"><span style="color: #E1E4E8">        {</span></span>
-<span class="line"><span style="color: #E1E4E8">            left </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
-<span class="line"><span style="color: #E1E4E8">        }</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span></span>
-<span class="line"><span style="color: #E1E4E8">        right</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> left;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
+<div data-rehype-pretty-code-fragment=""><pre style="background-color: #24292e" tabindex="0" data-language="cpp" data-theme="default"><code data-language="cpp" data-theme="default" style="display: grid;"><span data-line=""><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
+<span data-line=""><span style="color: #E1E4E8">{</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">while</span><span style="color: #E1E4E8">(right </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
+<span data-line=""><span style="color: #E1E4E8">    {</span></span>
+<span data-line=""><span style="color: #6A737D">        // std::string -> std::string_view</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string_view </span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(</span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8">s[left], length);</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
+<span data-line=""><span style="color: #E1E4E8">        {</span></span>
+<span data-line=""><span style="color: #E1E4E8">            left </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
+<span data-line=""><span style="color: #E1E4E8">        }</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span></span>
+<span data-line=""><span style="color: #E1E4E8">        right</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> left;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    }</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">}</span></span></code></pre></div>
 <p>유일하게 변경된 점은 <strong>std::string</strong> -> <strong>std::string_view</strong>로만 변경되었습니다. 다행히 <strong>std::string_view</strong>클래스도 substr을 지원하기 때문에 간단히 사용 가능합니다.</p>
 <h4 id="제출-결과-2">제출 결과</h4>
 <p><img alt="Solution 3 result"  src="/asset_dir/result_3.29ef4ae4_1GAysT.webp" width="1433" height="756" loading="lazy" decoding="async"></p>
@@ -239,58 +239,58 @@
 <p>다른 C++ 제출자에 비해서 96%나 빠른 성능을 보여줌을 확인할 수 있습니다.</p>
 <details>
 <summary>코드 전문</summary>
-<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;string></span></span>
-<span class="line"><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;string_view></span></span>
-<span class="line"><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;iostream></span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
-<span class="line"><span style="color: #E1E4E8">{</span></span>
-<span class="line"><span style="color: #F97583">public:</span></span>
-<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
-<span class="line"><span style="color: #E1E4E8">    {</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">while</span><span style="color: #E1E4E8">(right </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
-<span class="line"><span style="color: #E1E4E8">        {</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string_view </span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(</span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8">s[left], length);</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
-<span class="line"><span style="color: #E1E4E8">            {</span></span>
-<span class="line"><span style="color: #E1E4E8">                left </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
-<span class="line"><span style="color: #E1E4E8">            }</span></span>
-<span class="line"><span style="color: #E1E4E8">            </span></span>
-<span class="line"><span style="color: #E1E4E8">            right</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
-<span class="line"><span style="color: #E1E4E8">            length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> left;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">            longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
-<span class="line"><span style="color: #E1E4E8">    }</span></span>
-<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
+<div data-rehype-pretty-code-fragment=""><pre style="background-color: #24292e" tabindex="0" data-language="cpp" data-theme="default"><code data-language="cpp" data-theme="default" style="display: grid;"><span data-line=""><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;string></span></span>
+<span data-line=""><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;string_view></span></span>
+<span data-line=""><span style="color: #F97583">#include</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">&#x3C;iostream></span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #F97583">class</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Solution</span><span style="color: #E1E4E8"> </span></span>
+<span data-line=""><span style="color: #E1E4E8">{</span></span>
+<span data-line=""><span style="color: #F97583">public:</span></span>
+<span data-line=""><span style="color: #E1E4E8">    </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">lengthOfLongestSubstring</span><span style="color: #E1E4E8">(</span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8"> </span><span style="color: #FFAB70">s</span><span style="color: #E1E4E8">) </span></span>
+<span data-line=""><span style="color: #E1E4E8">    {</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">() </span><span style="color: #F97583">==</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> left </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">int</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">while</span><span style="color: #E1E4E8">(right </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> s.</span><span style="color: #B392F0">size</span><span style="color: #E1E4E8">())</span></span>
+<span data-line=""><span style="color: #E1E4E8">        {</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::string_view </span><span style="color: #B392F0">substr</span><span style="color: #E1E4E8">(</span><span style="color: #F97583">&#x26;</span><span style="color: #E1E4E8">s[left], length);</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">auto</span><span style="color: #E1E4E8"> pos </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> substr.</span><span style="color: #B392F0">find_first_of</span><span style="color: #E1E4E8">(s.</span><span style="color: #B392F0">at</span><span style="color: #E1E4E8">(right));</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">            </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">!=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">std</span><span style="color: #E1E4E8">::</span><span style="color: #B392F0">string</span><span style="color: #E1E4E8">::npos)</span></span>
+<span data-line=""><span style="color: #E1E4E8">            {</span></span>
+<span data-line=""><span style="color: #E1E4E8">                left </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> (pos </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
+<span data-line=""><span style="color: #E1E4E8">            }</span></span>
+<span data-line=""><span style="color: #E1E4E8">            </span></span>
+<span data-line=""><span style="color: #E1E4E8">            right</span><span style="color: #F97583">++</span><span style="color: #E1E4E8">;</span></span>
+<span data-line=""><span style="color: #E1E4E8">            length </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> right </span><span style="color: #F97583">-</span><span style="color: #E1E4E8"> left;</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">            longestLength </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> (longestLength </span><span style="color: #F97583">&#x3C;</span><span style="color: #E1E4E8"> length) </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> length </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">        }</span></span>
+<span data-line=""> </span>
+<span data-line=""><span style="color: #E1E4E8">        </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> longestLength;</span></span>
+<span data-line=""><span style="color: #E1E4E8">    }</span></span>
+<span data-line=""><span style="color: #E1E4E8">};</span></span></code></pre></div>
 </details></div></article><p class="mt-6 font-bold"><a href="/series/leetcode/1" class="inline text-sky-300 hover:text-current transition">LeetCode</a><span>&nbsp;시리즈의 다른 게시물 보기</span></p><div class="
-            w-full flex flex-col space-y-4 mt-6 
-            md:flex-row md:justify-between md:space-y-0
+        w-full flex flex-col space-y-4 mt-6 
+        md:flex-row md:justify-between md:space-y-0
         "><a class="
-                bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
-                flex justify-between items-center 
-                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
-                font-bold p-4
-                md:w-1/2 md:mr-6
-                lg:w-2/3 xl:w-1/3
+            bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
+            flex justify-between items-center 
+            rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+            font-bold p-4
+            md:w-1/2 md:mr-6
+            lg:w-2/3 xl:w-1/3
             " style="background-size: 200%;" href="/posts/leetcode---2-add-two-numbers"><span class="mr-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g transform="rotate(180 14 14)"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></g></svg></span><span class="text-right truncate">LeetCode - 2. Add Two Numbers</span></a><a class="
-                bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 
-                flex justify-between items-center 
-                rounded-xl ring-1 ring-offset-2 border ring-sky-300 
-                font-bold p-4
-                md:w-1/2 md:ml-6
-                lg:w-2/3 xl:w-1/3
-            " style="background-size: 200%;" href="/posts/leetcode---4-median-of-two-sorted-arrays"><span class="text-left truncate">LeetCode - 4. Median of Two Sorted Arrays</span><span class="text-right ml-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></svg></span></a></div></div></main><footer class="w-full border-t-2 p-4"><p class="">Copyright 2023 by Jaehee All rights reserved.</p></footer></body></html>
+        bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 
+        flex justify-between items-center 
+        rounded-xl ring-1 ring-offset-2 border ring-sky-300 
+        font-bold p-4
+        md:w-1/2 md:ml-6
+        lg:w-2/3 xl:w-1/3
+        " style="background-size: 200%;" href="/posts/leetcode---4-median-of-two-sorted-arrays"><span class="text-left truncate">LeetCode - 4. Median of Two Sorted Arrays</span><span class="text-right ml-10"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"></path></svg></span></a></div></div></main><footer class="w-full border-t-2 p-4"><p class="">Copyright 2023 by Jaehee All rights reserved.</p></footer></body></html>
