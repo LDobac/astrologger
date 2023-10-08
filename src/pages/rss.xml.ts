@@ -13,12 +13,20 @@ export const GET: APIRoute = async (ctx) => {
         title: "Jaehee.dev",
         description: "Recent posts in Jaehee.dev",
         site: site,
-        items: posts.map((post) => ({
-            title: post.data.title,
-            pubDate: post.data.date,
-            description: post.data.description ?? GeneratePostDesc(post),
-            link: `/posts/${slugger(post.data.title)}`,
-        }))
+        items: posts.map((post) => {
+            const categories = new Set([...(post.data.tags ?? [])]);
+
+            if (post.data.series) categories.add(post.data.series);
+
+            return {
+                title: post.data.title,
+                pubDate: post.data.date,
+                description: post.data.description ?? GeneratePostDesc(post),
+                categories: [...categories],
+                link: `/posts/${slugger(post.data.title)}`,
+                author: "Jaehee Lee"
+            };
+        })
     });
 }
 
