@@ -84,10 +84,13 @@ const {
         {import.meta.env.PROD && (
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLG37NTK4J"></script>
             <script>
+                // @ts-expect-error
                 window.dataLayer = window.dataLayer || [];
+                // @ts-expect-error
                 function gtag(){dataLayer.push(arguments);}
+                // @ts-expect-error
                 gtag('js', new Date());
-
+                // @ts-expect-error
                 gtag('config', 'G-BLG37NTK4J');
             </script>
         )}
