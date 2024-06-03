@@ -82,8 +82,8 @@ const {
 
         <!-- Google tag (gtag.js) -->
         {import.meta.env.PROD && (
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLG37NTK4J"></script>
-            <script>
+            <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-BLG37NTK4J"></script>
+            <script is:inline>
                 // @ts-expect-error
                 window.dataLayer = window.dataLayer || [];
                 // @ts-expect-error
