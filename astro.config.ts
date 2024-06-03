@@ -1,10 +1,12 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
+import { rehypePrettyCode } from 'rehype-pretty-code';
 
 // https://astro.build/config
 export default defineConfig({
     markdown: {
+        syntaxHighlight: false,
         remarkPlugins: [
             "remark-math", 
             [
@@ -14,11 +16,23 @@ export default defineConfig({
                 }
             ]
         ],
+        rehypePlugins: [
+            [
+                rehypePrettyCode,
+                {
+                  theme: "github-dark",
+                },
+            ],
+            "rehype-katex"
+        ],
         gfm: true,
     },
-  integrations: [tailwind(), sitemap()],
-  site: import.meta.env.PROD ? "https://jaehee.dev" : undefined,
-  build: {
-    assets: "asset_dir"
-  }
+    
+    integrations: [tailwind(), sitemap()],
+
+    site: import.meta.env.PROD ? "https://jaehee.dev" : undefined,
+
+    build: {
+        assets: "asset_dir"
+    }
 });
