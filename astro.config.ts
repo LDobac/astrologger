@@ -1,16 +1,10 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-import rehypePrettyCode from "rehype-pretty-code";
-
-const rehypePrettyCodeOptions = {
-    theme: "github-dark",
-}
 
 // https://astro.build/config
 export default defineConfig({
     markdown: {
-        syntaxHighlight: false,
         remarkPlugins: [
             "remark-math", 
             [
@@ -19,10 +13,6 @@ export default defineConfig({
                     heading: "(table[ -]of[ -])?contents?|toc|index|목차"
                 }
             ]
-        ],
-        rehypePlugins: [
-            [rehypePrettyCode, rehypePrettyCodeOptions], 
-            "rehype-katex"
         ],
         gfm: true,
     },
