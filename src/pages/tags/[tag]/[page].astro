@@ -40,14 +40,16 @@ const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
     description="태그 목록 페이지입니다."
     url={baseUrl + Astro.url.pathname}
 >
-    <p class="flex flex-col text-center mb-6 border-b-2 pb-4">
-        <span>Tag</span>
-        <span class="font-bold text-2xl text-sky-300">{tag}</span>
-    </p>
+    <div class="content-container my-6 px-4 space-y-12">
+        <p class="flex flex-col text-center mb-6 border-b-2 pb-4">
+            <span>Tag</span>
+            <span class="font-bold text-2xl text-sky-300">{tag}</span>
+        </p>
 
-    <PostList posts={page.data} />
+        <PostList posts={page.data} />
 
-    <div class="mt-6">
-        <Paginator page={page} baseUrl={"/tags/" + slugger(tag)} />
+        <div class="mt-6">
+            <Paginator page={page} baseUrl={"/tags/" + slugger(tag)} />
+        </div>
     </div>
 </Layout>
