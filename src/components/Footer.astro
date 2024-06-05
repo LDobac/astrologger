@@ -1,3 +1,19 @@
+---
+import ccIcons from "@assets/images/cc-icons.svg?url";
+---
+
 <footer class="w-full border-t-2 p-4">
-    <p class="">Copyright 2023 by Jaehee All rights reserved.</p>
+    <div class="flex pb-2">
+        <svg class="w-[30px] h-[30px] mr-1">
+            <use xlink:href={ccIcons + "#cc-logo"}></use>
+        </svg>
+        <svg class="w-[30px] h-[30px]">
+            <use xlink:href={ccIcons + "#cc-by"}></use>
+        </svg>
+    </div>
+    <p>본 블로그 내 저작권은 
+        <a class="text-sky-300" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+        KR에 따라 이용할 수 있습니다.(라이센스가 명시된 이미지/내용 등 제외.)
+    </p>
+    <p>CC BY 4.0 KR에 따라 출처만 명시해주시면 상업적 이용, 공유, 복제 등 마음대로 이용할 수 있습니다.</p>
 </footer>
