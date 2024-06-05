@@ -8,6 +8,7 @@ import type { CollectionEntry } from "astro:content";
 import { slug as slugger} from "github-slugger";
 import "github-markdown-css/github-markdown-light.css";
 import {GetPostsBySeries} from "@utils/GetPosts";
+import PostList from "@components/PostList.astro";
 
 interface Props {
     post: CollectionEntry<"posts">
@@ -18,20 +19,18 @@ const { post } = Astro.props;
 const { title, date, editDate, series, tags, og} = post.data;
 const { Content } = await post.render();
 
-let prevSeriesPost: (CollectionEntry<"posts"> | undefined) = undefined;
-let nextSeriesPost: (CollectionEntry<"posts"> | undefined) = undefined;
-
+const neighborPosts: Array<CollectionEntry<"posts">> = []; 
 if (series)
 {
     const posts = await GetPostsBySeries(series, true);
     
-    const postIdx = posts.findIndex((v) => v.data.title === title);
-    
-    const prevIdx = postIdx + 1;
-    const nextIdx = postIdx - 1;
-    
-    if (nextIdx >= 0) nextSeriesPost = posts.at(nextIdx);
-    if (prevIdx < posts.length) prevSeriesPost = posts.at(prevIdx);
+    const idx = posts.findIndex(p => p.id === post.id);
+    if (idx > -1) 
+    {
+        neighborPosts.push(
+            ...posts.slice(Math.max(idx - 4, 0), Math.min(idx + 4, posts.length))
+        );
+    }
 }
 ---
 
@@ -75,60 +74,18 @@ if (series)
         </div>
     </article>
     
-    {(!!prevSeriesPost || !!nextSeriesPost) && series && 
-        <p class="mt-6 font-bold">
-            <SeriesLink series={series} />
-            <span>&nbsp;시리즈의 다른 게시물 보기</span>
-        </p>
-        <div class="
-        w-full flex flex-col space-y-4 mt-6 
-        md:flex-row md:justify-between md:space-y-0
-        "
-        >
-        {!!prevSeriesPost ?
-            <a 
-            class="
-            bg-gradient-to-l from-sky-300 from-50% to-white to-50% hover:bg-right transition-all ease-out duration-500 delay-100 
-            flex justify-between items-center 
-            rounded-xl ring-1 ring-offset-2 border ring-sky-300 
-            font-bold p-4
-            md:w-1/2 md:mr-6
-            lg:w-2/3 xl:w-1/3
-            "
-            style="background-size: 200%;"
-            href={"/posts/" + slugger(prevSeriesPost.data.title)}
-            >
-            <span class="mr-10">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g transform="rotate(180 14 14)"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"/></g></svg>
-            </span>
-            <span class="text-right truncate">{prevSeriesPost.data.title}</span>
-        </a>
-        :
-        <div></div>
-    }
-    
-    {!!nextSeriesPost &&
-        <a 
-        class="
-        bg-gradient-to-l from-white from-50% to-sky-300 to-50% bg-right hover:bg-left transition-all ease-out delay-100 duration-500 
-        flex justify-between items-center 
-        rounded-xl ring-1 ring-offset-2 border ring-sky-300 
-        font-bold p-4
-        md:w-1/2 md:ml-6
-        lg:w-2/3 xl:w-1/3
-        "
-        style="background-size: 200%;"
-        href={"/posts/" + slugger(nextSeriesPost.data.title)}
-        >
-        <span class="text-left truncate">{nextSeriesPost.data.title}</span>
-        <span class="text-right ml-10">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="currentColor" d="M15.705 4.289a1 1 0 1 0-1.406 1.422L21.675 13H4a1 1 0 1 0 0 2h17.673l-7.374 7.286a1 1 0 0 0 1.406 1.423l8.927-8.821a1.25 1.25 0 0 0 0-1.778l-8.927-8.821Z"/></svg>
-        </span>
-    </a>
-}  
+</div>
+{(series && neighborPosts) && 
+<div class="mx-0 xl:mx-20 my-10 py-16 bg-neutral-100 shadow-inner">
+    <p class="font-bold text-2xl text-center space-y-4 mb-14">
+        <SeriesLink series={series} />
+        <span>&nbsp;시리즈의 다른 게시물 보기</span>
+    </p>
+    <div class="content-container">
+        <PostList posts={neighborPosts}/>
+    </div>
 </div>
 }
-</div>
 
 <style is:global>
 
