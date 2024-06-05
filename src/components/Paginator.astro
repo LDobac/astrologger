@@ -30,7 +30,7 @@ const pageNums = [...Array(5).keys()].map(n => n + page.currentPage - 2);
         :
         <li class:list={[
             n === page.currentPage ? "font-bold": "",
-            "text-sm"
+            "text-base"
             ]}>
             {n === page.currentPage ?
             <span>{n}</span>

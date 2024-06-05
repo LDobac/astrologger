@@ -12,7 +12,9 @@ export default defineConfig({
             [
                 "remark-toc", 
                 {
-                    heading: "(table[ -]of[ -])?contents?|toc|index|목차"
+                    heading: "(table[ -]of[ -])?contents?|toc|index|목차",
+                    ordered: true,
+                    tight: true,
                 }
             ]
         ],
