@@ -1,7 +1,16 @@
 ---
 title : vuejs - 동적 import와 code split
-date : 2021-11-23 18:15:44
+date : 2021-11-23T18:15:44+09:00
+editDate: 2024-06-06T00:28:20+09:00
 tags : ["vue", "webpack"]
+description: vue.js에서 json/js 파일을 동적으로 불러와 Lazy Loading을 수행하여 초기 로딩 속도 높이기
+---
+
+## 2024-06-06 변경 사항
+SEO등의 문제로 인해 Vue에서 Astro Framework로 블로그를 변경하였습니다.
+
+때문에 아래 내용에 설명된 현재 문제점은 지금 블로그와 상관은 없긴합니다...
+
 ---
 
 ## Webpack의 간단한 소개
