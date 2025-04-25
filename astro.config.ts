@@ -22,7 +22,7 @@ export default defineConfig({
             [
                 rehypePrettyCode,
                 {
-                  theme: "github-dark",
+                  theme: "one-dark-pro",
                   keepBackground: true,
                 },
             ],
@@ -33,7 +33,7 @@ export default defineConfig({
     
     integrations: [tailwind(), sitemap()],
 
-    site: import.meta.env.PROD ? "https://jaehee.dev" : undefined,
+    site: process.env.NODE_ENV === 'production' ? "https://jaehee.dev" : undefined,
 
     build: {
         assets: "asset_dir"

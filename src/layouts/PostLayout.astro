@@ -77,11 +77,11 @@ if (series)
 </div>
 {(series && neighborPosts) && 
 <div class="mx-0 xl:mx-20 my-10 py-16 bg-neutral-100 shadow-inner">
-    <p class="font-bold text-2xl text-center space-y-4 mb-14">
+    <div class="font-bold text-lg md:text-2xl text-center mb-14 px-4">
         <SeriesLink series={series} />
-        <span>&nbsp;시리즈의 다른 게시물 보기</span>
-    </p>
-    <div class="content-container">
+        <div class="mt-2">시리즈의 다른 게시물 보기</div>
+    </div>
+    <div class="content-container px-4">
         <PostList posts={neighborPosts}/>
     </div>
 </div>
@@ -119,6 +119,10 @@ if (series)
 .markdown-body ol ul ol,
 .markdown-body ol ol ol {
     list-style-type: lower-alpha;
+}
+
+.markdown-body figure {
+    margin: 0;
 }
 
 /* Rehype Pretty Code - Code Block */
@@ -185,7 +189,7 @@ code[data-line-numbers] > [data-line]::before {
     counter-increment: line;
     content: counter(line);
     
-    @apply inline-block mr-4 w-4 text-right text-gray-500;
+    @apply inline-block mr-4 w-8 text-left text-gray-500;
 }
 
 code[data-line-numbers-max-digits='2'] > [data-line]::before {

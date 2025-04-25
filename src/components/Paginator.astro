@@ -14,15 +14,23 @@ const pageNums = [...Array(5).keys()].map(n => n + page.currentPage - 2);
 <nav>
     <ul class="flex space-x-4 text-xl justify-center items-center">
         <li>
-            <a href={baseUrl + "/1"}>
+            <a href={baseUrl + "/1"} aria-label="First page">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M14 3.002a1 1 0 0 0-1.579-.816l-7 4.963a1 1 0 0 0-.006 1.628l7 5.037A1 1 0 0 0 14 13.003V3.002ZM2 2.5a.5.5 0 0 1 1 0v11a.5.5 0 0 1-1 0v-11Z"/></svg>
             </a>
         </li>
-        <li>
-            <a href={page.url.prev ?? ""}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1.777 9.313a1.5 1.5 0 0 1 0-2.629l9.999-5.5A1.5 1.5 0 0 1 13.999 2.5v10.999a1.5 1.5 0 0 1-2.223 1.314l-9.999-5.5Z"/></svg>
-            </a>
-        </li>
+        {page.url.prev ? (
+            <li>
+                <a href={page.url.prev} aria-label="Previous page">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1.777 9.313a1.5 1.5 0 0 1 0-2.629l9.999-5.5A1.5 1.5 0 0 1 13.999 2.5v10.999a1.5 1.5 0 0 1-2.223 1.314l-9.999-5.5Z"/></svg>
+                </a>
+            </li>
+        ) : (
+            <li class="opacity-40">
+                <span aria-label="No previous page">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1.777 9.313a1.5 1.5 0 0 1 0-2.629l9.999-5.5A1.5 1.5 0 0 1 13.999 2.5v10.999a1.5 1.5 0 0 1-2.223 1.314l-9.999-5.5Z"/></svg>
+                </span>
+            </li>
+        )}
 
         {pageNums.map(n => (
         (n < 1 || n > page.lastPage) ?
@@ -42,13 +50,21 @@ const pageNums = [...Array(5).keys()].map(n => n + page.currentPage - 2);
         </li>
         ))}
 
+        {page.url.next ? (
+            <li>
+                <a href={page.url.next} aria-label="Next page">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M14.222 6.687a1.5 1.5 0 0 1 0 2.629l-10 5.499A1.5 1.5 0 0 1 2 13.5V2.502a1.5 1.5 0 0 1 2.223-1.314l9.999 5.499Z"/></svg>
+                </a>
+            </li>
+        ) : (
+            <li class="opacity-40">
+                <span aria-label="No next page">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M14.222 6.687a1.5 1.5 0 0 1 0 2.629l-10 5.499A1.5 1.5 0 0 1 2 13.5V2.502a1.5 1.5 0 0 1 2.223-1.314l9.999 5.499Z"/></svg>
+                </span>
+            </li>
+        )}
         <li>
-            <a href={page.url.next ?? ""}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M14.222 6.687a1.5 1.5 0 0 1 0 2.629l-10 5.499A1.5 1.5 0 0 1 2 13.5V2.502a1.5 1.5 0 0 1 2.223-1.314l9.999 5.499Z"/></svg>
-            </a>
-        </li>
-        <li>
-            <a href={baseUrl + "/" + page.lastPage}>
+            <a href={baseUrl + "/" + page.lastPage} aria-label="Last page">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M2 3.002a1 1 0 0 1 1.578-.816l7 4.963a1 1 0 0 1 .007 1.628l-7 5.037A1 1 0 0 1 2 13.003V3.002ZM14 2.5a.5.5 0 1 0-1 0v11a.5.5 0 0 0 1 0v-11Z"/></svg>
             </a>
         </li>
