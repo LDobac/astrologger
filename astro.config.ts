@@ -23,6 +23,7 @@ export default defineConfig({
                 rehypePrettyCode,
                 {
                   theme: "github-dark",
+                  keepBackground: true,
                 },
             ],
             "rehype-katex"

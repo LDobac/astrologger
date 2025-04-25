@@ -42,7 +42,7 @@ const ogProp: OgProp = {
             height: og.img.height,
             type: "image/" + og.img.format
         } : {
-            url: baseUrl + `/posts/${slugger(post.data.title)}.png`,
+            url: baseUrl + `/image/${slugger(post.data.title)}.png`,
             width: DEFAULT_OG_IMG_SIZE.width,
             height: DEFAULT_OG_IMG_SIZE.height,
             type: "image/png",

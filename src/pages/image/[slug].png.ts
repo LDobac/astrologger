@@ -87,7 +87,9 @@ export const GET: APIRoute = async ({ props }) => {
   
 export async function getStaticPaths () {
   const posts = await getCollection("posts");
-  
+  posts.forEach((post) => {
+    console.log(post.data.title);
+  });
   const links = posts.map((post) => {
     return {
       params: {
