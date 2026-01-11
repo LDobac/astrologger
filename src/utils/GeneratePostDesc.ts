@@ -5,7 +5,8 @@ import {DESC_LEN} from "./Constants";
 
 export default function GeneratePostDesc (post: CollectionEntry<"posts">): string 
 {
-    const renderedContent = convert(marked(post.body));
+    const parsedContent = marked.parse(post.body);
+    const renderedContent = convert(parsedContent.toString());
     
     return renderedContent.replaceAll("\n", " ").slice(0, DESC_LEN);
 }
