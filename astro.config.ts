@@ -8,9 +8,9 @@ export default defineConfig({
     markdown: {
         syntaxHighlight: false,
         remarkPlugins: [
-            "remark-math", 
+            "remark-math",
             [
-                "remark-toc", 
+                "remark-toc",
                 {
                     heading: "(table[ -]of[ -])?contents?|toc|index|목차",
                     ordered: true,
@@ -22,15 +22,15 @@ export default defineConfig({
             [
                 rehypePrettyCode,
                 {
-                  theme: "one-dark-pro",
-                  keepBackground: true,
+                    theme: "one-dark-pro",
+                    keepBackground: true,
                 },
             ],
             "rehype-katex"
         ],
         gfm: true,
     },
-    
+
     integrations: [tailwind(), sitemap()],
 
     site: process.env.NODE_ENV === 'production' ? "https://jaehee.dev" : undefined,
@@ -38,8 +38,4 @@ export default defineConfig({
     build: {
         assets: "asset_dir"
     },
-
-    image: {
-        service: passthroughImageService(),
-    }
 });

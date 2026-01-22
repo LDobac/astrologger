@@ -2,33 +2,34 @@
 // icons from iconify/fluent
 import SeriesLink from "@components/SeriesLink.astro";
 import TagList from "@components/TagList.astro";
-import {FormattedDate} from "@utils/FormattedDate";
+import { FormattedDate } from "@utils/FormattedDate";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import { slug as slugger} from "github-slugger";
+import { slug as slugger } from "github-slugger";
 import "github-markdown-css/github-markdown-light.css";
-import {GetPostsBySeries} from "@utils/GetPosts";
+import { GetPostsBySeries } from "@utils/GetPosts";
 import PostList from "@components/PostList.astro";
 
 interface Props {
-    post: CollectionEntry<"posts">
+    post: CollectionEntry<"posts">;
 }
 
 const { post } = Astro.props;
 
-const { title, date, editDate, series, tags, og} = post.data;
+const { title, date, editDate, series, tags, og } = post.data;
 const { Content } = await post.render();
 
-const neighborPosts: Array<CollectionEntry<"posts">> = []; 
-if (series)
-{
+const neighborPosts: Array<CollectionEntry<"posts">> = [];
+if (series) {
     const posts = await GetPostsBySeries(series, true);
-    
-    const idx = posts.findIndex(p => p.id === post.id);
-    if (idx > -1) 
-    {
+
+    const idx = posts.findIndex((p) => p.id === post.id);
+    if (idx > -1) {
         neighborPosts.push(
-            ...posts.slice(Math.max(idx - 4, 0), Math.min(idx + 4, posts.length))
+            ...posts.slice(
+                Math.max(idx - 4, 0),
+                Math.min(idx + 4, posts.length),
+            ),
         );
     }
 }
@@ -36,178 +37,182 @@ if (series)
 
 <div class="content-container my-6 px-4">
     <header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6">
-        {og ? 
-            <Image 
-            class="w-full bg-black" 
-            src={og.img} 
-            alt={og.alt} />
-            :
-            <Image 
-            class="w-full bg-black" 
-            src={`/image/${slugger(title)}.png`} 
-            width={1200} height={630} 
-            alt={"Thumbnail of " + title} />
+        {
+            og ? (
+                <Image class="w-full bg-black" src={og.img} alt={og.alt} />
+            ) : (
+                <Image
+                    class="w-full bg-black"
+                    src={`/image/thumbnail/${slugger(title)}.svg`}
+                    width={1200}
+                    height={630}
+                    alt={"Thumbnail of " + title}
+                />
+            )
         }
-        
+
         <h1 class="leading-none">
             <span class="block text-2xl font-bold">{title}</span>
-            {!!series &&
-                <SeriesLink series={series} />
-            }
+            {!!series && <SeriesLink series={series} />}
         </h1>
-        
-        {!!tags &&
-            <TagList tags={tags} />
-        }
-        
+
+        {!!tags && <TagList tags={tags} />}
+
         <p>
-            <span>작성일 : { FormattedDate(date) }</span>
-            {!!editDate &&
-                <span>&nbsp;/&nbsp;수정일 : { FormattedDate(editDate) }</span> 
+            <span>작성일 : {FormattedDate(date)}</span>
+            {
+                !!editDate && (
+                    <span>&nbsp;/&nbsp;수정일 : {FormattedDate(editDate)}</span>
+                )
             }
         </p>
     </header>
-    
+
     <article class="mt-6 border-b-2 border-sky-300 pb-6">
         <div class="markdown-body">
             <Content />
         </div>
     </article>
-    
 </div>
-{(series && neighborPosts) && 
-<div class="mx-0 xl:mx-20 my-10 py-16 bg-neutral-100 shadow-inner">
-    <div class="font-bold text-lg md:text-2xl text-center mb-14 px-4">
-        <SeriesLink series={series} />
-        <div class="mt-2">시리즈의 다른 게시물 보기</div>
-    </div>
-    <div class="content-container px-4">
-        <PostList posts={neighborPosts}/>
-    </div>
-</div>
+{
+    series && neighborPosts && (
+        <div class="mx-0 xl:mx-20 my-10 py-16 bg-neutral-100 shadow-inner">
+            <div class="font-bold text-lg md:text-2xl text-center mb-14 px-4">
+                <SeriesLink series={series} />
+                <div class="mt-2">시리즈의 다른 게시물 보기</div>
+            </div>
+            <div class="content-container px-4">
+                <PostList posts={neighborPosts} />
+            </div>
+        </div>
+    )
 }
 
 <style is:global>
+    /* Markdown List Styles */
+    .markdown-body ul {
+        list-style-type: disc;
+    }
 
-/* Markdown List Styles */
-.markdown-body ul {
-    list-style-type: disc;
-}
+    .markdown-body ol ul,
+    .markdown-body ul ul {
+        list-style-type: circle;
+    }
 
-.markdown-body ol ul,
-.markdown-body ul ul {
-    list-style-type: circle;
-}
+    .markdown-body ol ol ul,
+    .markdown-body ol ul ul,
+    .markdown-body ul ol ul .markdown-body ul ul ul {
+        list-style-type: square;
+    }
+    .markdown-body ol {
+        list-style-type: decimal;
+    }
 
-.markdown-body ol ol ul,
-.markdown-body ol ul ul,
-.markdown-body ul ol ul
-.markdown-body ul ul ul {
-    list-style-type: square;
-}
-.markdown-body ol {
-    list-style-type: decimal;
-}
+    .markdown-body ol ol,
+    .markdown-body ul ol {
+        list-style-type: lower-roman;
+    }
 
-.markdown-body ol ol,
-.markdown-body ul ol {
-    list-style-type: lower-roman;
-}
+    .markdown-body ul ul ol,
+    .markdown-body ul ol ol,
+    .markdown-body ol ul ol,
+    .markdown-body ol ol ol {
+        list-style-type: lower-alpha;
+    }
 
-.markdown-body ul ul ol,
-.markdown-body ul ol ol,
-.markdown-body ol ul ol,
-.markdown-body ol ol ol {
-    list-style-type: lower-alpha;
-}
+    .markdown-body figure {
+        margin: 0;
+    }
 
-.markdown-body figure {
-    margin: 0;
-}
+    /* Rehype Pretty Code - Code Block */
+    pre {
+        @apply !px-0 !rounded-lg;
+    }
 
-/* Rehype Pretty Code - Code Block */
-pre {
-    @apply !px-0 !rounded-lg;
-}
+    code {
+        @apply !text-sm md:!text-base !leading-normal md:!leading-normal;
+    }
 
-code {
-    @apply !text-sm md:!text-base !leading-normal md:!leading-normal;
-}
+    pre > code {
+        @apply grid;
+    }
 
-pre > code {
-    @apply grid;
-}
+    .prose {
+        @apply max-w-[55rem] sm:text-lg md:text-xl !leading-7 sm:!leading-9;
+    }
 
-.prose {
-    @apply max-w-[55rem] sm:text-lg md:text-xl !leading-7 sm:!leading-9;
-}
+    /* Rehype Pretty Code - Highlight/Line Numbers */
+    [data-line] {
+        @apply px-6 border-l-4 border-l-transparent;
+    }
 
-/* Rehype Pretty Code - Highlight/Line Numbers */
-[data-line] {
-    @apply px-6 border-l-4 border-l-transparent;
-}
+    [data-highlighted-line] {
+        /* background: rgba(200, 200, 255, 0.2); */
+        @apply border-l-sky-300 bg-sky-300/20;
+    }
 
-[data-highlighted-line] {
-    /* background: rgba(200, 200, 255, 0.2); */
-    @apply border-l-sky-300 bg-sky-300/20;
-}
+    [data-highlighted-chars] {
+        @apply bg-zinc-600/50 rounded ring-2;
+        box-shadow: 0 0 0 4px rgb(82 82 91 / 0.5);
+    }
 
-[data-highlighted-chars] {
-    @apply bg-zinc-600/50 rounded ring-2;
-    box-shadow: 0 0 0 4px rgb(82 82 91 / 0.5);
+    [data-chars-id] {
+        @apply shadow-none p-1 border-b-2;
+    }
 
-}
+    [data-chars-id] span {
+        @apply !text-inherit;
+    }
 
-[data-chars-id] {
-    @apply shadow-none p-1 border-b-2;
-}
+    [data-chars-id="v"] {
+        @apply !text-pink-300 bg-rose-800/50 border-b-pink-600 font-bold;
+        box-shadow: none;
+    }
 
-[data-chars-id] span {
-    @apply !text-inherit;
-}
+    [data-chars-id="s"] {
+        @apply !text-yellow-300 bg-yellow-800/50 border-b-yellow-600 font-bold;
+        box-shadow: none;
+    }
 
-[data-chars-id='v'] {
-    @apply !text-pink-300 bg-rose-800/50 border-b-pink-600 font-bold;
-    box-shadow: none;
-}
+    [data-chars-id="i"] {
+        @apply !text-purple-200 bg-purple-800/50 border-b-purple-600 font-bold;
+        box-shadow: none;
+    }
 
-[data-chars-id='s'] {
-    @apply !text-yellow-300 bg-yellow-800/50 border-b-yellow-600 font-bold;
-    box-shadow: none;
-}
+    code[data-line-numbers] {
+        counter-reset: line;
+    }
 
-[data-chars-id='i'] {
-    @apply   !text-purple-200 bg-purple-800/50 border-b-purple-600 font-bold;
-    box-shadow: none;
-}
+    code[data-line-numbers] > [data-line]::before {
+        counter-increment: line;
+        content: counter(line);
 
-code[data-line-numbers] {
-    counter-reset: line;
-}
+        @apply inline-block mr-4 w-8 text-left text-gray-500;
+    }
 
-code[data-line-numbers] > [data-line]::before {
-    counter-increment: line;
-    content: counter(line);
-    
-    @apply inline-block mr-4 w-8 text-left text-gray-500;
-}
+    code[data-line-numbers-max-digits="2"] > [data-line]::before {
+        @apply w-4;
+    }
 
-code[data-line-numbers-max-digits='2'] > [data-line]::before {
-    @apply w-4;
-}
+    code[data-line-numbers-max-digits="3"] > [data-line]::before {
+        @apply w-8;
+    }
 
-code[data-line-numbers-max-digits='3'] > [data-line]::before {
-    @apply w-8;
-}
+    /* Rehype Pretty Code - Title/Caption */
+    [data-rehype-pretty-code-fragment] {
+        position: relative;
+    }
 
-/* Rehype Pretty Code - Title/Caption */
-[data-rehype-pretty-code-fragment] {
-    position: relative;
-}
-
-[data-rehype-pretty-code-fragment] [data-rehype-pretty-code-title] {
-    @apply inline rounded-t-lg px-4 py-3 text-sm leading-tight text-sky-300;
-    background-color: #24292e;
-    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
-}
+    [data-rehype-pretty-code-fragment] [data-rehype-pretty-code-title] {
+        @apply inline rounded-t-lg px-4 py-3 text-sm leading-tight text-sky-300;
+        background-color: #24292e;
+        font-family:
+            ui-monospace,
+            SFMono-Regular,
+            SF Mono,
+            Menlo,
+            Consolas,
+            Liberation Mono,
+            monospace;
+    }
 </style>

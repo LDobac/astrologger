@@ -1,68 +1,75 @@
 ---
 import { slug as slugger } from "github-slugger";
 import { getCollection, type CollectionEntry } from "astro:content";
-import Layout, {type OgProp} from "@layouts/Layout.astro";
+import Layout, { type OgProp } from "@layouts/Layout.astro";
 import PostLayout from "@layouts/PostLayout.astro";
 import { DEFAULT_OG_IMG_SIZE } from "@utils/Constants";
 import GetPostDescription from "@utils/GetPostDescription";
 
-export async function getStaticPaths () {
+export async function getStaticPaths() {
     const posts = await getCollection("posts");
 
     return posts.map((post) => {
         return {
             params: {
-                slug: slugger(post.data.title)
+                slug: slugger(post.data.title),
             },
             props: {
-                post
-            }
+                post,
+            },
         };
     });
 }
 
 interface Props {
-    post: CollectionEntry<"posts">
+    post: CollectionEntry<"posts">;
 }
 
 const { post } = Astro.props;
 
-const { 
-    title, 
-    og 
-} = post.data;
+const { title, og } = post.data;
 
 const description = GetPostDescription(post);
 const hasMath = /(\$\$|\\\(|\\\[|\\begin\{)/.test(post.body);
 
 const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
 const ogProp: OgProp = {
-        img: og ? {
-            url: og.img.src,
-            alt: og.alt,
-            width: og.img.width,
-            height: og.img.height,
-            type: "image/" + og.img.format
-        } : {
-            url: baseUrl + `/image/${slugger(post.data.title)}.png`,
-            width: DEFAULT_OG_IMG_SIZE.width,
-            height: DEFAULT_OG_IMG_SIZE.height,
-            type: "image/png",
-            alt: "Thumbnail of " + post.data.title
-        }
-}
+    img: og
+        ? {
+              url: og.img.src,
+              alt: og.alt,
+              width: og.img.width,
+              height: og.img.height,
+              type: "image/" + og.img.format,
+          }
+        : {
+              url:
+                  baseUrl +
+                  `/image/thumbnail/${slugger(post.data.title)}-og.png`,
+              width: DEFAULT_OG_IMG_SIZE.width,
+              height: DEFAULT_OG_IMG_SIZE.height,
+              type: "image/png",
+              alt: "Thumbnail of " + post.data.title,
+          },
+};
 ---
 
-<Layout 
+<Layout
     title={title}
     description={description}
     url={baseUrl + Astro.url.pathname}
     og={ogProp}
 >
     <!-- Get the latest one from: https://katex.org/docs/browser -->
-    {hasMath && (
-        <link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet" slot="extra-head">
-    )}
+    {
+        hasMath && (
+            <link
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+                rel="stylesheet"
+                slot="extra-head"
+            />
+        )
+    }
 
     <PostLayout post={post} />
 </Layout>

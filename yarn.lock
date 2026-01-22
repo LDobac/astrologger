@@ -1564,6 +1564,7 @@ __metadata:
     remark-math: "npm:^6.0.0"
     remark-toc: "npm:^9.0.0"
     sanitize-html: "npm:^2.17.0"
+    satori: "npm:^0.19.1"
     shiki: "npm:^3.21.0"
     tailwindcss: "npm:^3.0.24"
     typescript: "npm:^5.9.3"
@@ -1973,6 +1974,13 @@ __metadata:
   version: 0.0.16
   resolution: "css-gradient-parser@npm:0.0.16"
   checksum: 10c0/7f05794ad99927ed4dcb9b96571117eea5d4426366f6dc38932035f0e73729ed0edc2a4144576851b2987cdfe8acf9e8d9f2f08c9daf69d085ae2679779bbc5a
+  languageName: node
+  linkType: hard
+
+"css-gradient-parser@npm:^0.0.17":
+  version: 0.0.17
+  resolution: "css-gradient-parser@npm:0.0.17"
+  checksum: 10c0/24e2694562aa54bee238391d3bd2fdfe3b865bb2c4e7f71f68a4a78733387ccfc6bc11fd8017f67e2813b67c051b5ab322dab95754a92c333ba8308771538bc8
   languageName: node
   linkType: hard
 
@@ -5292,6 +5300,25 @@ __metadata:
     postcss-value-parser: "npm:^4.2.0"
     yoga-layout: "npm:^3.2.1"
   checksum: 10c0/b6d7c28c53179aa723ebb357bbc9aab3c11709e8e8a8a811eb12df2ff88957a593a140e8b3e2726d6b8608c837dfe52ced2cd56d880a5d33b7387f60aeb5a85e
+  languageName: node
+  linkType: hard
+
+"satori@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "satori@npm:0.19.1"
+  dependencies:
+    "@shuding/opentype.js": "npm:1.4.0-beta.0"
+    css-background-parser: "npm:^0.1.0"
+    css-box-shadow: "npm:1.0.0-3"
+    css-gradient-parser: "npm:^0.0.17"
+    css-to-react-native: "npm:^3.0.0"
+    emoji-regex-xs: "npm:^2.0.1"
+    escape-html: "npm:^1.0.3"
+    linebreak: "npm:^1.1.0"
+    parse-css-color: "npm:^0.2.1"
+    postcss-value-parser: "npm:^4.2.0"
+    yoga-layout: "npm:^3.2.1"
+  checksum: 10c0/29ba6f3e5f1dc23dd797bd1d1881819bf9196c90e5517b67dfc7cdf1924f31bc53337e5b94a75b598cf1e078ed7d8dead797a693620052e44be6e2339dc53875
   languageName: node
   linkType: hard
 

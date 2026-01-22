@@ -2,12 +2,12 @@ import type { APIRoute } from "astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { slug as slugger } from "github-slugger";
 import { ImageResponse } from "@vercel/og";
-import {DEFAULT_OG_IMG_SIZE} from "@utils/Constants";
+import { DEFAULT_OG_IMG_SIZE } from "@utils/Constants";
 import GetOgFonts from "@utils/GetOgFonts";
 
 export const GET: APIRoute = async ({ props }) => {
   const { post } = props as { post: CollectionEntry<"posts"> };
-  
+
   const { fontRegular, fontBold } = await GetOgFonts();
 
   return new ImageResponse(
@@ -53,7 +53,7 @@ export const GET: APIRoute = async ({ props }) => {
                 type: "div",
                 props: {
                   tw: "text-5xl font-bold",
-                  style: { 
+                  style: {
                     color: "black",
                   },
                   children: post.data.title,
@@ -84,8 +84,8 @@ export const GET: APIRoute = async ({ props }) => {
     },
   );
 };
-  
-export async function getStaticPaths () {
+
+export async function getStaticPaths() {
   const posts = await getCollection("posts");
   const links = posts.map((post) => {
     return {
@@ -97,6 +97,6 @@ export async function getStaticPaths () {
       }
     };
   });
-  
+
   return links;
 }
