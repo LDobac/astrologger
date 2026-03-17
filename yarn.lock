@@ -1185,15 +1185,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/sanitize-html@npm:^2.16.0":
-  version: 2.16.0
-  resolution: "@types/sanitize-html@npm:2.16.0"
-  dependencies:
-    htmlparser2: "npm:^8.0.0"
-  checksum: 10c0/1d5ff68e07815d86a6832fba9b86f21af1824fd1080b765485688dc2777e03c22c6058ae12ba67ac3ee1aa1731f99626ed465e914ed6982bfe7c6c7144b79d45
-  languageName: node
-  linkType: hard
-
 "@types/sax@npm:^1.2.1":
   version: 1.2.7
   resolution: "@types/sax@npm:1.2.7"
@@ -1550,7 +1541,6 @@ __metadata:
     "@astrojs/tailwind": "npm:6.0.2"
     "@astrojs/ts-plugin": "npm:1.10.6"
     "@types/html-to-text": "npm:^9.0.4"
-    "@types/sanitize-html": "npm:^2.16.0"
     "@vercel/og": "npm:^0.8.6"
     astro: "npm:5.16.8"
     dayjs: "npm:^1.11.19"
@@ -1563,7 +1553,6 @@ __metadata:
     rehype-pretty-code: "npm:^0.14.1"
     remark-math: "npm:^6.0.0"
     remark-toc: "npm:^9.0.0"
-    sanitize-html: "npm:^2.17.0"
     satori: "npm:^0.19.1"
     shiki: "npm:^3.21.0"
     tailwindcss: "npm:^3.0.24"
@@ -2105,7 +2094,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deepmerge@npm:^4.2.2, deepmerge@npm:^4.3.1":
+"deepmerge@npm:^4.3.1":
   version: 4.3.1
   resolution: "deepmerge@npm:4.3.1"
   checksum: 10c0/e53481aaf1aa2c4082b5342be6b6d8ad9dfe387bc92ce197a66dea08bd4265904a087e75e464f14d1347cf2ac8afe1e4c16b266e0561cc5df29382d3c5f80044
@@ -2447,13 +2436,6 @@ __metadata:
   version: 1.0.5
   resolution: "escape-string-regexp@npm:1.0.5"
   checksum: 10c0/a968ad453dd0c2724e14a4f20e177aaf32bb384ab41b674a8454afe9a41c5e6fe8903323e0a1052f56289d04bd600f81278edf140b0fcc02f5cac98d0f5b5371
-  languageName: node
-  linkType: hard
-
-"escape-string-regexp@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "escape-string-regexp@npm:4.0.0"
-  checksum: 10c0/9497d4dd307d845bd7f75180d8188bb17ea8c151c1edbf6b6717c100e104d629dc2dfb687686181b0f4b7d732c7dfdc4d5e7a8ff72de1b0ca283a75bbb3a9cd9
   languageName: node
   linkType: hard
 
@@ -3107,7 +3089,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"htmlparser2@npm:^8.0.0, htmlparser2@npm:^8.0.2":
+"htmlparser2@npm:^8.0.2":
   version: 8.0.2
   resolution: "htmlparser2@npm:8.0.2"
   dependencies:
@@ -3272,13 +3254,6 @@ __metadata:
   version: 4.1.0
   resolution: "is-plain-obj@npm:4.1.0"
   checksum: 10c0/32130d651d71d9564dc88ba7e6fda0e91a1010a3694648e9f4f47bb6080438140696d3e3e15c741411d712e47ac9edc1a8a9de1fe76f3487b0d90be06ac9975e
-  languageName: node
-  linkType: hard
-
-"is-plain-object@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "is-plain-object@npm:5.0.0"
-  checksum: 10c0/893e42bad832aae3511c71fd61c0bf61aa3a6d853061c62a307261842727d0d25f761ce9379f7ba7226d6179db2a3157efa918e7fe26360f3bf0842d9f28942c
   languageName: node
   linkType: hard
 
@@ -4539,13 +4514,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-srcset@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "parse-srcset@npm:1.0.2"
-  checksum: 10c0/2f268e3d110d4c53d06ed2a8e8ee61a7da0cee13bf150819a6da066a8ca9b8d15b5600d6e6cae8be940e2edc50ee7c1e1052934d6ec858324065ecef848f0497
-  languageName: node
-  linkType: hard
-
 "parse5@npm:^7.0.0":
   version: 7.1.2
   resolution: "parse5@npm:7.1.2"
@@ -4752,7 +4720,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.3.11, postcss@npm:^8.4.23":
+"postcss@npm:^8.4.23":
   version: 8.4.38
   resolution: "postcss@npm:8.4.38"
   dependencies:
@@ -5267,20 +5235,6 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: 10c0/7e3c8b2e88a1841c9671094bbaeebd94448111dd90a81a1f606f3f67708a6ec57763b3b47f06da09fc6054193e0e6709e77325415dc8422b04497a8070fa02d4
-  languageName: node
-  linkType: hard
-
-"sanitize-html@npm:^2.17.0":
-  version: 2.17.0
-  resolution: "sanitize-html@npm:2.17.0"
-  dependencies:
-    deepmerge: "npm:^4.2.2"
-    escape-string-regexp: "npm:^4.0.0"
-    htmlparser2: "npm:^8.0.0"
-    is-plain-object: "npm:^5.0.0"
-    parse-srcset: "npm:^1.0.2"
-    postcss: "npm:^8.3.11"
-  checksum: 10c0/361f71f70a12f0e7d26c73cae31c926a2a5cf0757bab16faf663b07f723823780fa2642a688eff93ad2d2346baaefc31961b1f22e791f5a4b043778e20c180f4
   languageName: node
   linkType: hard
 
