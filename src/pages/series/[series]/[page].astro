@@ -39,11 +39,11 @@ const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
     description="시리즈 목록 페이지입니다."
     url={baseUrl + Astro.url.pathname}
 >
-    <div class="content-container my-6 px-4 space-y-12">
-        <p class="flex flex-col text-center mb-6 border-b-2 pb-4">
-            <span>Series</span>
+    <div class="content-container-wide my-6 px-4 space-y-12">
+        <h1 class="flex flex-col text-center mb-6 border-b-2 pb-4">
+            <span class="text-sm font-normal text-fg-muted">Series</span>
             <span class="font-bold text-2xl text-accent">{series}</span>
-        </p>
+        </h1>
 
         <PostList posts={page.data} />
 
