@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import { rehypePrettyCode } from 'rehype-pretty-code';
 
@@ -37,11 +37,15 @@ export default defineConfig({
         gfm: true,
     },
 
-    integrations: [tailwind(), sitemap()],
+    integrations: [sitemap()],
 
     site: process.env.NODE_ENV === 'production' ? "https://jaehee.dev" : undefined,
 
     build: {
         assets: "asset_dir"
+    },
+
+    vite: {
+        plugins: [tailwindcss()],
     },
 });

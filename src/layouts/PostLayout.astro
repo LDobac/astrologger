@@ -104,6 +104,8 @@ if (series) {
 }
 
 <style is:global>
+    @reference "../styles/global.css";
+
     /* Markdown List Styles */
     .markdown-body ul {
         list-style-type: disc;
@@ -145,22 +147,22 @@ if (series) {
          * keepBackground이 켜져 있어 shiki가 테마 배경을 직접 넣지만,
          * 코드블록 표면을 시리즈 박스 등 다른 보조 표면과 맞추기 위해 토큰으로 덮는다.
          */
-        @apply !px-0 !py-4 !rounded-lg !border !border-line !bg-canvas-subtle;
+        @apply px-0! py-4! rounded-lg! border! border-line! bg-canvas-subtle!;
         /*
          * em으로 두면 .prose의 16/18/20px을 그대로 따라간다.
-         * 절대값(!text-sm)을 쓰면 md에서 본문 20px 옆에 코드가 14px로 붙어 버린다.
+         * 절대값(text-sm!)을 쓰면 md에서 본문 20px 옆에 코드가 14px로 붙어 버린다.
          */
-        @apply !text-[0.9em] !leading-relaxed;
+        @apply text-[0.9em]! leading-relaxed!;
     }
 
     /* 인라인 코드만. pre 안쪽은 아래에서 따로 다룬다. */
     :not(pre) > code {
-        @apply !text-[0.92em] !leading-normal;
+        @apply text-[0.92em]! leading-normal!;
     }
 
     /* 코드블록. 크기는 pre가 정하므로 여기서는 1em으로 상속만 시킨다. */
     pre > code {
-        @apply grid !text-[1em];
+        @apply grid text-[1em]!;
     }
 
     /*
@@ -186,20 +188,18 @@ if (series) {
         color: inherit !important;
     }
 
-    /* github-markdown.css의 폰트 스택에는 한글 글리프가 없어 OS 기본 서체로 폴백된다. */
-    .markdown-body {
-        @apply font-sans;
-    }
-
     /*
-     * .markdown-body와 명시도를 맞추기 위해 두 클래스를 함께 쓴다.
-     * (둘 다 0,1,0이면 번들 순서에 따라 승패가 갈려 취약하다.)
+     * github-markdown.css의 폰트 스택에는 한글 글리프가 없어 OS 기본 서체로 폴백된다.
+     * font-sans를 .markdown-body 단독이 아니라 .markdown-body.prose(0,2,0)에 선언해
+     * github-markdown-css의 .markdown-body{font-family}(0,1,0)를 번들 순서와 무관하게
+     * 항상 이기게 한다(두 클래스는 이 프로젝트에서 항상 같은 엘리먼트에 함께 쓰인다).
      * 46rem = 736px = 현재 컨테이너의 실제 콘텐츠 폭. 한글 기준 약 36자/줄.
+     * line-height는 반응형 @apply 뒤에 별도 선언하면 v4의 중첩 @media 뒤 선언이 되어
+     * 브라우저 구현이 갈렸던 영역에 들어가므로 leading-[1.8]로 @apply에 흡수한다.
+     * github-markdown-css의 기본 1.5는 한글 장문에 너무 빡빡하다.
      */
     .markdown-body.prose {
-        @apply max-w-[46rem] sm:text-lg md:text-xl;
-        /* github-markdown-css의 1.5는 한글 장문에 너무 빡빡하다. */
-        line-height: 1.8;
+        @apply max-w-[46rem] sm:text-lg md:text-xl leading-[1.8] font-sans;
     }
 
     /* Rehype Pretty Code - Highlight/Line Numbers */
@@ -213,8 +213,8 @@ if (series) {
 
     /* <mark>로 렌더되므로 UA 기본 배경/글자색(노랑/검정)을 덮어야 한다. */
     [data-highlighted-chars] {
-        @apply bg-accent-subtle/70 rounded ring-2 ring-accent-subtle;
-        box-shadow: 0 0 0 4px rgb(var(--color-accent-subtle) / 0.6);
+        @apply bg-accent-subtle/70 rounded-sm ring-2 ring-accent-subtle;
+        box-shadow: 0 0 0 4px rgb(var(--rgb-accent-subtle) / 0.6);
         color: inherit;
     }
 
@@ -223,25 +223,25 @@ if (series) {
     }
 
     [data-chars-id] span {
-        @apply !text-inherit;
+        @apply text-inherit!;
     }
 
     /* 라벨 강조 3종. 다크에서는 밝은 배경이 눈부시므로 명암을 뒤집는다. */
     [data-chars-id="v"] {
-        @apply !text-rose-700 bg-rose-100 border-b-rose-500 font-bold;
-        @apply dark:!text-rose-200 dark:bg-rose-900/60 dark:border-b-rose-400;
+        @apply text-rose-700! bg-rose-100 border-b-rose-500 font-bold;
+        @apply dark:text-rose-200! dark:bg-rose-900/60 dark:border-b-rose-400;
         box-shadow: none;
     }
 
     [data-chars-id="s"] {
-        @apply !text-yellow-800 bg-yellow-100 border-b-yellow-600 font-bold;
-        @apply dark:!text-yellow-100 dark:bg-yellow-900/60 dark:border-b-yellow-400;
+        @apply text-yellow-800! bg-yellow-100 border-b-yellow-600 font-bold;
+        @apply dark:text-yellow-100! dark:bg-yellow-900/60 dark:border-b-yellow-400;
         box-shadow: none;
     }
 
     [data-chars-id="i"] {
-        @apply !text-purple-700 bg-purple-100 border-b-purple-500 font-bold;
-        @apply dark:!text-purple-200 dark:bg-purple-900/60 dark:border-b-purple-400;
+        @apply text-purple-700! bg-purple-100 border-b-purple-500 font-bold;
+        @apply dark:text-purple-200! dark:bg-purple-900/60 dark:border-b-purple-400;
         box-shadow: none;
     }
 
