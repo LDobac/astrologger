@@ -11,7 +11,7 @@ function GeneratePostDesc (post: CollectionEntry<"posts">): string
         return descCache.get(post.id) ?? "";
     }
 
-    const parsedContent = marked.parse(post.body);
+    const parsedContent = marked.parse(post.body ?? "");
     const renderedContent = convert(parsedContent.toString());
     
     const description = renderedContent.replaceAll("\n", " ").slice(0, DESC_LEN);
