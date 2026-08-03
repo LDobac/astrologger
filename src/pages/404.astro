@@ -1,0 +1,17 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+<Layout title="404 - 페이지를 찾을 수 없습니다" description="요청하신 페이지를 찾을 수 없습니다.">
+    <div class="content-container my-16 space-y-6 px-4 text-center">
+        <p class="text-6xl font-bold text-fg-muted">404</p>
+        <h1 class="text-2xl font-bold">페이지를 찾을 수 없습니다</h1>
+        <p class="text-fg-muted">
+            글 제목이 바뀌면서 주소가 달라졌을 수 있습니다.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+            <a class="rounded-lg bg-accent px-4 py-2 font-bold text-canvas transition hover:opacity-90" href="/">홈으로</a>
+            <a class="rounded-lg border border-line px-4 py-2 transition hover:bg-canvas-subtle" href="/posts/1">전체 글 보기</a>
+            <a class="rounded-lg border border-line px-4 py-2 transition hover:bg-canvas-subtle" href="/tags">태그로 찾기</a>
+        </div>
+    </div>
+</Layout>
