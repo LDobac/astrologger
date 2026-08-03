@@ -39,39 +39,51 @@ if (series) {
 ---
 
 <div class="content-container my-6 px-4">
-    <header class="flex flex-col space-y-4 border-b-2 border-accent-subtle pb-6">
+    <header class="flex flex-col space-y-4 border-b-2 pb-6">
         {
             og ? (
-                <Image class="w-full bg-black" src={og.img} alt={og.alt} />
+                <Image
+                    class="max-h-[220px] w-full rounded-xl object-cover bg-black sm:max-h-[280px] md:max-h-[320px]"
+                    src={og.img}
+                    alt={og.alt}
+                    loading="eager"
+                    fetchpriority="high"
+                />
             ) : (
                 <Image
-                    class="w-full bg-black"
+                    class="max-h-[220px] w-full rounded-xl object-cover bg-black sm:max-h-[280px] md:max-h-[320px]"
                     src={`/image/thumbnail/${slugger(title)}.svg`}
                     width={1200}
                     height={630}
                     alt={"Thumbnail of " + title}
+                    loading="eager"
+                    fetchpriority="high"
                 />
             )
         }
 
-        <h1 class="leading-none">
-            <span class="block text-2xl font-bold">{title}</span>
-            {!!series && <SeriesLink series={series} />}
-        </h1>
+        <h1 class="text-2xl font-bold leading-snug md:text-3xl">{title}</h1>
+        {!!series && (
+            <p class="text-sm text-fg-muted">
+                시리즈: <SeriesLink series={series} />
+            </p>
+        )}
 
         {!!tags && <TagList tags={tags} />}
 
-        <p>
-            <span>작성일 : {FormattedDate(date)}</span>
-            {
-                !!editDate && (
-                    <span>&nbsp;/&nbsp;수정일 : {FormattedDate(editDate)}</span>
-                )
-            }
+        <p class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-fg-muted">
+            <span>
+                작성일 <time datetime={date.toISOString()}>{FormattedDate(date)}</time>
+            </span>
+            {!!editDate && (
+                <span>
+                    수정일 <time datetime={editDate.toISOString()}>{FormattedDate(editDate)}</time>
+                </span>
+            )}
         </p>
     </header>
 
-    <article class="mt-6 border-b-2 border-accent-subtle pb-6">
+    <article class="mt-6 border-b-2 pb-6">
         <div class="markdown-body prose">
             <Content />
         </div>
@@ -79,12 +91,12 @@ if (series) {
 </div>
 {
     series && neighborPosts && (
-        <div class="mx-0 xl:mx-20 my-10 py-16 bg-canvas-subtle shadow-inner">
-            <div class="font-bold text-lg md:text-2xl text-center mb-14 px-4">
+        <div class="mx-0 my-10 border-y-2 border-line bg-canvas-subtle py-12 xl:mx-20 xl:rounded-2xl xl:border-x-2">
+            <h2 class="font-bold text-lg md:text-2xl text-center mb-14 px-4">
                 <SeriesLink series={series} />
                 <div class="mt-2">시리즈의 다른 게시물 보기</div>
-            </div>
-            <div class="content-container px-4">
+            </h2>
+            <div class="content-container-wide px-4">
                 <PostList posts={neighborPosts} />
             </div>
         </div>
@@ -134,14 +146,21 @@ if (series) {
          * 코드블록 표면을 시리즈 박스 등 다른 보조 표면과 맞추기 위해 토큰으로 덮는다.
          */
         @apply !px-0 !py-4 !rounded-lg !border !border-line !bg-canvas-subtle;
+        /*
+         * em으로 두면 .prose의 16/18/20px을 그대로 따라간다.
+         * 절대값(!text-sm)을 쓰면 md에서 본문 20px 옆에 코드가 14px로 붙어 버린다.
+         */
+        @apply !text-[0.9em] !leading-relaxed;
     }
 
-    code {
-        @apply !text-sm md:!text-base !leading-normal md:!leading-normal;
+    /* 인라인 코드만. pre 안쪽은 아래에서 따로 다룬다. */
+    :not(pre) > code {
+        @apply !text-[0.92em] !leading-normal;
     }
 
+    /* 코드블록. 크기는 pre가 정하므로 여기서는 1em으로 상속만 시킨다. */
     pre > code {
-        @apply grid;
+        @apply grid !text-[1em];
     }
 
     /*
@@ -167,8 +186,20 @@ if (series) {
         color: inherit !important;
     }
 
-    .prose {
-        @apply max-w-[55rem] sm:text-lg md:text-xl;
+    /* github-markdown.css의 폰트 스택에는 한글 글리프가 없어 OS 기본 서체로 폴백된다. */
+    .markdown-body {
+        @apply font-sans;
+    }
+
+    /*
+     * .markdown-body와 명시도를 맞추기 위해 두 클래스를 함께 쓴다.
+     * (둘 다 0,1,0이면 번들 순서에 따라 승패가 갈려 취약하다.)
+     * 46rem = 736px = 현재 컨테이너의 실제 콘텐츠 폭. 한글 기준 약 36자/줄.
+     */
+    .markdown-body.prose {
+        @apply max-w-[46rem] sm:text-lg md:text-xl;
+        /* github-markdown-css의 1.5는 한글 장문에 너무 빡빡하다. */
+        line-height: 1.8;
     }
 
     /* Rehype Pretty Code - Highlight/Line Numbers */
