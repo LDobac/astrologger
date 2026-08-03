@@ -12,7 +12,7 @@ import GetOgFonts from "@utils/GetOgFonts";
 export const GET: APIRoute = async ({ props }) => {
     const { post } = props as { post: CollectionEntry<"posts"> };
 
-    const { fontRegular, fontBold } = await GetOgFonts();
+    const { fontRegular, fontBold, koreanRegular, koreanBold } = await GetOgFonts(post.data.title);
 
     const svg = await satori(
         {
@@ -103,6 +103,12 @@ export const GET: APIRoute = async ({ props }) => {
                     weight: 600,
                     style: "normal",
                 },
+                ...(koreanRegular
+                    ? [{ name: "Noto Sans KR", data: koreanRegular, weight: 400 as const, style: "normal" as const }]
+                    : []),
+                ...(koreanBold
+                    ? [{ name: "Noto Sans KR", data: koreanBold, weight: 700 as const, style: "normal" as const }]
+                    : []),
             ],
         },
     );
