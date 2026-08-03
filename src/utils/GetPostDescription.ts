@@ -5,7 +5,7 @@ import {DESC_LEN} from "./Constants";
 
 const descCache = new Map<string, string>();
 
-function GeneratePostDesc (post: CollectionEntry<"posts">): string 
+function GeneratePostDesc (post: CollectionEntry<"posts">): string
 {
     if (descCache.has(post.id)) {
         return descCache.get(post.id) ?? "";
@@ -13,7 +13,7 @@ function GeneratePostDesc (post: CollectionEntry<"posts">): string
 
     const parsedContent = marked.parse(post.body ?? "");
     const renderedContent = convert(parsedContent.toString());
-    
+
     const description = renderedContent.replaceAll("\n", " ").slice(0, DESC_LEN);
     descCache.set(post.id, description);
     return description;

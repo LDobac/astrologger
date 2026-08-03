@@ -1,40 +1,40 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
-import { rehypePrettyCode } from 'rehype-pretty-code';
+import { satteri } from "@astrojs/markdown-satteri";
+import { transformerMetaHighlight, transformerMetaWordHighlight } from "@shikijs/transformers";
+import satteriKatex from "./src/plugins/satteri-katex";
+import satteriToc from "./src/plugins/satteri-toc";
+import transformerLineNumbers from "./src/plugins/line-numbers";
 
 // https://astro.build/config
 export default defineConfig({
     markdown: {
-        syntaxHighlight: false,
-        remarkPlugins: [
-            "remark-math",
-            [
-                "remark-toc",
-                {
-                    heading: "(table[ -]of[ -])?contents?|toc|index|목차",
-                    ordered: true,
-                    tight: true,
-                }
-            ]
-        ],
-        rehypePlugins: [
-            [
-                rehypePrettyCode,
-                {
-                    // 듀얼 테마. shiki는 --shiki-light / --shiki-dark 변수를 출력만 하고
-                    // 자동으로 전환하지는 않으므로, 어느 쪽을 쓸지는 PostLayout.astro의
-                    // "Rehype Pretty Code - Dual Theme" 블록에서 CSS로 선택한다.
-                    theme: {
-                        light: "github-light",
-                        dark: "github-dark",
-                    },
-                    keepBackground: true,
-                },
+        processor: satteri({
+            features: { math: true },
+            mdastPlugins: [
+                satteriToc({
+                    heading: /^(?:(?:table[ -]of[ -])?contents?|toc|index|목차)$/i,
+                }),
+                satteriKatex(),
             ],
-            "rehype-katex"
-        ],
-        gfm: true,
+        }),
+        // 듀얼 테마: defaultColor:false로 두 테마 모두 리터럴 color 없이
+        // --shiki-light / --shiki-dark 변수로만 출력하게 한다(rehype-pretty-code의
+        // 기존 출력과 동일한 계약). 어느 쪽을 쓸지는 PostLayout.astro의
+        // "Shiki - Dual Theme" 블록에서 CSS로 선택한다.
+        shikiConfig: {
+            themes: {
+                light: "github-light",
+                dark: "github-dark",
+            },
+            defaultColor: false,
+            transformers: [
+                transformerMetaHighlight(),
+                transformerMetaWordHighlight(),
+                transformerLineNumbers(),
+            ],
+        },
     },
 
     integrations: [sitemap()],
