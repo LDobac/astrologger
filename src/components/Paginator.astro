@@ -8,66 +8,65 @@ interface Props {
 };
 
 const { page, baseUrl } = Astro.props;
-const pageNums = [...Array(5).keys()].map(n => n + page.currentPage - 2);
+
+const WINDOW = 5;
+// 5칸 창을 항상 실제 페이지로 채운다. 기존에는 창이 범위를 벗어나면
+// <li>.</li> 자리표시자가 남아 죽은 문자가 살아있는 링크보다 크게 보였다.
+const start = Math.max(1, Math.min(page.currentPage - 2, page.lastPage - WINDOW + 1));
+const end = Math.min(page.lastPage, start + WINDOW - 1);
+const pageNums = Array.from({ length: end - start + 1 }, (_, i) => start + i);
+
+const controlClass = "inline-flex h-11 min-w-[40px] items-center justify-center rounded-lg px-2 transition sm:min-w-[44px]";
 ---
 
-<nav>
-    <ul class="flex space-x-4 text-xl justify-center items-center">
-        <li>
-            <a href={baseUrl + "/1"} aria-label="First page">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M14 3.002a1 1 0 0 0-1.579-.816l-7 4.963a1 1 0 0 0-.006 1.628l7 5.037A1 1 0 0 0 14 13.003V3.002ZM2 2.5a.5.5 0 0 1 1 0v11a.5.5 0 0 1-1 0v-11Z"/></svg>
+<nav aria-label="페이지 탐색" class="mt-6">
+    <ul class="flex flex-wrap items-center justify-center gap-1">
+        <li class="hidden sm:inline-flex">
+            <a href={baseUrl + "/1"} aria-label="첫 페이지" class:list={[controlClass, "text-fg hover:bg-canvas-subtle hover:text-accent"]}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 3.002a1 1 0 0 0-1.579-.816l-7 4.963a1 1 0 0 0-.006 1.628l7 5.037A1 1 0 0 0 14 13.003V3.002ZM2 2.5a.5.5 0 0 1 1 0v11a.5.5 0 0 1-1 0v-11Z"/></svg>
             </a>
         </li>
         {page.url.prev ? (
             <li>
-                <a href={page.url.prev} aria-label="Previous page">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1.777 9.313a1.5 1.5 0 0 1 0-2.629l9.999-5.5A1.5 1.5 0 0 1 13.999 2.5v10.999a1.5 1.5 0 0 1-2.223 1.314l-9.999-5.5Z"/></svg>
+                <a href={page.url.prev} aria-label="이전 페이지" class:list={[controlClass, "text-fg hover:bg-canvas-subtle hover:text-accent"]}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M1.777 9.313a1.5 1.5 0 0 1 0-2.629l9.999-5.5A1.5 1.5 0 0 1 13.999 2.5v10.999a1.5 1.5 0 0 1-2.223 1.314l-9.999-5.5Z"/></svg>
                 </a>
             </li>
         ) : (
-            <li class="opacity-40">
-                <span aria-label="No previous page">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1.777 9.313a1.5 1.5 0 0 1 0-2.629l9.999-5.5A1.5 1.5 0 0 1 13.999 2.5v10.999a1.5 1.5 0 0 1-2.223 1.314l-9.999-5.5Z"/></svg>
+            <li aria-hidden="true">
+                <span class:list={[controlClass, "text-fg-muted"]}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" focusable="false"><path fill="currentColor" d="M1.777 9.313a1.5 1.5 0 0 1 0-2.629l9.999-5.5A1.5 1.5 0 0 1 13.999 2.5v10.999a1.5 1.5 0 0 1-2.223 1.314l-9.999-5.5Z"/></svg>
                 </span>
             </li>
         )}
 
         {pageNums.map(n => (
-        (n < 1 || n > page.lastPage) ?
-        <li>.</li>
-        :
-        <li class:list={[
-            n === page.currentPage ? "font-bold": "",
-            "text-base"
-            ]}>
-            {n === page.currentPage ?
-            <span>{n}</span>
-            :
-            <a href={baseUrl + "/" + n.toString()}>
-                {n}
-            </a>
-            }
-        </li>
+            <li>
+                {n === page.currentPage ? (
+                    <span aria-current="page" class:list={[controlClass, "bg-accent font-bold text-canvas"]}>{n}</span>
+                ) : (
+                    <a href={baseUrl + "/" + n.toString()} class:list={[controlClass, "text-fg hover:bg-canvas-subtle hover:text-accent"]}>{n}</a>
+                )}
+            </li>
         ))}
 
         {page.url.next ? (
             <li>
-                <a href={page.url.next} aria-label="Next page">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M14.222 6.687a1.5 1.5 0 0 1 0 2.629l-10 5.499A1.5 1.5 0 0 1 2 13.5V2.502a1.5 1.5 0 0 1 2.223-1.314l9.999 5.499Z"/></svg>
+                <a href={page.url.next} aria-label="다음 페이지" class:list={[controlClass, "text-fg hover:bg-canvas-subtle hover:text-accent"]}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14.222 6.687a1.5 1.5 0 0 1 0 2.629l-10 5.499A1.5 1.5 0 0 1 2 13.5V2.502a1.5 1.5 0 0 1 2.223-1.314l9.999 5.499Z"/></svg>
                 </a>
             </li>
         ) : (
-            <li class="opacity-40">
-                <span aria-label="No next page">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M14.222 6.687a1.5 1.5 0 0 1 0 2.629l-10 5.499A1.5 1.5 0 0 1 2 13.5V2.502a1.5 1.5 0 0 1 2.223-1.314l9.999 5.499Z"/></svg>
+            <li aria-hidden="true">
+                <span class:list={[controlClass, "text-fg-muted"]}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" focusable="false"><path fill="currentColor" d="M14.222 6.687a1.5 1.5 0 0 1 0 2.629l-10 5.499A1.5 1.5 0 0 1 2 13.5V2.502a1.5 1.5 0 0 1 2.223-1.314l9.999 5.499Z"/></svg>
                 </span>
             </li>
         )}
-        <li>
-            <a href={baseUrl + "/" + page.lastPage} aria-label="Last page">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M2 3.002a1 1 0 0 1 1.578-.816l7 4.963a1 1 0 0 1 .007 1.628l-7 5.037A1 1 0 0 1 2 13.003V3.002ZM14 2.5a.5.5 0 1 0-1 0v11a.5.5 0 0 0 1 0v-11Z"/></svg>
+        <li class="hidden sm:inline-flex">
+            <a href={baseUrl + "/" + page.lastPage} aria-label="마지막 페이지" class:list={[controlClass, "text-fg hover:bg-canvas-subtle hover:text-accent"]}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 3.002a1 1 0 0 1 1.578-.816l7 4.963a1 1 0 0 1 .007 1.628l-7 5.037A1 1 0 0 1 2 13.003V3.002ZM14 2.5a.5.5 0 1 0-1 0v11a.5.5 0 0 0 1 0v-11Z"/></svg>
             </a>
         </li>
     </ul>
-
 </nav>
