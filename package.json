@@ -21,7 +21,7 @@
     "@astrojs/ts-plugin": "1.10.10",
     "@shikijs/transformers": "4.4.1",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "6.4.8",
+    "astro": "7.1.6",
     "github-markdown-css": "^5.8.1",
     "github-slugger": "^2.0.0",
     "html-to-text": "^9.0.5",

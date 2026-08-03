@@ -39,6 +39,9 @@ export default defineConfig({
 
     integrations: [sitemap()],
 
+    // Astro 7 기본값이 'jsx'(공백을 다르게 압축)로 바뀌었다. 기존 압축 방식을 유지한다.
+    compressHTML: true,
+
     /*
      * Fonts API(Noto Sans KR self-host)를 시도했으나 롤백했다. Astro의 <Font />는
      * @font-face + unicode-range 매핑 전체를 캐시 불가능한 인라인 <style>로 매
