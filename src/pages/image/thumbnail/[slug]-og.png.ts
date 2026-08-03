@@ -1,25 +1,29 @@
 import type { APIRoute } from "astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { slug as slugger } from "github-slugger";
-import { ImageResponse } from "@vercel/og";
 import {
   DEFAULT_OG_IMG_SIZE,
   OG_IMG_BACKGROUND_PATTERN,
   OG_IMG_PALETTE,
 } from "@utils/Constants";
 import GetOgFonts from "@utils/GetOgFonts";
+import RenderOgPng from "@utils/RenderOgPng";
 
 export const GET: APIRoute = async ({ props }) => {
   const { post } = props as { post: CollectionEntry<"posts"> };
 
   const { fontRegular, fontBold, koreanRegular, koreanBold } = await GetOgFonts(post.data.title);
 
-  return new ImageResponse(
+  const png = await RenderOgPng(
     {
       type: "div",
       props: {
-        tw: "flex w-full h-full justify-center items-center",
         style: {
+          display: "flex",
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
           backgroundColor: OG_IMG_PALETTE.background,
           color: OG_IMG_PALETTE.foreground,
           ...OG_IMG_BACKGROUND_PATTERN,
@@ -27,19 +31,30 @@ export const GET: APIRoute = async ({ props }) => {
         children: {
           type: "div",
           props: {
-            tw: "flex flex-col text-center items-center",
+            style: {
+              display: "flex",
+              flexDirection: "column",
+              textAlign: "center",
+              alignItems: "center",
+            },
             children: [
               {
                 type: "div",
                 props: {
-                  tw: "flex mb-24 text-4xl justify-center items-center",
+                  style: {
+                    display: "flex",
+                    marginBottom: "96px", // mb-24
+                    fontSize: "36px", // text-4xl
+                    justifyContent: "center",
+                    alignItems: "center",
+                  },
                   children: [
                     {
                       type: "div",
                       props: {
                         style: {
-                          width: "16",
-                          height: "16",
+                          width: "16px",
+                          height: "16px",
                           background: OG_IMG_PALETTE.accent
                         }
                       }
@@ -47,7 +62,9 @@ export const GET: APIRoute = async ({ props }) => {
                     {
                       type: "span",
                       props: {
-                        tw: "ml-4",
+                        style: {
+                          marginLeft: "16px", // ml-4
+                        },
                         children: "jaehee.dev"
                       }
                     }
@@ -57,8 +74,9 @@ export const GET: APIRoute = async ({ props }) => {
               {
                 type: "div",
                 props: {
-                  tw: "text-5xl font-bold",
                   style: {
+                    fontSize: "48px", // text-5xl
+                    fontWeight: 700, // font-bold
                     color: OG_IMG_PALETTE.foreground,
                   },
                   children: post.data.title,
@@ -94,6 +112,12 @@ export const GET: APIRoute = async ({ props }) => {
       ],
     },
   );
+
+  return new Response(png, {
+    headers: {
+      "Content-Type": "image/png",
+    },
+  });
 };
 
 export async function getStaticPaths() {

@@ -845,13 +845,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@resvg/resvg-wasm@npm:2.4.0":
-  version: 2.4.0
-  resolution: "@resvg/resvg-wasm@npm:2.4.0"
-  checksum: 10c0/4cdf90f90eb8e2efd4a88464e39aadd39f09ecf93ea62eed75af7450cb9368551bbd95601d5d4731d93c694455746552de2aee9c0706eb3dd4416d0c9594b782
-  languageName: node
-  linkType: hard
-
 "@rollup/pluginutils@npm:^5.3.0":
   version: 5.3.0
   resolution: "@rollup/pluginutils@npm:5.3.0"
@@ -1215,16 +1208,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/og@npm:^0.8.6":
-  version: 0.8.6
-  resolution: "@vercel/og@npm:0.8.6"
-  dependencies:
-    "@resvg/resvg-wasm": "npm:2.4.0"
-    satori: "npm:0.16.0"
-  checksum: 10c0/07d51c96fb7837327b79e2ebe9aeeaf9a8fe49416ad467d6951985bd91269c259d7ff608ff5fa3f50a16fdd5eb234cfc398e211df6f5c3d10c1319e7d50702fb
-  languageName: node
-  linkType: hard
-
 "@volar/kit@npm:~2.4.23":
   version: 2.4.27
   resolution: "@volar/kit@npm:2.4.27"
@@ -1541,7 +1524,6 @@ __metadata:
     "@astrojs/tailwind": "npm:6.0.2"
     "@astrojs/ts-plugin": "npm:1.10.6"
     "@types/html-to-text": "npm:^9.0.4"
-    "@vercel/og": "npm:^0.8.6"
     astro: "npm:5.16.8"
     gh-pages: "npm:^6.3.0"
     github-markdown-css: "npm:^5.8.1"
@@ -1552,7 +1534,8 @@ __metadata:
     rehype-pretty-code: "npm:^0.14.1"
     remark-math: "npm:^6.0.0"
     remark-toc: "npm:^9.0.0"
-    satori: "npm:^0.19.1"
+    satori: "npm:^0.29.0"
+    sharp: "npm:^0.34.5"
     shiki: "npm:^3.21.0"
     tailwindcss: "npm:^3.0.24"
     typescript: "npm:^5.9.3"
@@ -1955,13 +1938,6 @@ __metadata:
   version: 1.0.0
   resolution: "css-color-keywords@npm:1.0.0"
   checksum: 10c0/af205a86c68e0051846ed91eb3e30b4517e1904aac040013ff1d742019b3f9369ba5658ba40901dbbc121186fc4bf0e75a814321cc3e3182fbb2feb81c6d9cb7
-  languageName: node
-  linkType: hard
-
-"css-gradient-parser@npm:^0.0.16":
-  version: 0.0.16
-  resolution: "css-gradient-parser@npm:0.0.16"
-  checksum: 10c0/7f05794ad99927ed4dcb9b96571117eea5d4426366f6dc38932035f0e73729ed0edc2a4144576851b2987cdfe8acf9e8d9f2f08c9daf69d085ae2679779bbc5a
   languageName: node
   linkType: hard
 
@@ -5230,28 +5206,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"satori@npm:0.16.0":
-  version: 0.16.0
-  resolution: "satori@npm:0.16.0"
-  dependencies:
-    "@shuding/opentype.js": "npm:1.4.0-beta.0"
-    css-background-parser: "npm:^0.1.0"
-    css-box-shadow: "npm:1.0.0-3"
-    css-gradient-parser: "npm:^0.0.16"
-    css-to-react-native: "npm:^3.0.0"
-    emoji-regex-xs: "npm:^2.0.1"
-    escape-html: "npm:^1.0.3"
-    linebreak: "npm:^1.1.0"
-    parse-css-color: "npm:^0.2.1"
-    postcss-value-parser: "npm:^4.2.0"
-    yoga-layout: "npm:^3.2.1"
-  checksum: 10c0/b6d7c28c53179aa723ebb357bbc9aab3c11709e8e8a8a811eb12df2ff88957a593a140e8b3e2726d6b8608c837dfe52ced2cd56d880a5d33b7387f60aeb5a85e
-  languageName: node
-  linkType: hard
-
-"satori@npm:^0.19.1":
-  version: 0.19.1
-  resolution: "satori@npm:0.19.1"
+"satori@npm:^0.29.0":
+  version: 0.29.0
+  resolution: "satori@npm:0.29.0"
   dependencies:
     "@shuding/opentype.js": "npm:1.4.0-beta.0"
     css-background-parser: "npm:^0.1.0"
@@ -5264,7 +5221,7 @@ __metadata:
     parse-css-color: "npm:^0.2.1"
     postcss-value-parser: "npm:^4.2.0"
     yoga-layout: "npm:^3.2.1"
-  checksum: 10c0/29ba6f3e5f1dc23dd797bd1d1881819bf9196c90e5517b67dfc7cdf1924f31bc53337e5b94a75b598cf1e078ed7d8dead797a693620052e44be6e2339dc53875
+  checksum: 10c0/78b228115b4a75eb1a59a66948d3699a91918e6288ab07783f67ad0a510539659600b23ceefa58a32319130f5a5ef642dd69b90ed45547bc2cc8a77af839a059
   languageName: node
   linkType: hard
 
@@ -5320,7 +5277,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.34.0":
+"sharp@npm:^0.34.0, sharp@npm:^0.34.5":
   version: 0.34.5
   resolution: "sharp@npm:0.34.5"
   dependencies:

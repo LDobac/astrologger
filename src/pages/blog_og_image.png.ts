@@ -1,21 +1,25 @@
 import type { APIRoute } from "astro";
-import { ImageResponse } from "@vercel/og";
 import {
   DEFAULT_OG_IMG_SIZE,
   OG_IMG_BACKGROUND_PATTERN,
   OG_IMG_PALETTE,
 } from "@utils/Constants";
 import GetOgFonts from "@utils/GetOgFonts";
+import RenderOgPng from "@utils/RenderOgPng";
 
 export const GET: APIRoute = async () => {
   const { fontRegular, fontBold } = await GetOgFonts();
 
-  return new ImageResponse(
+  const png = await RenderOgPng(
     {
       type: "div",
       props: {
-        tw: "flex w-full h-full justify-center items-center",
         style: {
+          display: "flex",
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
           backgroundColor: OG_IMG_PALETTE.background,
           color: OG_IMG_PALETTE.foreground,
           ...OG_IMG_BACKGROUND_PATTERN,
@@ -23,20 +27,30 @@ export const GET: APIRoute = async () => {
         children: {
           type: "div",
           props: {
-            tw: "flex flex-col text-center items-center",
+            style: {
+              display: "flex",
+              flexDirection: "column",
+              textAlign: "center",
+              alignItems: "center",
+            },
             children: [
               {
                 type: "div",
                 props: {
-                  tw: "flex text-6xl justify-center items-center",
+                  style: {
+                    display: "flex",
+                    fontSize: "60px", // text-6xl
+                    justifyContent: "center",
+                    alignItems: "center",
+                  },
                   children: [
                     {
                       type: "div",
                       props: {
-                        tw: "mt-6",
                         style: {
-                          width: "24",
-                          height: "24",
+                          marginTop: "24px", // mt-6
+                          width: "24px",
+                          height: "24px",
                           background: OG_IMG_PALETTE.accent
                         }
                       }
@@ -44,7 +58,10 @@ export const GET: APIRoute = async () => {
                     {
                       type: "span",
                       props: {
-                        tw: "ml-4 font-bold",
+                        style: {
+                          marginLeft: "16px", // ml-4
+                          fontWeight: 700, // font-bold
+                        },
                         children: "jaehee.dev"
                       }
                     }
@@ -75,5 +92,10 @@ export const GET: APIRoute = async () => {
       ],
     },
   );
+
+  return new Response(png, {
+    headers: {
+      "Content-Type": "image/png",
+    },
+  });
 };
- 
