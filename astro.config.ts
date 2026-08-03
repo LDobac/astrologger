@@ -22,7 +22,13 @@ export default defineConfig({
             [
                 rehypePrettyCode,
                 {
-                    theme: "one-dark-pro",
+                    // 듀얼 테마. shiki는 --shiki-light / --shiki-dark 변수를 출력만 하고
+                    // 자동으로 전환하지는 않으므로, 어느 쪽을 쓸지는 PostLayout.astro의
+                    // "Rehype Pretty Code - Dual Theme" 블록에서 CSS로 선택한다.
+                    theme: {
+                        light: "github-light",
+                        dark: "github-dark",
+                    },
                     keepBackground: true,
                 },
             ],

@@ -6,7 +6,10 @@ import { FormattedDate } from "@utils/FormattedDate";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { slug as slugger } from "github-slugger";
-import "github-markdown-css/github-markdown-light.css";
+// -light.css/-dark.css는 변수 없이 리터럴 hex로 평탄화되어 있어 클래스 토글이 불가능하다.
+// 변수 기반인 통합 파일을 쓰고, 색상 변수만 markdown-theme.css에서 재정의한다.
+import "github-markdown-css/github-markdown.css";
+import "@styles/markdown-theme.css";
 import { GetPostsBySeries } from "@utils/GetPosts";
 import PostList from "@components/PostList.astro";
 
@@ -36,7 +39,7 @@ if (series) {
 ---
 
 <div class="content-container my-6 px-4">
-    <header class="flex flex-col space-y-4 border-b-2 border-sky-300 pb-6">
+    <header class="flex flex-col space-y-4 border-b-2 border-accent-subtle pb-6">
         {
             og ? (
                 <Image class="w-full bg-black" src={og.img} alt={og.alt} />
@@ -68,15 +71,15 @@ if (series) {
         </p>
     </header>
 
-    <article class="mt-6 border-b-2 border-sky-300 pb-6">
-        <div class="markdown-body">
+    <article class="mt-6 border-b-2 border-accent-subtle pb-6">
+        <div class="markdown-body prose">
             <Content />
         </div>
     </article>
 </div>
 {
     series && neighborPosts && (
-        <div class="mx-0 xl:mx-20 my-10 py-16 bg-neutral-100 shadow-inner">
+        <div class="mx-0 xl:mx-20 my-10 py-16 bg-canvas-subtle shadow-inner">
             <div class="font-bold text-lg md:text-2xl text-center mb-14 px-4">
                 <SeriesLink series={series} />
                 <div class="mt-2">시리즈의 다른 게시물 보기</div>
@@ -126,7 +129,11 @@ if (series) {
 
     /* Rehype Pretty Code - Code Block */
     pre {
-        @apply !px-0 !rounded-lg;
+        /*
+         * keepBackground이 켜져 있어 shiki가 테마 배경을 직접 넣지만,
+         * 코드블록 표면을 시리즈 박스 등 다른 보조 표면과 맞추기 위해 토큰으로 덮는다.
+         */
+        @apply !px-0 !py-4 !rounded-lg !border !border-line !bg-canvas-subtle;
     }
 
     code {
@@ -137,8 +144,31 @@ if (series) {
         @apply grid;
     }
 
+    /*
+     * Rehype Pretty Code - Dual Theme
+     * 듀얼 테마에서 shiki는 인라인 color를 넣지 않고 --shiki-light / --shiki-dark 변수만
+     * 출력한다(빌드 결과물로 확인). 따라서 라이트·다크 양쪽 모두 여기서 직접 선택해야 하며,
+     * 이 블록이 없으면 구문 강조 색이 아예 적용되지 않는다.
+     * [data-chars-id]는 자체 라벨 색을 쓰므로 제외한다.
+     */
+    pre,
+    pre span:not([data-chars-id]) {
+        color: var(--shiki-light) !important;
+    }
+
+    html.dark pre,
+    html.dark pre span:not([data-chars-id]) {
+        color: var(--shiki-dark) !important;
+    }
+
+    /* [data-chars-id] 안쪽 토큰은 shiki 색이 아니라 라벨 색을 물려받아야 한다. */
+    pre [data-chars-id] span,
+    html.dark pre [data-chars-id] span {
+        color: inherit !important;
+    }
+
     .prose {
-        @apply max-w-[55rem] sm:text-lg md:text-xl !leading-7 sm:!leading-9;
+        @apply max-w-[55rem] sm:text-lg md:text-xl;
     }
 
     /* Rehype Pretty Code - Highlight/Line Numbers */
@@ -147,13 +177,14 @@ if (series) {
     }
 
     [data-highlighted-line] {
-        /* background: rgba(200, 200, 255, 0.2); */
-        @apply border-l-sky-300 bg-sky-300/20;
+        @apply border-l-accent-subtle bg-accent-subtle/20;
     }
 
+    /* <mark>로 렌더되므로 UA 기본 배경/글자색(노랑/검정)을 덮어야 한다. */
     [data-highlighted-chars] {
-        @apply bg-zinc-600/50 rounded ring-2;
-        box-shadow: 0 0 0 4px rgb(82 82 91 / 0.5);
+        @apply bg-accent-subtle/70 rounded ring-2 ring-accent-subtle;
+        box-shadow: 0 0 0 4px rgb(var(--color-accent-subtle) / 0.6);
+        color: inherit;
     }
 
     [data-chars-id] {
@@ -164,18 +195,22 @@ if (series) {
         @apply !text-inherit;
     }
 
+    /* 라벨 강조 3종. 다크에서는 밝은 배경이 눈부시므로 명암을 뒤집는다. */
     [data-chars-id="v"] {
-        @apply !text-pink-300 bg-rose-800/50 border-b-pink-600 font-bold;
+        @apply !text-rose-700 bg-rose-100 border-b-rose-500 font-bold;
+        @apply dark:!text-rose-200 dark:bg-rose-900/60 dark:border-b-rose-400;
         box-shadow: none;
     }
 
     [data-chars-id="s"] {
-        @apply !text-yellow-300 bg-yellow-800/50 border-b-yellow-600 font-bold;
+        @apply !text-yellow-800 bg-yellow-100 border-b-yellow-600 font-bold;
+        @apply dark:!text-yellow-100 dark:bg-yellow-900/60 dark:border-b-yellow-400;
         box-shadow: none;
     }
 
     [data-chars-id="i"] {
-        @apply !text-purple-200 bg-purple-800/50 border-b-purple-600 font-bold;
+        @apply !text-purple-700 bg-purple-100 border-b-purple-500 font-bold;
+        @apply dark:!text-purple-200 dark:bg-purple-900/60 dark:border-b-purple-400;
         box-shadow: none;
     }
 
@@ -187,7 +222,7 @@ if (series) {
         counter-increment: line;
         content: counter(line);
 
-        @apply inline-block mr-4 w-8 text-left text-gray-500;
+        @apply inline-block mr-4 w-8 text-left text-fg-muted;
     }
 
     code[data-line-numbers-max-digits="2"] > [data-line]::before {
@@ -204,8 +239,7 @@ if (series) {
     }
 
     [data-rehype-pretty-code-fragment] [data-rehype-pretty-code-title] {
-        @apply inline rounded-t-lg px-4 py-3 text-sm leading-tight text-sky-300;
-        background-color: #24292e;
+        @apply inline rounded-t-lg px-4 py-3 text-sm leading-tight text-accent bg-canvas-subtle;
         font-family:
             ui-monospace,
             SFMono-Regular,

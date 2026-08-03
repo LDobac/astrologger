@@ -2,7 +2,11 @@ import type { APIRoute } from "astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { slug as slugger } from "github-slugger";
 import satori from "satori";
-import { DEFAULT_OG_IMG_SIZE } from "@utils/Constants";
+import {
+    DEFAULT_OG_IMG_SIZE,
+    OG_IMG_BACKGROUND_PATTERN,
+    OG_IMG_PALETTE,
+} from "@utils/Constants";
 import GetOgFonts from "@utils/GetOgFonts";
 
 export const GET: APIRoute = async ({ props }) => {
@@ -18,11 +22,11 @@ export const GET: APIRoute = async ({ props }) => {
                     display: "flex",
                     width: "100%",
                     height: "100%",
-                    backgroundColor: "white",
+                    backgroundColor: OG_IMG_PALETTE.background,
+                    color: OG_IMG_PALETTE.foreground,
                     justifyContent: "center",
                     alignItems: "center",
-                    backgroundImage: "radial-gradient(circle at 25px 25px, lightgray 3%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 3%, transparent 0%)",
-                    backgroundSize: "100px 100px",
+                    ...OG_IMG_BACKGROUND_PATTERN,
                 },
                 children: {
                     type: "div",
@@ -51,7 +55,7 @@ export const GET: APIRoute = async ({ props }) => {
                                                 style: {
                                                     width: "16px",
                                                     height: "16px",
-                                                    background: "black"
+                                                    background: OG_IMG_PALETTE.accent
                                                 }
                                             }
                                         },
@@ -73,7 +77,7 @@ export const GET: APIRoute = async ({ props }) => {
                                     style: {
                                         fontSize: "48px", // text-5xl
                                         fontWeight: 700, // bold
-                                        color: "black",
+                                        color: OG_IMG_PALETTE.foreground,
                                     },
                                     children: post.data.title,
                                 }

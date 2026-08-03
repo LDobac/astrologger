@@ -1,6 +1,10 @@
 import type { APIRoute } from "astro";
 import { ImageResponse } from "@vercel/og";
-import {DEFAULT_OG_IMG_SIZE} from "@utils/Constants";
+import {
+  DEFAULT_OG_IMG_SIZE,
+  OG_IMG_BACKGROUND_PATTERN,
+  OG_IMG_PALETTE,
+} from "@utils/Constants";
 import GetOgFonts from "@utils/GetOgFonts";
 
 export const GET: APIRoute = async () => {
@@ -10,10 +14,11 @@ export const GET: APIRoute = async () => {
     {
       type: "div",
       props: {
-        tw: "flex w-full h-full bg-white justify-center items-center",
+        tw: "flex w-full h-full justify-center items-center",
         style: {
-          backgroundImage: "radial-gradient(circle at 25px 25px, lightgray 3%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 3%, transparent 0%)",
-          backgroundSize: "100px 100px",
+          backgroundColor: OG_IMG_PALETTE.background,
+          color: OG_IMG_PALETTE.foreground,
+          ...OG_IMG_BACKGROUND_PATTERN,
         },
         children: {
           type: "div",
@@ -32,7 +37,7 @@ export const GET: APIRoute = async () => {
                         style: {
                           width: "24",
                           height: "24",
-                          background: "black"
+                          background: OG_IMG_PALETTE.accent
                         }
                       }
                     },

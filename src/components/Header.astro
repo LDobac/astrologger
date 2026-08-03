@@ -1,24 +1,26 @@
 ---
 import { Image } from "astro:assets";
 
+import ThemeToggle from "./ThemeToggle.astro";
 import imgProfileImage from "@assets/images/profile_image.webp";
 ---
 
 <header class="flex flex-col w-full justify-center items-center mt-6">
     <a href="/">
         <Image class="rounded-full w-28" src={imgProfileImage} alt="This is my cute cat." loading="eager"/>
-        <p class="mt-1 text-3xl font-bold hover:text-sky-300">Jaehee</p>
+        <p class="mt-1 text-3xl font-bold hover:text-accent">Jaehee</p>
     </a>
 
     <p class="mt-1">Hi!</p>
 
     <nav class="content-container border-y py-4 mt-6">
-        <ul class="w-full flex justify-between px-6 font-bold">
-            <li class="hover:text-sky-300"><a href="/posts/1">Posts</a></li>
-            <li class="hover:text-sky-300"><a href="https://ljhblog.tistory.com/">Tistory</a></li>
-            <li class="hover:text-sky-300"><a href="https://github.com/LDobac">Github</a></li>
-            <li class="hover:text-sky-300"><a href="/portfolio">Portfolio</a></li>
-        </ul>   
-    </nav>  
+        <ul class="w-full flex justify-between items-center px-6 font-bold">
+            <li class="hover:text-accent"><a href="/posts/1">Posts</a></li>
+            <li class="hover:text-accent"><a href="https://ljhblog.tistory.com/">Tistory</a></li>
+            <li class="hover:text-accent"><a href="https://github.com/LDobac">Github</a></li>
+            <li class="hover:text-accent"><a href="/portfolio">Portfolio</a></li>
+            <li class="flex items-center"><ThemeToggle /></li>
+        </ul>
+    </nav>
 </header>
  

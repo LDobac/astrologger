@@ -8,6 +8,7 @@ interface Props {
 const { tag } = Astro.props;
 ---
 
-<a class="px-2.5 py-1 text-sm rounded-2xl shadow-md hover:bg-sky-300 hover:text-white transition" href={"/tags/" + slugger(tag) + "/1"}>
+<!-- 다크 배경에서는 shadow-md만으로 경계가 보이지 않으므로 테두리를 함께 준다. -->
+<a class="px-2.5 py-1 text-sm rounded-2xl border border-line shadow-md hover:bg-accent-subtle transition" href={"/tags/" + slugger(tag) + "/1"}>
     <span>{tag}</span>
 </a>

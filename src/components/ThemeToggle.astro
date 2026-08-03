@@ -1,0 +1,40 @@
+---
+// 아이콘 전환은 .dark 클래스에 반응하는 CSS만으로 처리한다.
+// JS로 아이콘을 갈아끼우지 않으므로 첫 페인트부터 올바른 상태로 그려진다.
+// 클릭 처리는 Layout.astro의 인라인 스크립트가 이벤트 위임으로 담당한다.
+---
+
+<button
+    id="theme-toggle"
+    type="button"
+    aria-label="라이트/다크 테마 전환"
+    class="p-1 rounded-lg text-fg-muted hover:text-accent transition"
+>
+    <svg
+        class="w-5 h-5 dark:hidden"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+    >
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+    </svg>
+
+    <svg
+        class="w-5 h-5 hidden dark:block"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        aria-hidden="true"
+    >
+        <circle cx="12" cy="12" r="4"></circle>
+        <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+        ></path>
+    </svg>
+</button>

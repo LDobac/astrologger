@@ -50,6 +50,48 @@ const {
 
 <html>
 	<head>
+        <!-- 첫 페인트 전에 테마를 확정해야 다크모드에서 흰 화면이 번쩍이지 않는다. -->
+        <script is:inline>
+            (function () {
+                function setTheme(theme) {
+                    document.documentElement.classList.toggle("dark", theme === "dark");
+                    document.documentElement.style.colorScheme = theme;
+                }
+
+                function applyTheme() {
+                    // 저장값이 없으면 OS 설정을 따른다. 토글하기 전까지는 저장하지 않으므로
+                    // 사용자가 OS 테마를 바꾸면 그대로 따라간다.
+                    const stored = localStorage.getItem("theme");
+
+                    setTheme(
+                        stored ??
+                            (window.matchMedia("(prefers-color-scheme: dark)").matches
+                                ? "dark"
+                                : "light"),
+                    );
+                }
+
+                applyTheme();
+
+                // ClientRouter는 페이지 전환 시 <html> 속성을 통째로 교체하므로 테마를 다시 적용한다.
+                document.addEventListener("astro:after-swap", applyTheme);
+
+                // 토글 버튼은 페이지 전환마다 새 엘리먼트로 교체되므로 document에 위임한다.
+                // 이렇게 하면 리스너를 한 번만 등록해도 되고 중복 바인딩이 발생하지 않는다.
+                document.addEventListener("click", function (event) {
+                    if (!(event.target instanceof Element)) return;
+                    if (!event.target.closest("#theme-toggle")) return;
+
+                    const theme = document.documentElement.classList.contains("dark")
+                        ? "light"
+                        : "dark";
+
+                    setTheme(theme);
+                    localStorage.setItem("theme", theme);
+                });
+            })();
+        </script>
+
         <ClientRouter />
 
         <link rel="sitemap" href="/sitemap-index.xml"/>
@@ -113,7 +155,7 @@ const {
 
 		<title>{title}</title>
 	</head>
-    <body class="w-full">
+    <body class="w-full bg-canvas text-fg">
         <Header />
         <main>
             <slot />
@@ -126,6 +168,43 @@ const {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    /*
+     * 시맨틱 색상 토큰. 값은 GitHub Primer 팔레트에 정렬되어 있어
+     * github-markdown-css로 렌더되는 본문과 사이트 크롬이 같은 색 체계를 공유한다.
+     * 투명도 수식어(bg-accent-subtle/20)를 쓰려면 RGB 채널값이어야 한다.
+     */
+    :root {
+        --color-canvas: 255 255 255;        /* #ffffff */
+        --color-canvas-subtle: 246 248 250; /* #f6f8fa */
+        --color-fg: 31 35 40;               /* #1f2328 */
+        --color-fg-muted: 89 99 110;        /* #59636e */
+        --color-line: 209 217 224;          /* #d1d9e0 */
+        --color-accent: 9 105 218;          /* #0969da */
+        --color-accent-subtle: 125 211 252; /* #7dd3fc */
+    }
+
+    :root.dark {
+        --color-canvas: 13 17 23;           /* #0d1117 */
+        --color-canvas-subtle: 21 27 35;    /* #151b23 */
+        --color-fg: 240 246 252;            /* #f0f6fc */
+        --color-fg-muted: 145 152 161;      /* #9198a1 */
+        --color-line: 61 68 77;             /* #3d444d */
+        --color-accent: 68 147 248;         /* #4493f8 */
+        --color-accent-subtle: 31 111 235;  /* #1f6feb */
+    }
+
+    /*
+     * Tailwind preflight의 기본 테두리색(gray-200)을 토큰으로 되돌린다.
+     * Header/Footer/PostCard가 색 없는 border-y, border-t-2, border-b-2를 쓰기 때문에 필요하다.
+     */
+    *,
+    ::before,
+    ::after {
+        border-color: rgb(var(--color-line));
+    }
+}
 
 @layer components {
     .content-container {

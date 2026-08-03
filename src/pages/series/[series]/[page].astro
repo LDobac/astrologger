@@ -42,7 +42,7 @@ const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
     <div class="content-container my-6 px-4 space-y-12">
         <p class="flex flex-col text-center mb-6 border-b-2 pb-4">
             <span>Series</span>
-            <span class="font-bold text-2xl text-sky-300">{series}</span>
+            <span class="font-bold text-2xl text-accent">{series}</span>
         </p>
 
         <PostList posts={page.data} />

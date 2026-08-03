@@ -51,7 +51,7 @@ const description = GetPostDescription(post);
     <div class="mt-2 leading-none">
         <a
             href={"/posts/" + slugger(title)}
-            class="block text-lg font-bold truncate mr-4">{title}</a
+            class="block text-lg font-bold leading-snug line-clamp-2 mr-4">{title}</a
         >
         {!!series ? <SeriesLink series={series} /> : <br />}
     </div>
@@ -70,5 +70,5 @@ const description = GetPostDescription(post);
         )
     }
 
-    <p class="text-sm text-gray-400 mt-2">{FormattedDate(date)}</p>
+    <p class="text-sm text-fg-muted mt-2">{FormattedDate(date)}</p>
 </div>
