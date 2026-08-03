@@ -4,13 +4,12 @@ import { type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import GetTagList from "@utils/GetTagList";
 import PostList from "@components/PostList.astro";
-import type {Page} from "astro";
+import type {Page, PaginateFunction} from "astro";
 import Paginator from "@components/Paginator.astro";
 import { PAGE_SIZE } from "@utils/Constants";
 import {GetPosts} from "@utils/GetPosts";
 
-// @ts-expect-error
-export async function getStaticPaths ({ paginate }) {
+export async function getStaticPaths ({ paginate }: { paginate: PaginateFunction }) {
     const tagList = await GetTagList();
     const posts = await GetPosts(true);
     

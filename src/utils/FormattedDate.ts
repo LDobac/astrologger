@@ -1,9 +1,16 @@
-import "dayjs/locale/ko";
-import dayjs from "dayjs";
-dayjs.locale("ko");
+const formatter = new Intl.DateTimeFormat("ko-KR", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+});
 
 const FormattedDate = (date: Date) => {
-    return dayjs(date).format("YYYY년 MM월 DD일");
+    const parts = formatter.formatToParts(date);
+    const get = (type: Intl.DateTimeFormatPartTypes) =>
+        parts.find((part) => part.type === type)?.value ?? "";
+
+    return `${get("year")}년 ${get("month")}월 ${get("day")}일`;
 }
 
 export {

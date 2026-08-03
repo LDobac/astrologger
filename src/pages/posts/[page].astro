@@ -3,13 +3,12 @@ import { type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import PostList from "@components/PostList.astro";
 import Paginator from "@components/Paginator.astro";
-import type {Page} from "astro";
+import type {Page, PaginateFunction} from "astro";
 import { GetPosts } from "@utils/GetPosts";
 import { PAGE_SIZE } from "@utils/Constants";
 import RSSFeed from "@components/RSSFeed.astro";
 
-// @ts-expect-error
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
     const posts = await GetPosts(true);
 
     return paginate(posts, {

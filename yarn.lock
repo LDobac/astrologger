@@ -1543,7 +1543,6 @@ __metadata:
     "@types/html-to-text": "npm:^9.0.4"
     "@vercel/og": "npm:^0.8.6"
     astro: "npm:5.16.8"
-    dayjs: "npm:^1.11.19"
     gh-pages: "npm:^6.3.0"
     github-markdown-css: "npm:^5.8.1"
     github-slugger: "npm:^2.0.0"
@@ -2039,13 +2038,6 @@ __metadata:
   dependencies:
     css-tree: "npm:~2.2.0"
   checksum: 10c0/ab4beb1e97dd7e207c10e9925405b45f15a6cd1b4880a8686ad573aa6d476aed28b4121a666cffd26c37a26179f7b54741f7c257543003bfb244d06a62ad569b
-  languageName: node
-  linkType: hard
-
-"dayjs@npm:^1.11.19":
-  version: 1.11.19
-  resolution: "dayjs@npm:1.11.19"
-  checksum: 10c0/7d8a6074a343f821f81ea284d700bd34ea6c7abbe8d93bce7aba818948957c1b7f56131702e5e890a5622cdfc05dcebe8aed0b8313bdc6838a594d7846b0b000
   languageName: node
   linkType: hard
 

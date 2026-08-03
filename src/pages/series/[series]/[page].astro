@@ -5,12 +5,11 @@ import Layout from "@layouts/Layout.astro";
 import GetSeriesList from "@utils/GetSeriesList";
 import PostList from "@components/PostList.astro";
 import Paginator from "@components/Paginator.astro";
-import type {Page} from "astro";
+import type {Page, PaginateFunction} from "astro";
 import { PAGE_SIZE } from "@utils/Constants";
 import {GetPosts} from "@utils/GetPosts";
 
-// @ts-expect-error
-export async function getStaticPaths ({ paginate }) {
+export async function getStaticPaths ({ paginate }: { paginate: PaginateFunction }) {
     const seriesList = await GetSeriesList();
     const posts = await GetPosts(true);
     
