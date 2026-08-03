@@ -78,7 +78,10 @@ function collectHeadingsAfter(rest: string, openDepth: number): TocItem[] {
  */
 function buildTocHtml(items: TocItem[]): string {
     const slugger = new GithubSlugger();
-    let html = "";
+    // nav 래퍼는 접근성 랜드마크 역할과 함께, GetPostDescription.ts가
+    // html-to-text의 selectors: [{ selector: "nav.toc", format: "skip" }]로
+    // 목차 텍스트를 설명문에서 걸러낼 수 있는 셀렉터 대상이 되어준다.
+    let html = "<nav class=\"toc\">";
     const stack: number[] = [];
 
     for (const item of items) {
@@ -104,6 +107,7 @@ function buildTocHtml(items: TocItem[]): string {
         stack.pop();
     }
 
+    html += "</nav>";
     return html;
 }
 

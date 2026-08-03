@@ -2184,7 +2184,6 @@ __metadata:
     github-slugger: "npm:^2.0.0"
     html-to-text: "npm:^9.0.5"
     katex: "npm:^0.18.1"
-    marked: "npm:^17.0.1"
     satori: "npm:^0.29.0"
     satteri: "npm:0.9.5"
     sharp: "npm:^0.34.5"
@@ -3979,15 +3978,6 @@ __metadata:
     promise-retry: "npm:^2.0.1"
     ssri: "npm:^12.0.0"
   checksum: 10c0/c40efb5e5296e7feb8e37155bde8eb70bc57d731b1f7d90e35a092fde403d7697c56fb49334d92d330d6f1ca29a98142036d6480a12681133a0a1453164cb2f0
-  languageName: node
-  linkType: hard
-
-"marked@npm:^17.0.1":
-  version: 17.0.1
-  resolution: "marked@npm:17.0.1"
-  bin:
-    marked: bin/marked.js
-  checksum: 10c0/0197337aad33882308cea52d2c86d7b830a89be729a4010a26a488ae1c224cdc7520b8cce056832a81a127fc39a3827f45e3865c1ff257324cb553cb06ce0e57
   languageName: node
   linkType: hard
 
