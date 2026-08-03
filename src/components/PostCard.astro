@@ -48,12 +48,13 @@ const description = GetPostDescription(post);
         }
     </a>
 
-    <div class="mt-2 leading-none">
-        <a
-            href={"/posts/" + slugger(title)}
-            class="block text-lg font-bold leading-snug line-clamp-2 mr-4">{title}</a
-        >
-        {!!series ? <SeriesLink series={series} /> : <br />}
+    <div class="mt-2">
+        <h3 class="line-clamp-2 text-lg font-bold leading-snug">
+            <a href={"/posts/" + slugger(title)} class="hover:text-accent">{title}</a>
+        </h3>
+        <div class="mt-1 min-h-[1.5rem] text-sm">
+            {!!series && <SeriesLink series={series} />}
+        </div>
     </div>
 
     <p class="mt-2 h-16 text-sm line-clamp-3">
@@ -70,5 +71,7 @@ const description = GetPostDescription(post);
         )
     }
 
-    <p class="text-sm text-fg-muted mt-2">{FormattedDate(date)}</p>
+    <p class="text-sm text-fg-muted mt-2">
+        <time datetime={date.toISOString()}>{FormattedDate(date)}</time>
+    </p>
 </div>
