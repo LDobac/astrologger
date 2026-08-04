@@ -52,6 +52,21 @@ const ogProp: OgProp = {
               alt: "Thumbnail of " + post.data.title,
           },
 };
+
+const pageUrl = baseUrl + Astro.url.pathname;
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    image: ogProp.img?.url,
+    datePublished: post.data.date.toISOString(),
+    dateModified: (post.data.editDate ?? post.data.date).toISOString(),
+    author: { "@type": "Person", name: "jaehee" },
+    publisher: { "@type": "Organization", name: "Jaehee.dev" },
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+    url: pageUrl,
+};
 ---
 
 <Layout
@@ -70,6 +85,13 @@ const ogProp: OgProp = {
             />
         )
     }
+
+    <script
+        is:inline
+        type="application/ld+json"
+        set:html={JSON.stringify(jsonLd).replace(/</g, "\\u003c")}
+        slot="extra-head"
+    />
 
     <PostLayout post={post} />
 </Layout>
