@@ -13,7 +13,7 @@ Package manager is Yarn (Berry, `yarn@4.12.0` via corepack, `.yarnrc.yml` + `.ya
 - `yarn dev` / `yarn start` — start the Astro dev server
 - `yarn build` — runs `astro check && tsc --noEmit && astro build`; treat all three as required to pass, not just the final build step
 - `yarn preview` — preview the production build locally
-- `yarn deploy` — publish `dist/` to GitHub Pages via `gh-pages` (this pushes to a remote branch — confirm with the user before running)
+- `yarn deploy` — publish `dist/` to GitHub Pages via `gh-pages -d dist --nojekyll --no-history` (this force-pushes to a remote branch — confirm with the user before running). `--no-history` makes each deploy a parentless root commit force-pushed over `gh-pages`, so that branch holds exactly one commit and never accumulates build history. `--nojekyll` writes a `.nojekyll` file so GitHub Pages skips its Jekyll build step (`public/CNAME` already ships the custom domain, so `--cname` isn't needed).
 - `yarn astro ...` — run arbitrary Astro CLI commands
 
 There is no test runner or lint script configured in this project. Node `>=22.12.0` is required (see `engines` in `package.json`).

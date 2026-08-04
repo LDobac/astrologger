@@ -11,7 +11,7 @@
     "build": "astro check && tsc --noEmit && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --nojekyll --no-history"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
