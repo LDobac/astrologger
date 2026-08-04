@@ -36,7 +36,7 @@ const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
 
 <Layout
     title={"Tag - " + tag + " - " + page.currentPage.toString()}
-    description="태그 목록 페이지입니다."
+    description={`'${tag}' 태그가 달린 게시글 목록입니다. (${page.currentPage} / ${page.lastPage}페이지)`}
     url={baseUrl + Astro.url.pathname}
 >
     <div class="content-container-wide my-6 px-4 space-y-12">

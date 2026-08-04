@@ -26,7 +26,7 @@ const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
 
 <Layout
     title={"Recent Posts - " + page.currentPage.toString()}
-    description="최신 게시글 목록입니다."
+    description={`최신 게시글 목록입니다. (${page.currentPage} / ${page.lastPage}페이지)`}
     url={baseUrl + Astro.url.pathname}
 >
     <div class="content-container-wide my-6 px-4 space-y-12">

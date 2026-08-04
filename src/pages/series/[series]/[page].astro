@@ -35,7 +35,7 @@ const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
 
 <Layout
     title={"Series - " + series + " - " + page.currentPage.toString()}
-    description="시리즈 목록 페이지입니다."
+    description={`'${series}' 시리즈의 게시글 목록입니다. (${page.currentPage} / ${page.lastPage}페이지)`}
     url={baseUrl + Astro.url.pathname}
 >
     <div class="content-container-wide my-6 px-4 space-y-12">
