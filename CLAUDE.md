@@ -11,12 +11,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Package manager is Yarn (Berry, `yarn@4.12.0` via corepack, `.yarnrc.yml` + `.yarn/`). Use `yarn`, not `npm`.
 
 - `yarn dev` / `yarn start` — start the Astro dev server
-- `yarn build` — runs `astro check && tsc --noEmit && astro build`; treat all three as required to pass, not just the final build step
+- `yarn game:install` — install the `games/LLM_Corpora` submodule's npm dependencies after initializing or updating the submodule
+- `yarn build` — runs `astro check && tsc --noEmit && astro build`; the local `llm-corpora-static-game` Astro integration then builds the game and stages it at `dist/games/LLM_Corpora/`. Treat validation, the Astro build, and the integration hook as one required build lifecycle
+- `yarn test` — run the Node-based build-script tests
 - `yarn preview` — preview the production build locally
 - `yarn deploy` — publish `dist/` to GitHub Pages via `gh-pages -d dist --nojekyll --no-history` (this force-pushes to a remote branch — confirm with the user before running). `--no-history` makes each deploy a parentless root commit force-pushed over `gh-pages`, so that branch holds exactly one commit and never accumulates build history. `--nojekyll` writes a `.nojekyll` file so GitHub Pages skips its Jekyll build step (`public/CNAME` already ships the custom domain, so `--cname` isn't needed).
 - `yarn astro ...` — run arbitrary Astro CLI commands
 
-There is no test runner or lint script configured in this project. Node `>=22.12.0` is required (see `engines` in `package.json`).
+There is no lint script configured in this project. Build-script tests use Node's built-in test runner. Node `>=22.12.0` is required (see `engines` in `package.json`).
 
 ## Dependency policy
 
@@ -77,4 +79,6 @@ KaTeX CSS is loaded conditionally per-page (see `posts/[slug]/index.astro`) only
 
 ### Deployment
 
-Static site, no SSR adapter. `astro.config.ts` sets `site` to `https://jaehee.dev` only when `NODE_ENV=production`, `compressHTML: true` explicitly (Astro 7's new default, `'jsx'`, compresses inter-element whitespace differently and would break a newline-joined `<a>` in `Footer.astro`), and `build.assets` to `asset_dir`. Deployment is manual (`yarn deploy` → `gh-pages`), no CI workflow is configured.
+Static site, no SSR adapter. `astro.config.ts` reads the deployment domain from `public/CNAME` and uses it for `site` only when `NODE_ENV=production`, sets `compressHTML: true` explicitly (Astro 7's new default, `'jsx'`, compresses inter-element whitespace differently and would break a newline-joined `<a>` in `Footer.astro`), and sets `build.assets` to `asset_dir`. Deployment is manual (`yarn deploy` → `gh-pages`), no CI workflow is configured.
+
+`games/LLM_Corpora` is a Git submodule. On Windows, initialize it with long-path support (`git -c core.longpaths=true submodule update --init --recursive`) and ensure Git LFS content is hydrated before building. The local `llm-corpora-static-game` integration runs in Astro's `astro:build:done` hook: it builds the game with `LLM_CORPORA_BASE_PATH=/games/LLM_Corpora/`, then calls `scripts/stage-llm-corpora.mjs` to replace only `dist/games/LLM_Corpora/`. The staging primitive requires the Astro root `index.html`, verifies that its generated `CNAME` matches `public/CNAME`, rejects incomplete game output and Git LFS pointer files, and preserves the root site files. Never deploy the game to `gh-pages` independently: the next `--no-history` blog deployment would replace it. The published game URL is `/games/LLM_Corpora/`.

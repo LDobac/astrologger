@@ -1,0 +1,3 @@
+[submodule "games/LLM_Corpora"]
+	path = games/LLM_Corpora
+	url = https://github.com/LDobac/LLM_Corpora.git

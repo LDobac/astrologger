@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "game:install": "npm --prefix games/LLM_Corpora ci",
     "build": "astro check && tsc --noEmit && astro build",
+    "test": "node --test scripts/*.test.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "gh-pages -d dist --nojekyll --no-history"

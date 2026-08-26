@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import { readFileSync } from "node:fs";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import { satteri } from "@astrojs/markdown-satteri";
@@ -6,6 +7,12 @@ import { transformerMetaHighlight, transformerMetaWordHighlight } from "@shikijs
 import satteriKatex from "./src/plugins/satteri-katex";
 import satteriToc from "./src/plugins/satteri-toc";
 import transformerLineNumbers from "./src/plugins/line-numbers";
+import llmCorporaIntegration from "./scripts/llm-corpora-integration.mjs";
+
+const deploymentDomain = readFileSync(new URL("./public/CNAME", import.meta.url), "utf8").trim();
+if (deploymentDomain.length === 0 || /\s/.test(deploymentDomain)) {
+    throw new Error("public/CNAME must contain exactly one non-empty domain name.");
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -37,7 +44,7 @@ export default defineConfig({
         },
     },
 
-    integrations: [sitemap()],
+    integrations: [sitemap(), llmCorporaIntegration()],
 
     // Astro 7 기본값이 'jsx'(공백을 다르게 압축)로 바뀌었다. 기존 압축 방식을 유지한다.
     compressHTML: true,
@@ -50,7 +57,7 @@ export default defineConfig({
      * 압도적으로 초과해 기존 Google <link rel="stylesheet"> 방식으로 되돌렸다.
      */
 
-    site: process.env.NODE_ENV === 'production' ? "https://jaehee.dev" : undefined,
+    site: process.env.NODE_ENV === 'production' ? `https://${deploymentDomain}` : undefined,
 
     build: {
         assets: "asset_dir"
