@@ -121,7 +121,8 @@ export default function satteriToc(options: SatteriTocOptions) {
             const startOffset = node.position?.end?.offset;
             if (startOffset == null) return;
 
-            const items = collectHeadingsAfter(ctx.source.slice(startOffset), node.depth);
+            const rest = new TextDecoder().decode(new TextEncoder().encode(ctx.source).subarray(startOffset));
+            const items = collectHeadingsAfter(rest, node.depth);
             if (items.length === 0) return;
 
             ctx.insertAfter(node, { rawHtml: buildTocHtml(items) });
