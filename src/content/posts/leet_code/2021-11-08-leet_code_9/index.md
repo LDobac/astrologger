@@ -52,7 +52,7 @@ bool isPalindrome(int x)
 입력값 x를 뒤집은 값 reverse를 구합니다. reverse의 타입이 `long`인 이유는, x 값으로 `int` 자료형의 최댓값이 들어올 경우 뒤집는 연산 중 오버플로가 발생할 수 있기 때문입니다. 그래서 `int`보다 큰 자료형인 `long`을 사용했습니다(별도의 자료형 제한이 없었기 때문에 사용할 수 있었습니다).
 
 #### 제출 결과
-![Solution 1 result](./images/9/result.webp)
+![Solution 1 result](./attachments/result.webp)
 
 실행 결과 0ms가 나왔으며, 다른 C++ 제출자보다 100%의 성능을 보였음을 확인할 수 있습니다.
 

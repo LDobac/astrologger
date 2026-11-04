@@ -13,7 +13,7 @@ description: 2에서 9 사이의 숫자로 구성된 문자열 입력 시 핸드
 
 난이도 - `MEDIUM` 사용 언어 - `C++`
 
-![Solution 1 result](./images/17/example.webp)
+![Solution 1 result](./attachments/example.webp)
 
 2-9 사이의 숫자로 구성된 문자열이 입력으로 들어오면, 위 핸드폰 자판에 매핑되는 문자들로 만들 수 있는 모든 문자열 조합을 구하는 문제입니다.
 
@@ -33,7 +33,7 @@ description: 2에서 9 사이의 숫자로 구성된 문자열 입력 시 핸드
 
 카테시안 곱을 구현하기 위해 문제를 트리 형태로 표현해보겠습니다.
 
-![tree example](./images/17/example_2.webp)
+![tree example](./attachments/example_2.webp)
 
 `235`라는 숫자가 주어졌다면, 2의 문자에 해당하는 "abc"와 5의 문자에 해당하는 "def", 그리고 7에 해당하는 "jkl"에 대해 카테시안 곱 연산을 수행해 모든 경우를 찾아야 합니다.
 
@@ -123,7 +123,7 @@ for (int i = 0; i < letters.size(); i++)
 그리고 현재 문자들을 순회하면서 새로 재귀 함수를 호출합니다. 재귀를 호출할 때는 현재 탐색 중인 숫자 문자의 다음 숫자를 선택하고, 지금까지 탐색한 문자들을 모두 조합해 새로운 재귀 함수를 호출합니다.
 
 #### 제출 결과
-![Solution 1 result](./images/17/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 실행 속도는 0ms입니다. 시간 복잡도는 $$O(4^n)$$으로 생각할 수 있을 것 같습니다.
 

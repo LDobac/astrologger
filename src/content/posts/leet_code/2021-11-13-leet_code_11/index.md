@@ -13,7 +13,7 @@ description: 다양한 길이를 가진 막대들을 이용해 가장 많은 액
 
 난이도 - `MEDIUM` 사용 언어 - `C++`
 
-![challenge example](./images/11/question_11.webp)
+![challenge example](./attachments/question_11.webp)
 
 배열에 각 막대의 길이가 순서대로 주어질 때, 막대 사이에 담을 수 있는 액체의 최대량을 구하는 문제입니다.
 
@@ -54,7 +54,7 @@ for (int i = 0; i < count - 1; i++)
 너비도 간단히 구할 수 있습니다. 두 막대 사이의 거리를 계산하면 됩니다.
 
 #### 제출 결과
-![Solution 1 result](./images/11/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 중첩된 반복문을 사용하기 때문에 시간 복잡도는 $$O(n^2)$$입니다. 매우 많은 입력이 주어졌을 때 시간 초과가 발생함을 확인할 수 있었습니다.
 
@@ -112,23 +112,23 @@ public:
 
 그래서 맨 처음에는 너비가 가장 큰 상태인 첫 번째 막대와 마지막 막대를 선택합니다.
 
-![Selection example](./images/11/selection_example_1.webp)
+![Selection example](./attachments/selection_example_1.webp)
 
 여기서 넓이가 더 커지려면 왼쪽 막대가 더 높아져야 합니다. 즉, 오른쪽 막대는 충분히 높지만 왼쪽 막대가 낮기 때문에, 지금의 왼쪽 막대로는 기대 이상의 넓이를 구할 수 없을 것 같습니다.
 
 왼쪽 막대를 한 칸 오른쪽에 있는 막대로 옮겨 선택합니다.
 
-![Selection example 2](./images/11/selection_example_2.webp)
+![Selection example 2](./attachments/selection_example_2.webp)
 
 너비가 1 줄어들었지만, 높이가 그 이상으로 증가했기 때문에 넓이는 이전 결과보다 더 커졌습니다.
 
 현재 상황에서는 오른쪽 막대가 왼쪽 막대보다 높이가 낮기 때문에, 오른쪽 막대가 더 높아진다면 넓이가 더 증가할 수도 있을 것 같습니다. 오른쪽 막대를 한 칸 왼쪽에 있는 막대로 옮겨 선택합니다.
 
-![Selection example 3](./images/11/selection_example_3.webp)
+![Selection example 3](./attachments/selection_example_3.webp)
 
 아쉽지만 오히려 넓이가 줄었습니다. 오른쪽 막대가 왼쪽 막대보다 높이가 낮기 때문입니다. 다시 한 번 왼쪽으로 이동합니다.
 
-![Selection example 4](./images/11/selection_example_4.webp)
+![Selection example 4](./attachments/selection_example_4.webp)
 
 이런 방식으로 계속 순회하며 가장 컸던 넓이를 선택하면 됩니다.
 
@@ -167,7 +167,7 @@ else right--;
 하지만 결국 높은 막대를 선택할수록 큰 넓이가 나올 기대치가 있으므로, 이렇게 기대치가 있는 경우만 검사해도 최선의 결과를 얻을 수 있습니다.
 
 #### 제출 결과
-![Solution 2 result](./images/11/result_2.webp)
+![Solution 2 result](./attachments/result_2.webp)
 
 시간 복잡도는 $$O(n)$$이며, 실제 실행 시간은 76ms로 다른 C++ 제출자보다 91%가량 좋은 성능을 보임을 알 수 있습니다.
 

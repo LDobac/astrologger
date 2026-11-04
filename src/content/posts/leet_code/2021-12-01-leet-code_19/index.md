@@ -13,7 +13,7 @@ description: 단방향 연결 리스트의 끝에서 N번째 노드를 제거합
 
 난이도 - `MEDIUM` 사용 언어 - `C++`
 
-![example 1](./images/19/example_1.webp)
+![example 1](./attachments/example_1.webp)
 
 단방향 연결 리스트와 삭제할 인덱스가 입력으로 주어집니다.
 
@@ -75,7 +75,7 @@ else
 
 
 #### 제출 결과
-![Solution 1 result](./images/19/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 실행 속도는 4ms가 나왔습니다. 실행할 때마다 조금씩 달라지는 leetcode의 실행 속도 특성 때문에 4ms가 나온 듯합니다. 몇 번 더 재시도하면 0ms의 실행 속도가 나올 수도 있을 것 같습니다.
 

@@ -19,7 +19,7 @@ description: 문자열을 지그재그로 변환합니다.
 
 예를 들어 문자열 `HELLOWORLD`가 있다면
 
-```plainText {1-5} showLineNumbers
+```plaintext {1-5} showLineNumbers
 H     W
 E   W O
 L O   R D
@@ -35,7 +35,7 @@ L     L
 
 제가 풀이한 방법은 지그재그의 규칙을 찾아 수식으로 계산하는 방법을 이용하였습니다.
 
-![example equation](./images/6/example.webp)
+![example equation](./attachments/example.webp)
 
 문자열의 Row가 3, 4, 5일 때 열 인덱스를 초록색으로 표시했고, 빨간색 숫자로 일반 문자열의 인덱스를 표현했습니다.
 
@@ -44,7 +44,7 @@ L     L
 그리고 중간 열에는 무조건 문자가 하나씩 존재합니다. 이 중간 문자의 인덱스는 (row + (numOfRow - 1)\*2) - ((row-1)\*2)로 표현할 수 있습니다.
 
 #### 제출 결과
-![Solution 1 result](./images/6/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 12ms의 실행 속도가 나왔으며, 다른 C++ 제출자에 비해 약 60%가량 좋은 성능을 보였습니다.
 

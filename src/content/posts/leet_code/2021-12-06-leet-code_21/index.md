@@ -17,7 +17,7 @@ description: 정렬되어 있는 두 연결 리스트를 하나로 합쳐야 합
 
 단순히 두 연결 리스트를 오름차순으로 하나의 연결 리스트로 합쳐 반환하면 됩니다.
 
-![example](./images/21/merge_ex1.webp)
+![example](./attachments/merge_ex1.webp)
 
 문제 - [LeetCode - 21. Merge Two Sorted Lists](https://github.com/LDobac/leetcode/tree/master/21.%20Merge%20Two%20Sorted%20Lists)
 
@@ -115,7 +115,7 @@ lastNode = selectedNode;
 그리고 방금 삽입한 노드를 tail 포인터에 저장합니다.
 
 #### 제출 결과
-![Solution 1 result](./images/21/result_01.webp)
+![Solution 1 result](./attachments/result_01.webp)
 
 실행 속도는 4ms가 나왔으며, 다른 C++ 제출자에 비해 95%가량의 속도가 나왔습니다.
 

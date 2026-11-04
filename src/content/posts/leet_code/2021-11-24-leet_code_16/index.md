@@ -64,7 +64,7 @@ else if (path < shortestPath)
 아니라면 현재 계산된 거리가 target과 가장 가까운 거리인지 확인하고 관련 변수들을 갱신합니다. 그리고 모든 순회가 끝나면 가장 가까웠던 합계를 반환하면 됩니다.
 
 #### 제출 결과
-![Solution 1 result](./images/16/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 실행 시간은 8ms가 나왔으며, 다른 C++ 제출자에 비해 80%가량의 성능을 보임을 확인할 수 있습니다.
 

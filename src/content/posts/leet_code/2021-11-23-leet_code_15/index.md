@@ -96,7 +96,7 @@ if (push)
 결과를 정렬하여 이미 결과에 있는지 확인합니다. 만약 중복이라면 결과 배열에 삽입하지 않습니다.
 
 #### 제출 결과
-![Solution 1 result](./images/15/result_2.webp)
+![Solution 1 result](./attachments/result_2.webp)
 
 예상대로 시간 초과가 발생했습니다. 세 숫자를 찾는 3중 반복문에서 $$O(n^3)$$의 시간 복잡도가 발생하고, 마지막에 결과에서 중복을 제거할 때도 반복문을 사용하기 때문에 사실상 $$O(n^4)$$의 시간 복잡도가 됩니다.
 
@@ -203,7 +203,7 @@ for (int i = 0; i < nums.size(); i++)
 
 위 구문은 중복된 결과를 제외하기 위한 조건문입니다. 현재 고정할 숫자(nums[i])가 nums[i - 1]와 같다면 현재 반복문은 건너뜁니다.
 
-![explain 1](./images/15/eg_1.webp)
+![explain 1](./attachments/eg_1.webp)
 
 nums[i] == nums[i - 1]이라면, nums[i - 1]번째 순회에서 찾은 모든 결과를 위 이미지처럼 집합으로 표현했을 때 nums[i]로 찾을 결과가 그 부분 집합이 되어 중복된 결과가 발생할 수 있습니다.
 
@@ -240,7 +240,7 @@ while (left < right)
 이해가 잘 되지 않는다면 `[0, 0, 0, 0]`을 입력값으로 테스트해보시면 충분히 이해할 수 있을 것 같습니다.
 
 #### 제출 결과
-![Solution 2 result](./images/15/result_3.webp)
+![Solution 2 result](./attachments/result_3.webp)
 
 모든 숫자를 순회하므로 첫 반복문은 $$O(n)$$입니다.
 

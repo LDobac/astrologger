@@ -44,7 +44,7 @@ ListNode* mergeKLists(vector<ListNode*>& lists) {
 단순히 두 연결 리스트를 병합하는 함수를 이용해 하나씩 병합하며, k - 1번 순회해 모든 연결 리스트를 연결합니다.
 
 #### 제출 결과
-![Solution 1 result](./images/23/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 실행 속도는 296ms로, 다른 C++ 제출자에 비해 13% 정도의 성능밖에 나오지 않았습니다. 이유를 알기 위해 Big-O를 계산해보겠습니다.
 
@@ -209,7 +209,7 @@ while (!queue.empty())
 그리고 단순히 큐에서 하나씩 pop을 수행하면서 하나의 연결 리스트로 형성합니다.
 
 #### 제출 결과
-![Solution 2 result](./images/23/result_2.webp)
+![Solution 2 result](./attachments/result_2.webp)
 
 실행 속도는 16ms로, 97%가량의 성능이 나왔습니다.
 
@@ -288,7 +288,7 @@ while (interval < amount)
 ```
 
 #### 제출 결과
-![Solution 3 result](./images/23/result_3.webp)
+![Solution 3 result](./attachments/result_3.webp)
 실행 속도는 25ms로 Solution 2와 큰 차이가 없음을 확인할 수 있습니다. 
 
 공간 복잡도도 $$O(1)$$이기 때문에, 시간 복잡도와 공간 복잡도를 아주 적절하게 Trade-off한 것입니다.

@@ -77,7 +77,7 @@ else
 만약 `'*'` 문자가 아니라 일반 문자 매칭이라면 i + 1, j + 1에 대해 계속 매치를 시도합니다.
 
 #### 제출 결과
-![Solution 1 result](./images/10/result.webp)
+![Solution 1 result](./attachments/result.webp)
 
 <details>
 <summary>코드 전문</summary>

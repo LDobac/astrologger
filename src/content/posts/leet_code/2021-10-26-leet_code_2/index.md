@@ -89,7 +89,7 @@ return head;
 
 ### Solution 1 - 제출 결과
 
-![Solution 1 - overflow](./images/2/overflow.webp)
+![Solution 1 - overflow](./attachments/overflow.webp)
 
 코드를 실행한 결과, int형의 범위를 넘는 값이 입력된 경우 overflow가 발생해 음수가 되면서 Runtime Error가 발생했습니다.
 
@@ -143,7 +143,7 @@ if (carry > 0) {
 
 ### Solution 2 - 제출 결과
 
-![Solution 2 result](./images/2/result.webp)
+![Solution 2 result](./attachments/result.webp)
 
 실행 시간은 28ms, 메모리 사용량은 71.4MB로 측정되었습니다.
 

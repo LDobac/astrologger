@@ -27,7 +27,7 @@ description: 정수형 숫자가 주어질 때 로마 숫자로 변환합니다.
 이번에 사용한 방식은 수의 범위가 넓지 않아 if문으로 자릿수에 따라 적절한 문자로 치환했지만, 필요에 따라 테이블 형태의 자료형에 저장해 참조하는 방식으로 구현해도 될 듯합니다.
 
 #### 제출 결과
-![Solution 1 result](./images/12/result.webp)
+![Solution 1 result](./attachments/result.webp)
 
 <details>
 <summary>코드 전문</summary>

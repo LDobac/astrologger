@@ -15,7 +15,7 @@ description: 주어진 연결 리스트의 근접 노드와 짝을 지어 swap �
 
 연결 리스트가 주어지면 인접한 두 노드를 짝지어 서로 swap합니다. 이때 노드의 값을 변경하는 것은 허용되지 않고, 오직 노드의 next 포인터만 수정할 수 있습니다.
 
-![Solution 1 result](./images/24/example_1.webp)
+![Solution 1 result](./attachments/example_1.webp)
 
 위 이미지와 같이 한 쌍의 노드를 swap합니다.
 
@@ -57,7 +57,7 @@ while (left && right)
 실질적인 실행 코드는 단 10줄가량으로 정리됩니다. 추가 설명은 하지 않겠습니다.
 
 #### 제출 결과
-![Solution 1 result](./images/24/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 난이도가 medium으로 매겨진 것과 다르게, 사실상 easy 난이도나 다름없었습니다.
 

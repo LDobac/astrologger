@@ -63,7 +63,7 @@ bool isPalindrome(const std::string_view& s)
 회문을 찾을 수 있는 아주 간단한 방법입니다.
 
 #### 제출 결과
-![Solution 1 result](./images/5/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 하지만 위 코드를 제출하니 Time Limit Exceeded, 즉 시간 초과가 발생했습니다.
 
@@ -182,7 +182,7 @@ j - i가 2보다 큰 경우는 문자열의 길이가 최소 3 이상이므로, 
 마지막으로 지금 확인한 문자열이 회문이고 가장 길다면 해당 문자열의 인덱스를 저장합니다.
 
 #### 제출 결과
-![Solution 1 result](./images/5/result_2.webp)
+![Solution 1 result](./attachments/result_2.webp)
 
 1번 해결 방법의 경우 O(n^3)이기 때문에 시간 초과가 발생했지만, 이번 방법의 경우 O(n^2)의 시간 복잡도이기 때문에 시간 초과가 발생하지 않았습니다.
 
@@ -274,7 +274,7 @@ int expandAroundCenter(const std::string& s, int left, int right)
 `expandAroundCenter` 함수를 i와 i+1에 대해 호출하는 이유는, 문자열 길이가 짝수인 경우 회문의 중앙 문자가 2개 존재할 수 있기 때문입니다. 이때는 두 경우 중 더 긴 문자열을 선택합니다.
 
 #### 제출 결과
-![Solution 3 result](./images/5/result_3.webp)
+![Solution 3 result](./attachments/result_3.webp)
 
 이번 방법의 시간 복잡도는 $$O(n^2)$$로 동적 프로그래밍과 동일합니다. 다만 공간 복잡도는 동적 프로그래밍이 $$O(n^2)$$인 반면 이번 방법은 O(1)이기 때문에, 두 방법을 비교하면 메모리 사용량에서 큰 차이가 발생함을 확인할 수 있습니다.
 

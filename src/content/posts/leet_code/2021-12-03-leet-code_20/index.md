@@ -94,7 +94,7 @@ if (s.size() % 2 != 0) return false;
 그러므로 입력된 문자열의 길이가 홀수라면 즉시 false를 반환합니다.
 
 #### 제출 결과
-![Solution 1 result](./images/20/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 <details>
 <summary>코드 전문</summary>

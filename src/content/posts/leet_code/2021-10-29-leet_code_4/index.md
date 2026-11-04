@@ -19,7 +19,7 @@ description: 정수 값이 담긴 두 정렬된 배열의 중앙값을 계산합
 
 [중앙값](https://ko.wikipedia.org/wiki/%EC%A4%91%EC%95%99%EA%B0%92)은 정렬된 수의 배열 중 중앙에 위치하는 값을 말합니다. 수의 개수가 홀수라면 하나가 선택되고, 짝수라면 두 수를 골라 평균을 계산해 중앙값을 구합니다.
 
-![input example](./images/4/example.webp)
+![input example](./attachments/example.webp)
 
 위 이미지와 같이 정렬된 정수 배열 2개가 전달된다면, 두 배열의 수를 나란히 나열했을 때 1, 1, 2, 3, 10, 10, 20, 45, 55, 70이 되며, 10, 10이 중간값으로 선택되니 (10+10)/2 = 10, 즉 최종적으로 10이 중간값이 됩니다.
 
@@ -33,7 +33,7 @@ description: 정수 값이 담긴 두 정렬된 배열의 중앙값을 계산합
 ### Solution
 중간값을 구하기 전에 먼저 문제의 제한사항을 확인했습니다.
 
-![Limit](./images/4/limit.webp)
+![Limit](./attachments/limit.webp)
 
 소스 코드의 시간 복잡도는 $$O(log(m+n))$$(m, n은 각 배열의 길이)을 넘지 않아야 합니다. 이 때문에 두 배열을 하나로 합쳐서 중간값을 구할 수는 없습니다.
 
@@ -43,7 +43,7 @@ description: 정수 값이 담긴 두 정렬된 배열의 중앙값을 계산합
 
 이진 탐색을 수행하려면 배열이 정렬되어 있어야 하며, 맨 처음 중간값을 골랐을 때 정렬된 배열이라면 중간값의 왼쪽 값은 당연히 중간값보다 작거나 같아야 하고, 오른쪽 값은 무조건 중간값보다 크거나 같아야 합니다.
 
-![median example](./images/4/middle_1.webp)
+![median example](./attachments/middle_1.webp)
 
 두 번째 특성은, 중간값을 선택하면 중간값보다 작은 값의 개수와 큰 값의 개수가 동일하다는 것입니다.
 
@@ -53,7 +53,7 @@ description: 정수 값이 담긴 두 정렬된 배열의 중앙값을 계산합
 
 먼저 배열의 중앙값을 구하기 위해, 중앙값을 골랐을 때 작은 값과 큰 값의 개수가 같다는 성질을 이용해 적절한 Left(작은 값의 범위), Middle(중앙값), Right(큰 값의 범위)를 구합니다.
 
-![median example 2](./images/4/middle_2.webp)
+![median example 2](./attachments/middle_2.webp)
 
 두 배열의 길이는 10이므로, 두 배열을 하나로 합쳤다고 생각하면 5개씩 두 그룹으로 나눌 수 있습니다. 이때 중앙값을 기준으로 Left에 5개, Right에 5개의 값이 위치합니다.
 
@@ -65,14 +65,14 @@ description: 정수 값이 담긴 두 정렬된 배열의 중앙값을 계산합
 
 Left에 3이라는 값이 있지만 Right에는 3보다 작은 2가 포함되어 있어, 지금 선택된 Left와 Right는 적절하지 않음을 알 수 있습니다.
 
-![median example 4](./images/4/middle_4.webp)
+![median example 4](./attachments/middle_4.webp)
 
 
 사람의 눈으로 보면 바로 구분이 되지만, 이를 확실하게 판별하는 조건은 A_left(A의 중앙값)가 B_left+1(B의 중앙값의 다음 값)보다 작아야 한다는 것입니다. 반대로 B_left <= A_left+1도 성립해야 합니다.
 
 이를 해결하기 위해 A의 중앙값 index를 1 감소시키고, B의 중앙값을 1 증가시킵니다.
 
-![median example 3](./images/4/middle_3.webp)
+![median example 3](./attachments/middle_3.webp)
 
 다시 적절한 분류인지 확인합니다.
 
@@ -85,7 +85,7 @@ Left에 3이라는 값이 있지만 Right에는 3보다 작은 2가 포함되어
 즉 `(max(A_left, B_left) + max(A_right, B_right))/2`가 중앙값이 됩니다.
 
 #### 제출 결과
-![Solution 1 result](./images/4/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 실행 시간은 20ms로, 다른 C++ 제출자에 비해 96%가량 좋은 성능을 보이는 코드를 작성할 수 있었습니다.
 

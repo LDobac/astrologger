@@ -39,7 +39,7 @@ while (x != 0)
 이번 문제에서는 `INT_MAX` 값을 이용해 `int` 타입의 범위를 검사했지만, `long`과 같이 `int` 타입보다 더 큰 자료형을 이용한다면 별도의 예외 처리가 필요하지 않습니다.
 
 #### 제출 결과
-![Solution 1 result](./images/7/result.webp)
+![Solution 1 result](./attachments/result.webp)
 
 실행 결과 0ms가 나왔으며, 다른 C++ 제출자에 비해 100% 좋은 성능을 보임을 확인할 수 있습니다.
 

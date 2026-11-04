@@ -31,7 +31,7 @@ description: 주어진 로마 숫자를 정수형 숫자로 변환합니다.
 이렇듯 4, 9를 제외한 모든 심볼은 항상 내림차순으로 표현됩니다. 이 점을 유의해서 코드를 작성합니다.
 
 #### 제출 결과
-![Solution 1 result](./images/13/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 실행 속도는 12ms로, 다른 C++ 제출자에 비해 60%가량의 성능밖에 되지 않습니다.
 
@@ -83,7 +83,7 @@ private:
 방법 1에서는 std::map을 이용해 로마자 숫자를 정수형으로 변환했지만, 이번에는 이 부분을 switch문을 이용한 하드 코딩으로 바꿔서 실행해보겠습니다.
 
 #### 제출 결과
-![Solution 1 result](./images/13/result_2.webp)
+![Solution 1 result](./attachments/result_2.webp)
 
 실행 속도는 4ms로 기존의 12ms보다 향상됨을 확인할 수 있습니다.
 

@@ -82,7 +82,7 @@ else
 
 
 #### 제출 결과
-![Solution 1 result](./images/8/result.webp)
+![Solution 1 result](./attachments/result.webp)
 
 실행 결과 0ms가 나왔습니다.
 

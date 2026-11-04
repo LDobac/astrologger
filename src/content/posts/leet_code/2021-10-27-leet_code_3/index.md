@@ -21,7 +21,7 @@ description: 문자열에서 똑같은 문자가 반복되지 않는, 가장 긴
 
 ### 예시
 
-![Problem Example](./images/3/exam.webp)
+![Problem Example](./attachments/exam.webp)
 
 만약 입력 문자열이 `s = "abcabcbb"`라면 반복하는 bb를 제외하고, 반복하지 않는 문자열인 "abc"의 길이인 3이 구해집니다.
 
@@ -116,7 +116,7 @@ if (pos == std::string::npos) {
 
 ### Solution 1 - 제출 결과
 
-![Solution 1 result](./images/3/result_1.webp)
+![Solution 1 result](./attachments/result_1.webp)
 
 실행 시간은 628ms, 메모리 사용량은 273.1MB가 나왔습니다. 동일한 C++ 제출자들에 비해 상당히 낮은 성적입니다.
 
@@ -225,7 +225,7 @@ int lengthOfLongestSubstring(std::string s)  {
 
 ### Solution 2 - 제출 결과
 
-![Solution 2 result](./images/3/result_2.webp)
+![Solution 2 result](./attachments/result_2.webp)
 
 실행 속도는 16ms로 향상되었으며, 사용 메모리도 11.6MB로 크게 향상되었습니다. 다른 C++ 제출자에 비해 66.67% 빠른 성능을 보여줍니다.
 
@@ -320,7 +320,7 @@ int lengthOfLongestSubstring(std::string s)  {
 
 ### Solution 3 - 제출 결과
 
-![Solution 3 result](./images/3/result_3.webp)
+![Solution 3 result](./attachments/result_3.webp)
 
 실행 시간은 4ms, 메모리는 6.7MB로, 다른 방법에 비해 속도와 메모리 모두 월등히 향상되었습니다.
 
