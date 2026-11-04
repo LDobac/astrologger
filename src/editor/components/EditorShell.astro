@@ -1,0 +1,37 @@
+---
+import "@styles/global.css";
+import "../editor.css";
+
+interface Props {
+    title: string;
+    bodyClass?: string;
+}
+
+const { title, bodyClass = "" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ko">
+    <head>
+        <script is:inline>
+            (function () {
+                const stored = localStorage.getItem("theme");
+                const theme = stored ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                document.documentElement.classList.toggle("dark", theme === "dark");
+                document.documentElement.style.colorScheme = theme;
+            })();
+        </script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <slot name="head" />
+        <title>{title}</title>
+    </head>
+    <body class:list={["bg-canvas text-fg font-sans", bodyClass]}>
+        <slot />
+    </body>
+</html>

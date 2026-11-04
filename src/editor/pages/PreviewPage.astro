@@ -1,0 +1,102 @@
+---
+import "github-markdown-css/github-markdown.css";
+import "@styles/markdown-theme.css";
+import "@styles/post-content.css";
+import EditorShell from "../components/EditorShell.astro";
+---
+
+<EditorShell title="미리보기">
+    <link slot="head" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet" />
+    <style slot="head" is:inline>astro-dev-toolbar { display: none !important; }</style>
+    <div class="content-container my-6 px-4">
+        <header class="flex flex-col space-y-4 border-b-2 pb-6">
+            <img id="pv-og" class="hidden max-h-[220px] w-full rounded-xl object-cover bg-black sm:max-h-[280px] md:max-h-[320px]" alt="" />
+            <div id="pv-thumb" class="flex aspect-[1200/630] max-h-[220px] w-full items-center justify-center rounded-xl bg-black px-6 text-center text-xl font-bold text-white sm:max-h-[280px] md:max-h-[320px]"></div>
+            <h1 id="pv-title" class="text-2xl font-bold leading-snug md:text-3xl"></h1>
+            <p id="pv-series" class="hidden text-sm text-fg-muted">
+                시리즈: <a class="inline text-accent hover:text-fg transition"></a>
+            </p>
+            <div id="pv-tags" class="flex flex-row flex-wrap w-full gap-3"></div>
+            <p class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-fg-muted">
+                <span>작성일 <time id="pv-date"></time></span>
+                <span id="pv-edit-wrap" class="hidden">수정일 <time id="pv-edit"></time></span>
+            </p>
+        </header>
+
+        <article class="mt-6 border-b-2 pb-6">
+            <div id="pv-body" class="markdown-body prose"></div>
+        </article>
+    </div>
+</EditorShell>
+
+<script>
+    import { $, esc } from "../client/dom";
+    import type { PreviewMessage } from "../client/preview";
+
+    const formatter = new Intl.DateTimeFormat("ko-KR", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit" });
+
+    function formatDate(value: string): string {
+        const time = Date.parse(value);
+        if (Number.isNaN(time)) return value;
+        const parts = formatter.formatToParts(new Date(time));
+        const get = (type: Intl.DateTimeFormatPartTypes) => parts.find((p) => p.type === type)?.value ?? "";
+        return `${get("year")}년 ${get("month")}월 ${get("day")}일`;
+    }
+
+    function render(msg: Extract<PreviewMessage, { type: "render" }>) {
+        const { meta } = msg;
+        document.documentElement.classList.toggle("dark", msg.dark);
+        document.documentElement.style.colorScheme = msg.dark ? "dark" : "light";
+
+        const og = $<HTMLImageElement>("#pv-og");
+        const imageUrl = msg.ogUrl ?? msg.thumbUrl;
+        og.classList.toggle("hidden", !imageUrl);
+        $("#pv-thumb").classList.toggle("hidden", !!imageUrl);
+        if (imageUrl && og.getAttribute("src") !== imageUrl) {
+            og.src = imageUrl;
+            og.alt = msg.ogUrl ? (meta.og?.alt ?? "") : `Thumbnail of ${meta.title}`;
+        }
+        $("#pv-thumb").textContent = meta.title;
+
+        $("#pv-title").textContent = meta.title || "(제목 없음)";
+
+        const series = $("#pv-series");
+        series.classList.toggle("hidden", !meta.series);
+        $("a", series).textContent = meta.series;
+
+        $("#pv-tags").innerHTML = meta.tags
+            .map((tag) => `<a class="px-2.5 py-1 text-sm rounded-2xl border border-line shadow-md hover:bg-accent-subtle transition"><span>${esc(tag)}</span></a>`)
+            .join("");
+
+        $("#pv-date").textContent = formatDate(meta.date);
+        $("#pv-edit-wrap").classList.toggle("hidden", !meta.editDate);
+        $("#pv-edit").textContent = formatDate(meta.editDate);
+
+        $("#pv-body").innerHTML = msg.html;
+    }
+
+    window.addEventListener("message", (event) => {
+        if (event.origin !== location.origin) return;
+        const msg = event.data as PreviewMessage;
+        if (msg.type === "render") render(msg);
+        if (msg.type === "scroll") {
+            const max = document.documentElement.scrollHeight - innerHeight;
+            scrollTo({ top: max * msg.ratio });
+        }
+    });
+
+    document.addEventListener("click", (event) => {
+        const link = (event.target as Element).closest("a");
+        if (!link) return;
+        event.preventDefault();
+        const href = link.getAttribute("href");
+        if (!href) return;
+        if (href.startsWith("#")) {
+            document.getElementById(decodeURIComponent(href.slice(1)))?.scrollIntoView();
+        } else {
+            window.open(href, "_blank", "noopener");
+        }
+    });
+
+    parent.postMessage({ type: "ready" }, location.origin);
+</script>

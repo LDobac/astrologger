@@ -1,0 +1,117 @@
+---
+import EditorShell from "../components/EditorShell.astro";
+---
+
+<EditorShell title="글 관리 · Editor">
+    <div class="mx-auto max-w-4xl px-4 py-8">
+        <header class="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4">
+            <div>
+                <a href="/" class="text-sm text-fg-muted hover:text-accent">← 블로그로</a>
+                <h1 class="text-2xl font-bold">글 관리</h1>
+            </div>
+            <a href="/__editor/edit" class="rounded-lg bg-accent px-4 py-2 font-bold text-canvas hover:opacity-90">+ 새 글 작성</a>
+        </header>
+
+        <section id="drafts-section" class="mb-10 hidden">
+            <h2 class="mb-3 text-lg font-bold">임시 저장</h2>
+            <ul id="drafts" class="divide-y divide-line rounded-lg border border-line"></ul>
+        </section>
+
+        <section>
+            <div class="mb-3 flex items-center justify-between gap-4">
+                <h2 class="text-lg font-bold">게시글</h2>
+                <input id="filter" type="search" placeholder="제목 검색" class="w-56 rounded-lg border border-line bg-canvas px-3 py-1.5 text-sm" />
+            </div>
+            <div id="tree" class="rounded-lg border border-line p-3 text-sm">불러오는 중…</div>
+        </section>
+    </div>
+</EditorShell>
+
+<script>
+    import { api } from "../client/api";
+    import { $, editUrl, esc, formatDate } from "../client/dom";
+    import type { PostSummary, TreeNode, TreeResponse } from "../types";
+
+    function renderPost(post: PostSummary): string {
+        return `<li data-title="${esc(post.title.toLowerCase())}" class="group flex items-center gap-2 rounded hover:bg-canvas-subtle">
+            <a class="flex min-w-0 flex-1 items-baseline justify-between gap-4 px-2 py-1.5" href="${esc(editUrl({ source: post.dir }))}">
+                <span class="truncate">${esc(post.title || "(제목 없음)")}</span>
+                <span class="shrink-0 text-xs text-fg-muted">${esc(formatDate(post.date))}</span>
+            </a>
+            <button data-delete="${esc(post.dir)}" data-delete-title="${esc(post.title)}" class="invisible mr-1 shrink-0 rounded border border-line px-2 py-0.5 text-xs group-hover:visible hover:border-red-500 hover:text-red-500">삭제</button>
+        </li>`;
+    }
+
+    function renderNode(node: TreeNode, isRoot = false): string {
+        const children = `<ul class="${isRoot ? "" : "ml-4 border-l border-line pl-2"}">
+            ${node.trees.map((t) => `<li>${renderNode(t)}</li>`).join("")}
+            ${node.posts.map(renderPost).join("")}
+        </ul>`;
+        if (isRoot) return children;
+        const count = countPosts(node);
+        return `<details open class="my-1">
+            <summary class="cursor-pointer rounded px-2 py-1.5 font-bold hover:bg-canvas-subtle">📁 ${esc(node.name)} <span class="font-normal text-fg-muted">(${count})</span></summary>
+            ${children}
+        </details>`;
+    }
+
+    function countPosts(node: TreeNode): number {
+        return node.posts.length + node.trees.reduce((sum, t) => sum + countPosts(t), 0);
+    }
+
+    function renderDrafts(data: TreeResponse) {
+        const section = $("#drafts-section");
+        section.classList.toggle("hidden", data.drafts.length === 0);
+        $("#drafts").innerHTML = data.drafts
+            .map(
+                (d) => `<li class="flex items-center justify-between gap-4 px-3 py-2">
+                    <a class="min-w-0 flex-1 hover:text-accent" href="${esc(editUrl({ draft: d.id }))}">
+                        <span class="mr-2 rounded border border-line px-1.5 text-xs text-fg-muted">${d.sourceDir ? "수정" : "신규"}</span>
+                        <span>${esc(d.title || "(제목 없음)")}</span>
+                        ${d.sourceDir ? `<span class="ml-2 text-xs text-fg-muted">${esc(d.sourceDir)}</span>` : ""}
+                    </a>
+                    <span class="shrink-0 text-xs text-fg-muted">${esc(d.updatedAt.replace("T", " ").slice(0, 16))}</span>
+                    <button data-discard="${esc(d.id)}" class="shrink-0 rounded border border-line px-2 py-0.5 text-xs hover:border-red-500 hover:text-red-500">폐기</button>
+                </li>`,
+            )
+            .join("");
+    }
+
+    async function load() {
+        const data = await api.tree();
+        renderDrafts(data);
+        $("#tree").innerHTML = renderNode(data.root, true);
+    }
+
+    $("#drafts").addEventListener("click", async (event) => {
+        const button = (event.target as Element).closest<HTMLButtonElement>("[data-discard]");
+        if (!button) return;
+        if (!confirm("임시 저장 글을 폐기할까요? 업로드한 첨부파일도 함께 삭제됩니다.")) return;
+        await api.discard(button.dataset.discard!);
+        await load();
+    });
+
+    $("#tree").addEventListener("click", async (event) => {
+        const button = (event.target as Element).closest<HTMLButtonElement>("[data-delete]");
+        if (!button) return;
+        const { delete: dir, deleteTitle: title } = button.dataset;
+        if (!confirm(`'${title}' 게시글을 삭제할까요?\n\n${dir} 폴더와 첨부파일, 임시 저장본이 모두 삭제되며 되돌릴 수 없습니다.`)) return;
+        try {
+            await api.deletePost(dir!);
+            await load();
+        } catch (error) {
+            alert(`삭제 실패: ${error instanceof Error ? error.message : error}`);
+        }
+    });
+
+    $<HTMLInputElement>("#filter").addEventListener("input", (event) => {
+        const term = (event.target as HTMLInputElement).value.trim().toLowerCase();
+        document.querySelectorAll<HTMLElement>("#tree li[data-title]").forEach((li) => {
+            li.hidden = !!term && !li.dataset.title!.includes(term);
+        });
+    });
+
+    load().catch((error) => {
+        $("#tree").textContent = `불러오기 실패: ${error instanceof Error ? error.message : error}`;
+    });
+</script>

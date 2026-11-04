@@ -1,0 +1,18 @@
+---
+interface Props {
+    source?: string;
+}
+
+const { source } = Astro.props;
+
+const base =
+    "display:flex;align-items:center;justify-content:center;gap:6px;height:48px;padding:0 18px;border-radius:9999px;font-weight:700;font-size:14px;box-shadow:0 4px 14px rgb(0 0 0 / 0.25);text-decoration:none;";
+const primary = `${base}background:rgb(var(--rgb-accent));color:rgb(var(--rgb-canvas));`;
+const secondary = `${base}background:rgb(var(--rgb-canvas));color:rgb(var(--rgb-fg));border:1px solid rgb(var(--rgb-line));`;
+---
+
+<div style="position:fixed;right:24px;bottom:24px;z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+    {source && <a href={`/__editor/edit?source=${encodeURIComponent(source)}`} style={primary}>✎ 이 글 수정</a>}
+    <a href="/__editor" style={secondary}>글 관리</a>
+    <a href="/__editor/edit" style={source ? secondary : primary}>+ 새 글</a>
+</div>

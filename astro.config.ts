@@ -8,6 +8,7 @@ import satteriKatex from "./src/plugins/satteri-katex";
 import satteriToc from "./src/plugins/satteri-toc";
 import transformerLineNumbers from "./src/plugins/line-numbers";
 import llmCorporaIntegration from "./scripts/llm-corpora-integration.mjs";
+import editor from "./src/editor/integration";
 
 const deploymentDomain = readFileSync(new URL("./public/CNAME", import.meta.url), "utf8").trim();
 if (deploymentDomain.length === 0 || /\s/.test(deploymentDomain)) {
@@ -44,7 +45,7 @@ export default defineConfig({
         },
     },
 
-    integrations: [sitemap(), llmCorporaIntegration()],
+    integrations: [sitemap(), llmCorporaIntegration(), editor()],
 
     // Astro 7 기본값이 'jsx'(공백을 다르게 압축)로 바뀌었다. 기존 압축 방식을 유지한다.
     compressHTML: true,

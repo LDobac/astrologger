@@ -21,7 +21,7 @@ test("lets the Astro build lifecycle own game compilation and deployment staging
     assert.equal(packageJson.scripts["build:game"], undefined);
     assert.equal(packageJson.scripts["stage:game"], undefined);
     assert.match(astroConfig, /import llmCorporaIntegration from "\.\/scripts\/llm-corpora-integration\.mjs"/);
-    assert.match(astroConfig, /integrations: \[sitemap\(\), llmCorporaIntegration\(\)\]/);
+    assert.match(astroConfig, /integrations: \[[^\]]*\bllmCorporaIntegration\(\)[^\]]*\]/);
     assert.match(astroConfig, /public\/CNAME/);
     assert.doesNotMatch(astroConfig, /https:\/\/jaehee\.dev/);
 });
