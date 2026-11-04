@@ -23,7 +23,10 @@ interface Props {
     description?: string;
     url?: string;
     og?: OgProp
+    editSource?: string;
 }
+
+const EditorFab = import.meta.env.DEV ? (await import("../editor/components/EditorFab.astro")).default : null;
 
 const baseUrl = import.meta.env.SITE ?? Astro.url.origin;
 const defaultOgOpts: OgProp = {
@@ -42,7 +45,8 @@ const {
     author = "jaehee",
     description = "지식보단 삽질의 요람입니다.",
     url = baseUrl,
-    og =  defaultOgOpts
+    og =  defaultOgOpts,
+    editSource,
 } = Astro.props;
 
 ---
@@ -176,6 +180,6 @@ const {
         <main id="main" class="flex-1">
             <slot />
         </main>
-        <Footer />
+        <Footer />{EditorFab && <EditorFab source={editSource} />}
 	</body>
 </html>

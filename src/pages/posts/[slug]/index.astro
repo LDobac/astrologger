@@ -74,6 +74,7 @@ const jsonLd = {
     description={description}
     url={baseUrl + Astro.url.pathname}
     og={ogProp}
+    editSource={post.filePath?.replace(/^src\/content\/posts\//, "").replace(/\/index\.md$/, "")}
 >
     <!-- Get the latest one from: https://katex.org/docs/browser -->
     {
