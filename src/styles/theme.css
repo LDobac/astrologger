@@ -1,0 +1,36 @@
+/*
+ * v3의 darkMode:"class"는 `:is(.dark *)`(0,1,0)를 냈다.
+ * v4 기본값 `:where(.dark, .dark *)`는 0,0,0이라 캐스케이드 승패가 바뀔 수 있어
+ * 명시적으로 이전 selector를 재현한다.
+ */
+@custom-variant dark (&:is(.dark *));
+/* v3는 hoverOnlyWhenSupported가 꺼져 있었다. v4는 기본으로 @media (hover:hover)로 감싼다. */
+@custom-variant hover (&:hover);
+
+@theme {
+    /*
+     * v4는 breakpoint 기본값이 rem이라 루트 폰트 크기에 따라 흔들린다.
+     * v3가 실제로 내보내던 px 값으로 고정한다.
+     */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+
+    --font-sans: "Noto Sans KR", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    /*
+     * --color-*는 v4의 색 테마 네임스페이스라 RGB 채널값을 직접 담을 수 없다.
+     * 채널값은 --rgb-*(아래 @layer base)에 두고 여기서 rgb()로 파생시킨다.
+     * 이렇게 하면 raw CSS의 rgb(var(--x) / <alpha>) 형태를 그대로 유지할 수 있다.
+     */
+    --color-canvas: rgb(var(--rgb-canvas));
+    --color-canvas-subtle: rgb(var(--rgb-canvas-subtle));
+    --color-fg: rgb(var(--rgb-fg));
+    --color-fg-muted: rgb(var(--rgb-fg-muted));
+    --color-line: rgb(var(--rgb-line));
+    --color-accent: rgb(var(--rgb-accent));
+    --color-accent-subtle: rgb(var(--rgb-accent-subtle));
+}
