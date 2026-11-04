@@ -164,3 +164,6 @@ dist
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/yarn,node,astro
+
+### astrologger ###
+src/content/posts/_draft/
