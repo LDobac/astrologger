@@ -3,7 +3,6 @@ import "@styles/global.css";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import {DEFAULT_OG_IMG_SIZE} from "@utils/Constants";
-import { ClientRouter } from 'astro:transitions';
 
 export interface OgPropImg {
     url: string;
@@ -78,11 +77,6 @@ const {
 
                 applyTheme();
 
-                // ClientRouter는 페이지 전환 시 <html> 속성을 통째로 교체하므로 테마를 다시 적용한다.
-                document.addEventListener("astro:after-swap", applyTheme);
-
-                // 토글 버튼은 페이지 전환마다 새 엘리먼트로 교체되므로 document에 위임한다.
-                // 이렇게 하면 리스너를 한 번만 등록해도 되고 중복 바인딩이 발생하지 않는다.
                 document.addEventListener("click", function (event) {
                     if (!(event.target instanceof Element)) return;
                     if (!event.target.closest("#theme-toggle")) return;
@@ -96,8 +90,6 @@ const {
                 });
             })();
         </script>
-
-        <ClientRouter />
 
         <link rel="sitemap" href="/sitemap-index.xml"/>
         <link rel="canonical" href={url}/>

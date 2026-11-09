@@ -64,6 +64,11 @@ export default defineConfig({
         assets: "asset_dir"
     },
 
+    prefetch: {
+        prefetchAll: true,
+        defaultStrategy: "hover",
+    },
+
     vite: {
         plugins: [tailwindcss()],
     },

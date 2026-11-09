@@ -399,8 +399,6 @@ const errorText = "text-sm text-danger";
         void load();
     }
 
-    document.addEventListener("astro:page-load", () => {
-        const root = document.querySelector<HTMLElement>("[data-comments]");
-        if (root) initComments(root);
-    });
+    const commentsRoot = document.querySelector<HTMLElement>("[data-comments]");
+    if (commentsRoot) initComments(commentsRoot);
 </script>

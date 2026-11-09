@@ -99,7 +99,7 @@ Use `@components`, `@layouts`, `@pages`, `@assets`, `@styles`, `@utils` (→ `sr
 ### Comments / views (client)
 
 - API: `services/comment_and_view` (Cloudflare Worker). Base URL is `COMMENT_API_URL` in [Constants.ts](src/utils/Constants.ts): `127.0.0.1:8787` in dev, `*.workers.dev` in prod. Client wrapper: `src/utils/CommentApi.ts`.
-- `Comments.astro` (below the post body) and `ViewCount.astro` (post header only; POST, falls back to GET) are vanilla `<script>`s initialized on `astro:page-load` (ClientRouter).
+- `Comments.astro` (below the post body) and `ViewCount.astro` (post header only; POST, falls back to GET) are vanilla `<script>`s that run once on page load. No ClientRouter (removed: navigation felt frozen while it fetched the next page); links use `prefetch` (`prefetchAll`, hover).
 - Render comment text with `textContent` only. Slug = `slug(title)`.
 - `/privacy` (`src/pages/privacy.astro`) is the privacy policy, linked from `Footer.astro` and the comment form. Update it when data handling changes.
 - Public site has no reply UI; the API rejects `parentId`. Replies with `isAdmin` show the nickname (`작성자`) in `text-accent`, with no edit/delete buttons.
