@@ -1,0 +1,54 @@
+{
+    "$schema": "../../node_modules/wrangler/config-schema.json",
+    "name": "comment-and-view",
+    "main": "index.ts",
+    "compatibility_date": "2026-11-09",
+    "observability": {
+        "enabled": true
+    },
+    "vars": {
+        "ALLOWED_ORIGINS": "https://jaehee.dev"
+    },
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "astrologger",
+            "database_id": "cfd115ef-303e-4ed5-8e0c-732066e082f3",
+            "migrations_dir": "migrations"
+        }
+    ],
+    "ratelimits": [
+        {
+            "name": "CREATE_LIMITER",
+            "namespace_id": "1001",
+            "simple": {
+                "limit": 5,
+                "period": 60
+            }
+        },
+        {
+            "name": "AUTH_LIMITER",
+            "namespace_id": "1002",
+            "simple": {
+                "limit": 10,
+                "period": 60
+            }
+        },
+        {
+            "name": "COMMENT_AUTH_LIMITER",
+            "namespace_id": "1003",
+            "simple": {
+                "limit": 10,
+                "period": 60
+            }
+        },
+        {
+            "name": "READ_LIMITER",
+            "namespace_id": "1004",
+            "simple": {
+                "limit": 60,
+                "period": 60
+            }
+        }
+    ]
+}

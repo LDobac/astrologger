@@ -167,3 +167,5 @@ dist
 
 ### astrologger ###
 src/content/posts/_draft/
+.wrangler
+.dev.vars*

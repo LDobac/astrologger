@@ -15,6 +15,10 @@
     "astro": "astro",
     "deploy": "gh-pages -d dist --nojekyll --no-history"
   },
+  "private": true,
+  "workspaces": [
+    "services/*"
+  ],
   "dependencies": {
     "@astrojs/check": "0.9.12",
     "@astrojs/markdown-satteri": "0.3.5",

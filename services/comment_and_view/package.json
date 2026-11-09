@@ -1,0 +1,16 @@
+{
+  "name": "comment_and_view",
+  "packageManager": "yarn@4.18.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --var ALLOWED_ORIGINS:https://jaehee.dev,http://localhost:4321",
+    "deploy": "wrangler deploy",
+    "types": "wrangler types",
+    "typecheck": "wrangler types --check && tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "wrangler": "^4.158.0"
+  }
+}
