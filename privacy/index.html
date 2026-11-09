@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="ko"> <head><!-- 첫 페인트 전에 테마를 확정해야 다크모드에서 흰 화면이 번쩍이지 않는다. --><script>
+            (function () {
+                function setTheme(theme) {
+                    document.documentElement.classList.toggle("dark", theme === "dark");
+                    document.documentElement.style.colorScheme = theme;
+                }
+
+                function applyTheme() {
+                    // 저장값이 없으면 OS 설정을 따른다. 토글하기 전까지는 저장하지 않으므로
+                    // 사용자가 OS 테마를 바꾸면 그대로 따라간다.
+                    const stored = localStorage.getItem("theme");
+
+                    setTheme(
+                        stored ??
+                            (window.matchMedia("(prefers-color-scheme: dark)").matches
+                                ? "dark"
+                                : "light"),
+                    );
+                }
+
+                applyTheme();
+
+                document.addEventListener("click", function (event) {
+                    if (!(event.target instanceof Element)) return;
+                    if (!event.target.closest("#theme-toggle")) return;
+
+                    const theme = document.documentElement.classList.contains("dark")
+                        ? "light"
+                        : "dark";
+
+                    setTheme(theme);
+                    localStorage.setItem("theme", theme);
+                });
+            })();
+        </script><link rel="sitemap" href="/sitemap-index.xml"><link rel="canonical" href="https://jaehee.dev"><link rel="alternate" type="application/rss+xml" title="Jaehee.dev" href="/rss.xml"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- DNS Prefetch & Preconnect --><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><meta name="generator" content="Astro v7.1.6"><meta name="description" content="jaehee.dev가 처리하는 개인정보와 그 처리 방식을 안내합니다."><meta name="author" content="jaehee"><meta property="og:url" content="https://jaehee.dev"><meta property="og:type" content="website"><meta property="og:site_name" content="Jaehee.dev"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="개인정보 처리방침"><meta property="og:description" content="jaehee.dev가 처리하는 개인정보와 그 처리 방식을 안내합니다."><meta property="og:image" content="https://jaehee.dev/blog_og_image.png"><meta property="og:image:alt" content="Main image of jaeehee.dev"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="개인정보 처리방침"><meta name="twitter:description" content="jaehee.dev가 처리하는 개인정보와 그 처리 방식을 안내합니다."><meta name="twitter:image" content="https://jaehee.dev/blog_og_image.png"><meta name="twitter:image:alt" content="Main image of jaeehee.dev"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-BLG37NTK4J"></script><script>
+                    // @ts-expect-error
+                    window.dataLayer = window.dataLayer || [];
+                    // @ts-expect-error
+                    function gtag(){dataLayer.push(arguments);}
+                    // @ts-expect-error
+                    gtag('js', new Date());
+                    // @ts-expect-error
+                    gtag('config', 'G-BLG37NTK4J');
+                </script><!-- Naver Search Advisor --><meta name="naver-site-verification" content="6d6d37b7cb8c33fa22601afa3a994e0526b4a43f"><title>개인정보 처리방침</title><link rel="stylesheet" href="/asset_dir/Layout.BQEAczbM.css"><link rel="stylesheet" href="/asset_dir/post-content.DFVNXDnq.css"><script type="module" src="/asset_dir/page.Dv3oULGt.js"></script></head> <body class="flex min-h-dvh w-full flex-col bg-canvas text-fg"> <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-canvas">본문 바로가기</a> <header class="flex flex-col w-full justify-center items-center mt-6"> <a href="/">  <img src="/asset_dir/profile_image.g0VlSnMI_ZR6WBc.webp" alt="This is my cute cat." loading="eager" decoding="async" width="200" height="200" class="rounded-full w-28"> <p class="mt-1 text-3xl font-bold hover:text-accent">Jaehee</p> </a> <p class="mt-1">Hi!</p> <nav class="content-container border-y py-4 mt-6"> <ul class="w-full flex justify-between items-center px-6 font-bold"> <li class="hover:text-accent"><a href="/posts/1">Posts</a></li> <li class="hover:text-accent"><a href="https://ljhblog.tistory.com/">Tistory</a></li> <li class="hover:text-accent"><a href="https://github.com/LDobac">Github</a></li> <li class="flex items-center"><button id="theme-toggle" type="button" aria-label="라이트/다크 테마 전환" class="p-1 rounded-lg text-fg-muted hover:text-accent transition"> <svg class="w-5 h-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path> </svg> <svg class="w-5 h-5 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path> </svg> </button></li> </ul> </nav> </header> <main id="main" class="flex-1">  <div class="content-container my-6 px-4"> <header class="border-b-2 pb-6"> <h1 class="text-2xl font-bold leading-snug md:text-3xl">개인정보 처리방침</h1> <p class="mt-2 text-sm text-fg-muted">시행일: 2026-11-09</p> </header> <article class="mt-6 pb-6"> <div class="markdown-body prose"> <p>
+jaehee.dev(이하 "블로그")는 개인이 운영하는 블로그입니다. 블로그는 댓글과 조회수 기능을 위해 필요한
+                    최소한의 정보만 처리하며, 회원가입은 없습니다.
+</p> <h2>1. 수집하는 정보와 목적, 보유 기간</h2> <table> <thead> <tr> <th>항목</th> <th>목적</th> <th>보유 기간</th> </tr> </thead> <tbody> <tr> <td>닉네임, 댓글 내용 (필수, 공개)</td> <td>댓글 게시</td> <td>댓글이 삭제될 때까지</td> </tr> <tr> <td>비밀번호 (필수)</td> <td>댓글 수정·삭제 시 본인 확인. 원문은 저장하지 않고 복원할 수 없는 해시값만 저장합니다.</td> <td>댓글이 삭제될 때까지</td> </tr> <tr> <td>이메일 주소 (선택, 비공개)</td> <td>해당 댓글에 블로그 운영자의 답글이 달릴 때 알림 메일 발송</td> <td>댓글이 삭제될 때까지</td> </tr> </tbody> </table> <p>
+이메일 주소는 입력하지 않아도 댓글을 남길 수 있으며, 이 경우 답글 알림만 받을 수 없습니다. 이메일 주소는
+                    어떤 화면이나 API에도 공개되지 않고, 답글 알림 외의 용도(광고, 소식 발송 등)로 사용하지 않습니다.
+</p> <h2>2. 자동으로 처리되는 정보</h2> <ul> <li> <strong>조회수 중복 방지</strong>: 같은 방문자의 조회가 하루에 여러 번 집계되지 않도록 IP 주소를 날짜별
+                        임의값과 함께 일방향 암호화(HMAC)한 값만 저장합니다. 원래 IP 주소는 저장하지 않으며, 이 값은 날짜가
+                        바뀌면 삭제됩니다.
+</li> <li> <strong>요청 횟수 제한</strong>: 스팸과 무차별 대입을 막기 위해 IP 주소 기준으로 짧은 시간 동안의 요청
+                        횟수를 셉니다. IP 주소를 저장하지 않습니다.
+</li> <li> <strong>방문 통계</strong>: Google Analytics가 쿠키를 사용해 방문 기록(방문 페이지, 기기·브라우저 정보,
+                        대략적인 위치 등)을 수집합니다. 브라우저 설정에서 쿠키를 차단하거나
+<a href="https://tools.google.com/dlpage/gaoptout">Google Analytics 차단 부가기능</a>을 사용해 거부할 수
+                        있습니다.
+</li> <li> <strong>화면 설정</strong>: 다크 모드 설정을 브라우저의 localStorage에 저장합니다. 이 값은 서버로
+                        전송되지 않습니다.
+</li> </ul> <h2>3. 처리 위탁 및 국외 이전</h2> <p>블로그는 다음 서비스를 이용하며, 각 서비스는 미국 등 국외에서 정보를 처리할 수 있습니다.</p> <table> <thead> <tr> <th>업체</th> <th>업무</th> <th>처리 정보</th> </tr> </thead> <tbody> <tr> <td>Cloudflare, Inc.</td> <td>댓글·조회수 API와 데이터베이스 운영</td> <td>댓글 정보(1항), 조회수 처리 정보(2항)</td> </tr> <tr> <td>Google LLC</td> <td>답글 알림 메일 발송(Gmail), 방문 통계(Google Analytics), 웹폰트 제공(Google Fonts)</td> <td>이메일 주소와 알림 내용, 방문 기록, 접속 IP</td> </tr> <tr> <td>GitHub, Inc.</td> <td>웹사이트 호스팅(GitHub Pages)</td> <td>접속 IP 등 접속 기록</td> </tr> </tbody> </table> <h2>4. 이용자의 권리</h2> <ul> <li>
+댓글 작성 시 입력한 비밀번호로 언제든 댓글을 삭제할 수 있으며, 이때 닉네임, 비밀번호 해시, 이메일 주소가
+                        함께 삭제됩니다. 운영자의 답글이 달린 댓글은 답글과 함께 삭제됩니다.
+</li> <li>
+비밀번호를 잊었거나 이메일 주소만 삭제하고 싶은 경우, 처리 현황 확인을 원하는 경우 아래 연락처로
+                        요청해 주세요. 확인 후 지체 없이 처리합니다.
+</li> </ul> <h2>5. 안전성 확보 조치</h2> <ul> <li>비밀번호는 PBKDF2-SHA256으로 해시해 저장합니다.</li> <li>이메일 주소는 공개 API 응답에 포함되지 않으며, 운영자만 별도 인증을 거쳐 조회할 수 있습니다.</li> <li>모든 통신은 HTTPS로 암호화됩니다.</li> </ul> <h2>6. 문의</h2> <p>
+개인정보 관련 문의, 삭제 요청은 블로그 운영자에게 연락해 주세요:
+<a href="mailto:me@jaehee.dev">me@jaehee.dev</a> </p> <h2>7. 변경</h2> <p>이 방침이 바뀌면 이 페이지에 시행일과 함께 게시합니다.</p> </div> </article> </div>  </main> <footer class="w-full border-t-2 p-4"> <div class="flex justify-between items-start"> <div class="flex flex-col text-left"> <p>본 블로그 내 저작권은
+<a class="text-accent" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+KR에 따라 이용할 수 있습니다.(라이센스가 명시된 이미지/내용 등 제외.)
+</p> <p>CC BY 4.0 KR에 따라 출처만 명시해주시면 상업적 이용, 공유, 복제 등 마음대로 이용할 수 있습니다.</p> <p class="mt-2"><a class="text-accent font-bold" href="/privacy/">개인정보 처리방침</a></p> </div> <div class="flex pb-2"> <svg class="w-[30px] h-[30px] mr-1"> <use xlink:href="/asset_dir/cc-icons.BTtcxsIJ.svg#cc-logo"></use> </svg> <svg class="w-[30px] h-[30px]"> <use xlink:href="/asset_dir/cc-icons.BTtcxsIJ.svg#cc-by"></use> </svg> </div> </div> </footer> </body> </html>

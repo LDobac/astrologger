@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#17212b" />
+    <link rel="preload" as="image" href="/games/LLM_Corpora/assets/runtime/ui/startup-splash/r02/llm-corpora-startup-splash-r02.webp" fetchpriority="high" />
+    <title>Office Tycoon</title>
+    <style>
+      #startup-loading{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#071018;color:#d9f5fb;font-family:system-ui,sans-serif;pointer-events:none}
+      .startup-loading__image{width:100%;height:100%;object-fit:contain}
+      .startup-loading__content{position:absolute;left:50%;bottom:clamp(1rem,4vh,2.5rem);width:min(31.25rem,calc(100% - 2rem));padding:.8rem 1rem;transform:translateX(-50%);border:1px solid rgba(88,204,233,.32);border-radius:.75rem;background:rgba(7,16,24,.88);text-align:center;letter-spacing:.08em}
+      .startup-loading__status{margin:0;color:#9fc5d1;font-size:.8125rem}
+      .startup-loading__pulse{width:2.75rem;height:.25rem;margin:.7rem auto 0;border-radius:999px;background:#58cce9;animation:startup-pulse 1.1s ease-in-out infinite}
+      @keyframes startup-pulse{0%,100%{opacity:.25;transform:scaleX(.5)}50%{opacity:1;transform:scaleX(1)}}
+      @media (prefers-reduced-motion:reduce){.startup-loading__pulse{animation:none}}
+    </style>
+    <script type="module" crossorigin src="/games/LLM_Corpora/assets/index-UOQBCTRe.js"></script>
+    <link rel="modulepreload" crossorigin href="/games/LLM_Corpora/assets/vendor-phaser-D3izK-R_.js">
+    <link rel="modulepreload" crossorigin href="/games/LLM_Corpora/assets/vendor-dexie-CVCRFKW4.js">
+    <link rel="stylesheet" crossorigin href="/games/LLM_Corpora/assets/index-DQ_lwcvw.css">
+  </head>
+  <body>
+    <main id="app"></main>
+    <div id="startup-loading" role="progressbar" aria-label="게임 초기 로딩" aria-valuetext="게임을 준비하는 중">
+      <img class="startup-loading__image" src="/games/LLM_Corpora/assets/runtime/ui/startup-splash/r02/llm-corpora-startup-splash-r02.webp" alt="" aria-hidden="true" loading="eager" decoding="async" />
+      <div class="startup-loading__content">
+        <p class="startup-loading__status">게임을 준비하는 중...</p>
+        <div class="startup-loading__pulse" aria-hidden="true"></div>
+      </div>
+    </div>
+  </body>
+</html>

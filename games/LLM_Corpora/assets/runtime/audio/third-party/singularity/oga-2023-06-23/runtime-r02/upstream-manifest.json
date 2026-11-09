@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "assetId": "singularity",
+  "title": "Singularity",
+  "variant": "Calm",
+  "author": "Vitalezzz",
+  "version": "oga-2023-06-23-runtime-r02",
+  "license": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "evidencePage": "https://opengameart.org/content/singularity-0"
+  },
+  "source": {
+    "pageUrl": "https://opengameart.org/content/singularity-0",
+    "publishedOn": "2023-06-23",
+    "retrievedOn": "2026-08-26",
+    "attributionNotice": "Vitalezzz - Singularity",
+    "originals": {
+      "wav": {
+        "fileName": "singularity_calm.wav",
+        "downloadUrl": "https://opengameart.org/sites/default/files/singularity_calm.wav",
+        "bytes": 53944406,
+        "sha256": "7B4F89F93258B4DBFD9E8708A215C691A2EF174B767EA143064C9129ECBC1F9F",
+        "committed": false
+      },
+      "mp3": {
+        "fileName": "singularity_calm.mp3",
+        "downloadUrl": "https://opengameart.org/sites/default/files/singularity_calm.mp3",
+        "bytes": 8156542,
+        "sha256": "73F5628439C4EBB2A3242F1CF40A194CE3C552CAAD155646C32DCE8B02337D09",
+        "committed": false,
+        "historicalSourceCommit": "cabc0d00eff37770cb5759d36795c33a53ffbdb2"
+      }
+    }
+  },
+  "playback": {
+    "loop": true,
+    "authoredVolume": 0.3,
+    "sampleRateHz": 44100,
+    "channels": 2,
+    "durationSeconds": 203.870975
+  },
+  "runtime": {
+    "ogg": {
+      "path": "singularity-calm.ogg",
+      "bytes": 3139830,
+      "sha256": "E5F8E3477582C1AC5E0399D637A2145F602DCD05C6B437F88EFB1829EB8CB444",
+      "codec": "Vorbis",
+      "derived": true,
+      "derivedFrom": "singularity_calm.wav",
+      "encoder": "FFmpeg/libvorbis",
+      "options": "-fflags +bitexact -map_metadata -1 -vn -ar 44100 -ac 2 -c:a libvorbis -q:a 4 -flags:a +bitexact"
+    },
+    "mp3": {
+      "path": "singularity-calm.mp3",
+      "bytes": 3263050,
+      "sha256": "63AA5AE31F1F08D40BF72D367480E6EE2572351F22D9ACB5937D70F74E8FC131",
+      "codec": "MP3",
+      "derived": true,
+      "derivedFrom": "singularity_calm.wav",
+      "encoder": "FFmpeg/libmp3lame",
+      "options": "-fflags +bitexact -map_metadata -1 -vn -ar 44100 -ac 2 -c:a libmp3lame -b:a 128k -write_xing 1 -flags:a +bitexact"
+    }
+  }
+}

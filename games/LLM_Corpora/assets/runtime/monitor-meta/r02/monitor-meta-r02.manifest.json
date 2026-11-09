@@ -1,0 +1,482 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "monitor-meta-package",
+  "packageRevision": "monitor-meta-r02",
+  "status": "first-pass-integrated",
+  "authoritySha256": "6454991CE5583DACCD379D4D8434D805B4B9C477467ECBBC3376FCDA0B314928",
+  "logicalCanvas1x": [
+    1280,
+    720
+  ],
+  "qualityTiers": {
+    "default": "1x",
+    "1x": {
+      "dimensions": [
+        1280,
+        720
+      ],
+      "displayScale": 1.0
+    },
+    "2x": {
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "displayScale": 0.5
+    }
+  },
+  "cameraPath": {
+    "type": "perspective-dolly",
+    "viewOrder": [
+      "monitor-close",
+      "monitor-mid",
+      "room-wide"
+    ],
+    "entryOrder": [
+      "room-wide",
+      "monitor-mid",
+      "monitor-close",
+      "in-game"
+    ],
+    "endingOrder": [
+      "in-game",
+      "monitor-close",
+      "monitor-mid",
+      "room-wide",
+      "room-wide/black"
+    ],
+    "sharedLensMm": 50.0,
+    "sensorWidthMm": 36.0,
+    "targetWorld": [
+      0.0,
+      -0.07,
+      1.22
+    ],
+    "axisWorld": [
+      0.0,
+      -1.0,
+      0.0
+    ],
+    "interpolation": "screen-normal-dolly"
+  },
+  "proceduralOverlay": {
+    "staticNoiseBaked": false,
+    "screenUiBaked": false,
+    "liveSignal": "procedural-static",
+    "blackSignal": "unlit-black",
+    "clipRegion": "screenRect1x",
+    "uiRegion": "safeAreaRect1x",
+    "recommendedLayers": [
+      "blue-black-signal",
+      "static-noise",
+      "scanlines",
+      "chromatic-drift",
+      "title-ui"
+    ]
+  },
+  "environmentDesign": {
+    "setting": "bright-warm-starter-home-office",
+    "recognitionPriority": "first-pass-broad-silhouettes",
+    "monitorRole": "physical-counterpart-of-founder-workstation",
+    "observerCue": "empty-chair-facing-starter-workstation",
+    "humanPresence": "absent",
+    "readableText": false,
+    "requiredCues": [
+      "starter-personal-pc-desk-form",
+      "side-desktop-tower",
+      "empty-chair",
+      "adjacent-compact-rack",
+      "warm-paneled-home-shell"
+    ],
+    "palette": [
+      "warm-cream",
+      "light-natural-wood",
+      "home-tile",
+      "sage",
+      "steel-blue",
+      "monitor-cyan"
+    ],
+    "spatialComposition": {
+      "rackSide": "screen-left-of-workstation",
+      "relationVisibleInViews": [
+        "monitor-mid",
+        "room-wide"
+      ],
+      "scaleAuthority": "starter-home-runtime-assets",
+      "ratioContracts": {
+        "rackWidthToDeskWidth": [
+          0.45,
+          0.6
+        ],
+        "rackHeightToDesktopTowerHeight": [
+          2.2,
+          2.9
+        ],
+        "rackTopToMonitorTop": [
+          1.15,
+          1.45
+        ],
+        "monitorWidthToDeskWidth": [
+          0.3,
+          0.45
+        ],
+        "chairSeatTopToDeskTop": [
+          0.45,
+          0.55
+        ],
+        "chairBackTopToDeskTop": [
+          0.95,
+          1.15
+        ]
+      }
+    },
+    "lightingDesign": {
+      "mode": "bright-warm-starter-home",
+      "windowState": "soft-daylight",
+      "exposureEv": -0.25,
+      "blackScreenRemainsUnlit": true
+    },
+    "continuityReference": {
+      "facilityId": "home",
+      "fixedItems": [
+        "home-personal-pc-desk:o000@(0,0)",
+        "home-compact-rack:o000@(0,2)"
+      ],
+      "formPackages": [
+        "personal-pc-desk-r02",
+        "compact-rack-c3-b-r01p02"
+      ],
+      "interpretation": "real-world-counterpart-not-exact-copy"
+    }
+  },
+  "bezelGeometry": {
+    "construction": "single-continuous-rectangular-ring",
+    "objectName": "Bezel_Continuous_Rail",
+    "cornerJoin": "coplanar-continuous",
+    "continuousCorners": [
+      "top-left",
+      "top-right",
+      "bottom-right",
+      "bottom-left"
+    ],
+    "innerBoundsWorld": {
+      "left": -0.22,
+      "right": 0.22,
+      "bottom": 1.096311111,
+      "top": 1.343688889
+    },
+    "railWidthWorld": 0.022,
+    "depthWorld": 0.012,
+    "centerY": -0.075
+  },
+  "views": [
+    {
+      "viewId": "monitor-close",
+      "narrativeRole": "title-and-screen-threshold",
+      "camera": {
+        "location": [
+          0.0,
+          -0.958136,
+          1.22
+        ],
+        "target": [
+          0.0,
+          -0.07,
+          1.22
+        ],
+        "lensMm": 50.0,
+        "distanceFromScreen": 0.888136
+      },
+      "screenQuad1x": [
+        [
+          190,
+          107
+        ],
+        [
+          1090,
+          107
+        ],
+        [
+          1090,
+          613
+        ],
+        [
+          190,
+          613
+        ]
+      ],
+      "screenRect1x": {
+        "x": 190,
+        "y": 107,
+        "width": 900,
+        "height": 506
+      },
+      "screenCenter1x": [
+        640.0,
+        360.0
+      ],
+      "safeAreaRect1x": {
+        "x": 244.0,
+        "y": 147.48,
+        "width": 792.0,
+        "height": 425.04
+      },
+      "powerLed1x": {
+        "center": [
+          1122.378,
+          734.958
+        ],
+        "radius": 14.188
+      },
+      "representations": [
+        {
+          "state": "live",
+          "screenSignal": "procedural-static",
+          "powerIndicator": "cyan-on",
+          "resolution": "1x",
+          "pixelScale": 1,
+          "displayScale": 1.0,
+          "textureKey": "llm.presentation::monitor-meta/room::monitor-meta-r02::1x",
+          "publicUrl": "/assets/runtime/monitor-meta/r02/monitor-meta-room_1x.webp",
+          "sha256": "A5F84EA69E2584A57A26CAE75931E6ACAF9C459A851526B08560A57FB6C02C95",
+          "dimensions": [
+            1280,
+            720
+          ]
+        },
+        {
+          "state": "live",
+          "screenSignal": "procedural-static",
+          "powerIndicator": "cyan-on",
+          "resolution": "2x",
+          "pixelScale": 2,
+          "displayScale": 0.5,
+          "textureKey": "llm.presentation::monitor-meta/room::monitor-meta-r02::2x",
+          "publicUrl": "/assets/runtime/monitor-meta/r02/monitor-meta-room_2x.webp",
+          "sha256": "E95AFAF67E3D73B588CC149E6DDA24F3C33B9B019CAE30BA95CB1A4D574C5F1A",
+          "dimensions": [
+            2560,
+            1440
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "monitor-mid",
+      "narrativeRole": "entry-ending-transition-bridge",
+      "camera": {
+        "location": [
+          0.0,
+          -3.622543,
+          1.22
+        ],
+        "target": [
+          0.0,
+          -0.07,
+          1.22
+        ],
+        "lensMm": 50.0,
+        "distanceFromScreen": 3.552543
+      },
+      "screenQuad1x": [
+        [
+          529.315,
+          297.771
+        ],
+        [
+          750.685,
+          297.771
+        ],
+        [
+          750.685,
+          422.23
+        ],
+        [
+          529.315,
+          422.23
+        ]
+      ],
+      "screenRect1x": {
+        "x": 529.315,
+        "y": 297.771,
+        "width": 221.37,
+        "height": 124.459
+      },
+      "screenCenter1x": [
+        640.0,
+        360.0
+      ],
+      "safeAreaRect1x": {
+        "x": 542.597,
+        "y": 307.728,
+        "width": 194.806,
+        "height": 104.546
+      },
+      "powerLed1x": {
+        "center": [
+          759.471,
+          452.866
+        ],
+        "radius": 3.514
+      },
+      "representations": [
+        {
+          "state": "live",
+          "screenSignal": "procedural-static",
+          "powerIndicator": "cyan-on",
+          "resolution": "1x",
+          "pixelScale": 1,
+          "displayScale": 1.0,
+          "textureKey": "llm.presentation::monitor-meta/monitor-mid/live::monitor-meta-r02::1x",
+          "publicUrl": "/assets/runtime/monitor-meta/r02/monitor-meta-monitor-mid_live_1x.webp",
+          "sha256": "78080EF530A107CD62AD2400B6524418838B75C46383624A24676C98343D0823",
+          "dimensions": [
+            1280,
+            720
+          ]
+        },
+        {
+          "state": "live",
+          "screenSignal": "procedural-static",
+          "powerIndicator": "cyan-on",
+          "resolution": "2x",
+          "pixelScale": 2,
+          "displayScale": 0.5,
+          "textureKey": "llm.presentation::monitor-meta/monitor-mid/live::monitor-meta-r02::2x",
+          "publicUrl": "/assets/runtime/monitor-meta/r02/monitor-meta-monitor-mid_live_2x.webp",
+          "sha256": "B945B788322FDF9135D49E1D02A9EFD9445B74E3914847826673D7DFD860FF44",
+          "dimensions": [
+            2560,
+            1440
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "room-wide",
+      "narrativeRole": "bright-starter-home-workstation-reveal",
+      "camera": {
+        "location": [
+          0.0,
+          -6.28695,
+          1.22
+        ],
+        "target": [
+          0.0,
+          -0.07,
+          1.22
+        ],
+        "lensMm": 50.0,
+        "distanceFromScreen": 6.21695
+      },
+      "screenQuad1x": [
+        [
+          576.897,
+          324.522
+        ],
+        [
+          703.103,
+          324.522
+        ],
+        [
+          703.103,
+          395.478
+        ],
+        [
+          576.897,
+          395.478
+        ]
+      ],
+      "screenRect1x": {
+        "x": 576.897,
+        "y": 324.522,
+        "width": 126.206,
+        "height": 70.956
+      },
+      "screenCenter1x": [
+        640.0,
+        360.0
+      ],
+      "safeAreaRect1x": {
+        "x": 584.469,
+        "y": 330.198,
+        "width": 111.061,
+        "height": 59.603
+      },
+      "powerLed1x": {
+        "center": [
+          708.178,
+          412.996
+        ],
+        "radius": 2.005
+      },
+      "representations": [
+        {
+          "state": "live",
+          "screenSignal": "procedural-static",
+          "powerIndicator": "cyan-on",
+          "resolution": "1x",
+          "pixelScale": 1,
+          "displayScale": 1.0,
+          "textureKey": "llm.presentation::monitor-meta/room-wide/live::monitor-meta-r02::1x",
+          "publicUrl": "/assets/runtime/monitor-meta/r02/monitor-meta-room-wide_live_1x.webp",
+          "sha256": "19365F17F2E8369332E34920613ED8D4209B535EB628C6BBF12CD203FB4012FE",
+          "dimensions": [
+            1280,
+            720
+          ]
+        },
+        {
+          "state": "live",
+          "screenSignal": "procedural-static",
+          "powerIndicator": "cyan-on",
+          "resolution": "2x",
+          "pixelScale": 2,
+          "displayScale": 0.5,
+          "textureKey": "llm.presentation::monitor-meta/room-wide/live::monitor-meta-r02::2x",
+          "publicUrl": "/assets/runtime/monitor-meta/r02/monitor-meta-room-wide_live_2x.webp",
+          "sha256": "94A250C85331864D792F75E21021DF4EE691B9F87FC8490F11D18BFB03E491E3",
+          "dimensions": [
+            2560,
+            1440
+          ]
+        },
+        {
+          "state": "black",
+          "screenSignal": "unlit-black",
+          "powerIndicator": "off",
+          "resolution": "1x",
+          "pixelScale": 1,
+          "displayScale": 1.0,
+          "textureKey": "llm.presentation::monitor-meta/room-wide/black::monitor-meta-r02::1x",
+          "publicUrl": "/assets/runtime/monitor-meta/r02/monitor-meta-room-wide_black_1x.webp",
+          "sha256": "F63C68833CB2FBCD15F95058D5F038E41FBA7E16C9109C6C28EC5989ED0CEC4B",
+          "dimensions": [
+            1280,
+            720
+          ]
+        },
+        {
+          "state": "black",
+          "screenSignal": "unlit-black",
+          "powerIndicator": "off",
+          "resolution": "2x",
+          "pixelScale": 2,
+          "displayScale": 0.5,
+          "textureKey": "llm.presentation::monitor-meta/room-wide/black::monitor-meta-r02::2x",
+          "publicUrl": "/assets/runtime/monitor-meta/r02/monitor-meta-room-wide_black_2x.webp",
+          "sha256": "7A983C39AFA868B59554E94A9D632CED1D8C81688483AE8307D1F5C2AE5D733C",
+          "dimensions": [
+            2560,
+            1440
+          ]
+        }
+      ]
+    }
+  ],
+  "source": {
+    "blendFile": "LLM_Corpora_Docs/assets/work/drafts/3d/monitor-meta-r01/monitor-meta-r01.blend",
+    "buildScript": "tools/monitor-meta/build_monitor_meta_r01.py",
+    "imageGenerationUsed": false
+  }
+}
