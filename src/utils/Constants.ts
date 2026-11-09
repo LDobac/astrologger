@@ -2,6 +2,18 @@ export const PAGE_SIZE = 12;
 
 export const DESC_LEN = 230;
 
+export const COMMENT_API_URL = import.meta.env.DEV
+    ? "http://127.0.0.1:8787"
+    : "https://comment-and-view.ljh34210329.workers.dev";
+
+export const COMMENT_LIMITS = {
+    nicknameMax: 20,
+    passwordMin: 4,
+    passwordMax: 72,
+    emailMax: 254,
+    contentMax: 2000,
+} as const;
+
 export const DEFAULT_OG_IMG_SIZE = {
     width: 1200,
     height: 630

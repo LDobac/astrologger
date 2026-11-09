@@ -1,0 +1,410 @@
+---
+import { COMMENT_LIMITS } from "@utils/Constants";
+
+interface Props {
+    slug: string;
+}
+
+const { slug } = Astro.props;
+
+const input =
+    "w-full rounded-lg border-2 border-line bg-canvas px-3 py-2 text-sm text-fg placeholder:text-fg-muted focus:border-accent";
+const primaryButton =
+    "rounded-lg bg-accent px-4 py-1.5 text-sm font-bold text-canvas transition hover:opacity-90 disabled:opacity-50";
+const secondaryButton =
+    "rounded-lg border-2 border-line px-4 py-1 text-sm text-fg-muted transition hover:text-accent disabled:opacity-50";
+const dangerButton =
+    "rounded-lg bg-danger px-4 py-1.5 text-sm font-bold text-canvas transition hover:opacity-90 disabled:opacity-50";
+const textButton = "text-fg-muted transition hover:text-accent";
+const errorText = "text-sm text-danger";
+---
+
+<section id="comments" class="mt-10" data-comments data-slug={slug}>
+    <h2 class="text-lg font-bold md:text-xl">
+        댓글 <span class="text-accent" data-part="count"></span>
+    </h2>
+
+    <div class="mt-4 text-sm text-fg-muted" data-part="status" role="status">댓글을 불러오는 중…</div>
+
+    <ol class="mt-2 divide-y-2 divide-line" data-part="list"></ol>
+
+    <div class="mt-6" data-part="compose"></div>
+
+    <template data-part="item-template">
+        <li data-part="item">
+            <article class="py-4" data-part="body">
+                <header class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm">
+                    <span class="font-bold text-fg" data-part="nickname"></span>
+                    <time class="text-fg-muted" data-part="date"></time>
+                    <span class="text-fg-muted" data-part="edited" hidden>(수정됨)</span>
+                </header>
+                <p class="mt-2 whitespace-pre-wrap break-words" data-part="content"></p>
+                <div class="mt-2 flex gap-3 text-sm" data-part="actions">
+                    <button type="button" class={textButton} data-action="reply">답글</button>
+                    <button type="button" class={textButton} data-action="edit">수정</button>
+                    <button type="button" class={textButton} data-action="delete">삭제</button>
+                </div>
+                <div data-part="panel"></div>
+            </article>
+            <ol class="mb-4 ml-2 divide-y-2 divide-line border-l-2 border-line pl-4 md:ml-4" data-part="replies" hidden></ol>
+        </li>
+    </template>
+
+    <template data-part="form-template">
+        <form class="relative mt-2 flex flex-col gap-3 rounded-xl border-2 border-line bg-canvas-subtle p-4">
+            <div class="grid gap-3 sm:grid-cols-3">
+                <input
+                    class={input}
+                    name="nickname"
+                    required
+                    maxlength={COMMENT_LIMITS.nicknameMax}
+                    placeholder="닉네임"
+                    aria-label="닉네임"
+                    autocomplete="nickname"
+                />
+                <input
+                    class={input}
+                    name="password"
+                    type="password"
+                    required
+                    minlength={COMMENT_LIMITS.passwordMin}
+                    maxlength={COMMENT_LIMITS.passwordMax}
+                    placeholder="비밀번호"
+                    aria-label="비밀번호"
+                    autocomplete="new-password"
+                />
+                <input
+                    class={input}
+                    name="email"
+                    type="email"
+                    maxlength={COMMENT_LIMITS.emailMax}
+                    placeholder="이메일 (선택, 비공개)"
+                    aria-label="이메일 (선택, 비공개)"
+                    autocomplete="email"
+                />
+            </div>
+            <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+                <input name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <textarea
+                class={`${input} min-h-24 resize-y`}
+                name="content"
+                required
+                rows="4"
+                maxlength={COMMENT_LIMITS.contentMax}
+                placeholder="댓글을 남겨 주세요."
+                aria-label="댓글 내용"></textarea>
+            <p class={errorText} data-part="error" role="alert" hidden></p>
+            <div class="flex items-center justify-between gap-3">
+                <span class="text-xs text-fg-muted" data-part="counter"></span>
+                <div class="flex gap-2">
+                    <button type="button" class={secondaryButton} data-action="cancel" hidden>취소</button>
+                    <button type="submit" class={primaryButton} data-part="submit">등록</button>
+                </div>
+            </div>
+        </form>
+    </template>
+
+    <template data-part="edit-template">
+        <form class="mt-3 flex flex-col gap-3 rounded-xl border-2 border-line bg-canvas-subtle p-4">
+            <textarea
+                class={`${input} min-h-24 resize-y`}
+                name="content"
+                required
+                rows="4"
+                maxlength={COMMENT_LIMITS.contentMax}
+                aria-label="댓글 내용"></textarea>
+            <input
+                class={`${input} sm:w-1/3`}
+                name="password"
+                type="password"
+                required
+                minlength={COMMENT_LIMITS.passwordMin}
+                maxlength={COMMENT_LIMITS.passwordMax}
+                placeholder="비밀번호"
+                aria-label="비밀번호"
+                autocomplete="current-password"
+            />
+            <p class={errorText} data-part="error" role="alert" hidden></p>
+            <div class="flex items-center justify-between gap-3">
+                <span class="text-xs text-fg-muted" data-part="counter"></span>
+                <div class="flex gap-2">
+                    <button type="button" class={secondaryButton} data-action="cancel">취소</button>
+                    <button type="submit" class={primaryButton} data-part="submit">수정</button>
+                </div>
+            </div>
+        </form>
+    </template>
+
+    <template data-part="delete-template">
+        <form class="mt-3 flex flex-col gap-3 rounded-xl border-2 border-line bg-canvas-subtle p-4">
+            <p class="text-sm">댓글을 삭제하려면 작성할 때 입력한 비밀번호를 입력해 주세요.</p>
+            <input
+                class={`${input} sm:w-1/3`}
+                name="password"
+                type="password"
+                required
+                minlength={COMMENT_LIMITS.passwordMin}
+                maxlength={COMMENT_LIMITS.passwordMax}
+                placeholder="비밀번호"
+                aria-label="비밀번호"
+                autocomplete="current-password"
+            />
+            <p class={errorText} data-part="error" role="alert" hidden></p>
+            <div class="flex justify-end gap-2">
+                <button type="button" class={secondaryButton} data-action="cancel">취소</button>
+                <button type="submit" class={dangerButton} data-part="submit">삭제</button>
+            </div>
+        </form>
+    </template>
+
+    <template data-part="retry-template">
+        <span>
+            댓글을 불러오지 못했습니다.
+            <button type="button" class="ml-1 text-accent hover:underline" data-action="retry">다시 시도</button>
+        </span>
+    </template>
+</section>
+
+<script>
+    import {
+        createComment,
+        deleteComment,
+        errorMessage,
+        listComments,
+        updateComment,
+        type Comment,
+    } from "@utils/CommentApi";
+    import { COMMENT_LIMITS } from "@utils/Constants";
+    import { FormattedDateTime } from "@utils/FormattedDate";
+
+    type Panel = { id: number; kind: "reply" | "edit" | "delete" };
+
+    function part<T extends Element = HTMLElement>(root: ParentNode, name: string): T {
+        const el = root.querySelector<T>(`[data-part="${name}"]`);
+        if (el === null) throw new Error(`missing part: ${name}`);
+        return el;
+    }
+
+    function charLength(value: string): number {
+        return [...value].length;
+    }
+
+    function cloneTemplate(root: ParentNode, name: string): HTMLElement {
+        const template = part<HTMLTemplateElement>(root, name);
+        const node = template.content.firstElementChild?.cloneNode(true);
+        if (!(node instanceof HTMLElement)) throw new Error(`empty template: ${name}`);
+        return node;
+    }
+
+    function field(form: HTMLFormElement, name: string): string {
+        const value = new FormData(form).get(name);
+        return typeof value === "string" ? value : "";
+    }
+
+    function bindCounter(form: HTMLFormElement) {
+        const textarea = form.querySelector("textarea");
+        const counter = part(form, "counter");
+        if (textarea === null) return;
+        const update = () => {
+            counter.textContent = `${charLength(textarea.value)} / ${COMMENT_LIMITS.contentMax}`;
+        };
+        textarea.addEventListener("input", update);
+        update();
+    }
+
+    function setError(form: HTMLFormElement, message: string | null) {
+        const error = part(form, "error");
+        error.textContent = message ?? "";
+        error.hidden = message === null;
+    }
+
+    function setBusy(form: HTMLFormElement, busy: boolean) {
+        part<HTMLButtonElement>(form, "submit").disabled = busy;
+    }
+
+    function initComments(root: HTMLElement) {
+        const slug = root.dataset.slug ?? "";
+        const status = part(root, "status");
+        const list = part(root, "list");
+        const count = part(root, "count");
+        const compose = part(root, "compose");
+
+        let comments: Comment[] = [];
+        let panel: Panel | null = null;
+
+        const repliesOf = (id: number) => comments.filter((c) => c.parentId === id);
+
+        function renderItem(comment: Comment): HTMLElement {
+            const item = cloneTemplate(root, "item-template");
+            const body = part(item, "body");
+            part(body, "nickname").textContent = comment.nickname;
+            const date = part<HTMLTimeElement>(body, "date");
+            date.dateTime = comment.createdAt;
+            date.textContent = FormattedDateTime(new Date(comment.createdAt));
+            if (comment.updatedAt !== null) {
+                const edited = part(body, "edited");
+                edited.hidden = false;
+                edited.title = FormattedDateTime(new Date(comment.updatedAt));
+            }
+            part(body, "content").textContent = comment.content;
+
+            const replies = repliesOf(comment.id);
+            const actions = part(body, "actions");
+            const reply = actions.querySelector<HTMLElement>('[data-action="reply"]');
+            if (reply && comment.parentId !== null) reply.remove();
+            if (replies.length > 0) {
+                actions.querySelectorAll('[data-action="edit"], [data-action="delete"]').forEach((el) => el.remove());
+            }
+            actions.querySelectorAll<HTMLButtonElement>("[data-action]").forEach((button) => {
+                const kind = button.dataset.action as Panel["kind"];
+                button.setAttribute("aria-expanded", String(panel?.id === comment.id && panel.kind === kind));
+                button.addEventListener("click", () => togglePanel({ id: comment.id, kind }));
+            });
+
+            if (panel?.id === comment.id) {
+                part(body, "panel").append(renderPanel(comment, panel.kind));
+            }
+
+            if (replies.length > 0) {
+                const replyList = part(item, "replies");
+                replyList.hidden = false;
+                replies.forEach((r) => replyList.append(renderItem(r)));
+            }
+            return item;
+        }
+
+        function render() {
+            const total = comments.length;
+            count.textContent = total > 0 ? String(total) : "";
+            status.replaceChildren();
+            status.hidden = total > 0;
+            if (total === 0) status.textContent = "아직 댓글이 없습니다. 첫 댓글을 남겨 주세요.";
+            list.replaceChildren(...comments.filter((c) => c.parentId === null).map(renderItem));
+        }
+
+        function togglePanel(next: Panel) {
+            panel = panel?.id === next.id && panel.kind === next.kind ? null : next;
+            render();
+            if (panel !== null) {
+                list.querySelector<HTMLElement>("[data-part='panel'] textarea, [data-part='panel'] input:not([name='website'])")?.focus();
+            }
+        }
+
+        function closePanel() {
+            panel = null;
+            render();
+        }
+
+        function renderPanel(comment: Comment, kind: Panel["kind"]): HTMLElement {
+            if (kind === "reply") return composeForm(comment.id);
+            if (kind === "edit") return editForm(comment);
+            return deleteForm(comment);
+        }
+
+        function composeForm(parentId: number | null): HTMLFormElement {
+            const form = cloneTemplate(root, "form-template") as HTMLFormElement;
+            bindCounter(form);
+            const cancel = form.querySelector<HTMLButtonElement>('[data-action="cancel"]');
+            if (parentId !== null && cancel) {
+                cancel.hidden = false;
+                cancel.addEventListener("click", closePanel);
+                part(form, "submit").textContent = "답글 등록";
+            }
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                setError(form, null);
+                setBusy(form, true);
+                const result = await createComment({
+                    postSlug: slug,
+                    parentId,
+                    nickname: field(form, "nickname"),
+                    password: field(form, "password"),
+                    email: field(form, "email"),
+                    content: field(form, "content"),
+                    website: field(form, "website"),
+                });
+                setBusy(form, false);
+                if (!result.ok) {
+                    setError(form, errorMessage(result.error));
+                    return;
+                }
+                comments = [...comments, result.value];
+                if (parentId === null) {
+                    form.reset();
+                    form.querySelector("textarea")?.dispatchEvent(new Event("input"));
+                    render();
+                } else {
+                    closePanel();
+                }
+            });
+            return form;
+        }
+
+        function editForm(comment: Comment): HTMLFormElement {
+            const form = cloneTemplate(root, "edit-template") as HTMLFormElement;
+            const textarea = form.querySelector("textarea");
+            if (textarea) textarea.value = comment.content;
+            bindCounter(form);
+            form.querySelector('[data-action="cancel"]')?.addEventListener("click", closePanel);
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                setError(form, null);
+                setBusy(form, true);
+                const result = await updateComment(comment.id, field(form, "password"), field(form, "content"));
+                setBusy(form, false);
+                if (!result.ok) {
+                    setError(form, errorMessage(result.error));
+                    return;
+                }
+                comments = comments.map((c) => (c.id === comment.id ? result.value : c));
+                closePanel();
+            });
+            return form;
+        }
+
+        function deleteForm(comment: Comment): HTMLFormElement {
+            const form = cloneTemplate(root, "delete-template") as HTMLFormElement;
+            form.querySelector('[data-action="cancel"]')?.addEventListener("click", closePanel);
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                setError(form, null);
+                setBusy(form, true);
+                const result = await deleteComment(comment.id, field(form, "password"));
+                setBusy(form, false);
+                if (!result.ok) {
+                    setError(form, errorMessage(result.error));
+                    return;
+                }
+                comments = comments.filter((c) => c.id !== comment.id);
+                closePanel();
+            });
+            return form;
+        }
+
+        async function load() {
+            const result = await listComments(slug);
+            if (!result.ok) {
+                status.hidden = false;
+                const retry = cloneTemplate(root, "retry-template");
+                retry.querySelector('[data-action="retry"]')?.addEventListener("click", () => {
+                    status.textContent = "댓글을 불러오는 중…";
+                    void load();
+                });
+                status.replaceChildren(retry);
+                return;
+            }
+            comments = result.value;
+            panel = null;
+            render();
+        }
+
+        compose.replaceChildren(composeForm(null));
+        void load();
+    }
+
+    document.addEventListener("astro:page-load", () => {
+        const root = document.querySelector<HTMLElement>("[data-comments]");
+        if (root) initComments(root);
+    });
+</script>

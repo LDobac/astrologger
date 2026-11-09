@@ -16,6 +16,7 @@
         --rgb-line: 209 217 224;          /* #d1d9e0 */
         --rgb-accent: 9 105 218;          /* #0969da */
         --rgb-accent-subtle: 125 211 252; /* #7dd3fc */
+        --rgb-danger: 209 36 47;          /* #d1242f */
     }
 
     :root.dark {
@@ -26,6 +27,7 @@
         --rgb-line: 61 68 77;             /* #3d444d */
         --rgb-accent: 68 147 248;         /* #4493f8 */
         --rgb-accent-subtle: 31 111 235;  /* #1f6feb */
+        --rgb-danger: 248 81 73;          /* #f85149 */
     }
 
     /*

@@ -33,4 +33,5 @@
     --color-line: rgb(var(--rgb-line));
     --color-accent: rgb(var(--rgb-accent));
     --color-accent-subtle: rgb(var(--rgb-accent-subtle));
+    --color-danger: rgb(var(--rgb-danger));
 }

@@ -95,6 +95,12 @@ Use `@components`, `@layouts`, `@pages`, `@assets`, `@styles`, `@utils` (→ `sr
 - Floating buttons: `EditorFab.astro`, loaded by `Layout.astro` behind `import.meta.env.DEV` (inline styles only).
 - `astro dev` runs as a background daemon in non-TTY shells (`astro dev stop` / `astro dev logs`).
 
+### Comments / views (client)
+
+- API: `services/comment_and_view` (Cloudflare Worker). Base URL is `COMMENT_API_URL` in [Constants.ts](src/utils/Constants.ts): `127.0.0.1:8787` in dev, `*.workers.dev` in prod. Client wrapper: `src/utils/CommentApi.ts`.
+- `Comments.astro` (below the post body) and `ViewCount.astro` (post header only; POST, falls back to GET) are vanilla `<script>`s initialized on `astro:page-load` (ClientRouter).
+- Render comment text with `textContent` only. Slug = `slug(title)`.
+
 ### Deployment
 
 - No SSR adapter. `site` (domain read from `public/CNAME`) is set only when `NODE_ENV=production`.

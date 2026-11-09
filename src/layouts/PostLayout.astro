@@ -13,6 +13,8 @@ import "@styles/markdown-theme.css";
 import "@styles/post-content.css";
 import { GetPostsBySeries } from "@utils/GetPosts";
 import PostList from "@components/PostList.astro";
+import Comments from "@components/Comments.astro";
+import ViewCount from "@components/ViewCount.astro";
 
 interface Props {
     post: CollectionEntry<"posts">;
@@ -22,6 +24,7 @@ const { post } = Astro.props;
 
 const { title, date, editDate, series, tags, og } = post.data;
 const { Content } = await render(post);
+const postSlug = slugger(title);
 
 const neighborPosts: Array<CollectionEntry<"posts">> = [];
 if (series) {
@@ -72,7 +75,7 @@ if (series) {
 
         {!!tags && <TagList tags={tags} />}
 
-        <p class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-fg-muted">
+        <p class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-fg-muted">
             <span>
                 작성일 <time datetime={date.toISOString()}>{FormattedDate(date)}</time>
             </span>
@@ -81,6 +84,7 @@ if (series) {
                     수정일 <time datetime={editDate.toISOString()}>{FormattedDate(editDate)}</time>
                 </span>
             )}
+            <ViewCount slug={postSlug} />
         </p>
     </header>
 
@@ -89,6 +93,8 @@ if (series) {
             <Content />
         </div>
     </article>
+
+    <Comments slug={postSlug} />
 </div>
 {
     series && neighborPosts && (
