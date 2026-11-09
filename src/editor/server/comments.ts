@@ -95,8 +95,10 @@ function multiline(value: string): string {
     return escapeHtml(value).replace(/\n/g, "<br>");
 }
 
-function buildMail(post: PostInfo, parent: AdminComment, reply: AdminComment) {
+function buildMail(origin: string, post: PostInfo, parent: AdminComment, reply: AdminComment) {
     const commentsUrl = `${post.url}#comments`;
+    const privacyUrl = `${origin}/privacy/`;
+    const notice = "이 메일은 jaehee.dev에 댓글을 남기며 입력하신 주소로 발송되었습니다. 이메일 주소는 댓글을 삭제하면 함께 삭제됩니다.";
     const subject = `[jaehee.dev] "${post.title}" 글에 남기신 댓글에 답글이 달렸습니다`;
     const section = (label: string, body: string, accent: boolean) =>
         `<tr><td style="padding:16px 0 0">
@@ -114,6 +116,12 @@ function buildMail(post: PostInfo, parent: AdminComment, reply: AdminComment) {
     <tr><td style="padding:24px 0 0;font-size:14px">
         <a href="${escapeHtml(commentsUrl)}" style="color:#0969da">글에서 댓글 보기 →</a>
     </td></tr>
+    <tr><td style="padding:32px 0 0">
+        <div style="padding-top:12px;border-top:1px solid #d1d9e0;font-size:12px;line-height:1.6;color:#59636e">
+            ${notice}<br>
+            <a href="${escapeHtml(privacyUrl)}" style="color:#59636e">개인정보 처리방침</a>
+        </div>
+    </td></tr>
 </table>
 </body></html>`;
     const text = [
@@ -127,6 +135,10 @@ function buildMail(post: PostInfo, parent: AdminComment, reply: AdminComment) {
         parent.content,
         "",
         `글에서 댓글 보기: ${commentsUrl}`,
+        "",
+        "--",
+        notice,
+        `개인정보 처리방침: ${privacyUrl}`,
     ].join("\n");
     return { subject, html, text };
 }
@@ -139,7 +151,7 @@ async function sendReplyMail(env: AdminEnv, parent: AdminComment, reply: AdminCo
         secure: true,
         auth: { user: env.gmailUser, pass: env.gmailPassword },
     });
-    const mail = buildMail(await postInfo(parent.postSlug), parent, reply);
+    const mail = buildMail(await siteOrigin(), await postInfo(parent.postSlug), parent, reply);
     await transport.sendMail({ from: env.mailFrom, to: parent.email, ...mail });
     await adminFetch(env, "POST", `/admin/comments/${reply.id}/notified`);
 }

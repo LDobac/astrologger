@@ -103,7 +103,36 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<boolean
     }
 }
 
+const TRUSTED_FETCH_SITES = new Set(["same-origin", "none"]);
+const BODY_METHODS = new Set(["POST", "PUT", "PATCH"]);
+
+function rejectCrossSite(req: IncomingMessage): { status: number; message: string } | null {
+    const site = req.headers["sec-fetch-site"];
+    if (typeof site === "string" && !TRUSTED_FETCH_SITES.has(site)) {
+        return { status: 403, message: "다른 사이트에서 온 에디터 API 요청은 허용하지 않습니다." };
+    }
+    const origin = req.headers.origin;
+    if (typeof origin === "string") {
+        let host: string | null = null;
+        try {
+            host = new URL(origin).host;
+        } catch {}
+        if (host !== req.headers.host) return { status: 403, message: "허용되지 않은 Origin입니다." };
+    }
+    const pathname = new URL(req.url ?? "/", "http://localhost").pathname;
+    if (BODY_METHODS.has(req.method ?? "") && pathname !== "/attachment") {
+        const type = (req.headers["content-type"] ?? "").split(";")[0]?.trim().toLowerCase();
+        if (type !== "application/json") return { status: 415, message: "Content-Type은 application/json이어야 합니다." };
+    }
+    return null;
+}
+
 export async function handleApi(req: IncomingMessage, res: ServerResponse) {
+    const rejected = rejectCrossSite(req);
+    if (rejected) {
+        sendJson(res, rejected.status, { error: rejected.message });
+        return;
+    }
     try {
         if (!(await route(req, res))) {
             sendJson(res, 404, { error: `알 수 없는 API: ${req.method} ${req.url}` });

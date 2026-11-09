@@ -17,7 +17,10 @@ type AuthRow = {
     pw_hash: string;
     pw_salt: string;
     has_replies: number;
+    has_public_replies: number;
 };
+
+type ReplyPolicy = "none" | "admin_only";
 
 export const PUBLIC_COLUMNS = "id, parent_id, nickname, content, created_at, updated_at, is_admin";
 export const NOW = "strftime('%Y-%m-%dT%H:%M:%SZ', 'now')";
@@ -90,13 +93,18 @@ async function allowAuthAttempt(req: Request, env: AppEnv, id: number): Promise<
     return byClient && byComment;
 }
 
-async function authorize(env: AppEnv, id: number, password: string): Promise<Response | null> {
+async function authorize(env: AppEnv, id: number, password: string, allowed: ReplyPolicy): Promise<Response | null> {
     const auth = await env.DB
-        .prepare("SELECT pw_hash, pw_salt, EXISTS (SELECT 1 FROM comments r WHERE r.parent_id = c.id) AS has_replies FROM comments c WHERE c.id = ?")
+        .prepare(
+            `SELECT pw_hash, pw_salt,
+                EXISTS (SELECT 1 FROM comments r WHERE r.parent_id = c.id) AS has_replies,
+                EXISTS (SELECT 1 FROM comments r WHERE r.parent_id = c.id AND r.is_admin = 0) AS has_public_replies
+             FROM comments c WHERE c.id = ?`,
+        )
         .bind(id)
         .first<AuthRow>();
     if (auth === null) return error(404, "not_found");
-    if (auth.has_replies) return error(409, "has_replies");
+    if (allowed === "none" ? auth.has_replies : auth.has_public_replies) return error(409, "has_replies");
     if (!(await verifyPassword(password, auth.pw_hash, auth.pw_salt))) return error(403, "wrong_password");
     return null;
 }
@@ -115,7 +123,7 @@ export async function updateComment(req: Request, env: AppEnv, id: number): Prom
     const input = validateUpdate(body.value);
     if (!input.ok) return error(input.status, input.error);
 
-    const denied = await authorize(env, id, input.value.password);
+    const denied = await authorize(env, id, input.value.password, "none");
     if (denied !== null) return denied;
 
     const row = await env.DB
@@ -140,14 +148,15 @@ export async function deleteComment(req: Request, env: AppEnv, id: number): Prom
     const input = validateDelete(body.value);
     if (!input.ok) return error(input.status, input.error);
 
-    const denied = await authorize(env, id, input.value.password);
+    const denied = await authorize(env, id, input.value.password, "admin_only");
     if (denied !== null) return denied;
 
-    const result = await env.DB
-        .prepare("DELETE FROM comments WHERE id = ?1 AND NOT EXISTS (SELECT 1 FROM comments r WHERE r.parent_id = ?1)")
-        .bind(id)
-        .run();
-    if (result.meta.changes === 0) return conflictOrMissing(env, id);
+    const noPublicReplies = "NOT EXISTS (SELECT 1 FROM comments r WHERE r.parent_id = ?1 AND r.is_admin = 0)";
+    const [, parent] = await env.DB.batch([
+        env.DB.prepare(`DELETE FROM comments WHERE parent_id = ?1 AND is_admin = 1 AND ${noPublicReplies}`).bind(id),
+        env.DB.prepare("DELETE FROM comments WHERE id = ?1 AND NOT EXISTS (SELECT 1 FROM comments r WHERE r.parent_id = ?1)").bind(id),
+    ]);
+    if (parent === undefined || parent.meta.changes === 0) return conflictOrMissing(env, id);
 
     return new Response(null, { status: 204 });
 }

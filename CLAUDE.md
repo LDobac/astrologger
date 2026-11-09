@@ -101,6 +101,7 @@ Use `@components`, `@layouts`, `@pages`, `@assets`, `@styles`, `@utils` (→ `sr
 - API: `services/comment_and_view` (Cloudflare Worker). Base URL is `COMMENT_API_URL` in [Constants.ts](src/utils/Constants.ts): `127.0.0.1:8787` in dev, `*.workers.dev` in prod. Client wrapper: `src/utils/CommentApi.ts`.
 - `Comments.astro` (below the post body) and `ViewCount.astro` (post header only; POST, falls back to GET) are vanilla `<script>`s initialized on `astro:page-load` (ClientRouter).
 - Render comment text with `textContent` only. Slug = `slug(title)`.
+- `/privacy` (`src/pages/privacy.astro`) is the privacy policy, linked from `Footer.astro` and the comment form. Update it when data handling changes.
 - Public site has no reply UI; the API rejects `parentId`. Replies with `isAdmin` show the nickname (`작성자`) in `text-accent`, with no edit/delete buttons.
 
 ### Comment admin (dev only)
@@ -109,6 +110,8 @@ Use `@components`, `@layouts`, `@pages`, `@assets`, `@styles`, `@utils` (→ `sr
 - Config comes from root `.env` (gitignored; template `.env.example`), re-read on every request: `COMMENT_ADMIN_API_URL`, `COMMENT_ADMIN_TOKEN` (= Worker secret `ADMIN_TOKEN`), `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `MAIL_FROM`.
 - If the parent comment has an email, the reply mail goes out via Gmail SMTP (`nodemailer`, `smtp.gmail.com:465`). `MAIL_FROM` must be registered as a Gmail "Send mail as" alias, or Gmail rewrites From to the account address. Mail: post title (link), reply, comment, post link (`#comments`). Post title/URL come from the local tree (`getTree()`, `https://<CNAME>/posts/<slug>/`).
 - The reply is saved even when sending fails; the Worker's `notified_at` stays null and the page shows "메일 재발송".
+- `/__editor/api` rejects cross-site requests (`Sec-Fetch-Site` not `same-origin`/`none`, or `Origin` host ≠ `Host`) and POST/PUT/PATCH without `application/json` (except `/attachment`). Vite 8 already applies Host validation before plugin middlewares, so this covers CSRF.
+- Email retention: until the comment is deleted. Commenters can delete a comment that only has admin replies (they're deleted together); this is what `/privacy`, the comment-form notice and the mail footer promise. Keep them in sync.
 
 ### Deployment
 

@@ -48,7 +48,7 @@ export const api = {
     publish: (req: PublishRequest) => request<PublishResponse>("POST", "/publish", JSON.stringify(req)),
     comments: () => request<AdminCommentsResponse>("GET", "/comments"),
     reply: (id: number, content: string) => request<ReplyResponse>("POST", `/comments/reply${query({ id: String(id) })}`, JSON.stringify({ content })),
-    resendMail: (id: number) => request<ReplyResponse>("POST", `/comments/resend${query({ id: String(id) })}`),
+    resendMail: (id: number) => request<ReplyResponse>("POST", `/comments/resend${query({ id: String(id) })}`, "{}"),
     fileUrl: (params: { draft: string | null; source: string | null }, ref: string) =>
         `${BASE}/file${query({ ...params, path: ref })}`,
 };
