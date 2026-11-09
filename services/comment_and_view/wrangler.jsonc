@@ -7,7 +7,11 @@
         "enabled": true
     },
     "vars": {
-        "ALLOWED_ORIGINS": "https://jaehee.dev"
+        "ALLOWED_ORIGINS": "https://jaehee.dev",
+        "POST_FEED_URL": "https://jaehee.dev/rss.xml"
+    },
+    "secrets": {
+        "required": ["VIEW_PEPPER"]
     },
     "d1_databases": [
         {
@@ -47,6 +51,14 @@
             "namespace_id": "1004",
             "simple": {
                 "limit": 60,
+                "period": 60
+            }
+        },
+        {
+            "name": "VIEW_LIMITER",
+            "namespace_id": "1005",
+            "simple": {
+                "limit": 30,
                 "period": 60
             }
         }

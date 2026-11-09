@@ -1,8 +1,18 @@
 import { createComment, deleteComment, listComments, updateComment } from "./comments";
 import { corsHeaders, error, parseOrigins, withHeaders, type AppEnv } from "./http";
 import { parseId, parseSlug } from "./validate";
+import { getViews, recordView } from "./views";
 
 const ITEM_PATH = /^\/comments\/([^/]+)$/;
+const VIEW_PATH = /^\/views\/([^/]+)$/;
+
+function decodeSlug(raw: string): string | null {
+    try {
+        return parseSlug(decodeURIComponent(raw));
+    } catch {
+        return null;
+    }
+}
 
 async function route(req: Request, env: AppEnv, origin: string | null, allowed: Set<string>): Promise<Response> {
     if (req.method === "OPTIONS") {
@@ -30,6 +40,17 @@ async function route(req: Request, env: AppEnv, origin: string | null, allowed: 
         if (id === null) return error(404, "not_found");
         if (req.method === "PATCH") return updateComment(req, env, id);
         if (req.method === "DELETE") return deleteComment(req, env, id);
+        return error(405, "method_not_allowed");
+    }
+
+    const view = VIEW_PATH.exec(url.pathname);
+    if (view?.[1] !== undefined) {
+        const slug = decodeSlug(view[1]);
+        if (slug === null) return error(400, "invalid_slug");
+        if (req.method === "GET") return getViews(req, env, slug);
+        if (req.method === "POST") {
+            return origin !== null && allowed.has(origin) ? recordView(req, env, slug) : error(403, "forbidden_origin");
+        }
         return error(405, "method_not_allowed");
     }
 

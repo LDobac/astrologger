@@ -4,17 +4,19 @@ export function clientIp(req: Request): string {
     return req.headers.get("CF-Connecting-IP") ?? "unknown";
 }
 
-function ipv6Prefix64(ip: string): string {
+function ipv6Prefix(ip: string, bits: 48 | 56 | 64): string {
     const [head = "", tail] = ip.split("::");
     const left = head.length > 0 ? head.split(":") : [];
     const right = tail !== undefined && tail.length > 0 ? tail.split(":") : [];
     const groups = tail === undefined ? left : [...left, ...Array<string>(Math.max(0, 8 - left.length - right.length)).fill("0"), ...right];
-    return `${groups.slice(0, 4).map((g) => g.toLowerCase().padStart(4, "0")).join(":")}::/64`;
+    const prefix = groups.slice(0, Math.ceil(bits / 16)).map((g) => parseInt(g, 16) || 0);
+    if (bits % 16 !== 0 && prefix.length > 0) prefix[prefix.length - 1] = prefix[prefix.length - 1]! & (0xffff << (16 - (bits % 16)));
+    return `${prefix.map((g) => g.toString(16).padStart(4, "0")).join(":")}::/${bits}`;
 }
 
-export function rateKey(req: Request): string {
+export function rateKey(req: Request, v6Bits: 48 | 56 | 64 = 64): string {
     const ip = clientIp(req);
-    return ip.includes(":") ? ipv6Prefix64(ip) : ip;
+    return ip.includes(":") ? ipv6Prefix(ip, v6Bits) : ip;
 }
 
 export async function withinLimit(limiter: RateLimit, key: string): Promise<boolean> {
