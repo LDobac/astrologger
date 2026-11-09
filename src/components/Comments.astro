@@ -40,7 +40,6 @@ const errorText = "text-sm text-danger";
                 </header>
                 <p class="mt-2 whitespace-pre-wrap break-words" data-part="content"></p>
                 <div class="mt-2 flex gap-3 text-sm" data-part="actions">
-                    <button type="button" class={textButton} data-action="reply">답글</button>
                     <button type="button" class={textButton} data-action="edit">수정</button>
                     <button type="button" class={textButton} data-action="delete">삭제</button>
                 </div>
@@ -97,10 +96,7 @@ const errorText = "text-sm text-danger";
             <p class={errorText} data-part="error" role="alert" hidden></p>
             <div class="flex items-center justify-between gap-3">
                 <span class="text-xs text-fg-muted" data-part="counter"></span>
-                <div class="flex gap-2">
-                    <button type="button" class={secondaryButton} data-action="cancel" hidden>취소</button>
-                    <button type="submit" class={primaryButton} data-part="submit">등록</button>
-                </div>
+                <button type="submit" class={primaryButton} data-part="submit">등록</button>
             </div>
         </form>
     </template>
@@ -178,7 +174,7 @@ const errorText = "text-sm text-danger";
     import { COMMENT_LIMITS } from "@utils/Constants";
     import { FormattedDateTime } from "@utils/FormattedDate";
 
-    type Panel = { id: number; kind: "reply" | "edit" | "delete" };
+    type Panel = { id: number; kind: "edit" | "delete" };
 
     function part<T extends Element = HTMLElement>(root: ParentNode, name: string): T {
         const el = root.querySelector<T>(`[data-part="${name}"]`);
@@ -238,7 +234,9 @@ const errorText = "text-sm text-danger";
         function renderItem(comment: Comment): HTMLElement {
             const item = cloneTemplate(root, "item-template");
             const body = part(item, "body");
-            part(body, "nickname").textContent = comment.nickname;
+            const nickname = part(body, "nickname");
+            nickname.textContent = comment.nickname;
+            if (comment.isAdmin) nickname.classList.add("text-accent");
             const date = part<HTMLTimeElement>(body, "date");
             date.dateTime = comment.createdAt;
             date.textContent = FormattedDateTime(new Date(comment.createdAt));
@@ -251,11 +249,7 @@ const errorText = "text-sm text-danger";
 
             const replies = repliesOf(comment.id);
             const actions = part(body, "actions");
-            const reply = actions.querySelector<HTMLElement>('[data-action="reply"]');
-            if (reply && comment.parentId !== null) reply.remove();
-            if (replies.length > 0) {
-                actions.querySelectorAll('[data-action="edit"], [data-action="delete"]').forEach((el) => el.remove());
-            }
+            if (replies.length > 0 || comment.isAdmin) actions.remove();
             actions.querySelectorAll<HTMLButtonElement>("[data-action]").forEach((button) => {
                 const kind = button.dataset.action as Panel["kind"];
                 button.setAttribute("aria-expanded", String(panel?.id === comment.id && panel.kind === kind));
@@ -297,27 +291,18 @@ const errorText = "text-sm text-danger";
         }
 
         function renderPanel(comment: Comment, kind: Panel["kind"]): HTMLElement {
-            if (kind === "reply") return composeForm(comment.id);
-            if (kind === "edit") return editForm(comment);
-            return deleteForm(comment);
+            return kind === "edit" ? editForm(comment) : deleteForm(comment);
         }
 
-        function composeForm(parentId: number | null): HTMLFormElement {
+        function composeForm(): HTMLFormElement {
             const form = cloneTemplate(root, "form-template") as HTMLFormElement;
             bindCounter(form);
-            const cancel = form.querySelector<HTMLButtonElement>('[data-action="cancel"]');
-            if (parentId !== null && cancel) {
-                cancel.hidden = false;
-                cancel.addEventListener("click", closePanel);
-                part(form, "submit").textContent = "답글 등록";
-            }
             form.addEventListener("submit", async (event) => {
                 event.preventDefault();
                 setError(form, null);
                 setBusy(form, true);
                 const result = await createComment({
                     postSlug: slug,
-                    parentId,
                     nickname: field(form, "nickname"),
                     password: field(form, "password"),
                     email: field(form, "email"),
@@ -330,13 +315,9 @@ const errorText = "text-sm text-danger";
                     return;
                 }
                 comments = [...comments, result.value];
-                if (parentId === null) {
-                    form.reset();
-                    form.querySelector("textarea")?.dispatchEvent(new Event("input"));
-                    render();
-                } else {
-                    closePanel();
-                }
+                form.reset();
+                form.querySelector("textarea")?.dispatchEvent(new Event("input"));
+                render();
             });
             return form;
         }
@@ -399,7 +380,7 @@ const errorText = "text-sm text-danger";
             render();
         }
 
-        compose.replaceChildren(composeForm(null));
+        compose.replaceChildren(composeForm());
         void load();
     }
 

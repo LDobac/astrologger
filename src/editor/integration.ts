@@ -16,6 +16,7 @@ export default function editor(): AstroIntegration {
                 injectRoute({ pattern: "/__editor", entrypoint: "./src/editor/pages/TreePage.astro" });
                 injectRoute({ pattern: "/__editor/edit", entrypoint: "./src/editor/pages/EditPage.astro" });
                 injectRoute({ pattern: "/__editor/preview", entrypoint: "./src/editor/pages/PreviewPage.astro" });
+                injectRoute({ pattern: "/__editor/comments", entrypoint: "./src/editor/pages/CommentsPage.astro" });
             },
             "astro:config:done": ({ config }) => {
                 if (enabled) setRenderConfig(config);

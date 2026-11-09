@@ -1,0 +1,174 @@
+---
+import EditorShell from "../components/EditorShell.astro";
+---
+
+<EditorShell title="댓글 관리 · Editor">
+    <div class="mx-auto max-w-4xl px-4 py-8">
+        <header class="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4">
+            <div>
+                <a href="/__editor" class="text-sm text-fg-muted hover:text-accent">← 글 관리</a>
+                <h1 class="text-2xl font-bold">댓글 관리</h1>
+                <p id="api" class="mt-1 text-xs text-fg-muted"></p>
+            </div>
+            <div class="flex items-center gap-4 text-sm">
+                <label class="flex items-center gap-2">
+                    <input id="unanswered" type="checkbox" checked />
+                    답글 없는 댓글만
+                </label>
+                <button id="reload" class="rounded-lg border border-line px-3 py-1.5 hover:border-accent hover:text-accent">새로고침</button>
+            </div>
+        </header>
+
+        <div id="list" class="space-y-8 text-sm">불러오는 중…</div>
+    </div>
+</EditorShell>
+
+<script>
+    import { api } from "../client/api";
+    import { $, esc } from "../client/dom";
+    import type { AdminComment, AdminCommentsResponse, ReplyResponse } from "../types";
+
+    let data: AdminCommentsResponse | null = null;
+    const notices = new Map<number, { ok: boolean; text: string }>();
+
+    function formatTime(iso: string): string {
+        return new Date(iso).toLocaleString("ko-KR", { dateStyle: "short", timeStyle: "short" });
+    }
+
+    function renderReply(reply: AdminComment, parent: AdminComment): string {
+        const name = reply.isAdmin
+            ? `<span class="font-bold text-accent">${esc(reply.nickname)}</span>`
+            : `<span class="font-bold">${esc(reply.nickname)}</span>`;
+        const mail =
+            reply.isAdmin && parent.email !== null
+                ? reply.notifiedAt
+                    ? `<span class="text-fg-muted">메일 발송됨 ${esc(formatTime(reply.notifiedAt))}</span>`
+                    : `<span class="text-red-500">메일 미발송</span>
+                       <button data-resend="${reply.id}" class="rounded border border-line px-2 py-0.5 text-xs hover:border-accent hover:text-accent">메일 재발송</button>`
+                : "";
+        return `<li class="py-2">
+            <div class="flex flex-wrap items-baseline gap-2">${name}<span class="text-xs text-fg-muted">${esc(formatTime(reply.createdAt))}</span>${mail}</div>
+            <p class="mt-1 whitespace-pre-wrap break-words">${esc(reply.content)}</p>
+        </li>`;
+    }
+
+    function renderComment(comment: AdminComment, replies: AdminComment[]): string {
+        const notice = notices.get(comment.id);
+        const email = comment.email
+            ? `<span class="rounded border border-line px-1.5 text-xs text-fg-muted" title="${esc(comment.email)}">✉ ${esc(comment.email)}</span>`
+            : `<span class="rounded border border-line px-1.5 text-xs text-fg-muted">이메일 없음</span>`;
+        return `<li class="rounded-lg border border-line p-4" data-comment="${comment.id}">
+            <div class="flex flex-wrap items-baseline gap-2">
+                <span class="font-bold">${esc(comment.nickname)}</span>
+                <span class="text-xs text-fg-muted">${esc(formatTime(comment.createdAt))}${comment.updatedAt ? " (수정됨)" : ""}</span>
+                ${email}
+            </div>
+            <p class="mt-2 whitespace-pre-wrap break-words">${esc(comment.content)}</p>
+            ${replies.length > 0 ? `<ul class="mt-3 divide-y divide-line border-l-2 border-line pl-4">${replies.map((r) => renderReply(r, comment)).join("")}</ul>` : ""}
+            <form data-reply="${comment.id}" class="mt-3 flex flex-col gap-2">
+                <textarea name="content" rows="3" required maxlength="2000" placeholder="답글 내용" class="w-full resize-y rounded-lg border border-line bg-canvas px-3 py-2"></textarea>
+                <div class="flex items-center justify-between gap-3">
+                    <span class="text-xs ${notice ? (notice.ok ? "text-accent" : "text-red-500") : "text-fg-muted"}">${esc(notice?.text ?? (comment.email ? "등록하면 답변 메일이 발송됩니다." : "이메일이 없어 답글만 등록됩니다."))}</span>
+                    <button type="submit" class="shrink-0 rounded-lg bg-accent px-4 py-1.5 font-bold text-canvas hover:opacity-90 disabled:opacity-50">답글 등록</button>
+                </div>
+            </form>
+        </li>`;
+    }
+
+    function render() {
+        if (data === null) return;
+        const onlyUnanswered = $<HTMLInputElement>("#unanswered").checked;
+        const repliesOf = new Map<number, AdminComment[]>();
+        for (const c of [...data.comments].reverse()) {
+            if (c.parentId !== null) repliesOf.set(c.parentId, [...(repliesOf.get(c.parentId) ?? []), c]);
+        }
+        const groups = new Map<string, AdminComment[]>();
+        for (const c of data.comments) {
+            if (c.parentId !== null) continue;
+            const answered = (repliesOf.get(c.id) ?? []).some((r) => r.isAdmin);
+            if (onlyUnanswered && answered && !notices.has(c.id)) continue;
+            groups.set(c.postSlug, [...(groups.get(c.postSlug) ?? []), c]);
+        }
+        if (groups.size === 0) {
+            $("#list").innerHTML = `<p class="text-fg-muted">${onlyUnanswered ? "답글이 필요한 댓글이 없습니다." : "댓글이 없습니다."}</p>`;
+            return;
+        }
+        $("#list").innerHTML = [...groups]
+            .map(([slug, comments]) => {
+                const post = data!.posts[slug];
+                const title = post
+                    ? `<a href="${esc(post.url)}" target="_blank" rel="noopener" class="hover:text-accent">${esc(post.title)}</a>`
+                    : `${esc(slug)} <span class="text-xs font-normal text-red-500">(로컬에 없는 글)</span>`;
+                return `<section>
+                    <h2 class="mb-3 text-lg font-bold">${title} <span class="text-sm font-normal text-fg-muted">(${comments.length})</span></h2>
+                    <ul class="space-y-3">${comments.map((c) => renderComment(c, repliesOf.get(c.id) ?? [])).join("")}</ul>
+                </section>`;
+            })
+            .join("");
+    }
+
+    async function load() {
+        $("#list").textContent = "불러오는 중…";
+        try {
+            data = await api.comments();
+            $("#api").textContent = `API: ${data.apiUrl}`;
+            render();
+        } catch (error) {
+            $("#list").textContent = `불러오기 실패: ${error instanceof Error ? error.message : error}`;
+        }
+    }
+
+    function applyResult(parentId: number, result: ReplyResponse) {
+        if (data === null) return;
+        const exists = data.comments.some((c) => c.id === result.reply.id);
+        data.comments = exists
+            ? data.comments.map((c) => (c.id === result.reply.id ? result.reply : c))
+            : [result.reply, ...data.comments];
+        const text =
+            result.mail === "sent"
+                ? "답글을 등록하고 메일을 보냈습니다."
+                : result.mail === "none"
+                  ? "답글을 등록했습니다. (이메일 없음)"
+                  : `답글은 등록됐지만 메일 발송에 실패했습니다: ${result.error ?? ""}`;
+        notices.set(parentId, { ok: result.mail !== "failed", text });
+        render();
+    }
+
+    $("#list").addEventListener("submit", async (event) => {
+        const form = (event.target as Element).closest<HTMLFormElement>("form[data-reply]");
+        if (!form) return;
+        event.preventDefault();
+        const parentId = Number(form.dataset.reply);
+        const content = new FormData(form).get("content");
+        if (typeof content !== "string" || content.trim() === "") return;
+        const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+        button.disabled = true;
+        try {
+            applyResult(parentId, await api.reply(parentId, content));
+        } catch (error) {
+            button.disabled = false;
+            alert(`답글 등록 실패: ${error instanceof Error ? error.message : error}`);
+        }
+    });
+
+    $("#list").addEventListener("click", async (event) => {
+        const button = (event.target as Element).closest<HTMLButtonElement>("[data-resend]");
+        if (!button) return;
+        button.disabled = true;
+        try {
+            const result = await api.resendMail(Number(button.dataset.resend));
+            applyResult(result.reply.parentId!, result);
+        } catch (error) {
+            button.disabled = false;
+            alert(`재발송 실패: ${error instanceof Error ? error.message : error}`);
+        }
+    });
+
+    $("#unanswered").addEventListener("change", render);
+    $("#reload").addEventListener("click", () => {
+        notices.clear();
+        void load();
+    });
+
+    void load();
+</script>

@@ -1,0 +1,3 @@
+-- Migration number: 0003 	 2026-11-09T15:00:00.000Z
+ALTER TABLE comments ADD COLUMN is_admin INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE comments ADD COLUMN notified_at TEXT;

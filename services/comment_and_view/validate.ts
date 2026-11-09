@@ -2,7 +2,6 @@ import { fail, type Result } from "./http";
 
 export type CreateInput = {
     postSlug: string;
-    parentId: number | null;
     nickname: string;
     password: string;
     email: string | null;
@@ -25,6 +24,8 @@ const PASSWORD_MAX = 72;
 const EMAIL_MAX = 254;
 const CONTENT_MAX = 2000;
 const TURNSTILE_TOKEN_MAX = 2048;
+
+export const ADMIN_NICKNAME = "작성자";
 
 function length(s: string): number {
     return [...s].length;
@@ -49,6 +50,7 @@ function parseNickname(value: unknown): string | null {
     if (typeof value !== "string") return null;
     const nickname = value.normalize("NFC").replace(CONTROL_ALL, "").trim();
     const len = length(nickname);
+    if (nickname.replace(/\s/g, "") === ADMIN_NICKNAME) return null;
     return len >= 1 && len <= NICKNAME_MAX ? nickname : null;
 }
 
@@ -59,7 +61,7 @@ function parsePassword(value: unknown): string | null {
     return len >= PASSWORD_MIN && len <= PASSWORD_MAX ? password : null;
 }
 
-function parseContent(value: unknown): string | null {
+export function parseContent(value: unknown): string | null {
     if (typeof value !== "string") return null;
     const content = value.normalize("NFC").replace(/\r\n?/g, "\n").replace(CONTROL_EXCEPT_NEWLINE, "").trim();
     const len = length(content);
@@ -75,12 +77,6 @@ function parseEmail(value: unknown): Result<string | null> {
     return { ok: true, value: email };
 }
 
-function parseParentId(value: unknown): Result<number | null> {
-    if (value === undefined || value === null) return { ok: true, value: null };
-    if (typeof value !== "number" || !Number.isSafeInteger(value) || value < 1) return fail(400, "invalid_parent");
-    return { ok: true, value };
-}
-
 export function validateCreate(body: unknown): Result<CreateInput> {
     if (!isRecord(body)) return fail(400, "invalid_request");
 
@@ -90,8 +86,7 @@ export function validateCreate(body: unknown): Result<CreateInput> {
     const postSlug = parseSlug(body.postSlug);
     if (postSlug === null) return fail(400, "invalid_slug");
 
-    const parentId = parseParentId(body.parentId);
-    if (!parentId.ok) return parentId;
+    if (body.parentId !== undefined && body.parentId !== null) return fail(400, "invalid_parent");
 
     const nickname = parseNickname(body.nickname);
     if (nickname === null) return fail(400, "invalid_nickname");
@@ -114,7 +109,6 @@ export function validateCreate(body: unknown): Result<CreateInput> {
         ok: true,
         value: {
             postSlug,
-            parentId: parentId.value,
             nickname,
             password,
             email: email.value,

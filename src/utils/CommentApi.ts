@@ -7,11 +7,11 @@ export type Comment = {
     content: string;
     createdAt: string;
     updatedAt: string | null;
+    isAdmin: boolean;
 };
 
 export type CreateCommentInput = {
     postSlug: string;
-    parentId: number | null;
     nickname: string;
     password: string;
     email: string;
@@ -23,7 +23,7 @@ export type ApiResult<T> = { ok: true; value: T } | { ok: false; error: string }
 
 const MESSAGES: Record<string, string> = {
     network: "서버에 연결하지 못했습니다. 잠시 후 다시 시도해 주세요.",
-    invalid_nickname: "닉네임은 1~20자로 입력해 주세요.",
+    invalid_nickname: "사용할 수 없는 닉네임입니다. 1~20자로 입력해 주세요.",
     invalid_password: "비밀번호는 4~72자로 입력해 주세요.",
     invalid_email: "이메일 형식이 올바르지 않습니다.",
     invalid_content: "내용은 1~2000자로 입력해 주세요.",

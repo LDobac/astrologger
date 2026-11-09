@@ -3,6 +3,7 @@ import path from "node:path";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import type { PostMeta, PublishRequest, SaveRequest } from "../types";
 import { HttpError } from "./paths";
+import { listAdminComments, replyToComment, resendReplyMail } from "./comments";
 import { renderMarkdown } from "./render";
 import { addAttachment, deleteDraft, deletePost, getDoc, getTree, publish, resolveAttachment, saveDraft } from "./store";
 
@@ -82,6 +83,17 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<boolean
         }
         case "DELETE /post":
             sendJson(res, 200, await deletePost(q.get("dir") ?? ""));
+            return true;
+        case "GET /comments":
+            sendJson(res, 200, await listAdminComments());
+            return true;
+        case "POST /comments/reply": {
+            const { content } = await readJson<{ content: string }>(req);
+            sendJson(res, 200, await replyToComment(Number(q.get("id")), content));
+            return true;
+        }
+        case "POST /comments/resend":
+            sendJson(res, 200, await resendReplyMail(Number(q.get("id"))));
             return true;
         case "POST /publish":
             sendJson(res, 200, await publish(await readJson<PublishRequest>(req)));

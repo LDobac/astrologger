@@ -11,7 +11,7 @@
         "POST_FEED_URL": "https://jaehee.dev/rss.xml"
     },
     "secrets": {
-        "required": ["VIEW_PEPPER"]
+        "required": ["VIEW_PEPPER", "ADMIN_TOKEN"]
     },
     "d1_databases": [
         {

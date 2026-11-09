@@ -3,13 +3,14 @@ import { hashPassword, verifyPassword } from "./password";
 import { clientIp, rateKey, verifyTurnstile, withinLimit } from "./spam";
 import { validateCreate, validateDelete, validateUpdate } from "./validate";
 
-type CommentRow = {
+export type CommentRow = {
     id: number;
     parent_id: number | null;
     nickname: string;
     content: string;
     created_at: string;
     updated_at: string | null;
+    is_admin: number;
 };
 
 type AuthRow = {
@@ -18,11 +19,11 @@ type AuthRow = {
     has_replies: number;
 };
 
-const PUBLIC_COLUMNS = "id, parent_id, nickname, content, created_at, updated_at";
-const NOW = "strftime('%Y-%m-%dT%H:%M:%SZ', 'now')";
+export const PUBLIC_COLUMNS = "id, parent_id, nickname, content, created_at, updated_at, is_admin";
+export const NOW = "strftime('%Y-%m-%dT%H:%M:%SZ', 'now')";
 const MAX_PER_POST = 300;
 
-function toPublic(row: CommentRow) {
+export function toPublic(row: CommentRow) {
     return {
         id: row.id,
         parentId: row.parent_id,
@@ -30,6 +31,7 @@ function toPublic(row: CommentRow) {
         content: row.content,
         createdAt: row.created_at,
         updatedAt: row.updated_at,
+        isAdmin: row.is_admin === 1,
     };
 }
 
@@ -65,26 +67,17 @@ export async function createComment(req: Request, env: AppEnv): Promise<Response
         .first<{ n: number }>();
     if ((count?.n ?? 0) >= MAX_PER_POST) return error(409, "comment_limit");
 
-    if (c.parentId !== null) {
-        const parent = await env.DB
-            .prepare("SELECT 1 FROM comments WHERE id = ? AND post_slug = ? AND parent_id IS NULL")
-            .bind(c.parentId, c.postSlug)
-            .first();
-        if (parent === null) return error(400, "invalid_parent");
-    }
-
     const { hash, salt } = await hashPassword(c.password);
 
     const row = await env.DB
         .prepare(
-            `INSERT INTO comments (parent_id, post_slug, nickname, pw_hash, pw_salt, email, content)
-             SELECT ?1, ?2, ?3, ?4, ?5, ?6, ?7
-             WHERE ?1 IS NULL OR EXISTS (SELECT 1 FROM comments WHERE id = ?1 AND post_slug = ?2 AND parent_id IS NULL)
+            `INSERT INTO comments (post_slug, nickname, pw_hash, pw_salt, email, content)
+             VALUES (?, ?, ?, ?, ?, ?)
              RETURNING ${PUBLIC_COLUMNS}`,
         )
-        .bind(c.parentId, c.postSlug, c.nickname, hash, salt, c.email, c.content)
+        .bind(c.postSlug, c.nickname, hash, salt, c.email, c.content)
         .first<CommentRow>();
-    if (row === null) return error(400, "invalid_parent");
+    if (row === null) return error(500, "internal_error");
 
     return json(toPublic(row), 201);
 }

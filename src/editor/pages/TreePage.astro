@@ -9,7 +9,10 @@ import EditorShell from "../components/EditorShell.astro";
                 <a href="/" class="text-sm text-fg-muted hover:text-accent">← 블로그로</a>
                 <h1 class="text-2xl font-bold">글 관리</h1>
             </div>
-            <a href="/__editor/edit" class="rounded-lg bg-accent px-4 py-2 font-bold text-canvas hover:opacity-90">+ 새 글 작성</a>
+            <div class="flex items-center gap-3">
+                <a href="/__editor/comments" class="rounded-lg border border-line px-4 py-2 hover:border-accent hover:text-accent">댓글 관리</a>
+                <a href="/__editor/edit" class="rounded-lg bg-accent px-4 py-2 font-bold text-canvas hover:opacity-90">+ 새 글 작성</a>
+            </div>
         </header>
 
         <section id="drafts-section" class="mb-10 hidden">

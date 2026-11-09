@@ -18,7 +18,8 @@ No linter.
 ## Dependency policy
 
 - Prefer Astro built-ins and official/native packages (e.g. `@astrojs/*`, `@shikijs/transformers`).
-- Add third-party deps only when no native option exists (current: `katex`, `satori`, `html-to-text`, `github-slugger`; dev-only for the editor: `codemirror` + `@codemirror/*`, `yaml`).
+- Add third-party deps only when no native option exists (current: `katex`, `satori`, `html-to-text`, `github-slugger`; dev-only for the editor: `codemirror` + `@codemirror/*`, `yaml`, `nodemailer`).
+- `@types/node` is pinned to `^24` in devDependencies so hoisting doesn't pick the `20.x` copy pulled in by `@types/nodemailer` (breaks `tsc` on `Buffer`).
 - Verify dependency swaps against real posts before committing.
 
 ## Architecture
@@ -100,6 +101,14 @@ Use `@components`, `@layouts`, `@pages`, `@assets`, `@styles`, `@utils` (→ `sr
 - API: `services/comment_and_view` (Cloudflare Worker). Base URL is `COMMENT_API_URL` in [Constants.ts](src/utils/Constants.ts): `127.0.0.1:8787` in dev, `*.workers.dev` in prod. Client wrapper: `src/utils/CommentApi.ts`.
 - `Comments.astro` (below the post body) and `ViewCount.astro` (post header only; POST, falls back to GET) are vanilla `<script>`s initialized on `astro:page-load` (ClientRouter).
 - Render comment text with `textContent` only. Slug = `slug(title)`.
+- Public site has no reply UI; the API rejects `parentId`. Replies with `isAdmin` show the nickname (`작성자`) in `text-accent`, with no edit/delete buttons.
+
+### Comment admin (dev only)
+
+- `/__editor/comments` (injected by the editor integration) lists all comments and posts replies. The browser calls `/__editor/api/comments*`; `src/editor/server/comments.ts` forwards to the Worker's `/admin/*` with `Authorization: Bearer`. The token never reaches the browser, and the Worker rejects requests carrying `Origin`.
+- Config comes from root `.env` (gitignored; template `.env.example`), re-read on every request: `COMMENT_ADMIN_API_URL`, `COMMENT_ADMIN_TOKEN` (= Worker secret `ADMIN_TOKEN`), `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `MAIL_FROM`.
+- If the parent comment has an email, the reply mail goes out via Gmail SMTP (`nodemailer`, `smtp.gmail.com:465`). `MAIL_FROM` must be registered as a Gmail "Send mail as" alias, or Gmail rewrites From to the account address. Mail: post title (link), reply, comment, post link (`#comments`). Post title/URL come from the local tree (`getTree()`, `https://<CNAME>/posts/<slug>/`).
+- The reply is saved even when sending fails; the Worker's `notified_at` stays null and the page shows "메일 재발송".
 
 ### Deployment
 

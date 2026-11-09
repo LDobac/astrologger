@@ -3092,6 +3092,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/nodemailer@npm:^8.0.2":
+  version: 8.0.2
+  resolution: "@types/nodemailer@npm:8.0.2"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/1ad3f83ac130cf9af65ce9eb7985b08b27b4723316c2be621522effc31c63d7d2d76880815490499fbe8b1aff3da889d24b54b3db892526d1166b12702404ff0
+  languageName: node
+  linkType: hard
+
 "@types/sax@npm:^1.2.1":
   version: 1.2.7
   resolution: "@types/sax@npm:1.2.7"
@@ -3443,6 +3452,8 @@ __metadata:
     "@shikijs/transformers": "npm:4.6.0"
     "@tailwindcss/vite": "npm:^4.3.4"
     "@types/html-to-text": "npm:^9.0.4"
+    "@types/node": "npm:^24.9.2"
+    "@types/nodemailer": "npm:^8.0.2"
     astro: "npm:7.1.6"
     codemirror: "npm:^6.0.2"
     gh-pages: "npm:^6.3.0"
@@ -3450,6 +3461,7 @@ __metadata:
     github-slugger: "npm:^2.0.0"
     html-to-text: "npm:^9.0.5"
     katex: "npm:^0.18.1"
+    nodemailer: "npm:^10.4.0"
     satori: "npm:^0.29.0"
     satteri: "npm:0.9.5"
     sharp: "npm:^0.34.5"
@@ -3609,15 +3621,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cloudflare@npm:^7.3.0":
-  version: 7.3.0
-  resolution: "cloudflare@npm:7.3.0"
-  bin:
-    cloudflare: bin/cli
-  checksum: 10c0/871914b8084295e4aea49bd2fac1fe3f9b047515e41afef1fd3cca173bfb10111824913ee2c60b6c0cd807765d1d5849cc483825114c54e0553043e293130c02
-  languageName: node
-  linkType: hard
-
 "clsx@npm:^2.1.1":
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
@@ -3688,7 +3691,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "comment_and_view@workspace:services/comment_and_view"
   dependencies:
-    cloudflare: "npm:^7.3.0"
     typescript: "npm:^5.9.3"
     wrangler: "npm:^4.158.0"
   languageName: unknown
@@ -5578,6 +5580,13 @@ __metadata:
   version: 1.0.5
   resolution: "node-mock-http@npm:1.0.5"
   checksum: 10c0/14a36b28423953af95e4659aa1e07208b5a38daaa89c1aac28a193f5420744a2511eb288503019b2fc8de582c70612d2e475d0df1d1a0e44fe3dfd7fc8f5399c
+  languageName: node
+  linkType: hard
+
+"nodemailer@npm:^10.4.0":
+  version: 10.4.0
+  resolution: "nodemailer@npm:10.4.0"
+  checksum: 10c0/b432aa371b52b3c51e8d206c43cad64cd4cdce823b76ce4e1947b92444f8192c300d5d07a24c03597a7ced81fd6b157da922feebd2b172651aad20c044c9c905
   languageName: node
   linkType: hard
 

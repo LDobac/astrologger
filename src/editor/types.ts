@@ -67,3 +67,28 @@ export interface PublishResponse {
     dir: string;
     slug: string;
 }
+
+export interface AdminComment {
+    id: number;
+    parentId: number | null;
+    nickname: string;
+    content: string;
+    createdAt: string;
+    updatedAt: string | null;
+    isAdmin: boolean;
+    postSlug: string;
+    email: string | null;
+    notifiedAt: string | null;
+}
+
+export interface AdminCommentsResponse {
+    apiUrl: string;
+    comments: AdminComment[];
+    posts: Record<string, { title: string; url: string }>;
+}
+
+export interface ReplyResponse {
+    reply: AdminComment;
+    mail: "sent" | "none" | "failed";
+    error?: string;
+}

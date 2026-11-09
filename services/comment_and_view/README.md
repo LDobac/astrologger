@@ -6,7 +6,7 @@
 
 `services/comment_and_view`에서 실행하거나, 루트에서 `yarn workspace comment_and_view <script>`.
 
-- `yarn dev` — 로컬 실행 (로컬 D1, `.wrangler/state`). `http://localhost:4321` Origin도 허용한다. `.dev.vars`에 `VIEW_PEPPER`가 있어야 조회수 집계가 동작한다
+- `yarn dev` — 로컬 실행 (로컬 D1, `.wrangler/state`). `http://localhost:4321` Origin도 허용한다. `.dev.vars`에 `VIEW_PEPPER`가 있어야 조회수 집계가, `ADMIN_TOKEN`이 있어야 관리자 API가 동작한다
 - `yarn types` — `wrangler.jsonc` 변경 후 `worker-configuration.d.ts` 재생성
 - `yarn typecheck` — 생성 타입 최신 여부 확인 + `tsc`
 - `yarn deploy` — 배포
@@ -19,18 +19,19 @@
 | Method | Path | Body | 성공 |
 |---|---|---|---|
 | GET | `/comments?slug=<slug>` | - | 200 `Comment[]` |
-| POST | `/comments` | `{ postSlug, parentId?, nickname, password, email?, content, website?, turnstileToken? }` | 201 `Comment` |
+| POST | `/comments` | `{ postSlug, nickname, password, email?, content, website?, turnstileToken? }` | 201 `Comment` |
 | PATCH | `/comments/:id` | `{ password, content }` | 200 `Comment` |
 | DELETE | `/comments/:id` | `{ password }` | 204 |
 | GET | `/views/:slug` | - | 200 `{ count }` |
 | POST | `/views/:slug` | 없음 | 200 `{ count, counted }` |
 
-`Comment` = `{ id, parentId, nickname, content, createdAt, updatedAt }` (ISO 8601 UTC). `email`과 비밀번호 해시는 응답에 포함되지 않는다.
+`Comment` = `{ id, parentId, nickname, content, createdAt, updatedAt, isAdmin }` (ISO 8601 UTC). `email`과 비밀번호 해시는 응답에 포함되지 않는다.
 
-댓글 조회는 query `slug`, 생성은 body `postSlug`를 쓴다. 조회수는 path에 URL 인코딩한 slug를 쓴다(NFC로 정규화). `parentId`는 JSON 숫자여야 한다(문자열 `"5"`는 400). CORS preflight(OPTIONS)는 허용된 Origin만 204, 그 외는 403.
+댓글 조회는 query `slug`, 생성은 body `postSlug`를 쓴다. 조회수는 path에 URL 인코딩한 slug를 쓴다(NFC로 정규화). CORS preflight(OPTIONS)는 허용된 Origin만 204, 그 외는 403.
 
 정책:
-- 답글은 1단계만. `parentId`는 같은 `postSlug`의 최상위 댓글이어야 한다.
+- 답글은 관리자 API로만 단다(1단계만). 공개 `POST /comments`에 `parentId`가 있으면 400 `invalid_parent`.
+- 관리자 답글은 닉네임 `작성자`, `isAdmin: true`. 공개 API로는 수정/삭제할 수 없다(`wrong_password`). 공개 댓글 닉네임 `작성자`(공백 무시)는 400 `invalid_nickname`.
 - 답글이 달린 댓글은 수정/삭제할 수 없다 (409 `has_replies`).
 - 수정은 본문만 가능하다.
 - 글 하나당 댓글은 최대 300개(409 `comment_limit`). 조회도 300개까지 반환하므로 잘리지 않는다.
@@ -45,7 +46,24 @@
 - `POST_FEED_URL`(RSS)에 없는 slug는 404 `not_found`. 이미 집계된 적이 있는 slug는 RSS를 확인하지 않는다.
 - 429면 그 조회는 집계되지 않는다. 프론트엔드는 `GET`으로 값을 받아 표시하거나 표시하지 않는다.
 
-오류 코드: `invalid_request`, `invalid_json`, `invalid_slug`, `invalid_parent`, `invalid_nickname`, `invalid_password`, `invalid_email`, `invalid_content`, `unsupported_media_type`(415), `payload_too_large`(413), `captcha_failed`(403), `wrong_password`(403), `forbidden_origin`(403), `not_found`(404), `method_not_allowed`(405), `has_replies`(409), `comment_limit`(409), `rate_limited`(429), `internal_error`(500).
+오류 코드: `unauthorized`(401), `invalid_request`, `invalid_json`, `invalid_slug`, `invalid_parent`, `invalid_nickname`, `invalid_password`, `invalid_email`, `invalid_content`, `unsupported_media_type`(415), `payload_too_large`(413), `captcha_failed`(403), `wrong_password`(403), `forbidden_origin`(403), `not_found`(404), `method_not_allowed`(405), `has_replies`(409), `comment_limit`(409), `rate_limited`(429), `internal_error`(500).
+
+## 관리자 API
+
+블로그 dev 서버의 `/__editor/comments`(로컬 전용)가 서버 간 요청으로 호출한다. 브라우저에서 직접 호출하지 않는다.
+
+| Method | Path | Body | 성공 |
+|---|---|---|---|
+| GET | `/admin/comments` | - | 200 `AdminComment[]` (전체, 최신순, 최대 2000개) |
+| POST | `/admin/comments/:id/replies` | `{ content }` | 201 `{ reply, parent }` (`:id`는 최상위 댓글) |
+| POST | `/admin/comments/:id/notified` | 없음 | 200 `AdminComment` (관리자 답글의 `notifiedAt` 기록) |
+
+`AdminComment` = `Comment` + `{ postSlug, email, notifiedAt }`.
+
+- 인증: `Authorization: Bearer <ADMIN_TOKEN>`. SHA-256 후 `timingSafeEqual`로 비교한다. `ADMIN_TOKEN`이 32자 미만이면 항상 401.
+- `Origin` 헤더가 있는 요청(브라우저)은 403 `forbidden_origin`. CORS를 열지 않는다.
+- 인증 실패는 IP당 `AUTH_LIMITER`(10회/60초)로 제한, 초과 시 429.
+- 설정: `yarn wrangler secret put ADMIN_TOKEN`(`wrangler.jsonc`의 `secrets.required`). 값은 블로그 루트 `.env`의 `COMMENT_ADMIN_TOKEN`과 같아야 한다. 생성 예: `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"`.
 
 ## 보안 / 스팸
 

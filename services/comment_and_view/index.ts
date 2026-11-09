@@ -1,3 +1,4 @@
+import { routeAdmin } from "./admin";
 import { createComment, deleteComment, listComments, updateComment } from "./comments";
 import { corsHeaders, error, parseOrigins, withHeaders, type AppEnv } from "./http";
 import { parseId, parseSlug } from "./validate";
@@ -15,6 +16,10 @@ function decodeSlug(raw: string): string | null {
 }
 
 async function route(req: Request, env: AppEnv, origin: string | null, allowed: Set<string>): Promise<Response> {
+    const url = new URL(req.url);
+
+    if (url.pathname.startsWith("/admin/")) return routeAdmin(req, env, url);
+
     if (req.method === "OPTIONS") {
         return origin !== null && allowed.has(origin) ? new Response(null, { status: 204 }) : error(403, "forbidden_origin");
     }
@@ -22,8 +27,6 @@ async function route(req: Request, env: AppEnv, origin: string | null, allowed: 
     if (req.method !== "GET" && origin !== null && !allowed.has(origin)) {
         return error(403, "forbidden_origin");
     }
-
-    const url = new URL(req.url);
 
     if (url.pathname === "/comments") {
         if (req.method === "GET") {
